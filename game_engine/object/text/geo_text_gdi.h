@@ -44,6 +44,8 @@ protected:
 	virtual bool _update_quad();
 
 private:
+	std::wstring	wtext_;
+
 	GE_IRECT		rect_;
 	GE_TEXT_STYLE	text_style_;
 

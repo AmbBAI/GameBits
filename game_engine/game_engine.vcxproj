@@ -112,6 +112,8 @@
     <ClCompile Include="render\font\bm_font\bm_unicode.cpp" />
     <ClCompile Include="render\font\ge_font_bm.cpp" />
     <ClCompile Include="render\font\ge_font.cpp" />
+    <ClCompile Include="render\font\ge_font_ft.cpp" />
+    <ClCompile Include="render\font\ge_font_manager.cpp" />
     <ClCompile Include="render\ge_render.cpp" />
     <ClCompile Include="render\ger_effect.cpp" />
     <ClCompile Include="render\ger_light.cpp" />
@@ -146,6 +148,8 @@
     <ClInclude Include="render\font\bm_font\bm_unicode.h" />
     <ClInclude Include="render\font\ge_font_bm.h" />
     <ClInclude Include="render\font\ge_font.h" />
+    <ClInclude Include="render\font\ge_font_ft.h" />
+    <ClInclude Include="render\font\ge_font_manager.h" />
     <ClInclude Include="render\ge_render.h" />
     <ClInclude Include="render\ger_effect.h" />
     <ClInclude Include="render\ger_light.h" />

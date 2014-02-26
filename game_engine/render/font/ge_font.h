@@ -4,18 +4,10 @@
 #include "../../common/ge_include.h"
 #include "../../utility/geu_gmath.h"
 #include "../../common/ge_engine.h"
+#include "ge_font_manager.h"
 
 namespace ge
 {
-
-enum GE_API GEFontType
-{
-	FontType_Default = 0,
-	FontType_D3DXFont,
-	FontType_GDIFont,
-	FontType_BMFont,
-	FontType_FTFont,
-};
 
 class GE_API GEFont
 {
@@ -81,27 +73,6 @@ protected:
 private:
 	LOGFONT			gdi_font_desc_;
 	HFONT			gdi_font_;
-};
-
-class GE_API GEFontManager
-{
-protected:
-	typedef std::set<GEFont*>	GE_FONT_SET;
-
-	GEFontManager();
-	virtual ~GEFontManager();
-
-public:
-	static GEFontManager* get_instance();
-	static GEFont* create_font(GEFontType font_type);
-	static void release_font(GEFont* ptr_font);
-
-public:
-	GEFont* new_font(GEFontType font_type);
-	void	delete_font(GEFont* ptr_font);
-
-protected:
-	GE_FONT_SET				font_set_;
 };
 
 

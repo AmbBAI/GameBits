@@ -4,6 +4,7 @@ SceneTest::SceneTest()
 : p_fps_text_(NULL)
 , p_gdi_text_(NULL)
 , p_bm_text_(NULL)
+, p_ft_text_(NULL)
 , p_armature_(NULL)
 , fps_font_id_(-1)
 {
@@ -68,15 +69,25 @@ bool SceneTest::init_gdi_text()
 
 bool SceneTest::init_bm_text()
 {
-
-	p_bm_font_ = ge::GEFontBM::create();
-	p_bm_font_->init("bmfont\\xxxxx.fnt");
-	p_bm_font_->init_effect("bmfont\\font.fx");
+	ge::GEFont* p_font = NULL;
+	p_font = ge::GEFontManager::create_font(ge::FontType_BMFont);
+	ge::GEFontBM* p_bm_font = (ge::GEFontBM*)p_font;
+	p_bm_font->init("bmfont\\xxxxx.fnt");
+	p_bm_font->init_effect("bmfont\\font.fx");
 
 	p_bm_text_ = ge::GEOTextBM::create();
-	p_bm_text_->set_font(p_bm_font_);
+	p_bm_text_->set_font(p_bm_font);
 
 	add_object(0, p_bm_text_);
+	return true;
+}
+
+bool SceneTest::init_ft_text()
+{
+	ge::GEFont* p_font = NULL;
+	p_font = ge::GEFontManager::create_font(ge::FontType_FTFont);
+	//p_ft_font_->init("consolas", 32);
+
 	return true;
 }
 

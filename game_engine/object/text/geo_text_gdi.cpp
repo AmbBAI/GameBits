@@ -57,6 +57,7 @@ bool GEOTextGDI::set_text_style( GE_TEXT_STYLE& style )
 bool GEOTextGDI::set_text( const char* text )
 {
 	bool b_ret = GEOText::set_text(text);
+	wtext_ = _mbcs_to_unicode(text_.c_str());
 	need_update_text_ = true;
 	return b_ret;
 }
@@ -226,8 +227,6 @@ bool GEOTextGDI::update_text_ex()
 	std::wstring unicode_text;
 	unicode_text.assign(mbcs_to_unicode(text_.c_str()), '\0');
 
-	std::wstring wtext = _mbcs_to_unicode(text_.c_str());
-
 	Gdiplus::Graphics* panel = Gdiplus::Graphics::FromHDC(h_dc_);
 
 	if (panel)
@@ -251,7 +250,7 @@ bool GEOTextGDI::update_text_ex()
 		panel->Clear(Gdiplus::Color::Transparent);
 		// draw
 		Gdiplus::Status gdi_ret = panel->DrawString(
-			wtext.c_str(), -1,
+			wtext_.c_str(), -1,
 			&font, rectf, &format, &brush);
 
 		delete panel;

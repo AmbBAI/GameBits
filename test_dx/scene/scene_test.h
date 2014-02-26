@@ -12,6 +12,7 @@ public:
 	bool init_fps_text();
 	bool init_gdi_text();
 	bool init_bm_text();
+	bool init_ft_text();
 
 public:
 	virtual bool show();
@@ -30,8 +31,9 @@ public:
 
 	ge::GEOTextGDI*		p_gdi_text_;
 
-	ge::GEFontBM*		p_bm_font_;
 	ge::GEOTextBM*		p_bm_text_;
+
+	ge::GEOTextFT*		p_ft_text_;
 
 	ge::GEOSpine*		p_spine_;
 

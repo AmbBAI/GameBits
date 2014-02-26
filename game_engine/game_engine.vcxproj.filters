@@ -7,9 +7,6 @@
     <Filter Include="object\text">
       <UniqueIdentifier>{2d4e2347-294a-48c9-a47c-97da31d8572f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="object\texture">
-      <UniqueIdentifier>{503a4c8c-2c7d-4756-9d82-a792e751608e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="render">
       <UniqueIdentifier>{06fbbe7f-5e8a-4d72-ad11-cb360f14d3d8}</UniqueIdentifier>
     </Filter>
@@ -24,6 +21,9 @@
     </Filter>
     <Filter Include="render\font\bmfont">
       <UniqueIdentifier>{182e6f55-3337-4f98-a642-6cee2db40ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\texture">
+      <UniqueIdentifier>{efc5597d-d4b1-4b3d-b584-ba74b1a55447}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -96,15 +96,6 @@
     <ClCompile Include="object\text\geo_text_gdi.cpp">
       <Filter>object\text</Filter>
     </ClCompile>
-    <ClCompile Include="render\texture\ge_surface.cpp">
-      <Filter>object\texture</Filter>
-    </ClCompile>
-    <ClCompile Include="render\texture\ge_texture.cpp">
-      <Filter>object\texture</Filter>
-    </ClCompile>
-    <ClCompile Include="render\texture\ge_texture_manager.cpp">
-      <Filter>object\texture</Filter>
-    </ClCompile>
     <ClCompile Include="render\font\ge_font.cpp">
       <Filter>render\font</Filter>
     </ClCompile>
@@ -119,6 +110,21 @@
     </ClCompile>
     <ClCompile Include="utility\ge_unicode.cpp">
       <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="render\font\ge_font_ft.cpp">
+      <Filter>render\font</Filter>
+    </ClCompile>
+    <ClCompile Include="render\texture\ge_surface.cpp">
+      <Filter>render\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="render\texture\ge_texture.cpp">
+      <Filter>render\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="render\texture\ge_texture_manager.cpp">
+      <Filter>render\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="render\font\ge_font_manager.cpp">
+      <Filter>render\font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -198,15 +204,6 @@
     <ClInclude Include="object\text\geo_text_gdi.h">
       <Filter>object\text</Filter>
     </ClInclude>
-    <ClInclude Include="render\texture\ge_texture_manager.h">
-      <Filter>object\texture</Filter>
-    </ClInclude>
-    <ClInclude Include="render\texture\ge_surface.h">
-      <Filter>object\texture</Filter>
-    </ClInclude>
-    <ClInclude Include="render\texture\ge_texture.h">
-      <Filter>object\texture</Filter>
-    </ClInclude>
     <ClInclude Include="render\font\ge_font_bm.h">
       <Filter>render\font</Filter>
     </ClInclude>
@@ -221,6 +218,21 @@
     </ClInclude>
     <ClInclude Include="utility\ge_unicode.h">
       <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="render\font\ge_font_ft.h">
+      <Filter>render\font</Filter>
+    </ClInclude>
+    <ClInclude Include="render\texture\ge_texture_manager.h">
+      <Filter>render\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="render\texture\ge_surface.h">
+      <Filter>render\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="render\texture\ge_texture.h">
+      <Filter>render\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="render\font\ge_font_manager.h">
+      <Filter>render\font</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

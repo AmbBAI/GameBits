@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="armature">
+      <UniqueIdentifier>{e951b521-2960-40e5-bfff-180ee45cd4e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="animation">
+      <UniqueIdentifier>{a84381fd-99ff-40c4-8ed2-890c09221022}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocos">
+      <UniqueIdentifier>{fda5970f-204f-456d-aceb-b467ca4cc690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="data">
+      <UniqueIdentifier>{371ce9f0-ea29-4ff7-9e65-5a6ca02e401d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="support">
+      <UniqueIdentifier>{104803cf-658a-4f5d-ba62-56718efdcd27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="support\tinyxml2">
+      <UniqueIdentifier>{5c084d10-af87-4975-970a-2e1843e4f495}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="armature\CCArmature.cpp">
+      <Filter>armature</Filter>
+    </ClCompile>
+    <ClCompile Include="armature\CCBone.cpp">
+      <Filter>armature</Filter>
+    </ClCompile>
+    <ClCompile Include="armature\CCDisplay.cpp">
+      <Filter>armature</Filter>
+    </ClCompile>
+    <ClCompile Include="armature\CCSkin.cpp">
+      <Filter>armature</Filter>
+    </ClCompile>
+    <ClCompile Include="armature\CCTextureAtlas.cpp">
+      <Filter>armature</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\CCAnimation.cpp">
+      <Filter>animation</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\CCProcessBase.cpp">
+      <Filter>animation</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\CCTween.cpp">
+      <Filter>animation</Filter>
+    </ClCompile>
+    <ClCompile Include="cocos\CCAffineTransform.cpp">
+      <Filter>cocos</Filter>
+    </ClCompile>
+    <ClCompile Include="cocos\CCGeometry.cpp">
+      <Filter>cocos</Filter>
+    </ClCompile>
+    <ClCompile Include="cocos\CCNode.cpp">
+      <Filter>cocos</Filter>
+    </ClCompile>
+    <ClCompile Include="cocos\CCTransformHelp.cpp">
+      <Filter>cocos</Filter>
+    </ClCompile>
+    <ClCompile Include="cocos\CCTweenFunction.cpp">
+      <Filter>cocos</Filter>
+    </ClCompile>
+    <ClCompile Include="cocos\CCUtils.cpp">
+      <Filter>cocos</Filter>
+    </ClCompile>
+    <ClCompile Include="data\CCAnimationData.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="data\CCArmatureData.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="data\CCAtlasData.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="data\CCData.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="data\CCTextureData.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="support\CCSAXParser.cpp">
+      <Filter>support</Filter>
+    </ClCompile>
+    <ClCompile Include="support\tinyxml2\tinyxml2.cpp">
+      <Filter>support\tinyxml2</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="armature\CCArmature.h">
+      <Filter>armature</Filter>
+    </ClInclude>
+    <ClInclude Include="armature\CCBone.h">
+      <Filter>armature</Filter>
+    </ClInclude>
+    <ClInclude Include="armature\CCDisplay.h">
+      <Filter>armature</Filter>
+    </ClInclude>
+    <ClInclude Include="armature\CCSkin.h">
+      <Filter>armature</Filter>
+    </ClInclude>
+    <ClInclude Include="armature\CCTextureAtlas.h">
+      <Filter>armature</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\CCAnimation.h">
+      <Filter>animation</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\CCProcessBase.h">
+      <Filter>animation</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\CCTween.h">
+      <Filter>animation</Filter>
+    </ClInclude>
+    <ClInclude Include="cocos\CCAffineTransform.h">
+      <Filter>cocos</Filter>
+    </ClInclude>
+    <ClInclude Include="cocos\CCGeometry.h">
+      <Filter>cocos</Filter>
+    </ClInclude>
+    <ClInclude Include="cocos\CCMacro.h">
+      <Filter>cocos</Filter>
+    </ClInclude>
+    <ClInclude Include="cocos\CCNode.h">
+      <Filter>cocos</Filter>
+    </ClInclude>
+    <ClInclude Include="cocos\CCTransformHelp.h">
+      <Filter>cocos</Filter>
+    </ClInclude>
+    <ClInclude Include="cocos\CCTweenFunction.h">
+      <Filter>cocos</Filter>
+    </ClInclude>
+    <ClInclude Include="cocos\CCUtils.h">
+      <Filter>cocos</Filter>
+    </ClInclude>
+    <ClInclude Include="data\CCAnimationData.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="data\CCArmatureData.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="data\CCAtlasData.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="data\CCData.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="data\CCDataDef.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="data\CCTextureData.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="support\CCSAXParser.h">
+      <Filter>support</Filter>
+    </ClInclude>
+    <ClInclude Include="support\tinyxml2\tinyxml2.h">
+      <Filter>support\tinyxml2</Filter>
+    </ClInclude>
+    <ClInclude Include="CCInclude.h" />
+  </ItemGroup>
+</Project>

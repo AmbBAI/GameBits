@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="object">
+      <UniqueIdentifier>{f9dcbd27-a567-41f4-9e6f-56f49ee16488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\text">
+      <UniqueIdentifier>{2d4e2347-294a-48c9-a47c-97da31d8572f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\texture">
+      <UniqueIdentifier>{503a4c8c-2c7d-4756-9d82-a792e751608e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render">
+      <UniqueIdentifier>{06fbbe7f-5e8a-4d72-ad11-cb360f14d3d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{544f4070-aa48-49c9-8d20-4f3bebb2e108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utility">
+      <UniqueIdentifier>{ee5b8987-0395-4f33-bd64-2539901b54fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\font">
+      <UniqueIdentifier>{4a4c7d50-df62-4cf2-9531-87f1cd6e5477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\font\bmfont">
+      <UniqueIdentifier>{182e6f55-3337-4f98-a642-6cee2db40ec4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="object\ge_object.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\geo_armature.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\geo_atlas_render.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\geo_mesh.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\geo_primitive.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\geo_spine.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\text\geo_text.cpp">
+      <Filter>object\text</Filter>
+    </ClCompile>
+    <ClCompile Include="object\text\geo_text_bm.cpp">
+      <Filter>object\text</Filter>
+    </ClCompile>
+    <ClCompile Include="object\text\geo_text_dx.cpp">
+      <Filter>object\text</Filter>
+    </ClCompile>
+    <ClCompile Include="object\text\geo_text_ft.cpp">
+      <Filter>object\text</Filter>
+    </ClCompile>
+    <ClCompile Include="render\ge_render.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="render\ger_effect.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="render\ger_light.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="render\ger_material.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="render\ger_shader.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="common\ge_app.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\ge_engine.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\ge_game.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\ge_input.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\ge_scene.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="utility\geu_gmath.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="utility\geu_vertex.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="object\text\geo_text_gdi.cpp">
+      <Filter>object\text</Filter>
+    </ClCompile>
+    <ClCompile Include="render\texture\ge_surface.cpp">
+      <Filter>object\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="render\texture\ge_texture.cpp">
+      <Filter>object\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="render\texture\ge_texture_manager.cpp">
+      <Filter>object\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="render\font\ge_font.cpp">
+      <Filter>render\font</Filter>
+    </ClCompile>
+    <ClCompile Include="render\font\ge_font_bm.cpp">
+      <Filter>render\font</Filter>
+    </ClCompile>
+    <ClCompile Include="render\font\bm_font\bm_font.cpp">
+      <Filter>render\font\bmfont</Filter>
+    </ClCompile>
+    <ClCompile Include="render\font\bm_font\bm_unicode.cpp">
+      <Filter>render\font\bmfont</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="object\ge_object.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\ge_object_def.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\geo_armature.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\geo_atlas_render.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\geo_mesh.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\geo_primitive.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\geo_spine.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\text\geo_text.h">
+      <Filter>object\text</Filter>
+    </ClInclude>
+    <ClInclude Include="object\text\geo_text_bm.h">
+      <Filter>object\text</Filter>
+    </ClInclude>
+    <ClInclude Include="object\text\geo_text_dx.h">
+      <Filter>object\text</Filter>
+    </ClInclude>
+    <ClInclude Include="object\text\geo_text_ft.h">
+      <Filter>object\text</Filter>
+    </ClInclude>
+    <ClInclude Include="render\ge_render.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="render\ger_effect.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="render\ger_light.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="render\ger_material.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="render\ger_shader.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="common\ge_app.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\ge_engine.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\ge_game.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\ge_include.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\ge_input.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\ge_scene.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\geu_gmath.h">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\geu_vertex.h">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="game_engine.h" />
+    <ClInclude Include="object\text\geo_text_gdi.h">
+      <Filter>object\text</Filter>
+    </ClInclude>
+    <ClInclude Include="render\texture\ge_texture_manager.h">
+      <Filter>object\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="render\texture\ge_surface.h">
+      <Filter>object\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="render\texture\ge_texture.h">
+      <Filter>object\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="render\font\ge_font_bm.h">
+      <Filter>render\font</Filter>
+    </ClInclude>
+    <ClInclude Include="render\font\ge_font.h">
+      <Filter>render\font</Filter>
+    </ClInclude>
+    <ClInclude Include="render\font\bm_font\bm_unicode.h">
+      <Filter>render\font\bmfont</Filter>
+    </ClInclude>
+    <ClInclude Include="render\font\bm_font\bm_font.h">
+      <Filter>render\font\bmfont</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

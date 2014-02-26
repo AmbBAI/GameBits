@@ -2,7 +2,6 @@
 #define _SCENE_SCENE_TEST_H_
 
 #include "game_engine.h"
-#include "../object/panel_2d.h"
 
 class SceneTest : public ge::GEScene
 {
@@ -33,8 +32,6 @@ public:
 
 	ge::GEFontBM*		p_bm_font_;
 	ge::GEOTextBM*		p_bm_text_;
-
-	Panel2D*			p_panel_2d_;
 
 	ge::GEOSpine*		p_spine_;
 

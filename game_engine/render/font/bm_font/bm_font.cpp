@@ -123,6 +123,7 @@ int CFont::Init(const char *fontFile)
 	// Load the font
 	FILE *f = fopen(fontFile, "rb");
 	
+	if (f == NULL) return -1;
 	// Determine format by reading the first bytes of the file
 	char str[4] = {0};
 	fread(str, 3, 1, f);

@@ -33,12 +33,7 @@ bool GEOTextBM::set_font( GEFont* font )
 bool GEOTextBM::set_text( const char* text )
 {
 	if (text == NULL) text_.clear();
-	else
-	{
-		char* utf8_text = MbcsToUtf8(text);
-		text_ = utf8_text;
-		ReleaseData((void*)utf8_text);
-	}
+	else text_ = _mbcs_to_utf8(text);
 	need_update_text_ = true;
 	return true;
 }

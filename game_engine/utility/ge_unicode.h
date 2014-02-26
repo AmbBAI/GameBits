@@ -6,20 +6,20 @@
 namespace ge
 {
 
-wchar_t* Utf8ToUnicode(const char* pUtf8);
-char* UnicodeToUtf8(const wchar_t* pUnicode);
-wchar_t* MbcsToUnicode(const char* pMbcs);
-char* UnicodeToMbcs(const wchar_t* pUnicode);
-char* MbcsToUtf8(const char* pMbcs);
-char* Utf8ToMbcs(const char* pUtf8);
-bool StringToInt(const char* strValue, int & iValue);
-bool StringToDWord(const char* strValue, unsigned int & dwValue);
-bool StringToInt64(const char* strValue, long long & i64Value);
-bool StringToUnsignedInt64(const char* strValue, unsigned long long & ui64Value);
-inline int UrlEncode(const char *source, char *dest, unsigned max);
-char* FormUrlEncode(const char* pEncode);
-char* FormUrlDecode(const char* pDecode);
-void ReleaseData(void* ptr);
+int GE_API utf8_to_unicode(const char* in_string, wchar_t* out_buff = NULL, int buff_size = 0);
+int GE_API unicode_to_utf8(const wchar_t* in_string, char* out_buff = NULL, int buff_size = 0);
+int GE_API mbcs_to_unicode(const char* in_string, wchar_t* out_buff = NULL, int buff_size = 0);
+int GE_API unicode_to_mbcs(const wchar_t* in_string, char* out_buff = NULL, int buff_size = 0);
+int GE_API mbcs_to_utf8(const char* in_string, char* out_buff = NULL, int buff_size = 0);
+int GE_API utf8_to_mbcs(const char* in_string, char* out_buff = NULL, int buff_size = 0);
+
+// 有stl不能导出，方便使用
+std::wstring	_utf8_to_unicode(const char* in_string);
+std::string		_unicode_to_utf8(const wchar_t* in_string);
+std::wstring	_mbcs_to_unicode(const char* in_string);
+std::string		_unicode_to_mbcs(const wchar_t* in_string);
+std::string		_mbcs_to_utf8(const char* in_string);
+std::string		_utf8_to_mbcs(const char* in_string);
 
 }
 

@@ -223,9 +223,10 @@ bool GEOTextGDI::update_text_ex()
 
 	bool ret = true;
 
-	wchar_t* unicode_text = MbcsToUnicode(text_.c_str());
-	std::wstring wtext(unicode_text);
-	ReleaseData(unicode_text);
+	std::wstring unicode_text;
+	unicode_text.assign(mbcs_to_unicode(text_.c_str()), '\0');
+
+	std::wstring wtext = _mbcs_to_unicode(text_.c_str());
 
 	Gdiplus::Graphics* panel = Gdiplus::Graphics::FromHDC(h_dc_);
 

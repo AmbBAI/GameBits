@@ -1,10 +1,10 @@
 #ifndef _GAME_ENGINE_INCLUDE_H_
 #define _GAME_ENGINE_INCLUDE_H_
 
-#ifdef DLLIMPORT
-#define GE_API __declspec(dllimport)
-#else
+#ifdef DLL_EXPORT
 #define GE_API __declspec(dllexport)
+#else
+#define GE_API
 #endif
 
 #pragma warning (disable:4251) // 忽略dll导出模板类的warning

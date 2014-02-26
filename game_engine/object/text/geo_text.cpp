@@ -20,7 +20,10 @@ GEOText::~GEOText()
 bool GEOText::set_text( const char* text )
 {
 	if (text == NULL) text_.clear();
-	else text_ = text;
+	else
+	{
+		text_ = text;
+	}
 	return true;
 }
 

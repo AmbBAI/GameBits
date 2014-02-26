@@ -2,6 +2,7 @@
 #include "../../common/ge_engine.h"
 #include "../../render/texture/ge_texture.h"
 #include "../../render/ger_effect.h"
+#include "../../utility/ge_unicode.h"
 
 namespace ge
 {
@@ -31,9 +32,15 @@ bool GEOTextBM::set_font( GEFont* font )
 
 bool GEOTextBM::set_text( const char* text )
 {
-	bool b_ret = GEOText::set_text(text);
+	if (text == NULL) text_.clear();
+	else
+	{
+		char* utf8_text = MbcsToUtf8(text);
+		text_ = utf8_text;
+		ReleaseData((void*)utf8_text);
+	}
 	need_update_text_ = true;
-	return b_ret;
+	return true;
 }
 
 bool GEOTextBM::update_font()

@@ -54,7 +54,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(DXSDK_DIR)\include;..\lib_spine\include;..\lib_armature;..\lib_json;..\lib_freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GAME_ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -74,7 +74,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(DXSDK_DIR)\include;..\lib_spine\include;..\lib_armature;..\lib_json;..\lib_freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GAME_ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -127,6 +127,7 @@
     <ClCompile Include="render\texture\ge_texture_manager.cpp" />
     <ClCompile Include="utility\geu_gmath.cpp" />
     <ClCompile Include="utility\geu_vertex.cpp" />
+    <ClCompile Include="utility\ge_unicode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\ge_object.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="utility\geu_gmath.h" />
     <ClInclude Include="utility\geu_vertex.h" />
     <ClInclude Include="game_engine.h" />
+    <ClInclude Include="utility\ge_unicode.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lib_armature\lib_armature.vcxproj">

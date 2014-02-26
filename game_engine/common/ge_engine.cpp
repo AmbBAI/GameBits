@@ -219,7 +219,7 @@ bool GEEngine::set_windowed( bool is_windowed )
 	is_windowed_ = is_windowed;
 	if (p_d3d_device_ == NULL) return false;
 
-	if (is_windowed != d3d_present_param_.Windowed)
+	if (is_windowed != !!d3d_present_param_.Windowed)
 	{
 		d3d_present_param_.Windowed = is_windowed;		
 

@@ -117,6 +117,9 @@
     <ClCompile Include="render\font\bm_font\bm_unicode.cpp">
       <Filter>render\font\bmfont</Filter>
     </ClCompile>
+    <ClCompile Include="utility\ge_unicode.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\ge_object.h">
@@ -215,6 +218,9 @@
     </ClInclude>
     <ClInclude Include="render\font\bm_font\bm_font.h">
       <Filter>render\font\bmfont</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\ge_unicode.h">
+      <Filter>utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 #include "../../common/ge_engine.h"
 #include "../../render/texture/ge_texture_manager.h"
 #include "../geo_atlas_render.h"
+#include "../../utility/ge_unicode.h"
 
 namespace ge
 {
@@ -222,7 +223,9 @@ bool GEOTextGDI::update_text_ex()
 
 	bool ret = true;
 
-	std::wstring wtext(text_.begin(), text_.end());
+	wchar_t* unicode_text = MbcsToUnicode(text_.c_str());
+	std::wstring wtext(unicode_text);
+	ReleaseData(unicode_text);
 
 	Gdiplus::Graphics* panel = Gdiplus::Graphics::FromHDC(h_dc_);
 

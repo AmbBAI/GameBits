@@ -7,8 +7,7 @@
 namespace ge
 {
 
-
-
+class GEOAtlasRender;
 class GE_API GEOTextFT : public GEOText
 {
 	DLL_MANAGE_CLASS(GEOTextFT);
@@ -17,25 +16,32 @@ public:
 	GEOTextFT();
 	virtual ~GEOTextFT();
 
-public:
-	//virtual void render(time_t delta);
+	static const unsigned fvf;
 
-	//virtual bool set_rect(GE_IRECT& rect);
-	//virtual bool set_text_style(GE_TEXT_STYLE& style, const char* font_path);
+public:
 	virtual bool set_text(const char* text);
 	virtual bool set_font(GEFont* font);
 	
 	virtual bool update_font();
 	virtual bool update_text();
 
+	virtual void render(time_t delta);
+
+	virtual bool set_size(GE_ISIZE& size);
+
+	virtual bool _update_quad();
 
 private:
 
 	typedef std::vector<TGlyph> GLYPH_LIST;
-	GLYPH_LIST	glyph_buff_;
+	GLYPH_LIST		glyph_buff_;
 
-	bool		need_update_text_;
-	bool		need_update_font_;
+	bool			need_update_text_;
+	bool			need_update_font_;
+	bool			need_update_quad_;
+
+	GEOAtlasRender*	render_object_;
+	GE_ISIZE		render_size_;
 };
 
 } // namespace ge

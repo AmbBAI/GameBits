@@ -18,22 +18,25 @@ enum GE_API GEFontType
 class GEFont;
 class GE_API GEFontManager
 {
-protected:
 	typedef std::set<GEFont*>	GE_FONT_SET;
 
 	GEFontManager();
 	virtual ~GEFontManager();
+	
+	static GEFontManager* get_instance();
 
 public:
-	static GEFontManager* get_instance();
+	static bool init();
+	static void destory();
+
 	static GEFont* create_font(GEFontType font_type);
 	static void release_font(GEFont* ptr_font);
 
-public:
-	GEFont* new_font(GEFontType font_type);
-	void	delete_font(GEFont* ptr_font);
-
 protected:
+	GEFont* _create_font(GEFontType font_type);
+	void	_release_font(GEFont* ptr_font);
+
+private:
 	GE_FONT_SET				font_set_;
 };
 

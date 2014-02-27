@@ -86,8 +86,18 @@ bool SceneTest::init_ft_text()
 {
 	ge::GEFont* p_font = NULL;
 	p_font = ge::GEFontManager::create_font(ge::FontType_FTFont);
-	//p_ft_font_->init("consolas", 32);
+	p_font->init("font\\msyh.ttf", 32);
 
+	p_ft_text_ = ge::GEOTextFT::create();
+	if (!p_ft_text_) return false;
+
+	ge::GE_ISIZE size;
+	size.width = 1000;
+	size.height = 1000;
+	p_ft_text_->set_size(size);
+	p_ft_text_->set_font(p_font);
+
+	add_object(1234, p_ft_text_);
 	return true;
 }
 
@@ -101,6 +111,7 @@ bool SceneTest::show()
 	init_fps_text();
 	init_gdi_text();
 	init_bm_text();
+	init_ft_text();
 
 	//p_panel_2d_ = new Panel2D();
 	//p_panel_2d_->init();
@@ -207,10 +218,12 @@ void SceneTest::update_fps_text()
 		int len = strlen(buff);
 		buff[len+1] = 0;
 		buff[len] = 'A';
-		p_fps_text_->set_text(buff);
+		if (p_fps_text_) p_fps_text_->set_text(buff);
 		buff[len] = 'B';
-		p_gdi_text_->set_text(buff);
+		if (p_gdi_text_) p_gdi_text_->set_text(buff);
 		buff[len] = 'C';
-		p_bm_text_->set_text(buff);
+		if (p_bm_text_) p_bm_text_->set_text(buff);
+		buff[len] = 'D';
+		if (p_ft_text_) p_ft_text_->set_text(buff);
 	}
 }

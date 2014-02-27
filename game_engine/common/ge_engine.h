@@ -40,6 +40,7 @@ public:
 
 protected:
 	virtual bool _init_render();
+	virtual bool _init_font();
 
 	virtual bool _dx_begin_scene();
 	virtual bool _dx_end_scene();

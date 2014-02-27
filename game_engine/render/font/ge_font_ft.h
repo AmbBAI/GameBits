@@ -18,12 +18,13 @@ public:
 	GEFreeType();
 	virtual ~GEFreeType();
 
+	static GEFreeType* get_instance();
+
 public:
 	bool init();
 	void destory();
 
-	GEFontFT* create_font(const char* font_name);
-	void release_font(GEFontFT** font_ft);
+	bool init_font(GEFontFT* font_ft, const char* font_name);
 
 private:
 	FT_Library freetype_;
@@ -48,8 +49,10 @@ public:
 	virtual ~GEFontFT();
 
 public:
-	//virtual bool init();
+	virtual bool init(const char* face, int size);
 	virtual void destory();
+
+	virtual bool set_size(int size);
 
 public:
 	bool begin_write(PGlyph char_buff, int buff_size);
@@ -62,6 +65,7 @@ protected:
 
 private:
 	FT_Face		ft_face_;
+	int			face_size_;
 
 	PGlyph		glyph_buff_;
 	int			buff_size_;

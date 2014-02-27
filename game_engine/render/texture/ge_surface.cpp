@@ -76,4 +76,36 @@ D3DFORMAT GESurface::get_format()
 	return surface_desc_.Format;
 }
 
+bool GESurface::draw_bitmap( void* buff, GE_IRECT& rect )
+{
+	if (d3d_surface_ == NULL) return false;
+
+	D3DLOCKED_RECT locked_rect;
+	d3d_surface_->LockRect(&locked_rect, &rect, 0);
+	unsigned* dst_data  = (unsigned*) locked_rect.pBits;
+	for (int i=0; i<rect.height(); ++i)
+	{
+		int width = rect.width();
+		for (int j=0; j<width; ++j)
+		{
+			if (((char*)buff)[i * width + j])
+			{
+				int pos = i * locked_rect.Pitch / 4 + j;
+				dst_data[pos] = 0xffffffff;
+			}
+		}
+	}
+	d3d_surface_->UnlockRect();
+	return true;
+}
+
+bool GESurface::clear()
+{
+	if (d3d_surface_ == NULL) return false;
+	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_instance()->get_device();
+	if (p_d3d_device == NULL) return false;
+
+	p_d3d_device->ColorFill(d3d_surface_, NULL, 0x00000000);
+}
+
 }

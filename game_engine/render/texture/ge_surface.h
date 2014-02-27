@@ -2,6 +2,7 @@
 #define _GAME_ENGINE_OBJECT_SURFACE_H_
 
 #include "../../common/ge_include.h"
+#include "../../utility/geu_gmath.h"
 
 namespace ge
 {
@@ -22,6 +23,9 @@ public:
 	D3DFORMAT get_format();
 	bool begin_dc(HDC& h_dc);
 	bool end_dc(HDC& h_dc);
+
+	bool clear();
+	bool draw_bitmap(void* buff, GE_IRECT& rect);
 
 protected:
 	LPDIRECT3DSURFACE9		d3d_surface_;

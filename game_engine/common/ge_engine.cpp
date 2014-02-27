@@ -84,7 +84,9 @@ bool GEEngine::init_engine()
 
 	D3D_RELEASE(p_d3d_);
 
-	return _init_render();
+	if (!_init_render()) return false;
+	if (!_init_font()) return false;
+	return true;
 }
 
 void GEEngine::close_engine()
@@ -187,11 +189,12 @@ bool GEEngine::_init_render()
 	p_ge_render_ = GERender::get_instance();
 	if(p_ge_render_ == NULL) return false;
 
-	ULONG_PTR gdiplus_token;
-	Gdiplus::GdiplusStartupInput startup_input;
-	GdiplusStartup(&gdiplus_token, &startup_input, NULL);
-
 	return p_ge_render_->init();
+}
+
+bool GEEngine::_init_font()
+{
+	return GEFontManager::init();
 }
 
 bool GEEngine::set_resolution( int width, int height )

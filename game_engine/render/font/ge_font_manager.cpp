@@ -7,12 +7,13 @@ namespace ge
 {
 
 GEFontManager::GEFontManager()
+: font_set_()
 {
-
 }
 
 GEFontManager::~GEFontManager()
 {
+	destory();
 }
 
 GEFontManager* GEFontManager::get_instance()
@@ -21,21 +22,37 @@ GEFontManager* GEFontManager::get_instance()
 	return &_global_ge_font_manager;
 }
 
+bool GEFontManager::init()
+{
+	GEFreeType* freetype = GEFreeType::get_instance();
+	if (freetype) freetype->init();
+
+	ULONG_PTR gdiplus_token;
+	Gdiplus::GdiplusStartupInput startup_input;
+	GdiplusStartup(&gdiplus_token, &startup_input, NULL);
+	return true;
+}
+
+void GEFontManager::destory()
+{
+
+}
+
 GEFont* GEFontManager::create_font( GEFontType font_type )
 {
 	GEFontManager* font_manager = GEFontManager::get_instance();
 	if (font_manager == NULL) return NULL;
-	return font_manager->new_font(font_type);
+	return font_manager->_create_font(font_type);
 }
 
 void GEFontManager::release_font( GEFont* ptr_font )
 {
 	GEFontManager* font_manager = GEFontManager::get_instance();
 	if (font_manager == NULL) return;
-	font_manager->delete_font(ptr_font);
+	font_manager->_release_font(ptr_font);
 }
 
-GEFont* GEFontManager::new_font( GEFontType font_type )
+GEFont* GEFontManager::_create_font( GEFontType font_type )
 {
 	switch (font_type)
 	{
@@ -73,7 +90,7 @@ GEFont* GEFontManager::new_font( GEFontType font_type )
 	return NULL;
 }
 
-void GEFontManager::delete_font( GEFont* ptr_font )
+void GEFontManager::_release_font( GEFont* ptr_font )
 {
 	if (ptr_font == NULL) return;
 	ptr_font->destory();

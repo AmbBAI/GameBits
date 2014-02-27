@@ -14,6 +14,12 @@ GEFreeType::~GEFreeType()
 	destory();
 }
 
+GEFreeType* GEFreeType::get_instance()
+{
+	static GEFreeType _global_ge_freetype;
+	return &_global_ge_freetype;
+}
+
 bool GEFreeType::init()
 {
 	int ret = FT_Init_FreeType(&freetype_);
@@ -32,22 +38,12 @@ void GEFreeType::destory()
 	}
 }
 
-GEFontFT* GEFreeType::create_font( const char* font_path )
+bool GEFreeType::init_font( GEFontFT* font_ft, const char* font_name )
 {
-	GEFontFT* font_ft = GEFontFT::create();
-	if (font_ft == NULL) return NULL;
-	
 	FT_Face ft_face = NULL;
-	FT_New_Face(freetype_, font_path, 0, &ft_face);
-	font_ft->_set_ft_face(ft_face);
-	return font_ft;
+	FT_New_Face(freetype_, font_name, 0, &ft_face);
+	return font_ft->_set_ft_face(ft_face);
 }
-
-void GEFreeType::release_font( GEFontFT** font_ft )
-{
-	GEFontFT::release(font_ft);
-}
-
 
 
 
@@ -55,12 +51,24 @@ DLL_MANAGE_CLASS_IMPLEMENT(GEFontFT);
 
 GEFontFT::GEFontFT()
 : ft_face_(NULL)
+, face_size_(0)
+, glyph_buff_(NULL)
+, buff_size_(0)
+, buff_offset_(0)
 {
+	type_ = FontType_FTFont;
 }
 
 GEFontFT::~GEFontFT()
 {
 	destory();
+}
+
+bool GEFontFT::init( const char* face, int size )
+{
+	GEFreeType* freetype = GEFreeType::get_instance();
+	if (!freetype->init_font(this, face)) return false;
+	return set_size(size);
 }
 
 void GEFontFT::destory()
@@ -70,8 +78,15 @@ void GEFontFT::destory()
 	ft_face_ = NULL;
 }
 
+bool GEFontFT::set_size( int size )
+{
+	FT_Error ft_err = FT_Set_Pixel_Sizes(ft_face_, 0, size);
+	return ft_err == 0;
+}
+
 bool GEFontFT::_set_ft_face( FT_Face ft_face )
 {
+	if (ft_face == NULL) return false;
 	destory();
 	ft_face_ = ft_face;
 	return true;
@@ -80,6 +95,8 @@ bool GEFontFT::_set_ft_face( FT_Face ft_face )
 bool GEFontFT::write_text( const char* text, int width, int height, bool wrap )
 {
 	if (text == NULL) return false;
+
+	if (glyph_buff_ == NULL) return false;
 
 	int text_len = strlen(text);
 
@@ -92,30 +109,50 @@ bool GEFontFT::write_text( const char* text, int width, int height, bool wrap )
 
 	for (int i=0; i<text_len; ++i)
 	{
-		glyph_index = FT_Get_Char_Index(ft_face_, text[i]);
-
-		int ret = FT_Load_Glyph(ft_face_, glyph_index, FT_LOAD_RENDER);
-		if (ret != 0) continue;
-
-		if ( use_kerning && pre_glyph_index && glyph_index )
+		switch (text[i])
 		{
-			FT_Vector delta;
+		case '\n':
+		case '\r':
+			{
+				pen_x = 0;
+				pen_y += ft_face_->height >> 6;
+			}
+			break;
+		default:
+			{
+				glyph_index = FT_Get_Char_Index(ft_face_, text[i]);
 
-			FT_Get_Kerning( ft_face_, pre_glyph_index, glyph_index, 
-				FT_KERNING_DEFAULT, &delta );
+				int ret = FT_Load_Glyph(ft_face_, glyph_index, FT_LOAD_RENDER);
+				if (ret != 0) continue;
 
-			pen_x += delta.x >> 6;
+				if ( use_kerning && pre_glyph_index && glyph_index )
+				{
+					FT_Vector delta;
+
+					FT_Get_Kerning( ft_face_, pre_glyph_index, glyph_index, 
+						FT_KERNING_DEFAULT, &delta );
+
+					pen_x += delta.x >> 6;
+				}
+
+				glyph_buff_[buff_offset_].pos.x = pen_x;
+				glyph_buff_[buff_offset_].pos.y = pen_y;
+
+				ret = FT_Load_Glyph(ft_face_, glyph_index, FT_LOAD_DEFAULT); 
+				if ( ret != 0 ) continue;
+
+				ret = FT_Get_Glyph(ft_face_->glyph, &glyph_buff_[buff_offset_].image); 
+				if ( ret != 0 ) continue;
+
+				pen_x += slot->advance.x >> 6;
+				pre_glyph_index = glyph_index;
+
+				++ buff_offset_;
+				if (buff_offset_ >= buff_size_) return true;
+			}
+			break;
 		}
 
-		/* 保存当前笔位置 */ 
-		glyph_buff_[i].pos.x = pen_x;
-		glyph_buff_[i].pos.y = pen_y;
-
-		ret = FT_Load_Glyph(ft_face_, glyph_index, FT_LOAD_DEFAULT); 
-		if ( ret != 0 ) continue;
-
-		ret = FT_Get_Glyph(ft_face_->glyph, &glyph_buff_[i].image); 
-		if ( ret != 0 ) continue;
 	}
 	return true;
 }
@@ -125,6 +162,7 @@ bool GEFontFT::begin_write( PGlyph char_buff, int buff_size )
 	if (glyph_buff_ != NULL) return false;
 	glyph_buff_ = char_buff;
 	buff_size_ = buff_size;
+	buff_offset_ = 0;
 	return true;
 }
 

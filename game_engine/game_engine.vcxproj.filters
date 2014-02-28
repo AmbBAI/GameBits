@@ -126,6 +126,9 @@
     <ClCompile Include="render\font\ge_font_manager.cpp">
       <Filter>render\font</Filter>
     </ClCompile>
+    <ClCompile Include="render\texture\ge_texture_group.cpp">
+      <Filter>render\texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\ge_object.h">
@@ -233,6 +236,9 @@
     </ClInclude>
     <ClInclude Include="render\font\ge_font_manager.h">
       <Filter>render\font</Filter>
+    </ClInclude>
+    <ClInclude Include="render\texture\ge_texture_group.h">
+      <Filter>render\texture</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -51,11 +51,13 @@ bool GEOTextBM::update_font()
 	int page_cnt = bm_font->get_page_cnt();
 	if (render_object_ == NULL) return false;
 	render_object_->set_vertex_decl(GEVertexDecl::get_vertex_decl(fvf));
+	GETextureGroup& texture_group = render_object_->get_texture_group();
+	texture_group.release_all_texture();
 	for (int i=0; i<page_cnt; ++i)
 	{
 		char page_path[MAX_PATH];
 		bm_font->get_page_path(page_path, i);
-		int png_id = render_object_->add_texture(page_path);
+		int png_id = texture_group.add_texture(page_path);
 		assert(png_id == i);
 	}
 	effect_ = bm_font->get_effect();
@@ -98,7 +100,8 @@ void GEOTextBM::_clear_render_chars()
 
 void GEOTextBM::_render_char_to_quad( GE_QUAD& out_quad, const bmfont::SCharRenderObject& render_char )
 {
-	GETexture* texture = render_object_->get_texture(render_char.page);
+	GETextureGroup& texture_group = render_object_->get_texture_group();
+	GETexture* texture = texture_group.get_texture(render_char.page);
 	if(texture == NULL) return;
 
 	GE_VERTEX* vertex_ptr[4];

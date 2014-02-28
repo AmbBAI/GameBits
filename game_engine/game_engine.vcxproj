@@ -126,6 +126,7 @@
     <ClCompile Include="common\ge_scene.cpp" />
     <ClCompile Include="render\texture\ge_surface.cpp" />
     <ClCompile Include="render\texture\ge_texture.cpp" />
+    <ClCompile Include="render\texture\ge_texture_group.cpp" />
     <ClCompile Include="render\texture\ge_texture_manager.cpp" />
     <ClCompile Include="utility\geu_gmath.cpp" />
     <ClCompile Include="utility\geu_vertex.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="common\ge_scene.h" />
     <ClInclude Include="render\texture\ge_surface.h" />
     <ClInclude Include="render\texture\ge_texture.h" />
+    <ClInclude Include="render\texture\ge_texture_group.h" />
     <ClInclude Include="render\texture\ge_texture_manager.h" />
     <ClInclude Include="utility\geu_gmath.h" />
     <ClInclude Include="utility\geu_vertex.h" />

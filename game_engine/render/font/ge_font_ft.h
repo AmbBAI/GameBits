@@ -58,6 +58,7 @@ public:
 	bool begin_write(PGlyph char_buff, int buff_size);
 	int end_write();
 	
+	bool get_glyph(wchar_t ch);
 	bool write_text(const wchar_t* text, int width, int height, bool wrap);
 
 protected:

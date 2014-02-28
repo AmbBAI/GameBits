@@ -4,6 +4,7 @@
 #include "../common/ge_include.h"
 #include "../object/ge_object.h"
 #include "../utility/geu_vertex.h"
+#include "../render/texture/ge_texture_group.h"
 
 namespace ge
 {
@@ -34,12 +35,7 @@ public:
 	virtual bool set_vertex_decl(GE_VERTEX_DECL* vertex_decl);
 	virtual GE_VERTEX_DECL* get_vertex_decl();
 
-	virtual int add_texture();
-	virtual int add_texture(const char* texture_path);
-	virtual GETexture* get_texture(int texture_id = 0);
-	virtual bool replace_texture(int texture_id, const char* texture_path);
-	virtual void release_texture(int texture_id);
-	virtual void release_all_texture();
+	virtual GETextureGroup& get_texture_group();
 
 	virtual bool init_render();
 	virtual bool update_render();
@@ -64,8 +60,7 @@ protected:
 protected:
 	GE_VERTEX_DECL*			vertex_decl_;
 
-	typedef std::vector<GETexture*> TEXTURE_LIST;
-	TEXTURE_LIST			texture_list_;
+	GETextureGroup			texture_group_;
 
 	bool					need_render_update_;
 

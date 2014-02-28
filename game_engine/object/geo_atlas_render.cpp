@@ -1,6 +1,6 @@
 #include "geo_atlas_render.h"
 #include "../common/ge_engine.h"
-#include "../render/texture/ge_texture_manager.h"
+
 #include "../render/ger_effect.h"
 
 namespace ge
@@ -16,7 +16,7 @@ GEOAtlasRender::GEOAtlasRender()
 , dx_quads_cnt_(0)
 , vertex_list_()
 , vertex_decl_(NULL)
-, texture_list_()
+, texture_group_()
 , need_render_update_(true)
 {
 	set_vertex_fvf(DEFAULT_FVF_FORMAT);
@@ -34,10 +34,15 @@ bool GEOAtlasRender::init()
 
 void GEOAtlasRender::destory()
 {
-	release_all_texture();
 	release_render();
+	texture_group_.release_all_texture();
 
 	vertex_decl_ = NULL;
+}
+
+GETextureGroup& GEOAtlasRender::get_texture_group()
+{
+	return texture_group_;
 }
 
 bool GEOAtlasRender::set_vertex_fvf( DWORD fvf )
@@ -59,57 +64,6 @@ bool GEOAtlasRender::set_vertex_decl( GE_VERTEX_DECL* vertex_decl )
 GE_VERTEX_DECL* GEOAtlasRender::get_vertex_decl()
 {
 	return vertex_decl_;
-}
-
-int GEOAtlasRender::add_texture()
-{
-	GETexture* texture = GETextureManager::create_texture();
-	texture_list_.push_back(texture);
-	return (int)texture_list_.size() - 1;
-}
-
-int GEOAtlasRender::add_texture( const char* texture_path )
-{
-	GETexture* texture = GETextureManager::create_texture(texture_path);
-	texture_list_.push_back(texture);
-	return (int)texture_list_.size() - 1;
-}
-
-GETexture* GEOAtlasRender::get_texture( int texture_id/* = 0*/ )
-{
-	if (texture_id < 0) return NULL;
-	if ((int)texture_list_.size() <= texture_id) return NULL;
-	return texture_list_[texture_id];
-}
-
-bool GEOAtlasRender::replace_texture( int texture_id, const char* texture_path )
-{
-	if (texture_id < 0) return false;
-	if ((int)texture_list_.size() >= texture_id) return false;
-	release_texture(texture_id);
-	texture_list_[texture_id] = GETextureManager::create_texture(texture_path);
-	return true;
-}
-
-void GEOAtlasRender::release_texture( int texture_id )
-{
-	if (texture_id < 0) return;
-	if ((int)texture_list_.size() >= texture_id) return;
-	GETexture* texture = texture_list_[texture_id];
-	if (texture)
-	{
-		GETextureManager::release_texture(texture);
-		texture_list_[texture_id] = NULL;
-	}
-}
-
-void GEOAtlasRender::release_all_texture()
-{
-	for (int i=0; i<(int)texture_list_.size(); ++i)
-	{
-		release_texture(i);
-	}
-	texture_list_.clear();
 }
 
 bool GEOAtlasRender::init_render()
@@ -286,7 +240,7 @@ bool GEOAtlasRender::add_quad( GE_QUAD& quad )
 
 bool GEOAtlasRender::add_quad( int texture_id /*= 0*/ )
 {
-	GETexture* texture = get_texture(texture_id);
+	GETexture* texture = texture_group_.get_texture(texture_id);
 	if (texture == NULL) return false;
 
 	GE_QUAD out_quad;
@@ -352,7 +306,7 @@ bool GEOAtlasRender::draw_quads( GEREffect* effect/* = NULL*/ )
 
 	FOR_EACH (QUAD_RENDER_TASK_LIST, render_task_list_, task)
 	{
-		GETexture* texture = get_texture(task->texture);
+		GETexture* texture = texture_group_.get_texture(task->texture);
 		if (effect)
 		{
 			effect->set_texture("TEXTURE0", texture);

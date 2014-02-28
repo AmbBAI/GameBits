@@ -48,20 +48,18 @@ bool GEOTextFT::set_size( GE_ISIZE& size )
 	if (!render_object_)
 	{
 		render_object_ = GEOAtlasRender::create();
-		render_object_->set_vertex_fvf(fvf);
+		if (render_object_) render_object_->set_vertex_fvf(fvf);
 	}
-	if (!render_object_->get_texture())
-	{
-		render_object_->add_texture();
-	}
+	if (!render_object_) return false;
 
-	if (render_object_ 
-		&& render_object_->get_texture()
-		&& size.width > 0 && size.height > 0)
+	GETextureGroup& texture_group = render_object_->get_texture_group();
+	if (!texture_group.get_texture()) texture_group.add_texture();
+
+	if (size.width > 0 && size.height > 0)
 	{
 		GETexture* ptr_texture = NULL;
-		ptr_texture = render_object_->get_texture();
-		ptr_texture->init(size.width, size.height, D3DFMT_A8R8G8B8);
+		ptr_texture = texture_group.get_texture();
+		if (ptr_texture) ptr_texture->init(size.width, size.height, D3DFMT_A8R8G8B8);
 	}
 
 	return true;
@@ -89,10 +87,10 @@ bool GEOTextFT::update_text()
 	font->write_text(wtext.c_str(), 0, 0, false);
 	int cnt = font->end_write();
 
-	GETexture* texture = render_object_->get_texture();
+	GETextureGroup& texture_group = render_object_->get_texture_group();
+	GETexture* texture = texture_group.get_texture();
+	if (texture == NULL) return false;
 
-
-	if (texture)
 	{
 		HDC h_dc = NULL;
 		texture->begin_dc(h_dc);

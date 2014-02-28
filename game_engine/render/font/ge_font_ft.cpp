@@ -133,16 +133,16 @@ bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap
 					pen_x += delta.x >> 6;
 				}
 
-				glyph_buff_[buff_offset_].pos.x = pen_x;
-				glyph_buff_[buff_offset_].pos.y = pen_y;
-
 				ret = FT_Load_Glyph(ft_face_, glyph_index, FT_LOAD_DEFAULT); 
 				if ( ret != 0 ) continue;
 
-				ret = FT_Get_Glyph(ft_face_->glyph, &glyph_buff_[buff_offset_].image); 
+				ret = FT_Get_Glyph(ft_face_->glyph, &glyph_buff_[buff_offset_].image);
 				if ( ret != 0 ) continue;
 
-				pen_x += slot->advance.x >> 6;
+				glyph_buff_[buff_offset_].pos.x = pen_x + (slot->metrics.horiBearingX >> 6);
+				glyph_buff_[buff_offset_].pos.y = pen_y + ((ft_face_->ascender - slot->metrics.horiBearingY) >> 6);
+
+				pen_x += slot->metrics.horiAdvance >> 6;
 				pre_glyph_index = glyph_index;
 
 				++ buff_offset_;

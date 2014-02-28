@@ -92,8 +92,8 @@ bool SceneTest::init_ft_text()
 	if (!p_ft_text_) return false;
 
 	ge::GE_ISIZE size;
-	size.width = 1000;
-	size.height = 1000;
+	size.width = 1024;
+	size.height = 1024;
 	p_ft_text_->set_size(size);
 	p_ft_text_->set_font(p_font);
 

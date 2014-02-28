@@ -88,10 +88,11 @@ bool GESurface::draw_bitmap( void* buff, GE_IRECT& rect )
 		int width = rect.width();
 		for (int j=0; j<width; ++j)
 		{
-			if (((char*)buff)[i * width + j])
+			unsigned char val = ((unsigned char*)buff)[i * width + j];
+			if (val)
 			{
 				int pos = i * locked_rect.Pitch / 4 + j;
-				dst_data[pos] = 0xffffffff;
+				dst_data[pos] = 0xff000000 | (val | (val << 8) | (val << 16));
 			}
 		}
 	}

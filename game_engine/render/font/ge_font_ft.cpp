@@ -92,13 +92,11 @@ bool GEFontFT::_set_ft_face( FT_Face ft_face )
 	return true;
 }
 
-bool GEFontFT::write_text( const char* text, int width, int height, bool wrap )
+bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap )
 {
 	if (text == NULL) return false;
 
 	if (glyph_buff_ == NULL) return false;
-
-	int text_len = strlen(text);
 
 	FT_GlyphSlot slot = ft_face_->glyph;
 	FT_UInt glyph_index = 0;
@@ -107,7 +105,7 @@ bool GEFontFT::write_text( const char* text, int width, int height, bool wrap )
 	int pen_x = 0;
 	int pen_y = 0;
 
-	for (int i=0; i<text_len; ++i)
+	for (int i=0; '\0' != text[i]; ++i)
 	{
 		switch (text[i])
 		{

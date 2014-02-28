@@ -24,7 +24,7 @@ GEOAtlasRender::GEOAtlasRender()
 
 GEOAtlasRender::~GEOAtlasRender()
 {
-	release();
+	destory();
 }
 
 bool GEOAtlasRender::init()
@@ -32,7 +32,7 @@ bool GEOAtlasRender::init()
 	return true;
 }
 
-void GEOAtlasRender::release()
+void GEOAtlasRender::destory()
 {
 	release_all_texture();
 	release_render();
@@ -284,16 +284,54 @@ bool GEOAtlasRender::add_quad( GE_QUAD& quad )
 	return true;
 }
 
+bool GEOAtlasRender::add_quad( int texture_id /*= 0*/ )
+{
+	GETexture* texture = get_texture(texture_id);
+	if (texture == NULL) return false;
+
+	GE_QUAD out_quad;
+
+	GE_VERTEX* vertex_ptr[4];
+	vertex_ptr[0] = &(out_quad.tl);
+	vertex_ptr[1] = &(out_quad.tr);
+	vertex_ptr[2] = &(out_quad.br);
+	vertex_ptr[3] = &(out_quad.bl);
+
+	for (int i=0; i<4; ++i)
+	{
+		vertex_ptr[i]->set_decl(vertex_decl_);
+		vertex_ptr[i]->set_color(0xffffffff);
+	}
+
+	int width = 0;
+	int height = 0;
+	texture->get_size(width, height);
+
+	float min_x = 0.f;
+	float min_y = 0.f;
+	float max_x = (float)width;
+	float max_y = (float)height;
+
+	out_quad.tl.set_position(min_x, -min_y, 0.f);
+	out_quad.tr.set_position(max_x, -min_y, 0.f);
+	out_quad.br.set_position(max_x, -max_y, 0.f);
+	out_quad.bl.set_position(min_x, -max_y, 0.f);
+
+	out_quad.tl.set_texcoords(0.f, 0.f);
+	out_quad.tr.set_texcoords(1.f, 0.f);
+	out_quad.br.set_texcoords(1.f, 1.f);
+	out_quad.bl.set_texcoords(0.f, 1.f);
+
+	out_quad.texture = texture_id;
+
+	return add_quad(out_quad);
+}
+
 void GEOAtlasRender::clear_quads()
 {
 	vertex_list_.clear();
 	render_task_list_.clear();
 	need_render_update_ = true;
-}
-
-bool GEOAtlasRender::merge_quads()
-{
-	return true;
 }
 
 bool GEOAtlasRender::draw_quads( GEREffect* effect/* = NULL*/ )

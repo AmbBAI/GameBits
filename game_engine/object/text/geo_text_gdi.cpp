@@ -132,39 +132,8 @@ void GEOTextGDI::_destory_dc()
 
 bool GEOTextGDI::_update_quad()
 {
-	GE_QUAD out_quad;
-
-	GE_VERTEX* vertex_ptr[4];
-	vertex_ptr[0] = &(out_quad.tl);
-	vertex_ptr[1] = &(out_quad.tr);
-	vertex_ptr[2] = &(out_quad.br);
-	vertex_ptr[3] = &(out_quad.bl);
-
-	for (int i=0; i<4; ++i)
-	{
-		vertex_ptr[i]->set_decl(render_object_->get_vertex_decl());
-		vertex_ptr[i]->set_color(0xffffffff);
-	}
-
-	float min_x = (float)rect_.left;
-	float min_y = (float)rect_.top;
-	float max_x = (float)rect_.right;
-	float max_y = (float)rect_.bottom;
-
-	out_quad.tl.set_position(min_x, -min_y, 0.f);
-	out_quad.tr.set_position(max_x, -min_y, 0.f);
-	out_quad.br.set_position(max_x, -max_y, 0.f);
-	out_quad.bl.set_position(min_x, -max_y, 0.f);
-
-	out_quad.tl.set_texcoords(0.f, 0.f);
-	out_quad.tr.set_texcoords(1.f, 0.f);
-	out_quad.br.set_texcoords(1.f, 1.f);
-	out_quad.bl.set_texcoords(0.f, 1.f);
-
-	out_quad.texture = 0;
-
 	render_object_->clear_quads();
-	render_object_->add_quad(out_quad);
+	render_object_->add_quad();
 
 	need_update_quad_ = false;
 	return true;

@@ -58,7 +58,7 @@ public:
 	bool begin_write(PGlyph char_buff, int buff_size);
 	int end_write();
 	
-	bool write_text(const char* text, int width, int height, bool wrap);
+	bool write_text(const wchar_t* text, int width, int height, bool wrap);
 
 protected:
 	bool _set_ft_face(FT_Face ft_face);

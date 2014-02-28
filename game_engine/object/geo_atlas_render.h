@@ -47,13 +47,13 @@ public:
 	virtual bool prepare_render();
 
 	virtual bool add_quad(GE_QUAD& quad);
+	virtual bool add_quad(int texture_id = 0);
 	virtual void clear_quads();
-	virtual bool merge_quads();	//把同一贴图的图元放在一次drawcall里，会改变渲染层次
 	virtual bool draw_quads(GEREffect* effect = NULL);
 
 public:
 	virtual bool init();
-	virtual void release();
+	virtual void destory();
 
 protected:
 	virtual bool _set_verties(std::vector<GE_VERTEX>& vertex_array);

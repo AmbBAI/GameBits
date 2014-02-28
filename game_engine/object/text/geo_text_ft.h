@@ -33,6 +33,9 @@ public:
 
 private:
 
+	//typedef std::map<FT_UInt, TGlyph> GLYPH_MAP;
+	//GLYPH_MAP		glyph_buff_;
+
 	typedef std::vector<TGlyph> GLYPH_LIST;
 	GLYPH_LIST		glyph_buff_;
 

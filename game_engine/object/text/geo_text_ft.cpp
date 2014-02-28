@@ -2,6 +2,7 @@
 #include "../../common/ge_engine.h"
 #include "../../object/geo_atlas_render.h"
 #include "../../render/texture/ge_texture.h"
+#include "../../utility/ge_unicode.h"
 
 namespace ge
 {
@@ -68,39 +69,8 @@ bool GEOTextFT::set_size( GE_ISIZE& size )
 
 bool GEOTextFT::_update_quad()
 {
-	GE_QUAD out_quad;
-
-	GE_VERTEX* vertex_ptr[4];
-	vertex_ptr[0] = &(out_quad.tl);
-	vertex_ptr[1] = &(out_quad.tr);
-	vertex_ptr[2] = &(out_quad.br);
-	vertex_ptr[3] = &(out_quad.bl);
-
-	for (int i=0; i<4; ++i)
-	{
-		vertex_ptr[i]->set_decl(render_object_->get_vertex_decl());
-		vertex_ptr[i]->set_color(0xffffffff);
-	}
-
-	float min_x = (float)0;
-	float min_y = (float)0;
-	float max_x = (float)render_size_.width;
-	float max_y = (float)render_size_.height;
-
-	out_quad.tl.set_position(min_x, -min_y, 0.f);
-	out_quad.tr.set_position(max_x, -min_y, 0.f);
-	out_quad.br.set_position(max_x, -max_y, 0.f);
-	out_quad.bl.set_position(min_x, -max_y, 0.f);
-
-	out_quad.tl.set_texcoords(0.f, 0.f);
-	out_quad.tr.set_texcoords(1.f, 0.f);
-	out_quad.br.set_texcoords(1.f, 1.f);
-	out_quad.bl.set_texcoords(0.f, 1.f);
-
-	out_quad.texture = 0;
-
 	render_object_->clear_quads();
-	render_object_->add_quad(out_quad);
+	render_object_->add_quad();
 
 	need_update_quad_ = false;
 	return true;
@@ -113,9 +83,10 @@ bool GEOTextFT::update_text()
 	GEFontFT* font = (GEFontFT*)font_obj_;
 	if (font == NULL) return false;
 
-	glyph_buff_.resize(text_.length());
+	std::wstring wtext = _mbcs_to_unicode(text_.c_str());
+	glyph_buff_.resize(wtext.length());
 	font->begin_write(&(glyph_buff_[0]), glyph_buff_.size());
-	font->write_text(text_.c_str(), 0, 0, false);
+	font->write_text(wtext.c_str(), 0, 0, false);
 	int cnt = font->end_write();
 
 	GETexture* texture = render_object_->get_texture();

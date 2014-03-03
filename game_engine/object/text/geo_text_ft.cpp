@@ -101,10 +101,7 @@ bool GEOTextFT::update_text()
 
 		for (int i=0; i<cnt; ++i)
 		{
-			FT_Error err = FT_Glyph_To_Bitmap(
-				&glyph_buff_[i].image,
-				FT_RENDER_MODE_NORMAL,
-				NULL, true);
+
 
 			if (err)
 			{

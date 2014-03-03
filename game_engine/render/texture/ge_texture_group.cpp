@@ -67,4 +67,9 @@ void GETextureGroup::release_all_texture()
 	texture_list_.clear();
 }
 
+int GETextureGroup::get_texture_cnt()
+{
+	return (int)texture_list_.size();
+}
+
 }

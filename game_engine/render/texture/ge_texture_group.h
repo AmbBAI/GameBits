@@ -21,6 +21,8 @@ public:
 	virtual void release_texture(int texture_id);
 	virtual void release_all_texture();
 
+	int get_texture_cnt();
+
 protected:
 	typedef std::vector<GETexture*> TEXTURE_LIST;
 	TEXTURE_LIST			texture_list_;

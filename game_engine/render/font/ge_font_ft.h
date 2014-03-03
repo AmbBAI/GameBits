@@ -2,6 +2,7 @@
 #define _GAME_ENGINE_FREETYPE_FONT_H_
 
 #include "../../common/ge_include.h"
+#include "../../render/texture/ge_texture_group.h"
 #include "ge_font.h"
 
 #include "ft2build.h"
@@ -38,6 +39,18 @@ typedef struct  TGlyph_
 
 } TGlyph, *PGlyph;
 
+typedef struct _GE_FREETYPE_CHAR
+{
+	unsigned	index;
+	float		xys[4];
+	short		page;
+	float		uvs[4];
+
+	int			_bearing_x;
+	int			_bearing_y;
+	int			_advance;
+} GE_FTCHAR;
+
 class GE_API GEFontFT : public GEFont
 {
 	DLL_MANAGE_CLASS(GEFontFT);
@@ -63,14 +76,28 @@ public:
 
 protected:
 	bool _set_ft_face(FT_Face ft_face);
+	GE_FTCHAR* _buff_char_glyph(wchar_t ch);
+	GE_FTCHAR* _write_bitmap_glyph(FT_UInt glyph_index, FT_BitmapGlyph bmp_glyph);
+	int _create_buff_page();
 
 private:
-	FT_Face		ft_face_;
-	int			face_size_;
+	FT_Face			ft_face_;
+	int				face_size_;
 
-	PGlyph		glyph_buff_;
-	int			buff_size_;
-	int			buff_offset_;
+	PGlyph			glyph_buff_;
+	int				buff_size_;
+	int				buff_offset_;
+
+	typedef std::map<FT_UInt, GE_FTCHAR*> GE_FTCHAR_MAP;
+	GE_FTCHAR_MAP	ftchar_map_;
+
+	GETextureGroup	texture_group_;
+	GETexture*		current_page_;
+	int				pen_x_;
+	int				pen_y_;
+
+	const int		page_width_;
+	const int		page_height_;
 };
 
 } // namespace ge

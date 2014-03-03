@@ -25,7 +25,8 @@ public:
 	bool end_dc(HDC& h_dc);
 
 	bool clear();
-	bool draw_bitmap(void* buff, GE_IRECT& rect);
+	bool lock_rect(GE_IRECT &rect, void*& buff, int& pitch);
+	bool unlock_rect();
 
 protected:
 	LPDIRECT3DSURFACE9		d3d_surface_;

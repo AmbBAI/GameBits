@@ -21,9 +21,10 @@ public:
 public:
 	virtual bool init(const char* fnt_path);
 	virtual void destory();
-	virtual bool init_effect(const char* fx_path);
-	virtual void destory_effect();
 
+	virtual bool init_effect(const char* fx_path);
+	virtual bool update_effect();
+	virtual void destory_effect();
 	GEREffect* get_effect();
 
 	int  get_page_cnt();

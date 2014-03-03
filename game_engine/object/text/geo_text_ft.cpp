@@ -17,7 +17,7 @@ GEOTextFT::GEOTextFT()
 , need_update_font_(true)
 , need_update_quad_(true)
 , render_object_(NULL)
-, glyph_buff_()
+, render_char_buff_()
 {
 
 }
@@ -48,19 +48,13 @@ bool GEOTextFT::set_size( GE_ISIZE& size )
 	if (!render_object_)
 	{
 		render_object_ = GEOAtlasRender::create();
-		if (render_object_) render_object_->set_vertex_fvf(fvf);
+		if (render_object_)
+		{
+			render_object_->set_vertex_fvf(fvf);
+			render_object_->init_texture_group();
+		}
 	}
 	if (!render_object_) return false;
-
-	GETextureGroup& texture_group = render_object_->get_texture_group();
-	if (!texture_group.get_texture()) texture_group.add_texture();
-
-	if (size.width > 0 && size.height > 0)
-	{
-		GETexture* ptr_texture = NULL;
-		ptr_texture = texture_group.get_texture();
-		if (ptr_texture) ptr_texture->init(size.width, size.height, D3DFMT_A8R8G8B8);
-	}
 
 	return true;
 }
@@ -82,41 +76,15 @@ bool GEOTextFT::update_text()
 	if (font == NULL) return false;
 
 	std::wstring wtext = _mbcs_to_unicode(text_.c_str());
-	glyph_buff_.resize(wtext.length());
-	font->begin_write(&(glyph_buff_[0]), glyph_buff_.size());
+	render_char_buff_.resize(wtext.length());
+	font->begin_write(&(render_char_buff_[0]), render_char_buff_.size());
 	font->write_text(wtext.c_str(), 0, 0, false);
 	int cnt = font->end_write();
 
-	GETextureGroup& texture_group = render_object_->get_texture_group();
-	GETexture* texture = texture_group.get_texture();
-	if (texture == NULL) return false;
+	//GETextureGroup* font_tg = font->get_texture_group();
+	//GETextureGroup* tg = render_object_->get_texture_group();
+	//if (font_tg || tg) return false;
 
-	{
-		HDC h_dc = NULL;
-		texture->begin_dc(h_dc);
-		Gdiplus::Graphics* panel = Gdiplus::Graphics::FromHDC(h_dc);
-		panel->Clear(Gdiplus::Color::Transparent);
-		delete panel;
-		texture->end_dc(h_dc);
-
-		for (int i=0; i<cnt; ++i)
-		{
-
-
-			if (err)
-			{
-				
-			}
-			
-			FT_BitmapGlyph bmp_glyph = (FT_BitmapGlyph)glyph_buff_[i].image;
-
-			GE_IRECT rect;
-			rect.right = bmp_glyph->bitmap.width;
-			rect.bottom = bmp_glyph->bitmap.rows;
-			rect.move_to(glyph_buff_[i].pos.x, glyph_buff_[i].pos.y);
-			texture->draw_bitmap((void*)bmp_glyph->bitmap.buffer, rect);
-		}
-	}
 
 	need_update_text_ = false;
 	return true;

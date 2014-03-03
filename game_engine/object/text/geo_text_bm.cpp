@@ -50,16 +50,20 @@ bool GEOTextBM::update_font()
 
 	int page_cnt = bm_font->get_page_cnt();
 	if (render_object_ == NULL) return false;
+	render_object_->init_texture_group();
 	render_object_->set_vertex_decl(GEVertexDecl::get_vertex_decl(fvf));
-	GETextureGroup& texture_group = render_object_->get_texture_group();
-	texture_group.release_all_texture();
+	GETextureGroup* texture_group = render_object_->get_texture_group();
+	if (texture_group == NULL) return false;
+	texture_group->release_all_texture();
 	for (int i=0; i<page_cnt; ++i)
 	{
 		char page_path[MAX_PATH];
 		bm_font->get_page_path(page_path, i);
-		int png_id = texture_group.add_texture(page_path);
+		int png_id = texture_group->add_texture_from_file(page_path);
 		assert(png_id == i);
 	}
+	transform_.px = 400;
+	transform_.py = 0;
 	effect_ = bm_font->get_effect();
 	if (effect_) effect_->set_matrix("WORLD", get_world_transform());
 	need_update_font_ = false;
@@ -100,9 +104,10 @@ void GEOTextBM::_clear_render_chars()
 
 void GEOTextBM::_render_char_to_quad( GE_QUAD& out_quad, const bmfont::SCharRenderObject& render_char )
 {
-	GETextureGroup& texture_group = render_object_->get_texture_group();
-	GETexture* texture = texture_group.get_texture(render_char.page);
-	if(texture == NULL) return;
+	GETextureGroup* texture_group = render_object_->get_texture_group();
+	if (texture_group == NULL) return;
+	GETexture* texture = texture_group->get_texture(render_char.page);
+	if	(texture == NULL) return;
 
 	GE_VERTEX* vertex_ptr[4];
 	vertex_ptr[0] = &(out_quad.tl);
@@ -149,6 +154,9 @@ void GEOTextBM::render( time_t delta )
 
 	if(effect_)
 	{
+		if (GEFontBM* bm_font = (GEFontBM*)font_obj_)
+			bm_font->update_effect();
+		
 		effect_->set_technique("RenderWithOutline");
 		render_object_->prepare_render();
 		render_object_->draw_quads(effect_);

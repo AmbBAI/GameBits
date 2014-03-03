@@ -16,7 +16,7 @@ GEOAtlasRender::GEOAtlasRender()
 , dx_quads_cnt_(0)
 , vertex_list_()
 , vertex_decl_(NULL)
-, texture_group_()
+, texture_group_(NULL)
 , need_render_update_(true)
 {
 	set_vertex_fvf(DEFAULT_FVF_FORMAT);
@@ -35,12 +35,21 @@ bool GEOAtlasRender::init()
 void GEOAtlasRender::destory()
 {
 	release_render();
-	texture_group_.release_all_texture();
+	texture_group_->release_all_texture();
 
 	vertex_decl_ = NULL;
 }
 
-GETextureGroup& GEOAtlasRender::get_texture_group()
+bool GEOAtlasRender::init_texture_group()
+{
+	if (texture_group_ == NULL)
+		texture_group_ = GETextureGroup::create();
+
+	if (texture_group_ == NULL) return false;
+	return true;
+}
+
+GETextureGroup* GEOAtlasRender::get_texture_group()
 {
 	return texture_group_;
 }
@@ -240,7 +249,7 @@ bool GEOAtlasRender::add_quad( GE_QUAD& quad )
 
 bool GEOAtlasRender::add_quad( int texture_id /*= 0*/ )
 {
-	GETexture* texture = texture_group_.get_texture(texture_id);
+	GETexture* texture = texture_group_->get_texture(texture_id);
 	if (texture == NULL) return false;
 
 	GE_QUAD out_quad;
@@ -306,7 +315,9 @@ bool GEOAtlasRender::draw_quads( GEREffect* effect/* = NULL*/ )
 
 	FOR_EACH (QUAD_RENDER_TASK_LIST, render_task_list_, task)
 	{
-		GETexture* texture = texture_group_.get_texture(task->texture);
+		GETexture* texture = NULL;
+		if (texture_group_)
+			texture = texture_group_->get_texture(task->texture);
 		if (effect)
 		{
 			effect->set_texture("TEXTURE0", texture);

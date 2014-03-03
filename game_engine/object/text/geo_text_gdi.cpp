@@ -76,12 +76,14 @@ bool GEOTextGDI::_init_render_object()
 	if (!render_object_)
 	{
 		render_object_ = GEOAtlasRender::create();
+		render_object_->init_texture_group();
 		render_object_->set_vertex_fvf(fvf);
 	}
 	if (render_object_)
 	{
-		GETextureGroup& texture_group = render_object_->get_texture_group();
-		if (!texture_group.get_texture()) texture_group.add_texture();
+		GETextureGroup* texture_group = render_object_->get_texture_group();
+		if (texture_group == NULL) return false;
+		if (texture_group->get_texture() == NULL) texture_group->add_texture();
 		return true;
 	}
 	else return false;
@@ -106,9 +108,10 @@ bool GEOTextGDI::_init_dc( int width, int height )
 	if (render_object_ 
 		&& width > 0 && height > 0)
 	{
-		GETextureGroup& texture_group = render_object_->get_texture_group();
+		GETextureGroup* texture_group = render_object_->get_texture_group();
+		if (texture_group == NULL) return false;
 		GETexture* ptr_texture = NULL;
-		ptr_texture = texture_group.get_texture();
+		ptr_texture = texture_group->get_texture();
 		if (ptr_texture) ptr_texture->init(width, height, D3DFMT_A8R8G8B8);
 	}
 	return (h_dc_ != NULL);
@@ -149,8 +152,9 @@ bool GEOTextGDI::update_text()
 	HFONT h_font = font_obj->get_gdi_obj();
 	if (h_font == NULL) return false;
 
-	GETextureGroup& texture_group = render_object_->get_texture_group();
-	GETexture* texture = texture_group.get_texture();
+	GETextureGroup* texture_group = render_object_->get_texture_group();
+	if (texture_group == NULL) return false;
+	GETexture* texture = texture_group->get_texture();
 	if (texture == NULL) return false;
 
 	texture->begin_dc(h_dc_);
@@ -192,8 +196,9 @@ bool GEOTextGDI::update_text_ex()
 	HFONT h_font = font_obj->get_gdi_obj();
 	if (h_font == NULL) return false;
 
-	GETextureGroup& texture_group = render_object_->get_texture_group();
-	GETexture* texture = texture_group.get_texture();
+	GETextureGroup* texture_group = render_object_->get_texture_group();
+	if (texture_group == NULL) return false;
+	GETexture* texture = texture_group->get_texture();
 	if (texture == NULL) return false;
 
 	texture->begin_dc(h_dc_);

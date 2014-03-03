@@ -31,25 +31,24 @@ private:
 	FT_Library freetype_;
 };
 
-typedef struct  TGlyph_
-{
-	FT_UInt    index;  /* glyph index                  */
-	FT_Vector  pos;    /* glyph origin on the baseline */
-	FT_Glyph   image;  /* glyph image                  */
-
-} TGlyph, *PGlyph;
-
-typedef struct _GE_FREETYPE_CHAR
+typedef struct _GE_FTBuffChar
 {
 	unsigned	index;
-	float		xys[4];
 	short		page;
 	float		uvs[4];
 
 	int			_bearing_x;
 	int			_bearing_y;
 	int			_advance;
-} GE_FTCHAR;
+} GE_FTBuffChar;
+
+typedef struct _GE_FTRenderChar
+{
+	int			index;
+	float		xys[4];
+	short		page;
+	float		uvs[4];
+} GE_FTRenderChar;
 
 class GE_API GEFontFT : public GEFont
 {
@@ -65,39 +64,43 @@ public:
 	virtual bool init(const char* face, int size);
 	virtual void destory();
 
+	bool init_texture_group();
+	GETextureGroup* get_texture_group();
+
 	virtual bool set_size(int size);
 
 public:
-	bool begin_write(PGlyph char_buff, int buff_size);
+	bool begin_write(GE_FTRenderChar* char_buff, int buff_size);
 	int end_write();
 	
-	bool get_glyph(wchar_t ch);
 	bool write_text(const wchar_t* text, int width, int height, bool wrap);
 
 protected:
 	bool _set_ft_face(FT_Face ft_face);
-	GE_FTCHAR* _buff_char_glyph(wchar_t ch);
-	GE_FTCHAR* _write_bitmap_glyph(FT_UInt glyph_index, FT_BitmapGlyph bmp_glyph);
+	GE_FTBuffChar* _buff_char_glyph(wchar_t ch);
+	GE_FTBuffChar* _write_bitmap_glyph(FT_UInt glyph_index, FT_BitmapGlyph bmp_glyph);
+	bool _init_write_pen(int width, int height);
+	bool _update_write_pen(int width, int height);
 	int _create_buff_page();
 
 private:
-	FT_Face			ft_face_;
-	int				face_size_;
+	FT_Face				ft_face_;
+	int					face_size_;
 
-	PGlyph			glyph_buff_;
-	int				buff_size_;
-	int				buff_offset_;
+	GE_FTRenderChar*	render_char_buff_;
+	int					buff_size_;
+	int					buff_offset_;
 
-	typedef std::map<FT_UInt, GE_FTCHAR*> GE_FTCHAR_MAP;
-	GE_FTCHAR_MAP	ftchar_map_;
+	typedef std::map<FT_UInt, GE_FTBuffChar*> FT_BUFFCHAR_MAP;
+	FT_BUFFCHAR_MAP		buff_char_map_;
 
-	GETextureGroup	texture_group_;
-	GETexture*		current_page_;
-	int				pen_x_;
-	int				pen_y_;
+	GETextureGroup*		texture_group_;
+	GETexture*			current_page_;
+	int					pen_x_;
+	int					pen_y_;
 
-	const int		page_width_;
-	const int		page_height_;
+	const int			page_width_;
+	const int			page_height_;
 };
 
 } // namespace ge

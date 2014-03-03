@@ -9,13 +9,16 @@ namespace ge
 
 class GE_API GETextureGroup
 {
+	DLL_MANAGE_CLASS(GETextureGroup);
+
 public:
 	GETextureGroup();
 	virtual ~GETextureGroup();
 
 public:
 	virtual int add_texture();
-	virtual int add_texture(const char* texture_path);
+	virtual int add_texture(GETexture* texture);
+	virtual int add_texture_from_file(const char* texture_path);
 	virtual GETexture* get_texture(int texture_id = 0);
 	virtual bool replace_texture(int texture_id, const char* texture_path);
 	virtual void release_texture(int texture_id);

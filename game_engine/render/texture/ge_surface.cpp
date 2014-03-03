@@ -76,37 +76,39 @@ D3DFORMAT GESurface::get_format()
 	return surface_desc_.Format;
 }
 
-bool GESurface::draw_bitmap( void* buff, GE_IRECT& rect )
-{
-	if (d3d_surface_ == NULL) return false;
-
-	D3DLOCKED_RECT locked_rect;
-	d3d_surface_->LockRect(&locked_rect, &rect, 0);
-	unsigned* dst_data  = (unsigned*) locked_rect.pBits;
-	for (int i=0; i<rect.height(); ++i)
-	{
-		int width = rect.width();
-		for (int j=0; j<width; ++j)
-		{
-			unsigned char val = ((unsigned char*)buff)[i * width + j];
-			if (val)
-			{
-				int pos = i * locked_rect.Pitch / 4 + j;
-				dst_data[pos] = 0xff000000 | (val | (val << 8) | (val << 16));
-			}
-		}
-	}
-	d3d_surface_->UnlockRect();
-	return true;
-}
-
 bool GESurface::clear()
 {
 	if (d3d_surface_ == NULL) return false;
 	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_instance()->get_device();
 	if (p_d3d_device == NULL) return false;
 
-	p_d3d_device->ColorFill(d3d_surface_, NULL, 0x00000000);
+	HRESULT h_res = S_OK;
+	h_res = p_d3d_device->ColorFill(d3d_surface_, NULL, 0x00000000);
+	return SUCCEEDED(h_res);
+}
+
+bool GESurface::lock_rect( GE_IRECT &rect, void*& buff, int& pitch )
+{
+	buff = NULL;
+	pitch = 0;
+	if (d3d_surface_ == NULL) return false;
+
+	HRESULT h_res = S_OK;
+	D3DLOCKED_RECT locked_rect;
+	h_res = d3d_surface_->LockRect(&locked_rect, &rect, 0);
+	if (FAILED(h_res)) return false;
+	buff = locked_rect.pBits;
+	pitch = locked_rect.Pitch;
+	return true;
+}
+
+bool GESurface::unlock_rect()
+{
+	if (d3d_surface_ == NULL) return false;
+
+	HRESULT h_res = S_OK;
+	h_res = d3d_surface_->UnlockRect();
+	return SUCCEEDED(h_res);
 }
 
 }

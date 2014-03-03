@@ -5,6 +5,8 @@
 namespace ge
 {
 
+DLL_MANAGE_CLASS_IMPLEMENT(GETextureGroup);
+
 GETextureGroup::GETextureGroup()
 : texture_list_()
 {
@@ -23,7 +25,13 @@ int GETextureGroup::add_texture()
 	return (int)texture_list_.size() - 1;
 }
 
-int GETextureGroup::add_texture( const char* texture_path )
+int GETextureGroup::add_texture( GETexture* texture )
+{
+	texture_list_.push_back(texture);
+	return (int)texture_list_.size() - 1;
+}
+
+int GETextureGroup::add_texture_from_file( const char* texture_path )
 {
 	GETexture* texture = GETextureManager::create_texture(texture_path);
 	texture_list_.push_back(texture);

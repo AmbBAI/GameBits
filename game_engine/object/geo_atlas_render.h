@@ -35,7 +35,8 @@ public:
 	virtual bool set_vertex_decl(GE_VERTEX_DECL* vertex_decl);
 	virtual GE_VERTEX_DECL* get_vertex_decl();
 
-	virtual GETextureGroup& get_texture_group();
+	virtual bool init_texture_group();
+	virtual GETextureGroup* get_texture_group();
 
 	virtual bool init_render();
 	virtual bool update_render();
@@ -60,7 +61,7 @@ protected:
 protected:
 	GE_VERTEX_DECL*			vertex_decl_;
 
-	GETextureGroup			texture_group_;
+	GETextureGroup*			texture_group_;
 
 	bool					need_render_update_;
 

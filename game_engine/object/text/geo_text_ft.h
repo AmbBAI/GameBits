@@ -36,8 +36,8 @@ private:
 	//typedef std::map<FT_UInt, TGlyph> GLYPH_MAP;
 	//GLYPH_MAP		glyph_buff_;
 
-	typedef std::vector<TGlyph> GLYPH_LIST;
-	GLYPH_LIST		glyph_buff_;
+	typedef std::vector<GE_FTRenderChar> FT_RENDER_CHAR_LIST;
+	FT_RENDER_CHAR_LIST		render_char_buff_;
 
 	bool			need_update_text_;
 	bool			need_update_font_;

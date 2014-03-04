@@ -71,8 +71,6 @@ bool GEOTextFT::update_text()
 	font->begin_write(&(render_char_buff_[0]), render_char_buff_.size());
 	font->write_text(wtext.c_str(), 0, 0, false);
 	int cnt = font->end_write();
-	
-	render_object_->add_quad();
 
 	need_update_text_ = false;
 	return true;
@@ -95,6 +93,7 @@ bool GEOTextFT::update_font()
 	if (texture_group == NULL) return false;
 	render_object_->set_texture_group(texture_group);
 
+	need_update_quad_ = true;
 	need_update_font_ = false;
 	return true;
 }

@@ -51,12 +51,15 @@ DLL_MANAGE_CLASS_IMPLEMENT(GEFontFT);
 GEFontFT::GEFontFT()
 : ft_face_(NULL)
 , face_size_(0)
-//, glyph_buff_(NULL)
+, render_char_buff_(NULL)
 , buff_size_(0)
 , buff_offset_(0)
 , page_width_(512)
 , page_height_(512)
 , texture_group_(NULL)
+, current_page_(NULL)
+, pen_x_(0)
+, pen_y_(0)
 {
 	type_ = FontType_FTFont;
 }
@@ -119,11 +122,8 @@ bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap
 			break;
 		default:
 			{
-				FT_BUFFCHAR_MAP::iterator itor_char = buff_char_map_.find(text[i]);
 				GE_FTBuffChar* ptr_char = NULL;
-				if (itor_char == buff_char_map_.end())
-					ptr_char = _buff_char_glyph(text[i]);
-				else ptr_char = itor_char->second;
+				ptr_char = _buff_char_glyph(text[i]);
 
 				if (ptr_char == NULL) continue;
 
@@ -171,6 +171,9 @@ GE_FTBuffChar* GEFontFT::_buff_char_glyph( wchar_t ch )
 
 	glyph_index = FT_Get_Char_Index(ft_face_, ch);
 
+	FT_BUFFCHAR_MAP::iterator char_itor = buff_char_map_.find(glyph_index);
+	if (char_itor != buff_char_map_.end()) return char_itor->second;
+
 	FT_Error ret = FT_Load_Glyph(ft_face_, glyph_index, FT_LOAD_RENDER);
 	if (ret != 0) goto fail_end;
 
@@ -197,7 +200,6 @@ GE_FTBuffChar* GEFontFT::_write_bitmap_glyph( FT_UInt glyph_index, FT_BitmapGlyp
 	int width = bmp_glyph->bitmap.width;
 	int height = bmp_glyph->bitmap.rows;
 
-
 	b_ret = _init_write_pen(width, height);
 	if (!b_ret) return NULL;
 
@@ -216,21 +218,28 @@ GE_FTBuffChar* GEFontFT::_write_bitmap_glyph( FT_UInt glyph_index, FT_BitmapGlyp
 		{
 			unsigned char val = '\0';
 			val = ((unsigned char*)bmp_glyph->bitmap.buffer)[i * width + j];
+			int pos = i * pitch / 2 + j;
 			if (val)
 			{
-				int pos = i * pitch / 2 + j;
-				buff[pos] = 0xff;
-				buff[pos] = val;
+				buff[pos << 1] = 0xff;
+				buff[pos << 1 | 1] = val;
+			}
+			else
+			{
+				buff[pos << 1] = 0x00;
+				buff[pos << 1 | 1] = 0x00;
 			}
 		}
 	}
 	b_ret = current_page_->unlock_rect();
 	if (!b_ret) return NULL;
 
-	b_ret = _update_write_pen(width, height);
-	if (!b_ret) return NULL;
+	GE_FTBuffChar* buff_char = _save_buff_char(glyph_index, bmp_glyph);
 
-	return NULL;
+	b_ret = _update_write_pen(width, height);
+	if (!b_ret) return buff_char;
+
+	return buff_char;
 }
 
 int GEFontFT::_create_buff_page()
@@ -248,13 +257,18 @@ bool GEFontFT::_init_write_pen( int width, int height )
 	int old_pen_x = pen_x_;
 	int old_pen_y = pen_y_;
 
-	if (texture_group_ == NULL) return false;
+	if (texture_group_ == NULL)
+	{
+		init_texture_group();
+		if (texture_group_ == NULL) return false;
+	}
 
-	if (0 != texture_group_->get_texture_cnt()
+	if (0 == texture_group_->get_texture_cnt()
 		&& current_page_ == NULL)
 	{
 		int page_id = _create_buff_page();
 		current_page_ = texture_group_->get_texture(page_id);
+		current_page_id_ = page_id;
 		pen_x_ = 0;
 		pen_y_ = 0;
 	}
@@ -269,8 +283,10 @@ bool GEFontFT::_init_write_pen( int width, int height )
 	{
 		int page_id = _create_buff_page();
 		current_page_ = texture_group_->get_texture(page_id);
+		current_page_id_ = page_id;
 		if (current_page_ == NULL)
 		{
+			current_page_id_ = -1;
 			pen_x_ = old_pen_x;
 			pen_y_ = old_pen_y;
 			return false;
@@ -283,6 +299,7 @@ bool GEFontFT::_init_write_pen( int width, int height )
 		|| pen_x_ + width > page_width_
 		|| pen_y_ + height > page_height_)
 	{
+		current_page_id_ = -1;
 		pen_x_ = old_pen_x;
 		pen_y_ = old_pen_y;
 		return false;
@@ -298,6 +315,24 @@ bool GEFontFT::_update_write_pen( int width, int height )
 	return true;
 }
 
+GE_FTBuffChar* GEFontFT::_save_buff_char( FT_UInt glyph_index, FT_BitmapGlyph bmp_glyph )
+{
+	FT_BUFFCHAR_MAP::iterator char_itor = buff_char_map_.find(glyph_index);
+	if (char_itor != buff_char_map_.end()) return char_itor->second;
+
+	GE_FTBuffChar* buff_char = new GE_FTBuffChar();
+	if (buff_char == NULL) return NULL;
+
+	buff_char_map_[glyph_index] = buff_char;
+	buff_char->index = glyph_index;
+	buff_char->page = current_page_id_;
+
+	//buff_char->
+	//pen_x_;
+	//pen_y_;
+	return buff_char;
+}
+
 GETextureGroup* GEFontFT::get_texture_group()
 {
 	return texture_group_;
@@ -306,7 +341,7 @@ GETextureGroup* GEFontFT::get_texture_group()
 bool GEFontFT::init_texture_group()
 {
 	if (texture_group_ == NULL)
-		texture_group_ = GETextureGroup::create();
+		texture_group_ = GETextureManager::create_texture_group();
 
 	if (texture_group_ == NULL) return false;
 	return true;

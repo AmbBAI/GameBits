@@ -11,7 +11,7 @@ class GE_API GETextureGroup
 {
 	DLL_MANAGE_CLASS(GETextureGroup);
 
-public:
+protected:
 	GETextureGroup();
 	virtual ~GETextureGroup();
 

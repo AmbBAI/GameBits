@@ -2,7 +2,7 @@
 #define _GAME_ENGINE_FREETYPE_FONT_H_
 
 #include "../../common/ge_include.h"
-#include "../../render/texture/ge_texture_group.h"
+#include "../../render/texture/ge_texture_manager.h"
 #include "ge_font.h"
 
 #include "ft2build.h"
@@ -79,6 +79,7 @@ protected:
 	bool _set_ft_face(FT_Face ft_face);
 	GE_FTBuffChar* _buff_char_glyph(wchar_t ch);
 	GE_FTBuffChar* _write_bitmap_glyph(FT_UInt glyph_index, FT_BitmapGlyph bmp_glyph);
+	GE_FTBuffChar* _save_buff_char(FT_UInt glyph_index, FT_BitmapGlyph bmp_glyph);
 	bool _init_write_pen(int width, int height);
 	bool _update_write_pen(int width, int height);
 	int _create_buff_page();
@@ -96,6 +97,7 @@ private:
 
 	GETextureGroup*		texture_group_;
 	GETexture*			current_page_;
+	int					current_page_id_;
 	int					pen_x_;
 	int					pen_y_;
 

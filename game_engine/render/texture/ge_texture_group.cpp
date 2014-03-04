@@ -27,6 +27,7 @@ int GETextureGroup::add_texture()
 
 int GETextureGroup::add_texture( GETexture* texture )
 {
+	GETextureManager::refer_texture(texture);
 	texture_list_.push_back(texture);
 	return (int)texture_list_.size() - 1;
 }

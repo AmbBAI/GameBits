@@ -4,7 +4,6 @@
 #include "../common/ge_include.h"
 #include "../object/ge_object.h"
 #include "../utility/geu_vertex.h"
-#include "../render/texture/ge_texture_group.h"
 
 namespace ge
 {
@@ -19,6 +18,7 @@ struct GE_API GE_QUAD
 };
 
 class GETexture;
+class GETextureGroup;
 class GEREffect;
 class GE_API GEOAtlasRender : public GEObject
 {
@@ -36,7 +36,9 @@ public:
 	virtual GE_VERTEX_DECL* get_vertex_decl();
 
 	virtual bool init_texture_group();
+	virtual bool set_texture_group(GETextureGroup* texture_group);
 	virtual GETextureGroup* get_texture_group();
+	virtual void release_texture_group();
 
 	virtual bool init_render();
 	virtual bool update_render();

@@ -31,7 +31,9 @@ bool GEOTextFT::set_font( GEFont* font )
 {
 	if (font == NULL) return false;
 	if (font->type_ != FontType_FTFont) return false;
-	return GEOText::set_font(font);
+	bool b_ret = GEOText::set_font(font);
+	need_update_font_ = true;
+	return b_ret;
 }
 
 bool GEOTextFT::set_text( const char* text )
@@ -44,17 +46,6 @@ bool GEOTextFT::set_text( const char* text )
 bool GEOTextFT::set_size( GE_ISIZE& size )
 {
 	render_size_ = size;
-
-	if (!render_object_)
-	{
-		render_object_ = GEOAtlasRender::create();
-		if (render_object_)
-		{
-			render_object_->set_vertex_fvf(fvf);
-			render_object_->init_texture_group();
-		}
-	}
-	if (!render_object_) return false;
 
 	return true;
 }
@@ -80,11 +71,8 @@ bool GEOTextFT::update_text()
 	font->begin_write(&(render_char_buff_[0]), render_char_buff_.size());
 	font->write_text(wtext.c_str(), 0, 0, false);
 	int cnt = font->end_write();
-
-	//GETextureGroup* font_tg = font->get_texture_group();
-	//GETextureGroup* tg = render_object_->get_texture_group();
-	//if (font_tg || tg) return false;
-
+	
+	render_object_->add_quad();
 
 	need_update_text_ = false;
 	return true;
@@ -92,14 +80,29 @@ bool GEOTextFT::update_text()
 
 bool GEOTextFT::update_font()
 {
+	if (!render_object_)
+	{
+		render_object_ = GEOAtlasRender::create();
+		if (render_object_)
+		{
+			render_object_->set_vertex_fvf(fvf);
+		}
+	}
+	if (!render_object_) return false;
+
+	GEFontFT* font_ft = (GEFontFT*)font_obj_;
+	GETextureGroup* texture_group = font_ft->get_texture_group();
+	if (texture_group == NULL) return false;
+	render_object_->set_texture_group(texture_group);
+
 	need_update_font_ = false;
 	return true;
 }
 
 void GEOTextFT::render( time_t delta )
 {
-	if (need_update_quad_) _update_quad();
 	if (need_update_font_) update_font();
+	if (need_update_quad_) _update_quad();
 	if (need_update_text_) update_text();
 
 	if (render_object_)

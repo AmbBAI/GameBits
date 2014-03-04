@@ -1,6 +1,6 @@
 #include "geo_atlas_render.h"
 #include "../common/ge_engine.h"
-
+#include "../render/texture/ge_texture_manager.h"
 #include "../render/ger_effect.h"
 
 namespace ge
@@ -35,7 +35,7 @@ bool GEOAtlasRender::init()
 void GEOAtlasRender::destory()
 {
 	release_render();
-	texture_group_->release_all_texture();
+	release_texture_group();
 
 	vertex_decl_ = NULL;
 }
@@ -49,9 +49,26 @@ bool GEOAtlasRender::init_texture_group()
 	return true;
 }
 
+bool GEOAtlasRender::set_texture_group( GETextureGroup* texture_group )
+{
+	release_texture_group();
+	texture_group_ = texture_group;
+	if (texture_group_) GETextureManager::refer_texture_group(texture_group_);
+	return true;
+}
+
 GETextureGroup* GEOAtlasRender::get_texture_group()
 {
 	return texture_group_;
+}
+
+void GEOAtlasRender::release_texture_group()
+{
+	if (texture_group_)
+	{
+		GETextureManager::release_texture_group(texture_group_);
+		texture_group_ = NULL;
+	}
 }
 
 bool GEOAtlasRender::set_vertex_fvf( DWORD fvf )
@@ -249,6 +266,8 @@ bool GEOAtlasRender::add_quad( GE_QUAD& quad )
 
 bool GEOAtlasRender::add_quad( int texture_id /*= 0*/ )
 {
+	if (texture_group_ == NULL) return false;
+
 	GETexture* texture = texture_group_->get_texture(texture_id);
 	if (texture == NULL) return false;
 

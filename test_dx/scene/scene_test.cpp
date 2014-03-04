@@ -63,7 +63,7 @@ bool SceneTest::init_gdi_text()
 
 	p_gdi_text_->set_font(ge_font);
 
-	add_object(-10000, p_gdi_text_);
+	//add_object(-10000, p_gdi_text_);
 	return true;
 }
 

@@ -80,6 +80,7 @@ protected:
 
 private:
 	D3DXVECTOR3			position_;
+	float				rhw_;
 	D3DXVECTOR3			normal_;
 	D3DXVECTOR2			texcoords_;
 	UINT				blend_;

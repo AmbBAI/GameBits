@@ -251,7 +251,7 @@ bool GEOAtlasRender::add_quad( GE_QUAD& quad )
 	if (vertex_decl_ != quad.br.get_decl()) return false;
 
 	int quad_index = vertex_list_.size() / 4;
-	int texture_id = quad.texture;
+	int texture_id = quad.texid;
 
 	vertex_list_.push_back(quad.tl);
 	vertex_list_.push_back(quad.tr);
@@ -304,7 +304,7 @@ bool GEOAtlasRender::add_quad( int texture_id /*= 0*/ )
 	out_quad.br.set_texcoords(1.f, 1.f);
 	out_quad.bl.set_texcoords(0.f, 1.f);
 
-	out_quad.texture = texture_id;
+	out_quad.texid = texture_id;
 
 	return add_quad(out_quad);
 }

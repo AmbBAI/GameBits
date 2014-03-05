@@ -14,7 +14,7 @@ struct GE_API GE_QUAD
 	GE_VERTEX tr;
 	GE_VERTEX bl;
 	GE_VERTEX br;
-	int texture;
+	int texid;
 };
 
 class GETexture;

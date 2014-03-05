@@ -148,7 +148,7 @@ void GEOTextFT::_render_char_to_quad( GE_QUAD& out_quad, const GE_FTRenderChar& 
 	out_quad.br.set_texcoords(u2, v2);
 	out_quad.bl.set_texcoords(u1, v2);
 
-	out_quad.texture = render_char.page;
+	out_quad.texid = render_char.page;
 
 	return;
 }

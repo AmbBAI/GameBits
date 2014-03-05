@@ -8,6 +8,7 @@
 #include "ft2build.h"
 #include FT_FREETYPE_H
 #include FT_GLYPH_H
+#include FT_STROKER_H
 
 namespace ge
 {
@@ -26,6 +27,8 @@ public:
 	void destory();
 
 	bool init_font(GEFontFT* font_ft, const char* font_name);
+	FT_Stroker create_stroker(float weight);
+	void release_stroker(FT_Stroker* stroker);
 
 private:
 	FT_Library freetype_;

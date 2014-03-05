@@ -44,6 +44,27 @@ bool GEFreeType::init_font( GEFontFT* font_ft, const char* font_name )
 	return font_ft->_set_ft_face(ft_face);
 }
 
+FT_Stroker GEFreeType::create_stroker( float weight )
+{
+	FT_Stroker stroker = NULL;
+	FT_Stroker_New(freetype_, &stroker);
+	if (stroker)
+	{
+		FT_Stroker_Set(stroker,
+			(int)(weight * 64),
+			FT_STROKER_LINECAP_ROUND,
+			FT_STROKER_LINEJOIN_ROUND,
+			0);
+	}
+	return stroker;
+}
+
+void GEFreeType::release_stroker( FT_Stroker* stroker )
+{
+	FT_Stroker_Done(*stroker);
+	stroker = NULL;
+}
+
 
 
 DLL_MANAGE_CLASS_IMPLEMENT(GEFontFT);
@@ -54,8 +75,8 @@ GEFontFT::GEFontFT()
 , render_char_buff_(NULL)
 , buff_size_(0)
 , buff_offset_(0)
-, page_width_(512)
-, page_height_(512)
+, page_width_(256)
+, page_height_(256)
 , texture_group_(NULL)
 , current_page_(NULL)
 , pen_x_(0)
@@ -101,6 +122,7 @@ bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap
 {
 	if (text == NULL) return false;
 
+	if (ft_face_ == NULL) return false;
 	if (render_char_buff_ == NULL) return false;
 	
 	FT_GlyphSlot slot = ft_face_->glyph;
@@ -109,7 +131,7 @@ bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap
 	FT_Bool use_kerning = false;
 
 	int ascender = ft_face_->ascender >> 6;
-	int face_height = ft_face_->height >> 6;
+	int face_height = ft_face_->size->metrics.height >> 6;
 
 	int pen_x = 0;
 	int pen_y = face_height;
@@ -176,6 +198,7 @@ int GEFontFT::end_write()
 	return n_ret;
 }
 
+
 GE_FTBuffChar* GEFontFT::_buff_char_glyph( wchar_t ch )
 {
 	FT_GlyphSlot glyph_slot = ft_face_->glyph;
@@ -187,7 +210,7 @@ GE_FTBuffChar* GEFontFT::_buff_char_glyph( wchar_t ch )
 	FT_BUFFCHAR_MAP::iterator char_itor = buff_char_map_.find(glyph_index);
 	if (char_itor != buff_char_map_.end()) return char_itor->second;
 
-	FT_Error ret = FT_Load_Glyph(ft_face_, glyph_index, FT_LOAD_RENDER);
+	FT_Error ret = FT_Load_Glyph(ft_face_, glyph_index, FT_LOAD_DEFAULT);
 	if (ret != 0) goto fail_end;
 
 	ret = FT_Get_Glyph(glyph_slot, &out_glyph);
@@ -204,6 +227,18 @@ GE_FTBuffChar* GEFontFT::_buff_char_glyph( wchar_t ch )
 		out_char->_bearing_y = glyph_slot->metrics.horiBearingY >> 6;
 	}
 	if (out_glyph) FT_Done_Glyph(out_glyph);
+
+	//FT_Stroker stroker = GEFreeType::get_instance()->create_stroker(1.0f);
+
+	//ret = FT_Get_Glyph(glyph_slot, &out_glyph);
+	//if ( ret != 0 ) goto fail_end;
+
+	//ret = FT_Glyph_StrokeBorder(&out_glyph, stroker, 0, 1);
+	//GEFreeType::get_instance()->release_stroker(&stroker);
+
+	//FT_OutlineGlyph outline_glyph = (FT_OutlineGlyph)out_glyph;
+	//if (out_glyph) FT_Done_Glyph(out_glyph);
+
 	return out_char;
 
 fail_end:
@@ -245,7 +280,7 @@ GE_FTBuffChar* GEFontFT::_write_bitmap_glyph( FT_UInt glyph_index, FT_BitmapGlyp
 			}
 			else
 			{
-				buff[pos << 1] = 0x00;
+				buff[pos << 1] = 0xff;
 				buff[pos << 1 | 1] = 0x00;
 			}
 		}
@@ -277,7 +312,6 @@ bool GEFontFT::_init_write_pen( int width, int height )
 	int old_pen_y = pen_y_;
 
 	pen_x_ += 1;
-	pen_y_ += 1;
 
 	if (texture_group_ == NULL)
 	{
@@ -297,9 +331,8 @@ bool GEFontFT::_init_write_pen( int width, int height )
 
 	if (pen_x_ + width > page_width_)
 	{
-		pen_y_ += ft_face_->height >> 6;
+		pen_y_ += (ft_face_->size->metrics.height >> 6) + 1;
 		pen_x_ = 1;
-		pen_y_ += 1;
 	}
 
 	if (pen_y_ + height > page_height_)
@@ -351,8 +384,8 @@ GE_FTBuffChar* GEFontFT::_save_buff_char( FT_UInt glyph_index, FT_BitmapGlyph bm
 	buff_char_map_[glyph_index] = buff_char;
 	buff_char->index = glyph_index;
 	buff_char->page = current_page_id_;
-	buff_char->width = bmp_glyph->bitmap.width;
-	buff_char->height = bmp_glyph->bitmap.rows;
+	buff_char->width = bmp_glyph->bitmap.width + 1.f;
+	buff_char->height = bmp_glyph->bitmap.rows + 1.f;
 
 	GETexture* page = texture_group_->get_texture(current_page_id_);
 	if (page)
@@ -362,10 +395,15 @@ GE_FTBuffChar* GEFontFT::_save_buff_char( FT_UInt glyph_index, FT_BitmapGlyph bm
 		page->get_size(width, height);
 		if (width > 0 && height > 0)
 		{
-			buff_char->uvs[0] = (float)pen_x_ / width;
-			buff_char->uvs[1] = (float)pen_y_ / height;
-			buff_char->uvs[2] = (float)(pen_x_ + bmp_glyph->bitmap.width) / width;
-			buff_char->uvs[3] = (float)(pen_y_ + bmp_glyph->bitmap.rows) / height;
+			//buff_char->uvs[0] = (float)(pen_x_) / width;
+			//buff_char->uvs[1] = (float)(pen_y_) / height;
+			//buff_char->uvs[2] = (float)(pen_x_ + bmp_glyph->bitmap.width) / width;
+			//buff_char->uvs[3] = (float)(pen_y_ + bmp_glyph->bitmap.rows) / height;
+
+			buff_char->uvs[0] = (float)(pen_x_ - 0.5f) / width;
+			buff_char->uvs[1] = (float)(pen_y_ - 0.5f) / height;
+			buff_char->uvs[2] = (float)(pen_x_ + 0.5f + bmp_glyph->bitmap.width) / width;
+			buff_char->uvs[3] = (float)(pen_y_ + 0.5f + bmp_glyph->bitmap.rows) / height;
 		}
 	}
 

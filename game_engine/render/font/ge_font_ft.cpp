@@ -276,6 +276,9 @@ bool GEFontFT::_init_write_pen( int width, int height )
 	int old_pen_x = pen_x_;
 	int old_pen_y = pen_y_;
 
+	pen_x_ += 1;
+	pen_y_ += 1;
+
 	if (texture_group_ == NULL)
 	{
 		init_texture_group();
@@ -288,14 +291,15 @@ bool GEFontFT::_init_write_pen( int width, int height )
 		int page_id = _create_buff_page();
 		current_page_ = texture_group_->get_texture(page_id);
 		current_page_id_ = page_id;
-		pen_x_ = 0;
-		pen_y_ = 0;
+		pen_x_ = 1;
+		pen_y_ = 1;
 	}
 
 	if (pen_x_ + width > page_width_)
 	{
 		pen_y_ += ft_face_->height >> 6;
-		pen_x_ = 0;
+		pen_x_ = 1;
+		pen_y_ += 1;
 	}
 
 	if (pen_y_ + height > page_height_)
@@ -310,8 +314,8 @@ bool GEFontFT::_init_write_pen( int width, int height )
 			pen_y_ = old_pen_y;
 			return false;
 		}
-		pen_x_ = 0;
-		pen_y_ = 0;
+		pen_x_ = 1;
+		pen_y_ = 1;
 	}
 
 	if (current_page_ == NULL

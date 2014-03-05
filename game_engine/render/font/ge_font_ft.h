@@ -37,6 +37,9 @@ typedef struct _GE_FTBuffChar
 	short		page;
 	float		uvs[4];
 
+	int			width;
+	int			height;
+
 	int			_bearing_x;
 	int			_bearing_y;
 	int			_advance;

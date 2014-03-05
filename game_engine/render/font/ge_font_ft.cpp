@@ -101,13 +101,18 @@ bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap
 {
 	if (text == NULL) return false;
 
+	if (render_char_buff_ == NULL) return false;
+	
 	FT_GlyphSlot slot = ft_face_->glyph;
 	FT_UInt glyph_index = 0;
 	FT_UInt pre_glyph_index = 0;
-	FT_Bool use_kerning = false; 
-	int pen_x = 0;
-	int pen_y = 0;
+	FT_Bool use_kerning = false;
+
 	int ascender = ft_face_->ascender >> 6;
+	int face_height = ft_face_->height >> 6;
+
+	int pen_x = 0;
+	int pen_y = face_height;
 
 	for (int i=0; '\0' != text[i]; ++i)
 	{
@@ -117,7 +122,7 @@ bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap
 		case '\r':
 			{
 				pen_x = 0;
-				pen_y += ft_face_->height >> 6;
+				pen_y += face_height;
 			}
 			break;
 		default:
@@ -129,10 +134,18 @@ bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap
 
 				glyph_index = ptr_char->index;
 
-				//glyph_buff_[buff_offset_].pos.x = pen_x + ptr_char->_bearing_x;
-				//glyph_buff_[buff_offset_].pos.y = pen_y + ptr_char->_bearing_y + ascender;
+				render_char_buff_[buff_offset_].index = glyph_index;
+				render_char_buff_[buff_offset_].xys[0] = (float)pen_x + ptr_char->_bearing_x;
+				render_char_buff_[buff_offset_].xys[1] = -(float)pen_y + ptr_char->_bearing_y + ascender;
+				render_char_buff_[buff_offset_].xys[2] = render_char_buff_[buff_offset_].xys[0] + ptr_char->width;
+				render_char_buff_[buff_offset_].xys[3] = render_char_buff_[buff_offset_].xys[1] - ptr_char->height;
+				render_char_buff_[buff_offset_].page = ptr_char->page;
+				render_char_buff_[buff_offset_].uvs[0] = ptr_char->uvs[0];
+				render_char_buff_[buff_offset_].uvs[1] = ptr_char->uvs[1];
+				render_char_buff_[buff_offset_].uvs[2] = ptr_char->uvs[2];
+				render_char_buff_[buff_offset_].uvs[3] = ptr_char->uvs[3];
 
-				pen_x += ptr_char->_advance >> 6;
+				pen_x += ptr_char->_advance;
 				pre_glyph_index = glyph_index;
 
 				++ buff_offset_;
@@ -165,7 +178,7 @@ int GEFontFT::end_write()
 
 GE_FTBuffChar* GEFontFT::_buff_char_glyph( wchar_t ch )
 {
-	FT_GlyphSlot slot = ft_face_->glyph;
+	FT_GlyphSlot glyph_slot = ft_face_->glyph;
 	FT_UInt glyph_index = 0;
 	FT_Glyph out_glyph = NULL;
 
@@ -177,13 +190,19 @@ GE_FTBuffChar* GEFontFT::_buff_char_glyph( wchar_t ch )
 	FT_Error ret = FT_Load_Glyph(ft_face_, glyph_index, FT_LOAD_RENDER);
 	if (ret != 0) goto fail_end;
 
-	ret = FT_Get_Glyph(ft_face_->glyph, &out_glyph);
+	ret = FT_Get_Glyph(glyph_slot, &out_glyph);
 	if ( ret != 0 ) goto fail_end;
 
 	ret = FT_Glyph_To_Bitmap(&out_glyph, FT_RENDER_MODE_NORMAL, NULL, true);
 	if ( ret != 0) goto fail_end;
 
 	GE_FTBuffChar* out_char = _write_bitmap_glyph(glyph_index, (FT_BitmapGlyph)out_glyph);
+	if (out_char)
+	{
+		out_char->_advance = glyph_slot->metrics.horiAdvance >> 6;
+		out_char->_bearing_x = glyph_slot->metrics.horiBearingX >> 6;
+		out_char->_bearing_y = glyph_slot->metrics.horiBearingY >> 6;
+	}
 	if (out_glyph) FT_Done_Glyph(out_glyph);
 	return out_char;
 
@@ -320,16 +339,32 @@ GE_FTBuffChar* GEFontFT::_save_buff_char( FT_UInt glyph_index, FT_BitmapGlyph bm
 	FT_BUFFCHAR_MAP::iterator char_itor = buff_char_map_.find(glyph_index);
 	if (char_itor != buff_char_map_.end()) return char_itor->second;
 
+	if (!texture_group_) return false;
+
 	GE_FTBuffChar* buff_char = new GE_FTBuffChar();
 	if (buff_char == NULL) return NULL;
 
 	buff_char_map_[glyph_index] = buff_char;
 	buff_char->index = glyph_index;
 	buff_char->page = current_page_id_;
+	buff_char->width = bmp_glyph->bitmap.width;
+	buff_char->height = bmp_glyph->bitmap.rows;
 
-	//buff_char->
-	//pen_x_;
-	//pen_y_;
+	GETexture* page = texture_group_->get_texture(current_page_id_);
+	if (page)
+	{
+		int width = 0;
+		int height = 0;
+		page->get_size(width, height);
+		if (width > 0 && height > 0)
+		{
+			buff_char->uvs[0] = (float)pen_x_ / width;
+			buff_char->uvs[1] = (float)pen_y_ / height;
+			buff_char->uvs[2] = (float)(pen_x_ + bmp_glyph->bitmap.width) / width;
+			buff_char->uvs[3] = (float)(pen_y_ + bmp_glyph->bitmap.rows) / height;
+		}
+	}
+
 	return buff_char;
 }
 

@@ -35,6 +35,14 @@ void GE_IRECT::move_to( int pos_x, int pos_y )
 	top		= pos_y;
 }
 
+void GE_IRECT::include( int pos_x, int pos_y )
+{
+	if (left > pos_x)	left = pos_x;
+	if (right < pos_x)	right = pos_x;
+	if (top > pos_y)	top = pos_y;
+	if (bottom < pos_y)	bottom = pos_y;
+}
+
 
 GE_FRECT::GE_FRECT()
 : left(0.f)

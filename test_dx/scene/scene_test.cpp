@@ -87,8 +87,8 @@ bool SceneTest::init_ft_text()
 	ge::GEFont* p_font = NULL;
 	p_font = ge::GEFontManager::create_font(ge::FontType_FTFont);
 	//p_font->init("font\\consola.ttf", 32);
-	p_font->init("font\\simsun.ttc", 18);
-	//p_font->init("font\\msyh.ttf", 32);
+	//p_font->init("font\\simsun.ttc", 32);
+	p_font->init("font\\msyh.ttf", 32);
 	//p_font->init("font\\PRISTINA.TTF", 32);
 
 	p_ft_text_ = ge::GEOTextFT::create();

@@ -28,6 +28,7 @@ struct GE_API GE_IRECT : public RECT
 
 	void move(int offset_x, int offset_y);
 	void move_to(int pos_x, int pos_y);
+	void include(int pos_x, int pos_y);
 };
 
 struct GE_API GE_FPOINT

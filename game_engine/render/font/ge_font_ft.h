@@ -13,6 +13,14 @@
 namespace ge
 {
 
+typedef struct _GE_FTSpan
+{
+	int	x;
+	int y;
+	int len;
+	int coverage;
+} GE_FTSpan;
+
 class GEFontFT;
 class GE_API GEFreeType
 {
@@ -27,11 +35,18 @@ public:
 	void destory();
 
 	bool init_font(GEFontFT* font_ft, const char* font_name);
-	FT_Stroker create_stroker(float weight);
-	void release_stroker(FT_Stroker* stroker);
+	
+	bool span_render(GEFontFT* font_obj, FT_GlyphSlot glyph_slot);
+	bool span_render_outline(GEFontFT* font_obj, FT_GlyphSlot glyph_slot);
+	static void raster_callback(const int y,
+		const int count,
+		const FT_Span * const spans,
+		void * const user);
 
 private:
 	FT_Library freetype_;
+
+	FT_Raster_Params params_;
 };
 
 typedef struct _GE_FTBuffChar
@@ -55,6 +70,7 @@ typedef struct _GE_FTRenderChar
 	short		page;
 	float		uvs[4];
 } GE_FTRenderChar;
+
 
 class GE_API GEFontFT : public GEFont
 {
@@ -83,12 +99,21 @@ public:
 
 protected:
 	bool _set_ft_face(FT_Face ft_face);
-	GE_FTBuffChar* _buff_char_glyph(wchar_t ch);
-	GE_FTBuffChar* _write_bitmap_glyph(FT_UInt glyph_index, FT_BitmapGlyph bmp_glyph);
-	GE_FTBuffChar* _save_buff_char(FT_UInt glyph_index, FT_BitmapGlyph bmp_glyph);
+
+	GE_FTBuffChar* _get_buff_char(wchar_t ch);
+	GE_FTBuffChar* _render_bitmap_glyph(FT_UInt glyph_index, FT_BitmapGlyph bmp_glyph);
+	GE_FTBuffChar* _build_buff_char(FT_UInt glyph_index, int width, int height);
+	
 	bool _init_write_pen(int width, int height);
 	bool _update_write_pen(int width, int height);
 	int _create_buff_page();
+
+	GE_FTBuffChar* _get_buff_char_with_outline(wchar_t ch);
+	void _clear_span_list();
+
+	typedef std::vector<GE_FTSpan> FT_SPAN_LIST;
+	FT_SPAN_LIST* _get_span_list();
+	FT_SPAN_LIST* _get_outline_span_list();
 
 private:
 	FT_Face				ft_face_;
@@ -109,6 +134,9 @@ private:
 
 	const int			page_width_;
 	const int			page_height_;
+
+	FT_SPAN_LIST		span_list_;
+	FT_SPAN_LIST		outline_span_list_;
 };
 
 } // namespace ge

@@ -25,6 +25,10 @@ bool GEFreeType::init()
 	if (ret != 0) return false;
 	if (freetype_ == NULL) return false;
 
+	memset(&params_, 0, sizeof(params_));
+	params_.flags = FT_RASTER_FLAG_AA | FT_RASTER_FLAG_DIRECT;
+	params_.gray_spans = raster_callback;
+
 	return true;
 }
 
@@ -44,25 +48,85 @@ bool GEFreeType::init_font( GEFontFT* font_ft, const char* font_name )
 	return font_ft->_set_ft_face(ft_face);
 }
 
-FT_Stroker GEFreeType::create_stroker( float weight )
+bool GEFreeType::span_render( GEFontFT* font_obj, FT_GlyphSlot glyph_slot )
 {
+	if (font_obj == NULL) return false;
+	if (glyph_slot == NULL) return false;
+	if (glyph_slot->format != FT_GLYPH_FORMAT_OUTLINE) return false;
+
+	FT_Error ret = 0;
+
+	params_.user = font_obj->_get_span_list();
+	ret = FT_Outline_Render(freetype_, &(glyph_slot->outline), &params_);
+	if (ret == 0) goto fail_end;
+
+	return true;
+
+fail_end:
+	return false;
+}
+
+bool GEFreeType::span_render_outline( GEFontFT* font_obj, FT_GlyphSlot glyph_slot )
+{
+	if (font_obj == NULL) return false;
+	if (glyph_slot == NULL) return false;
+	if (glyph_slot->format != FT_GLYPH_FORMAT_OUTLINE) return false;
+
 	FT_Stroker stroker = NULL;
+	FT_Glyph out_glyph = NULL;
+	FT_Error ret = 0;
+
 	FT_Stroker_New(freetype_, &stroker);
 	if (stroker)
 	{
 		FT_Stroker_Set(stroker,
-			(int)(weight * 64),
+			(int)(2.0f * 64),
 			FT_STROKER_LINECAP_ROUND,
 			FT_STROKER_LINEJOIN_ROUND,
 			0);
-	}
-	return stroker;
+	} else return false; 
+
+	ret = FT_Get_Glyph(glyph_slot, &out_glyph);
+	if ( ret != 0 ) goto fail_end;
+
+	ret = FT_Glyph_StrokeBorder(&out_glyph, stroker, 0, 1);
+	if (stroker) FT_Stroker_Done(stroker);
+	stroker = NULL;
+
+	FT_OutlineGlyph outline_glyph = (FT_OutlineGlyph)out_glyph;
+
+	params_.user = font_obj->_get_outline_span_list();
+
+	ret = FT_Outline_Render(freetype_, &(outline_glyph->outline), &params_);
+	if (ret == 0) goto fail_end;
+
+	if (out_glyph) FT_Done_Glyph(out_glyph);
+	out_glyph = NULL;
+	return true;
+
+fail_end:
+	if (out_glyph) FT_Done_Glyph(out_glyph);
+	if (stroker) FT_Stroker_Done(stroker);
+	out_glyph = NULL;
+	stroker = NULL;
+	return false;
 }
 
-void GEFreeType::release_stroker( FT_Stroker* stroker )
+void GEFreeType::raster_callback( const int y, const int count, const FT_Span * const spans, void * const user )
 {
-	FT_Stroker_Done(*stroker);
-	stroker = NULL;
+	GEFontFT::FT_SPAN_LIST* span_list = (GEFontFT::FT_SPAN_LIST*)user;
+	if (span_list)
+	{
+		for (int i=0; i<count; ++i)
+		{
+			GE_FTSpan span;
+			span.x = spans[i].x;
+			span.y = y;
+			span.len = spans[i].len;
+			span.coverage = spans[i].coverage;
+			span_list->push_back(span);
+		}
+	}
 }
 
 
@@ -150,7 +214,7 @@ bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap
 		default:
 			{
 				GE_FTBuffChar* ptr_char = NULL;
-				ptr_char = _buff_char_glyph(text[i]);
+				ptr_char = _get_buff_char_with_outline(text[i]);
 
 				if (ptr_char == NULL) continue;
 
@@ -199,7 +263,7 @@ int GEFontFT::end_write()
 }
 
 
-GE_FTBuffChar* GEFontFT::_buff_char_glyph( wchar_t ch )
+GE_FTBuffChar* GEFontFT::_get_buff_char( wchar_t ch )
 {
 	FT_GlyphSlot glyph_slot = ft_face_->glyph;
 	FT_UInt glyph_index = 0;
@@ -219,7 +283,7 @@ GE_FTBuffChar* GEFontFT::_buff_char_glyph( wchar_t ch )
 	ret = FT_Glyph_To_Bitmap(&out_glyph, FT_RENDER_MODE_NORMAL, NULL, true);
 	if ( ret != 0) goto fail_end;
 
-	GE_FTBuffChar* out_char = _write_bitmap_glyph(glyph_index, (FT_BitmapGlyph)out_glyph);
+	GE_FTBuffChar* out_char = _render_bitmap_glyph(glyph_index, (FT_BitmapGlyph)out_glyph);
 	if (out_char)
 	{
 		out_char->_advance = glyph_slot->metrics.horiAdvance >> 6;
@@ -228,17 +292,6 @@ GE_FTBuffChar* GEFontFT::_buff_char_glyph( wchar_t ch )
 	}
 	if (out_glyph) FT_Done_Glyph(out_glyph);
 
-	//FT_Stroker stroker = GEFreeType::get_instance()->create_stroker(1.0f);
-
-	//ret = FT_Get_Glyph(glyph_slot, &out_glyph);
-	//if ( ret != 0 ) goto fail_end;
-
-	//ret = FT_Glyph_StrokeBorder(&out_glyph, stroker, 0, 1);
-	//GEFreeType::get_instance()->release_stroker(&stroker);
-
-	//FT_OutlineGlyph outline_glyph = (FT_OutlineGlyph)out_glyph;
-	//if (out_glyph) FT_Done_Glyph(out_glyph);
-
 	return out_char;
 
 fail_end:
@@ -246,7 +299,7 @@ fail_end:
 	return NULL;
 }
 
-GE_FTBuffChar* GEFontFT::_write_bitmap_glyph( FT_UInt glyph_index, FT_BitmapGlyph bmp_glyph )
+GE_FTBuffChar* GEFontFT::_render_bitmap_glyph( FT_UInt glyph_index, FT_BitmapGlyph bmp_glyph )
 {
 	if (bmp_glyph == NULL) return NULL;
 
@@ -257,7 +310,7 @@ GE_FTBuffChar* GEFontFT::_write_bitmap_glyph( FT_UInt glyph_index, FT_BitmapGlyp
 	b_ret = _init_write_pen(width, height);
 	if (!b_ret) return NULL;
 
-	GE_IRECT rect(0, 0, bmp_glyph->bitmap.width, bmp_glyph->bitmap.rows);
+	GE_IRECT rect(0, 0, width, height);
 	rect.move_to(pen_x_, pen_y_);
 	unsigned char* buff = NULL;
 	int pitch = 0;
@@ -288,7 +341,7 @@ GE_FTBuffChar* GEFontFT::_write_bitmap_glyph( FT_UInt glyph_index, FT_BitmapGlyp
 	b_ret = current_page_->unlock_rect();
 	if (!b_ret) return NULL;
 
-	GE_FTBuffChar* buff_char = _save_buff_char(glyph_index, bmp_glyph);
+	GE_FTBuffChar* buff_char = _build_buff_char(glyph_index, width, height);
 
 	b_ret = _update_write_pen(width, height);
 	if (!b_ret) return buff_char;
@@ -371,7 +424,7 @@ bool GEFontFT::_update_write_pen( int width, int height )
 	return true;
 }
 
-GE_FTBuffChar* GEFontFT::_save_buff_char( FT_UInt glyph_index, FT_BitmapGlyph bmp_glyph )
+GE_FTBuffChar* GEFontFT::_build_buff_char( FT_UInt glyph_index, int width, int height )
 {
 	FT_BUFFCHAR_MAP::iterator char_itor = buff_char_map_.find(glyph_index);
 	if (char_itor != buff_char_map_.end()) return char_itor->second;
@@ -384,26 +437,21 @@ GE_FTBuffChar* GEFontFT::_save_buff_char( FT_UInt glyph_index, FT_BitmapGlyph bm
 	buff_char_map_[glyph_index] = buff_char;
 	buff_char->index = glyph_index;
 	buff_char->page = current_page_id_;
-	buff_char->width = bmp_glyph->bitmap.width + 1.f;
-	buff_char->height = bmp_glyph->bitmap.rows + 1.f;
+	buff_char->width = width + 1.f;
+	buff_char->height = height + 1.f;
 
 	GETexture* page = texture_group_->get_texture(current_page_id_);
 	if (page)
 	{
-		int width = 0;
-		int height = 0;
-		page->get_size(width, height);
-		if (width > 0 && height > 0)
+		int img_width = 0;
+		int img_height = 0;
+		page->get_size(img_width, img_height);
+		if (img_width > 0 && img_height > 0)
 		{
-			//buff_char->uvs[0] = (float)(pen_x_) / width;
-			//buff_char->uvs[1] = (float)(pen_y_) / height;
-			//buff_char->uvs[2] = (float)(pen_x_ + bmp_glyph->bitmap.width) / width;
-			//buff_char->uvs[3] = (float)(pen_y_ + bmp_glyph->bitmap.rows) / height;
-
-			buff_char->uvs[0] = (float)(pen_x_ - 0.5f) / width;
-			buff_char->uvs[1] = (float)(pen_y_ - 0.5f) / height;
-			buff_char->uvs[2] = (float)(pen_x_ + 0.5f + bmp_glyph->bitmap.width) / width;
-			buff_char->uvs[3] = (float)(pen_y_ + 0.5f + bmp_glyph->bitmap.rows) / height;
+			buff_char->uvs[0] = (float)(pen_x_ - 0.5f) / img_width;
+			buff_char->uvs[1] = (float)(pen_y_ - 0.5f) / img_height;
+			buff_char->uvs[2] = (float)(pen_x_ + 0.5f + width) / img_width;
+			buff_char->uvs[3] = (float)(pen_y_ + 0.5f + height) / img_height;
 		}
 	}
 
@@ -422,6 +470,121 @@ bool GEFontFT::init_texture_group()
 
 	if (texture_group_ == NULL) return false;
 	return true;
+}
+
+void GEFontFT::_clear_span_list()
+{
+	span_list_.clear();
+	outline_span_list_.clear();
+}
+
+GE_FTBuffChar* GEFontFT::_get_buff_char_with_outline( wchar_t ch )
+{
+	FT_GlyphSlot glyph_slot = ft_face_->glyph;
+	FT_UInt glyph_index = 0;
+
+	glyph_index = FT_Get_Char_Index(ft_face_, ch);
+
+	FT_BUFFCHAR_MAP::iterator char_itor = buff_char_map_.find(glyph_index);
+	if (char_itor != buff_char_map_.end()) return char_itor->second;
+
+	FT_Error ret = FT_Load_Glyph(ft_face_, glyph_index, FT_LOAD_DEFAULT);
+	if (ret != 0) return false;
+
+	_clear_span_list();
+	GEFreeType::get_instance()->span_render(this, glyph_slot);
+	GEFreeType::get_instance()->span_render_outline(this, glyph_slot);
+
+	if (span_list_.empty()) return NULL;
+
+	GE_IRECT span_rect;
+	span_rect.move_to(span_list_.front().x, span_list_.front().y);
+	FOR_EACH (FT_SPAN_LIST, span_list_, span_itor)
+	{
+		span_rect.include(span_itor->x, span_itor->y);
+		span_rect.include(span_itor->x + span_itor->len - 1, span_itor->y);
+	}
+	FOR_EACH (FT_SPAN_LIST, outline_span_list_, span_itor)
+	{
+		span_rect.include(span_itor->x, span_itor->y);
+		span_rect.include(span_itor->x + span_itor->len - 1, span_itor->y);
+	}
+
+	int width = span_rect.width() + 1;
+	int height = span_rect.height() + 1;
+
+	bool b_ret = true;
+	b_ret = _init_write_pen(width, height);
+	if (!b_ret) return NULL;
+
+	GE_IRECT rect(0, 0, width, height);
+	rect.move_to(pen_x_, pen_y_);
+	unsigned char* buff = NULL;
+	int pitch = 0;
+
+	b_ret = current_page_->lock_rect(rect, (void*&)buff, pitch);
+	if ((!b_ret) || buff == NULL) return NULL;
+
+	for (int i=0; i<rect.height(); ++i)
+	{
+		for (int j=0; j<rect.width(); ++j)
+		{
+			int pos = i * pitch / 2 + j;
+			buff[pos << 1] = 0xff;
+			buff[pos << 1 | 1] = 0x00;
+		}
+	}
+
+	FOR_EACH (FT_SPAN_LIST, outline_span_list_, span_itor)
+	{
+		int x = span_itor->x - span_rect.left;
+		int y = height - 1 - (span_itor->y - span_rect.top);
+		for (int i=0; i<span_itor->len; ++i)
+		{
+			int pos = y * pitch / 2 + x + i;
+			buff[pos << 1] = 0x00;
+			buff[pos << 1 | 1] = span_itor->coverage;
+		}
+	}
+
+	FOR_EACH (FT_SPAN_LIST, span_list_, span_itor)
+	{
+		int x = span_itor->x - span_rect.left;
+		int y = height - 1 - (span_itor->y - span_rect.top);
+		for (int i=0; i<span_itor->len; ++i)
+		{
+			int pos = y * pitch / 2 + x + i;
+			int old_c = buff[pos << 1];
+			int old_a = buff[pos << 1 | 1];
+			buff[pos << 1] = (int)(old_c + (0xff - old_c) * span_itor->coverage / 255.f);
+			buff[pos << 1 | 1] = min(0xff, old_a + span_itor->coverage);
+		}
+	}
+
+	b_ret = current_page_->unlock_rect();
+	if (!b_ret) return NULL;
+
+	GE_FTBuffChar* buff_char = _build_buff_char(glyph_index, width, height);
+	if (buff_char)
+	{
+		buff_char->_advance = glyph_slot->metrics.horiAdvance >> 6;
+		buff_char->_bearing_x = glyph_slot->metrics.horiBearingX >> 6;
+		buff_char->_bearing_y = glyph_slot->metrics.horiBearingY >> 6;
+	}
+	b_ret = _update_write_pen(width, height);
+	if (!b_ret) return buff_char;
+
+	return buff_char;
+}
+
+GEFontFT::FT_SPAN_LIST* GEFontFT::_get_span_list()
+{
+	return &span_list_;
+}
+
+GEFontFT::FT_SPAN_LIST* GEFontFT::_get_outline_span_list()
+{
+	return &outline_span_list_;
 }
 
 }

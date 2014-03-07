@@ -1,5 +1,5 @@
 #include "geo_spine.h"
-#include "../utility/geu_gmath.h"
+#include "../utility/ge_type.h"
 #include "../common/ge_app.h"
 #include "../common/ge_input.h"
 

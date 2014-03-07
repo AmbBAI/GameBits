@@ -1,6 +1,6 @@
 #include "ge_texture.h"
 #include "../../common/ge_engine.h"
-#include "../../utility/geu_gmath.h"
+#include "../../utility/ge_type.h"
 
 namespace ge
 {

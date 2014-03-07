@@ -3,7 +3,7 @@
 
 #include "../common/ge_include.h"
 #include "../object/ge_object.h"
-#include "../utility/geu_vertex.h"
+#include "../utility/ge_vertex.h"
 
 #define DEF_FVF_FORMAT (D3DFVF_XYZ | D3DFVF_TEX1)
 

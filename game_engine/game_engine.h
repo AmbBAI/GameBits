@@ -13,8 +13,8 @@
 #include "render/ger_material.h"
 #include "render/ger_light.h"
 
-#include "utility/geu_gmath.h"
-#include "utility/geu_vertex.h"
+#include "utility/ge_type.h"
+#include "utility/ge_vertex.h"
 
 #include "object/ge_object.h"
 #include "object/geo_primitive.h"

@@ -87,12 +87,6 @@
     <ClCompile Include="common\ge_scene.cpp">
       <Filter>common</Filter>
     </ClCompile>
-    <ClCompile Include="utility\geu_gmath.cpp">
-      <Filter>utility</Filter>
-    </ClCompile>
-    <ClCompile Include="utility\geu_vertex.cpp">
-      <Filter>utility</Filter>
-    </ClCompile>
     <ClCompile Include="object\text\geo_text_gdi.cpp">
       <Filter>object\text</Filter>
     </ClCompile>
@@ -128,6 +122,12 @@
     </ClCompile>
     <ClCompile Include="render\texture\ge_texture_group.cpp">
       <Filter>render\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="utility\ge_type.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="utility\ge_vertex.cpp">
+      <Filter>utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,12 +197,6 @@
     <ClInclude Include="common\ge_scene.h">
       <Filter>common</Filter>
     </ClInclude>
-    <ClInclude Include="utility\geu_gmath.h">
-      <Filter>utility</Filter>
-    </ClInclude>
-    <ClInclude Include="utility\geu_vertex.h">
-      <Filter>utility</Filter>
-    </ClInclude>
     <ClInclude Include="game_engine.h" />
     <ClInclude Include="object\text\geo_text_gdi.h">
       <Filter>object\text</Filter>
@@ -239,6 +233,12 @@
     </ClInclude>
     <ClInclude Include="render\texture\ge_texture_group.h">
       <Filter>render\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\ge_type.h">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\ge_vertex.h">
+      <Filter>utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

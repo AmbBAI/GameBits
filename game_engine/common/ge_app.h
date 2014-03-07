@@ -3,7 +3,7 @@
 
 #include "ge_include.h"
 #include "ge_input.h"
-#include "../utility/geu_gmath.h"
+#include "../utility/ge_type.h"
 
 
 namespace ge

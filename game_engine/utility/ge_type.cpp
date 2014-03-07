@@ -1,4 +1,4 @@
-#include "geu_gmath.h"
+#include "ge_type.h"
 
 namespace ge
 {
@@ -74,6 +74,14 @@ void GE_FRECT::move_to( float pos_x, float pos_y )
 	left	= pos_x;
 	bottom	+= pos_y - top;
 	top		= pos_y;
+}
+
+void GE_FRECT::include( float pos_x, float pos_y )
+{
+	if (left > pos_x)	left = pos_x;
+	if (right < pos_x)	right = pos_x;
+	if (top > pos_y)	top = pos_y;
+	if (bottom < pos_y)	bottom = pos_y;
 }
 
 }

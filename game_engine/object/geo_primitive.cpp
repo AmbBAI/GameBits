@@ -1,7 +1,7 @@
 #include "../common/ge_app.h"
 #include "../common/ge_engine.h"
 #include "../render/ger_material.h"
-#include "../utility/geu_vertex.h"
+#include "../utility/ge_vertex.h"
 #include "geo_primitive.h"
 
 namespace ge

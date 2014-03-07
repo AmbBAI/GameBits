@@ -36,7 +36,7 @@ bool SceneTest::init_fps_text()
 
 	p_fps_text_->set_font(ge_font);
 
-	add_object(10086, p_fps_text_);
+	//add_object(10086, p_fps_text_);
 	return true;
 }
 
@@ -63,7 +63,7 @@ bool SceneTest::init_gdi_text()
 
 	p_gdi_text_->set_font(ge_font);
 
-	//add_object(-10000, p_gdi_text_);
+	add_object(-10000, p_gdi_text_);
 	return true;
 }
 
@@ -72,7 +72,7 @@ bool SceneTest::init_bm_text()
 	ge::GEFont* p_font = NULL;
 	p_font = ge::GEFontManager::create_font(ge::FontType_BMFont);
 	ge::GEFontBM* p_bm_font = (ge::GEFontBM*)p_font;
-	p_bm_font->init("bmfont\\xxxxx.fnt");
+	p_bm_font->init("bmfont\\arial24.fnt");
 	p_bm_font->init_effect("bmfont\\font.fx");
 
 	p_bm_text_ = ge::GEOTextBM::create();
@@ -88,8 +88,9 @@ bool SceneTest::init_ft_text()
 	p_font = ge::GEFontManager::create_font(ge::FontType_FTFont);
 	//p_font->init("font\\consola.ttf", 32);
 	//p_font->init("font\\simsun.ttc", 32);
-	p_font->init("font\\msyh.ttf", 32);
-	//p_font->init("font\\PRISTINA.TTF", 32);
+	//p_font->init("font\\simkai.ttf", 32);
+	//p_font->init("font\\msyh.ttf", 32);
+	p_font->init("font\\PRISTINA.TTF", 32);
 
 	p_ft_text_ = ge::GEOTextFT::create();
 	if (!p_ft_text_) return false;

@@ -6,22 +6,15 @@
 namespace ge
 {
 
-typedef LPDIRECT3DVERTEXDECLARATION9 D3D_VERTEX_DECL;
-
 struct GE_API GE_VERTEX_DECL
 {
-	DWORD				fvf;
-	int					size;
-	D3D_VERTEX_DECL		decl;
+	DWORD							fvf;
+	int								size;
+	LPDIRECT3DVERTEXDECLARATION9	decl;
+	D3DVERTEXELEMENT9				element[MAX_FVF_DECL_SIZE];
 
-	GE_VERTEX_DECL() :fvf(NULL), size(0), decl(NULL) {}
-	bool is_valid()
-	{
-		if (fvf == NULL)	return false;
-		if (size <= 0)		return false;
-		if (decl == NULL)	return false;
-		return true;
-	}
+	GE_VERTEX_DECL();
+	bool is_valid();
 };
 
 class GE_API GEVertexDecl
@@ -43,18 +36,13 @@ protected:
 	void				_destory_vertex_decl(GE_VERTEX_DECL* out_decl);
 	void				_release_vertex_decl(DWORD fvf);
 
-	void				_calc_vertex_element_array(DWORD fvf, int& array_pos, int& mem_size);
-	bool				_update_vertex_element(DWORD fvf, DWORD add_fvf, int& array_pos, int& mem_offset);
-	bool				_push_vertex_element(
-							BYTE type, BYTE usage, BYTE usage_index,
-							int& array_pos, int& mem_offset, int elem_size);
-
 private:
-	D3DVERTEXELEMENT9	vertex_element_[MAX_FVF_DECL_SIZE];
 
 	typedef std::map<DWORD, GE_VERTEX_DECL*> VERTEX_DECL_MAP;
 	VERTEX_DECL_MAP		vertex_decl_map_;
 };
+
+
 
 class GE_API GE_VERTEX
 {
@@ -81,10 +69,10 @@ protected:
 private:
 	D3DXVECTOR3			position_;
 	float				rhw_;
+	unsigned			blend_;
 	D3DXVECTOR3			normal_;
-	D3DXVECTOR2			texcoords_;
-	UINT				blend_;
 	D3DCOLOR			color_;
+	D3DXVECTOR2			texcoords_;
 
 	GE_VERTEX_DECL*		decl_;
 };

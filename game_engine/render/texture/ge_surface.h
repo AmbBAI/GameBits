@@ -2,7 +2,7 @@
 #define _GAME_ENGINE_OBJECT_SURFACE_H_
 
 #include "../../common/ge_include.h"
-#include "../../utility/geu_gmath.h"
+#include "../../utility/ge_type.h"
 
 namespace ge
 {

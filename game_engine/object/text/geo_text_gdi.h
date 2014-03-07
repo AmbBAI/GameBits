@@ -2,7 +2,7 @@
 #define _GAME_ENGINE_OBJECT_TEXT_GDI_H_
 
 #include "../ge_object.h"
-#include "../../utility/geu_gmath.h"
+#include "../../utility/ge_type.h"
 #include "../../render/font/ge_font.h"
 #include "geo_text.h"
 

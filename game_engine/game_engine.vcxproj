@@ -128,8 +128,8 @@
     <ClCompile Include="render\texture\ge_texture.cpp" />
     <ClCompile Include="render\texture\ge_texture_group.cpp" />
     <ClCompile Include="render\texture\ge_texture_manager.cpp" />
-    <ClCompile Include="utility\geu_gmath.cpp" />
-    <ClCompile Include="utility\geu_vertex.cpp" />
+    <ClCompile Include="utility\ge_type.cpp" />
+    <ClCompile Include="utility\ge_vertex.cpp" />
     <ClCompile Include="utility\ge_unicode.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -166,8 +166,8 @@
     <ClInclude Include="render\texture\ge_texture.h" />
     <ClInclude Include="render\texture\ge_texture_group.h" />
     <ClInclude Include="render\texture\ge_texture_manager.h" />
-    <ClInclude Include="utility\geu_gmath.h" />
-    <ClInclude Include="utility\geu_vertex.h" />
+    <ClInclude Include="utility\ge_type.h" />
+    <ClInclude Include="utility\ge_vertex.h" />
     <ClInclude Include="game_engine.h" />
     <ClInclude Include="utility\ge_unicode.h" />
   </ItemGroup>

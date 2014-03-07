@@ -3,7 +3,7 @@
 #include "../render/ge_render.h"
 #include "../render/ger_effect.h"
 #include "../render/ger_material.h"
-#include "../utility/geu_vertex.h"
+#include "../utility/ge_vertex.h"
 
 namespace ge
 {

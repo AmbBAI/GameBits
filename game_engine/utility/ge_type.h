@@ -1,5 +1,5 @@
-#ifndef _GAME_ENGINE_UTILITY_GMATH_H_
-#define _GAME_ENGINE_UTILITY_GMATH_H_
+#ifndef _GAME_ENGINE_UTILITY_TYPE_H_
+#define _GAME_ENGINE_UTILITY_TYPE_H_
 
 #include "../common/ge_include.h"
 
@@ -58,8 +58,9 @@ struct GE_API GE_FRECT
 
 	void move(float offset_x, float offset_y);
 	void move_to(float pos_x, float pos_y);
+	void include(float pos_x, float pos_y);
 };
 
 }
 
-#endif // _GAME_ENGINE_UTILITY_GMATH_H_
+#endif // _GAME_ENGINE_UTILITY_TYPE_H_

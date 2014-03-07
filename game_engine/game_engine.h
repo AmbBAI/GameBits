@@ -19,8 +19,8 @@
 #include "object/ge_object.h"
 #include "object/geo_primitive.h"
 #include "object/geo_mesh.h"
-#include "object/geo_spine.h"
-#include "object/geo_armature.h"
+#include "object/animation/geo_spine.h"
+#include "object/animation/geo_armature.h"
 
 #include "render/font/ge_font.h"
 #include "render/font/ge_font_bm.h"

@@ -1,7 +1,7 @@
 #include "geo_text_gdi.h"
 #include "../../common/ge_engine.h"
 #include "../../render/texture/ge_texture_manager.h"
-#include "../geo_atlas_render.h"
+#include "../../render/ge_atlas_render.h"
 #include "../../utility/ge_unicode.h"
 
 namespace ge
@@ -25,7 +25,7 @@ GEOTextGDI::~GEOTextGDI()
 	text_.clear();
 	if (render_object_)
 	{
-		GEOAtlasRender::release(&render_object_);
+		GEAtlasRender::release(&render_object_);
 	}
 }
 
@@ -75,7 +75,7 @@ bool GEOTextGDI::_init_render_object()
 {
 	if (!render_object_)
 	{
-		render_object_ = GEOAtlasRender::create();
+		render_object_ = GEAtlasRender::create();
 		render_object_->init_texture_group();
 		render_object_->set_vertex_fvf(fvf);
 	}

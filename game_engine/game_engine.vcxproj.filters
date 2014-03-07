@@ -25,24 +25,18 @@
     <Filter Include="render\texture">
       <UniqueIdentifier>{efc5597d-d4b1-4b3d-b584-ba74b1a55447}</UniqueIdentifier>
     </Filter>
+    <Filter Include="object\animation">
+      <UniqueIdentifier>{1b258286-0917-4557-bdcb-1e7c9395b1b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="object\ge_object.cpp">
-      <Filter>object</Filter>
-    </ClCompile>
-    <ClCompile Include="object\geo_armature.cpp">
-      <Filter>object</Filter>
-    </ClCompile>
-    <ClCompile Include="object\geo_atlas_render.cpp">
       <Filter>object</Filter>
     </ClCompile>
     <ClCompile Include="object\geo_mesh.cpp">
       <Filter>object</Filter>
     </ClCompile>
     <ClCompile Include="object\geo_primitive.cpp">
-      <Filter>object</Filter>
-    </ClCompile>
-    <ClCompile Include="object\geo_spine.cpp">
       <Filter>object</Filter>
     </ClCompile>
     <ClCompile Include="object\text\geo_text.cpp">
@@ -129,6 +123,15 @@
     <ClCompile Include="utility\ge_vertex.cpp">
       <Filter>utility</Filter>
     </ClCompile>
+    <ClCompile Include="render\ge_atlas_render.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="object\animation\geo_spine.cpp">
+      <Filter>object\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="object\animation\geo_armature.cpp">
+      <Filter>object\animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\ge_object.h">
@@ -137,19 +140,10 @@
     <ClInclude Include="object\ge_object_def.h">
       <Filter>object</Filter>
     </ClInclude>
-    <ClInclude Include="object\geo_armature.h">
-      <Filter>object</Filter>
-    </ClInclude>
-    <ClInclude Include="object\geo_atlas_render.h">
-      <Filter>object</Filter>
-    </ClInclude>
     <ClInclude Include="object\geo_mesh.h">
       <Filter>object</Filter>
     </ClInclude>
     <ClInclude Include="object\geo_primitive.h">
-      <Filter>object</Filter>
-    </ClInclude>
-    <ClInclude Include="object\geo_spine.h">
       <Filter>object</Filter>
     </ClInclude>
     <ClInclude Include="object\text\geo_text.h">
@@ -239,6 +233,15 @@
     </ClInclude>
     <ClInclude Include="utility\ge_vertex.h">
       <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="render\ge_atlas_render.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="object\animation\geo_spine.h">
+      <Filter>object\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="object\animation\geo_armature.h">
+      <Filter>object\animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

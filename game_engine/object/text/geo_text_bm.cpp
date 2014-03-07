@@ -42,7 +42,7 @@ bool GEOTextBM::update_font()
 {
 	if (render_object_ == NULL)
 	{
-		render_object_ = GEOAtlasRender::create();
+		render_object_ = GEAtlasRender::create();
 	} else render_object_->destory();
 
 	GEFontBM* bm_font = (GEFontBM*)font_obj_;

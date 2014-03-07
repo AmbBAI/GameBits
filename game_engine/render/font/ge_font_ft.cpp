@@ -437,8 +437,8 @@ GE_FTBuffChar* GEFontFT::_build_buff_char( FT_UInt glyph_index, int width, int h
 	buff_char_map_[glyph_index] = buff_char;
 	buff_char->index = glyph_index;
 	buff_char->page = current_page_id_;
-	buff_char->width = width + 1.f;
-	buff_char->height = height + 1.f;
+	buff_char->width = width + 1;
+	buff_char->height = height + 1;
 
 	GETexture* page = texture_group_->get_texture(current_page_id_);
 	if (page)

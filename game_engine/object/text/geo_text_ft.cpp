@@ -1,6 +1,6 @@
 #include "geo_text_ft.h"
 #include "../../common/ge_engine.h"
-#include "../../object/geo_atlas_render.h"
+#include "../../render/ge_atlas_render.h"
 #include "../../render/texture/ge_texture.h"
 #include "../../utility/ge_unicode.h"
 
@@ -52,8 +52,13 @@ bool GEOTextFT::set_size( GE_ISIZE& size )
 
 bool GEOTextFT::_update_quad()
 {
-	//render_object_->clear_quads();
-	//render_object_->add_quad();
+	render_object_->clear_quads();
+	FOR_EACH (FT_RENDER_CHAR_LIST, render_char_buff_, char_itor)
+	{
+		GE_QUAD quad;
+		_render_char_to_quad(quad, *char_itor);
+		render_object_->add_quad(quad);
+	}
 
 	need_update_quad_ = false;
 	return true;
@@ -72,17 +77,7 @@ bool GEOTextFT::update_text()
 	font->write_text(wtext.c_str(), 0, 0, false);
 	int cnt = font->end_write();
 
-	if (cnt)
-	{
-		render_object_->clear_quads();
-		FOR_EACH (FT_RENDER_CHAR_LIST, render_char_buff_, char_itor)
-		{
-			GE_QUAD quad;
-			_render_char_to_quad(quad, *char_itor);
-			render_object_->add_quad(quad);
-		}
-	}
-
+	if (cnt) need_update_quad_ = true;
 	need_update_text_ = false;
 	return true;
 }
@@ -91,7 +86,7 @@ bool GEOTextFT::update_font()
 {
 	if (!render_object_)
 	{
-		render_object_ = GEOAtlasRender::create();
+		render_object_ = GEAtlasRender::create();
 		if (render_object_)
 		{
 			render_object_->set_vertex_fvf(fvf);
@@ -156,8 +151,8 @@ void GEOTextFT::_render_char_to_quad( GE_QUAD& out_quad, const GE_FTRenderChar& 
 void GEOTextFT::render( time_t delta )
 {
 	if (need_update_font_) update_font();
-	if (need_update_quad_) _update_quad();
 	if (need_update_text_) update_text();
+	if (need_update_quad_) _update_quad();
 
 	if (render_object_)
 	{

@@ -1,4 +1,4 @@
-#include "geo_atlas_render.h"
+#include "ge_atlas_render.h"
 #include "../common/ge_engine.h"
 #include "../render/texture/ge_texture_manager.h"
 #include "../render/ger_effect.h"
@@ -6,11 +6,11 @@
 namespace ge
 {
 
-DLL_MANAGE_CLASS_IMPLEMENT(GEOAtlasRender);
+DLL_MANAGE_CLASS_IMPLEMENT(GEAtlasRender);
 
-const DWORD GEOAtlasRender::DEFAULT_FVF_FORMAT = (D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+const DWORD GEAtlasRender::DEFAULT_FVF_FORMAT = (D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 
-GEOAtlasRender::GEOAtlasRender()
+GEAtlasRender::GEAtlasRender()
 : dx_vertex_buff_(NULL)
 , dx_index_buff_(NULL)
 , dx_quads_cnt_(0)
@@ -22,17 +22,17 @@ GEOAtlasRender::GEOAtlasRender()
 	set_vertex_fvf(DEFAULT_FVF_FORMAT);
 }
 
-GEOAtlasRender::~GEOAtlasRender()
+GEAtlasRender::~GEAtlasRender()
 {
 	destory();
 }
 
-bool GEOAtlasRender::init()
+bool GEAtlasRender::init()
 {
 	return true;
 }
 
-void GEOAtlasRender::destory()
+void GEAtlasRender::destory()
 {
 	release_render();
 	release_texture_group();
@@ -40,7 +40,7 @@ void GEOAtlasRender::destory()
 	vertex_decl_ = NULL;
 }
 
-bool GEOAtlasRender::init_texture_group()
+bool GEAtlasRender::init_texture_group()
 {
 	if (texture_group_ == NULL)
 		texture_group_ = GETextureGroup::create();
@@ -49,7 +49,7 @@ bool GEOAtlasRender::init_texture_group()
 	return true;
 }
 
-bool GEOAtlasRender::set_texture_group( GETextureGroup* texture_group )
+bool GEAtlasRender::set_texture_group( GETextureGroup* texture_group )
 {
 	release_texture_group();
 	texture_group_ = texture_group;
@@ -57,12 +57,12 @@ bool GEOAtlasRender::set_texture_group( GETextureGroup* texture_group )
 	return true;
 }
 
-GETextureGroup* GEOAtlasRender::get_texture_group()
+GETextureGroup* GEAtlasRender::get_texture_group()
 {
 	return texture_group_;
 }
 
-void GEOAtlasRender::release_texture_group()
+void GEAtlasRender::release_texture_group()
 {
 	if (texture_group_)
 	{
@@ -71,12 +71,12 @@ void GEOAtlasRender::release_texture_group()
 	}
 }
 
-bool GEOAtlasRender::set_vertex_fvf( DWORD fvf )
+bool GEAtlasRender::set_vertex_fvf( DWORD fvf )
 {
 	return set_vertex_decl(GEVertexDecl::get_vertex_decl(fvf));
 }
 
-bool GEOAtlasRender::set_vertex_decl( GE_VERTEX_DECL* vertex_decl )
+bool GEAtlasRender::set_vertex_decl( GE_VERTEX_DECL* vertex_decl )
 {
 	if (vertex_decl == NULL) return false;
 	if (!vertex_decl->is_valid()) return false;
@@ -87,12 +87,12 @@ bool GEOAtlasRender::set_vertex_decl( GE_VERTEX_DECL* vertex_decl )
 	return true;
 }
 
-GE_VERTEX_DECL* GEOAtlasRender::get_vertex_decl()
+GE_VERTEX_DECL* GEAtlasRender::get_vertex_decl()
 {
 	return vertex_decl_;
 }
 
-bool GEOAtlasRender::init_render()
+bool GEAtlasRender::init_render()
 {
 	if (dx_quads_cnt_ * 4 < (int)vertex_list_.size())
 	{
@@ -151,12 +151,12 @@ init_faild:
 	} else return true;
 }
 
-bool GEOAtlasRender::update_render()
+bool GEAtlasRender::update_render()
 {
 	return _set_verties(vertex_list_);
 }
 
-bool GEOAtlasRender::_update_render_task( int quad_index, int texture_id )
+bool GEAtlasRender::_update_render_task( int quad_index, int texture_id )
 {
 	int current_task = render_task_list_.size() - 1;
 
@@ -187,7 +187,7 @@ bool GEOAtlasRender::_update_render_task( int quad_index, int texture_id )
 	return true;
 }
 
-bool GEOAtlasRender::_set_verties( std::vector<GE_VERTEX>& vertex_array )
+bool GEAtlasRender::_set_verties( std::vector<GE_VERTEX>& vertex_array )
 {
 	if (dx_vertex_buff_ == NULL) return false;
 
@@ -219,7 +219,7 @@ bool GEOAtlasRender::_set_verties( std::vector<GE_VERTEX>& vertex_array )
 	return true;
 }
 
-bool GEOAtlasRender::_set_indices( std::vector<WORD>& index_array )
+bool GEAtlasRender::_set_indices( std::vector<WORD>& index_array )
 {
 	int index_cnt = (int)index_array.size();
 	if ( index_cnt > dx_quads_cnt_ * 6) return false;
@@ -236,14 +236,14 @@ bool GEOAtlasRender::_set_indices( std::vector<WORD>& index_array )
 	return true;
 }
 
-void GEOAtlasRender::release_render()
+void GEAtlasRender::release_render()
 {
 	D3D_RELEASE(dx_vertex_buff_);
 	D3D_RELEASE(dx_index_buff_);
 	dx_quads_cnt_ = 0;
 }
 
-bool GEOAtlasRender::add_quad( GE_QUAD& quad )
+bool GEAtlasRender::add_quad( GE_QUAD& quad )
 {
 	if (vertex_decl_ != quad.tl.get_decl()) return false;
 	if (vertex_decl_ != quad.tr.get_decl()) return false;
@@ -264,7 +264,7 @@ bool GEOAtlasRender::add_quad( GE_QUAD& quad )
 	return true;
 }
 
-bool GEOAtlasRender::add_quad( int texture_id /*= 0*/ )
+bool GEAtlasRender::add_quad( int texture_id /*= 0*/ )
 {
 	if (texture_group_ == NULL) return false;
 
@@ -309,14 +309,14 @@ bool GEOAtlasRender::add_quad( int texture_id /*= 0*/ )
 	return add_quad(out_quad);
 }
 
-void GEOAtlasRender::clear_quads()
+void GEAtlasRender::clear_quads()
 {
 	vertex_list_.clear();
 	render_task_list_.clear();
 	need_render_update_ = true;
 }
 
-bool GEOAtlasRender::draw_quads( GEREffect* effect/* = NULL*/ )
+bool GEAtlasRender::draw_quads( GEREffect* effect/* = NULL*/ )
 {
 	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_instance()->get_device();
 	if (p_d3d_device == NULL) return false;
@@ -375,7 +375,7 @@ bool GEOAtlasRender::draw_quads( GEREffect* effect/* = NULL*/ )
 	return true;
 }
 
-bool GEOAtlasRender::prepare_render()
+bool GEAtlasRender::prepare_render()
 {
 	if (need_render_update_)
 	{

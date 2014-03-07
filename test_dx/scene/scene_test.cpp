@@ -36,7 +36,7 @@ bool SceneTest::init_fps_text()
 
 	p_fps_text_->set_font(ge_font);
 
-	//add_object(10086, p_fps_text_);
+	add_object(10086, p_fps_text_);
 	return true;
 }
 
@@ -63,7 +63,7 @@ bool SceneTest::init_gdi_text()
 
 	p_gdi_text_->set_font(ge_font);
 
-	add_object(-10000, p_gdi_text_);
+	//add_object(-10000, p_gdi_text_);
 	return true;
 }
 
@@ -121,9 +121,9 @@ bool SceneTest::show()
 	//p_panel_2d_->init();
 	//add_object(1, p_panel_2d_);
 
-	//p_spine_ = ge::GEOSpine::create();
-	//p_spine_->init();
-	//add_object(2, p_spine_);
+	p_spine_ = ge::GEOSpine::create();
+	p_spine_->init("texture\\spineboy.atlas", "texture\\spineboy.json");
+	add_object(2, p_spine_);
 
 	//p_armature_ = ge::GEOArmature::create();
 	//p_armature_->init();

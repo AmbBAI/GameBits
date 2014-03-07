@@ -92,9 +92,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="object\animation\geo_armature.cpp" />
+    <ClCompile Include="object\animation\geo_spine.cpp" />
     <ClCompile Include="object\ge_object.cpp" />
-    <ClCompile Include="object\geo_armature.cpp" />
-    <ClCompile Include="object\geo_atlas_render.cpp" />
     <ClCompile Include="object\geo_mesh.cpp">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
@@ -102,7 +102,6 @@
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
     </ClCompile>
     <ClCompile Include="object\geo_primitive.cpp" />
-    <ClCompile Include="object\geo_spine.cpp" />
     <ClCompile Include="object\text\geo_text_gdi.cpp" />
     <ClCompile Include="object\text\geo_text.cpp" />
     <ClCompile Include="object\text\geo_text_bm.cpp" />
@@ -114,6 +113,7 @@
     <ClCompile Include="render\font\ge_font.cpp" />
     <ClCompile Include="render\font\ge_font_ft.cpp" />
     <ClCompile Include="render\font\ge_font_manager.cpp" />
+    <ClCompile Include="render\ge_atlas_render.cpp" />
     <ClCompile Include="render\ge_render.cpp" />
     <ClCompile Include="render\ger_effect.cpp" />
     <ClCompile Include="render\ger_light.cpp" />
@@ -133,13 +133,12 @@
     <ClCompile Include="utility\ge_unicode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="object\animation\geo_armature.h" />
+    <ClInclude Include="object\animation\geo_spine.h" />
     <ClInclude Include="object\ge_object.h" />
     <ClInclude Include="object\ge_object_def.h" />
-    <ClInclude Include="object\geo_armature.h" />
-    <ClInclude Include="object\geo_atlas_render.h" />
     <ClInclude Include="object\geo_mesh.h" />
     <ClInclude Include="object\geo_primitive.h" />
-    <ClInclude Include="object\geo_spine.h" />
     <ClInclude Include="object\text\geo_text_gdi.h" />
     <ClInclude Include="object\text\geo_text.h" />
     <ClInclude Include="object\text\geo_text_bm.h" />
@@ -151,6 +150,7 @@
     <ClInclude Include="render\font\ge_font.h" />
     <ClInclude Include="render\font\ge_font_ft.h" />
     <ClInclude Include="render\font\ge_font_manager.h" />
+    <ClInclude Include="render\ge_atlas_render.h" />
     <ClInclude Include="render\ge_render.h" />
     <ClInclude Include="render\ger_effect.h" />
     <ClInclude Include="render\ger_light.h" />

@@ -3,12 +3,12 @@
 
 #include "geo_text.h"
 #include "../../render/font/ge_font_ft.h"
-#include "../geo_atlas_render.h"
+#include "../../render/ge_atlas_render.h"
 
 namespace ge
 {
 
-class GEOAtlasRender;
+class GEAtlasRender;
 class GE_API GEOTextFT : public GEOText
 {
 	DLL_MANAGE_CLASS(GEOTextFT);
@@ -46,7 +46,7 @@ private:
 	bool			need_update_font_;
 	bool			need_update_quad_;
 
-	GEOAtlasRender*	render_object_;
+	GEAtlasRender*	render_object_;
 	GE_ISIZE		render_size_;
 };
 

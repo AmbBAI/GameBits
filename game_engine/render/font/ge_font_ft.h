@@ -13,13 +13,13 @@
 namespace ge
 {
 
-typedef struct _GE_FTSpan
+struct GE_FTSpan
 {
 	int	x;
 	int y;
 	int len;
 	int coverage;
-} GE_FTSpan;
+};
 
 class GEFontFT;
 class GE_API GEFreeType
@@ -38,6 +38,7 @@ public:
 	
 	bool span_render(GEFontFT* font_obj, FT_GlyphSlot glyph_slot);
 	bool span_render_outline(GEFontFT* font_obj, FT_GlyphSlot glyph_slot);
+	
 	static void raster_callback(const int y,
 		const int count,
 		const FT_Span * const spans,
@@ -49,7 +50,7 @@ private:
 	FT_Raster_Params params_;
 };
 
-typedef struct _GE_FTBuffChar
+struct GE_FTBuffChar
 {
 	unsigned	index;
 	short		page;
@@ -61,15 +62,15 @@ typedef struct _GE_FTBuffChar
 	int			_bearing_x;
 	int			_bearing_y;
 	int			_advance;
-} GE_FTBuffChar;
+};
 
-typedef struct _GE_FTRenderChar
+struct GE_FTRenderChar
 {
 	int			index;
 	float		xys[4];
 	short		page;
 	float		uvs[4];
-} GE_FTRenderChar;
+};
 
 
 class GE_API GEFontFT : public GEFont

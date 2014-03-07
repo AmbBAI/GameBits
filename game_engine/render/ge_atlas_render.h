@@ -1,8 +1,7 @@
-#ifndef _GAME_ENGINE_OBJECT_ATLAS_RENDER_H_
-#define _GAME_ENGINE_OBJECT_ATLAS_RENDER_H_
+#ifndef _GAME_ENGINE_RENDER_ATLAS_RENDER_H_
+#define _GAME_ENGINE_RENDER_ATLAS_RENDER_H_
 
 #include "../common/ge_include.h"
-#include "../object/ge_object.h"
 #include "../utility/ge_vertex.h"
 
 namespace ge
@@ -17,17 +16,16 @@ struct GE_API GE_QUAD
 	int texid;
 };
 
-class GETexture;
 class GETextureGroup;
 class GEREffect;
-class GE_API GEOAtlasRender : public GEObject
+class GE_API GEAtlasRender
 {
-	DLL_MANAGE_CLASS(GEOAtlasRender);
+	DLL_MANAGE_CLASS(GEAtlasRender);
+
+	GEAtlasRender();
+	virtual ~GEAtlasRender();
 
 public:
-	GEOAtlasRender();
-	virtual ~GEOAtlasRender();
-
 	static const DWORD DEFAULT_FVF_FORMAT;
 
 public:
@@ -70,12 +68,12 @@ protected:
 	typedef std::vector<GE_VERTEX> VERTEX_LIST;
 	VERTEX_LIST				vertex_list_;
 
-	typedef struct _QUAD_RENDER_TASK
+	struct QUAD_RENDER_TASK
 	{
 		int			offset;
 		int			count;
 		int			texture;
-	} QUAD_RENDER_TASK;
+	};
 
 	typedef std::vector<QUAD_RENDER_TASK> QUAD_RENDER_TASK_LIST;	
 	QUAD_RENDER_TASK_LIST	render_task_list_;
@@ -87,4 +85,4 @@ protected:
 
 } // namespace ge
 
-#endif // _GAME_ENGINE_OBJECT_PRIMITIVE_H_
+#endif // _GAME_ENGINE_RENDER_ATLAS_RENDER_H_

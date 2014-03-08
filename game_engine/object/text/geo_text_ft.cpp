@@ -55,7 +55,7 @@ bool GEOTextFT::_update_quad()
 	render_object_->clear_quads();
 	FOR_EACH (FT_RENDER_CHAR_LIST, render_char_buff_, char_itor)
 	{
-		GE_QUAD quad;
+		GE_QUAD_EX quad;
 		_render_char_to_quad(quad, *char_itor);
 		render_object_->add_quad(quad);
 	}
@@ -104,7 +104,7 @@ bool GEOTextFT::update_font()
 	return true;
 }
 
-void GEOTextFT::_render_char_to_quad( GE_QUAD& out_quad, const GE_FTRenderChar& render_char )
+void GEOTextFT::_render_char_to_quad( GE_QUAD_EX& out_quad, const GE_FTRenderChar& render_char )
 {
 	GETextureGroup* texture_group = render_object_->get_texture_group();
 	if (texture_group == NULL) return;

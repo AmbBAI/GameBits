@@ -53,7 +53,7 @@ private:
 	MEMBER_GET_PTR(CCAtlasPage*, m_pAtlasPage, AtlasPage);
 
 	// vertex
-	std::vector<CC_PAINT_VERTEX>		m_vecPaintVerties;
+	std::vector<CC_PAINT_QUAD>		m_vecPaintQuad;
 
 	// texture
 	MEMBER_GET_PTR(void*, m_pRenderObject, RenderObject);

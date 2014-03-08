@@ -31,7 +31,7 @@ public:
 	virtual bool set_size(GE_ISIZE& size);
 
 	virtual bool _update_quad();
-	virtual void _render_char_to_quad(GE_QUAD& out_quad, const GE_FTRenderChar& render_char);
+	virtual void _render_char_to_quad(GE_QUAD_EX& out_quad, const GE_FTRenderChar& render_char);
 
 
 private:

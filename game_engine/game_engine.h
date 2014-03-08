@@ -17,7 +17,6 @@
 #include "utility/ge_vertex.h"
 
 #include "object/ge_object.h"
-#include "object/geo_primitive.h"
 #include "object/geo_mesh.h"
 #include "object/animation/geo_spine.h"
 #include "object/animation/geo_armature.h"

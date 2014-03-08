@@ -57,7 +57,7 @@ bool GEOSpine::init(const char* atlas_file, const char* skeleton_file)
 	if (!p_skeleton_data_) return false;
 
 	p_skeleton_ = spSkeleton_create(p_skeleton_data_);
-	//spSkeleton_setSkinByName(p_skeleton_, "goblingirl");
+	spSkeleton_setSkinByName(p_skeleton_, "goblingirl");
 	spSkeleton_setToSetupPose(p_skeleton_);
 
 	p_animation_state_data_ = spAnimationStateData_create(p_skeleton_data_);
@@ -171,17 +171,10 @@ void GEOSpine::_do_render()
 			GE_QUAD quad;
 			quad.texid = page_id_map_[render_object];
 
-			GE_VERTEX* vertex_ptr[4];
-			vertex_ptr[0] = &(quad.tl);
-			vertex_ptr[1] = &(quad.tr);
-			vertex_ptr[2] = &(quad.br);
-			vertex_ptr[3] = &(quad.bl);
-
-			for (int ii=0; ii<4; ++ii)
+			for (int ii=0; ii<8; ++ii)
 			{
-				vertex_ptr[ii]->set_decl(render_object_->get_vertex_decl());
-				vertex_ptr[ii]->set_position(xys[ii<<1], xys[ii<<1|1], 0.f);
-				vertex_ptr[ii]->set_texcoords(uvs[ii<<1], uvs[ii<<1|1]);
+				quad.xys[ii] = xys[ii];
+				quad.uvs[ii] = uvs[ii];
 			}
 
 			render_object_->add_quad(quad);

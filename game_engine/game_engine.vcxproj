@@ -101,7 +101,6 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
     </ClCompile>
-    <ClCompile Include="object\geo_primitive.cpp" />
     <ClCompile Include="object\text\geo_text_gdi.cpp" />
     <ClCompile Include="object\text\geo_text.cpp" />
     <ClCompile Include="object\text\geo_text_bm.cpp" />
@@ -138,7 +137,6 @@
     <ClInclude Include="object\ge_object.h" />
     <ClInclude Include="object\ge_object_def.h" />
     <ClInclude Include="object\geo_mesh.h" />
-    <ClInclude Include="object\geo_primitive.h" />
     <ClInclude Include="object\text\geo_text_gdi.h" />
     <ClInclude Include="object\text\geo_text.h" />
     <ClInclude Include="object\text\geo_text_bm.h" />

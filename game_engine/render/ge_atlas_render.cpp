@@ -243,7 +243,7 @@ void GEAtlasRender::release_render()
 	dx_quads_cnt_ = 0;
 }
 
-bool GEAtlasRender::add_quad( GE_QUAD& quad )
+bool GEAtlasRender::add_quad( GE_QUAD_EX& quad )
 {
 	if (vertex_decl_ != quad.tl.get_decl()) return false;
 	if (vertex_decl_ != quad.tr.get_decl()) return false;
@@ -264,6 +264,25 @@ bool GEAtlasRender::add_quad( GE_QUAD& quad )
 	return true;
 }
 
+bool GEAtlasRender::add_quad( GE_QUAD& quad )
+{
+	int quad_index = vertex_list_.size() / 4;
+	int texture_id = quad.texid;
+	for (int i=0; i<4; ++i)
+	{
+		GE_VERTEX vertex;
+		vertex.set_decl(vertex_decl_);
+		vertex.set_color(quad.color);
+		vertex.set_position(quad.xys[i<<1], quad.xys[i<<1|1], 0.f);
+		vertex.set_texcoords(quad.uvs[i<<1], quad.uvs[i<<1|1]);
+		vertex_list_.push_back(vertex);
+	}
+	_update_render_task(quad_index, texture_id);
+
+	need_render_update_ = true;
+	return true;
+}
+
 bool GEAtlasRender::add_quad( int texture_id /*= 0*/ )
 {
 	if (texture_group_ == NULL) return false;
@@ -271,7 +290,7 @@ bool GEAtlasRender::add_quad( int texture_id /*= 0*/ )
 	GETexture* texture = texture_group_->get_texture(texture_id);
 	if (texture == NULL) return false;
 
-	GE_QUAD out_quad;
+	GE_QUAD_EX out_quad;
 
 	GE_VERTEX* vertex_ptr[4];
 	vertex_ptr[0] = &(out_quad.tl);

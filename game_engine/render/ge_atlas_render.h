@@ -9,6 +9,14 @@ namespace ge
 
 struct GE_API GE_QUAD
 {
+	float		xys[8];
+	unsigned	color;
+	int			texid;
+	float		uvs[8];
+};
+
+struct GE_API GE_QUAD_EX
+{
 	GE_VERTEX tl;
 	GE_VERTEX tr;
 	GE_VERTEX bl;
@@ -44,6 +52,7 @@ public:
 	virtual bool prepare_render();
 
 	virtual bool add_quad(GE_QUAD& quad);
+	virtual bool add_quad(GE_QUAD_EX& quad);
 	virtual bool add_quad(int texture_id = 0);
 	virtual void clear_quads();
 	virtual bool draw_quads(GEREffect* effect = NULL);

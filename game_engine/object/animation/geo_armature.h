@@ -4,7 +4,6 @@
 #include "../../common/ge_include.h"
 #include "../ge_object.h"
 #include "../ge_object_def.h"
-#include "../geo_primitive.h"
 
 #include "CCInclude.h"
 
@@ -20,7 +19,7 @@ class GE_API GEOArmature : public GEObject
 	virtual ~GEOArmature();
 
 public:
-	virtual bool init();
+	virtual bool init(const char* data_file);
 	virtual void destory();
 
 	virtual void update(time_t delta);

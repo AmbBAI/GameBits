@@ -78,7 +78,7 @@ bool SceneTest::init_bm_text()
 	p_bm_text_ = ge::GEOTextBM::create();
 	p_bm_text_->set_font(p_bm_font);
 
-	add_object(0, p_bm_text_);
+	//add_object(0, p_bm_text_);
 	return true;
 }
 
@@ -90,7 +90,7 @@ bool SceneTest::init_ft_text()
 	//p_font->init("font\\simsun.ttc", 32);
 	//p_font->init("font\\simkai.ttf", 32);
 	//p_font->init("font\\msyh.ttf", 32);
-	p_font->init("font\\PRISTINA.TTF", 32);
+	//p_font->init("font\\PRISTINA.TTF", 32);
 
 	p_ft_text_ = ge::GEOTextFT::create();
 	if (!p_ft_text_) return false;
@@ -122,12 +122,12 @@ bool SceneTest::show()
 	//add_object(1, p_panel_2d_);
 
 	p_spine_ = ge::GEOSpine::create();
-	p_spine_->init("texture\\spineboy.atlas", "texture\\spineboy.json");
+	p_spine_->init("texture\\goblins.atlas", "texture\\goblins.json");
 	add_object(2, p_spine_);
 
-	//p_armature_ = ge::GEOArmature::create();
-	//p_armature_->init();
-	//add_object(3, p_armature_);
+	p_armature_ = ge::GEOArmature::create();
+	p_armature_->init("cocos/HeroAnimation.ExportJson");
+	add_object(3, p_armature_);
 
 	return true;
 }

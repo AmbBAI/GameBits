@@ -88,7 +88,7 @@ bool GEOTextBM::update_text()
 		render_object_->clear_quads();
 		FOR_EACH (RENDER_CHAR_LIST, render_chars_, char_itor)
 		{
-			GE_QUAD quad;
+			GE_QUAD_EX quad;
 			_render_char_to_quad(quad, *char_itor);
 			render_object_->add_quad(quad);
 		}
@@ -102,7 +102,7 @@ void GEOTextBM::_clear_render_chars()
 	render_chars_.clear();
 }
 
-void GEOTextBM::_render_char_to_quad( GE_QUAD& out_quad, const bmfont::SCharRenderObject& render_char )
+void GEOTextBM::_render_char_to_quad( GE_QUAD_EX& out_quad, const bmfont::SCharRenderObject& render_char )
 {
 	GETextureGroup* texture_group = render_object_->get_texture_group();
 	if (texture_group == NULL) return;

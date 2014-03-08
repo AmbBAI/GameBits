@@ -78,7 +78,7 @@ bool SceneTest::init_bm_text()
 	p_bm_text_ = ge::GEOTextBM::create();
 	p_bm_text_->set_font(p_bm_font);
 
-	//add_object(0, p_bm_text_);
+	add_object(0, p_bm_text_);
 	return true;
 }
 
@@ -86,11 +86,9 @@ bool SceneTest::init_ft_text()
 {
 	ge::GEFont* p_font = NULL;
 	p_font = ge::GEFontManager::create_font(ge::FontType_FTFont);
-	//p_font->init("font\\consola.ttf", 32);
 	//p_font->init("font\\simsun.ttc", 32);
-	//p_font->init("font\\simkai.ttf", 32);
+	p_font->init("font\\simkai.ttf", 32);
 	//p_font->init("font\\msyh.ttf", 32);
-	//p_font->init("font\\PRISTINA.TTF", 32);
 
 	p_ft_text_ = ge::GEOTextFT::create();
 	if (!p_ft_text_) return false;
@@ -116,10 +114,6 @@ bool SceneTest::show()
 	init_gdi_text();
 	init_bm_text();
 	init_ft_text();
-
-	//p_panel_2d_ = new Panel2D();
-	//p_panel_2d_->init();
-	//add_object(1, p_panel_2d_);
 
 	p_spine_ = ge::GEOSpine::create();
 	p_spine_->init("texture\\goblins.atlas", "texture\\goblins.json");

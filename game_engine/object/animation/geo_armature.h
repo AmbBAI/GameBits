@@ -19,14 +19,18 @@ class GE_API GEOArmature : public GEObject
 	virtual ~GEOArmature();
 
 public:
-	virtual bool init(const char* data_file);
 	virtual void destory();
 
 	virtual void update(time_t delta);
 	virtual void render(time_t delta);
 
+public:
+	virtual bool init(const char* data_file);
+
+
+
 private:
-	CC::CCArmature* ptr_armature_;
+	CC::CCArmature* cc_armature_;
 };
 
 } // namespace ge

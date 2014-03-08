@@ -117,7 +117,6 @@
     <ClCompile Include="render\ger_effect.cpp" />
     <ClCompile Include="render\ger_light.cpp" />
     <ClCompile Include="render\ger_material.cpp" />
-    <ClCompile Include="render\ger_shader.cpp" />
     <ClCompile Include="common\ge_app.cpp" />
     <ClCompile Include="common\ge_engine.cpp" />
     <ClCompile Include="common\ge_game.cpp" />
@@ -153,7 +152,6 @@
     <ClInclude Include="render\ger_effect.h" />
     <ClInclude Include="render\ger_light.h" />
     <ClInclude Include="render\ger_material.h" />
-    <ClInclude Include="render\ger_shader.h" />
     <ClInclude Include="common\ge_app.h" />
     <ClInclude Include="common\ge_engine.h" />
     <ClInclude Include="common\ge_game.h" />

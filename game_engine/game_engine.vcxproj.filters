@@ -60,9 +60,6 @@
     <ClCompile Include="render\ger_material.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="render\ger_shader.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
     <ClCompile Include="common\ge_app.cpp">
       <Filter>common</Filter>
     </ClCompile>
@@ -162,9 +159,6 @@
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="render\ger_material.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="render\ger_shader.h">
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="common\ge_app.h">

@@ -111,7 +111,7 @@ namespace ge {
 DLL_MANAGE_CLASS_IMPLEMENT(GEOArmature);
 
 GEOArmature::GEOArmature()
-: ptr_armature_(NULL)
+: cc_armature_(NULL)
 {
 
 }
@@ -127,37 +127,37 @@ bool GEOArmature::init( const char* data_file )
 	if (cc_data_manager == NULL) return false;
 
 	CC::CCDataCollection* cc_data = cc_data_manager->getData(data_file);
-	ptr_armature_ = new CC::CCArmature();
-	ptr_armature_->init(cc_data->getArmatureData());
-	ptr_armature_->initAnimation(cc_data->getAnimationData());
-	ptr_armature_->initTexture();
+	cc_armature_ = new CC::CCArmature();
+	cc_armature_->init(cc_data->getArmatureData());
+	cc_armature_->initAnimation(cc_data->getAnimationData());
+	cc_armature_->initTexture();
 
-	if(CC::CCAnimation* ptr_animation = ptr_armature_->getAnimation())
+	if(CC::CCAnimation* ptr_animation = cc_armature_->getAnimation())
 	{
 		ptr_animation->play(0);
-		return true;
+		return GEObject::init();
 	} else return false;
 }
 
 void GEOArmature::destory()
 {
-	if (ptr_armature_)
+	if (cc_armature_)
 	{
-		ptr_armature_->release();
-		delete ptr_armature_;
-		ptr_armature_ = NULL;
+		cc_armature_->release();
+		delete cc_armature_;
+		cc_armature_ = NULL;
 	}
 }
 
 void GEOArmature::update( time_t delta )
 {
-	ptr_armature_->updateAnimation(delta / 1000.f);
-	ptr_armature_->updateTransform(delta / 1000.f);
+	cc_armature_->updateAnimation(delta / 1000.f);
+	cc_armature_->updateTransform(delta / 1000.f);
 }
 
 void GEOArmature::render( time_t delta )
 {
-	ptr_armature_->render();
+	cc_armature_->render();
 }
 
 } // namespace ge

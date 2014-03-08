@@ -19,7 +19,6 @@ class GE_API GEOSpine : public GEObject
 {
 	DLL_MANAGE_CLASS(GEOSpine);
 
-public:
 	GEOSpine();
 	virtual ~GEOSpine();
 

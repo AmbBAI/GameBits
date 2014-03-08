@@ -8,7 +8,6 @@
 #include "common/ge_scene.h"
 
 #include "render/ge_render.h"
-#include "render/ger_shader.h"
 #include "render/ger_effect.h"
 #include "render/ger_material.h"
 #include "render/ger_light.h"

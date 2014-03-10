@@ -117,6 +117,9 @@ bool SceneTest::show()
 
 	p_spine_ = ge::GEOSpine::create();
 	p_spine_->init("texture\\goblins.atlas", "texture\\goblins.json");
+	p_spine_->set_skin("goblingirl");
+	p_spine_->set_mix("walk", "jump", 0.3f);
+	p_spine_->set_animation("walk");
 	add_object(2, p_spine_);
 
 	p_armature_ = ge::GEOArmature::create();

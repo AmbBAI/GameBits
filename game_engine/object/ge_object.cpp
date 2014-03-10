@@ -44,16 +44,6 @@ void GEObject::render( time_t delta )
 	p_d3d_device->SetTransform(D3DTS_WORLD, &d3d_world_transform_);
 }
 
-void GEObject::on_update( time_t delta )
-{
-
-}
-
-void GEObject::on_render( time_t delta )
-{
-
-}
-
 D3DXMATRIX& GEObject::get_world_transform()
 {
 	if (is_transform_dirty_)

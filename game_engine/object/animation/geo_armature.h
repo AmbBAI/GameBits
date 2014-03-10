@@ -1,5 +1,5 @@
-#ifndef _GAME_ENGINE_OBJECT_ARMATURE_H_
-#define _GAME_ENGINE_OBJECT_ARMATURE_H_
+#ifndef _GAME_ENGINE_OBJECT_ANIMATION_ARMATURE_H_
+#define _GAME_ENGINE_OBJECT_ANIMATION_ARMATURE_H_
 
 #include "../../common/ge_include.h"
 #include "../ge_object.h"
@@ -35,4 +35,4 @@ private:
 
 } // namespace ge
 
-#endif // _GAME_ENGINE_OBJECT_ARMATURE_H_
+#endif // _GAME_ENGINE_OBJECT_ANIMATION_ARMATURE_H_

@@ -31,9 +31,6 @@ public:
 	virtual void update(time_t delta);
 	virtual void render(time_t delta);
 
-	virtual void on_update(time_t delta);
-	virtual void on_render(time_t delta);
-
 public:
 	virtual D3DXMATRIX& get_world_transform();
 	virtual void set_transform_dirty(bool is_dirty);

@@ -22,10 +22,6 @@ class GE_API GEOSpine : public GEObject
 	GEOSpine();
 	virtual ~GEOSpine();
 
-protected:
-	void _do_render();
-	void _do_bone_render();
-
 public:
 	virtual bool init(const char* atlas_file, const char* skeleton_file);
 	virtual void destory();
@@ -33,7 +29,14 @@ public:
 	virtual void update(time_t delta);
 	virtual void render(time_t delta);
 
-	bool init_render();
+	bool set_skin(const char* skin_name);
+	bool set_mix(const char* from_ani, const char* to_ani, float duration);
+	bool set_animation(const char* ani_name, bool loop = true);
+	bool add_animation(const char* ani_name, bool loop = false, float delay = 0.f);
+
+protected:
+	bool _init_render();
+	void _do_render();
 
 private:
 	spAtlas*				p_atlas_;
@@ -47,9 +50,6 @@ private:
 	GEAtlasRender*			render_object_;
 	typedef std::map<GETexture*, int> PAGE_ID_MAP;
 	PAGE_ID_MAP				page_id_map_;
-
-	bool					draw_bone_mesh_;
-	GEAtlasRender*			bone_mesh_;
 };
 
 } // namespace ge

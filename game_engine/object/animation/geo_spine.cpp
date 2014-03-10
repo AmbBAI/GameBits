@@ -39,7 +39,6 @@ GEOSpine::GEOSpine()
 , p_animation_state_data_(NULL)
 
 , render_object_(NULL)
-, draw_bone_mesh_(true)
 {
 
 }
@@ -57,18 +56,13 @@ bool GEOSpine::init(const char* atlas_file, const char* skeleton_file)
 	if (!p_skeleton_data_) return false;
 
 	p_skeleton_ = spSkeleton_create(p_skeleton_data_);
-	spSkeleton_setSkinByName(p_skeleton_, "goblingirl");
 	spSkeleton_setToSetupPose(p_skeleton_);
 
 	p_animation_state_data_ = spAnimationStateData_create(p_skeleton_data_);
-	spAnimationStateData_setMixByName(p_animation_state_data_, "walk", "jump", 0.3f);
-	spAnimationStateData_setMixByName(p_animation_state_data_, "jump", "walk", 0.3f);
-	spAnimationStateData_setMixByName(p_animation_state_data_, "jump", "jump", 0.3f);
 
 	p_animation_state_ = spAnimationState_create(p_animation_state_data_);
-	spAnimationState_setAnimationByName(p_animation_state_, 0, "walk", true);
 
-	return init_render();
+	return _init_render();
 }
 
 void GEOSpine::destory()
@@ -79,22 +73,19 @@ void GEOSpine::destory()
 	if(p_skeleton_data_)		spSkeletonData_dispose(p_skeleton_data_);
 	if(p_skeleton_json_)		spSkeletonJson_dispose(p_skeleton_json_);
 	if(p_atlas_)				spAtlas_dispose(p_atlas_);
+	p_animation_state_			= NULL;
+	p_animation_state_data_		= NULL;
+	p_skeleton_					= NULL;
+	p_skeleton_data_			= NULL;
+	p_skeleton_json_			= NULL;
+	p_atlas_					= NULL;
+
+	GEAtlasRender::release(&render_object_);
+	page_id_map_.clear();
 }
 
 void GEOSpine::update( time_t delta )
 {
-	GEInput* p_input = GEApp::get_instance()->get_input();
-	if (p_input)
-	{
-		if (p_input->get_key_down(DIK_J))
-		{		
-			spAnimationState_addAnimationByName(p_animation_state_, 0, "jump", false, 0);
-			spAnimationState_addAnimationByName(p_animation_state_, 0, "walk", true, 0);
-		}
-		if (p_input->get_key_down(DIK_D))
-			draw_bone_mesh_ = !draw_bone_mesh_;
-	}
-
 	if (p_skeleton_ == NULL) return;
 	spSkeleton_update(p_skeleton_, delta / 1000.f);
 	spAnimationState_update(p_animation_state_, delta / 1000.f);
@@ -111,11 +102,40 @@ void GEOSpine::render( time_t delta )
 	p_d3d_device->SetTransform(D3DTS_WORLD, &get_world_transform());
 
 	_do_render();
-	if (draw_bone_mesh_)
-		_do_bone_render();
 }
 
-bool GEOSpine::init_render()
+bool GEOSpine::set_skin( const char* skin_name )
+{
+	if (p_skeleton_ == NULL) return false;
+	int ret = spSkeleton_setSkinByName(p_skeleton_, skin_name);
+	spSkeleton_setToSetupPose(p_skeleton_);
+	return ret != 0;
+}
+
+
+bool GEOSpine::set_mix( const char* from_ani, const char* to_ani, float duration )
+{
+	if (p_animation_state_data_ == NULL) return false;
+	spAnimationStateData_setMixByName(p_animation_state_data_, from_ani, to_ani, duration);
+	return true;
+}
+
+bool GEOSpine::set_animation( const char* ani_name, bool loop /*= true*/ )
+{
+	if (p_animation_state_ == NULL) return false;
+	spAnimationState_setAnimationByName(p_animation_state_, 0, "walk", loop);
+	return true;
+}
+
+bool GEOSpine::add_animation( const char* ani_name, bool loop /*= false*/, float delay /*= 0.f*/ )
+{
+	if (p_animation_state_ == NULL) return false;
+	spAnimationState_addAnimationByName(p_animation_state_, 0, ani_name, loop, delay);
+	return true;
+}
+
+
+bool GEOSpine::_init_render()
 {
 	if (render_object_ == NULL) render_object_ = GEAtlasRender::create();
 	if (render_object_ == NULL) return false;
@@ -185,69 +205,4 @@ void GEOSpine::_do_render()
 	render_object_->draw_quads();
 }
 
-void GEOSpine::_do_bone_render()
-{
-	//if (p_skeleton_ == NULL) return;
-
-	//int slot_cnt = p_skeleton_->slotCount;
-
-	//std::vector<GE_VERTEX> vertex_buff;
-	//vertex_buff.resize(slot_cnt * 3);
-
-	//int render_bone_cnt = 0;
-	//for (int i=0; i<slot_cnt; ++i)
-	//{
-	//	spSlot* slot = p_skeleton_->slots[i];
-	//	if (slot == NULL) continue;
-
-	//	const spBone* bone = slot->bone;
-	//	if (bone == NULL) continue;
-
-	//	const spBoneData* bone_data = bone->data;
-	//	if (bone_data == NULL) continue;
-
-	//	if (bone_data->length - FLT_EPSILON < 0.f) continue;
-
-	//	float plx = 0.f, ply = -5.f;
-	//	float prx = 0.f, pry = 5.f;
-	//	float ptx = bone->data->length, pty = 0.f;
-
-	//	float fangle = bone->worldRotation / 180.f * 3.141592654f;
-	//	float fsin = sin(fangle);
-	//	float fcos = cos(fangle);
-
-	//	float vlx = plx * fcos - ply * fsin + bone->worldX;
-	//	float vly = plx * fsin + ply * fcos + bone->worldY;
-	//	float vrx = prx * fcos - pry * fsin + bone->worldX;
-	//	float vry = prx * fsin + pry * fcos + bone->worldY;
-	//	float vtx = ptx * fcos - pty * fsin + bone->worldX;
-	//	float vty = ptx * fsin + pty * fcos + bone->worldY;
-
-	//	int vertex_offset = render_bone_cnt * 3;
-	//	GE_VERTEX vertex;
-	//	vertex.set_decl(bone_vertex_decl_);
-	//	vertex.set_color(0xffffffff);
-
-	//	vertex.set_position(vlx, vly, 0.f);
-	//	vertex_buff[vertex_offset + 0] = vertex;
-
-	//	vertex.set_position(vrx, vry, 0.f);
-	//	vertex_buff[vertex_offset + 1] = vertex;
-
-	//	vertex.set_position(vtx, vty, 0.f);
-	//	vertex_buff[vertex_offset + 2] = vertex;
-
-	//	++ render_bone_cnt;
-	//}
-
-	//if (bone_mesh_.get_vertex_buff_size() <= 0)
-	//{
-	//	bone_mesh_.set_vertex_decl(bone_vertex_decl_);
-	//	bone_mesh_.create_vetrix_buff(slot_cnt * 3);
-	//}
-
-	//bone_mesh_.set_vertices(&vertex_buff[0], 0, render_bone_cnt * 3);
-	//bone_mesh_.set_primitive_draw(0, render_bone_cnt);
-	//bone_mesh_.render(0);
-}
 }

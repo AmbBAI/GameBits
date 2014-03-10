@@ -93,10 +93,11 @@ bool SceneTest::init_ft_text()
 	p_ft_text_ = ge::GEOTextFT::create();
 	if (!p_ft_text_) return false;
 
-	ge::GE_ISIZE size;
-	size.width = 1024;
-	size.height = 1024;
-	p_ft_text_->set_size(size);
+	ge::GE_IRECT rect;
+	rect.right = 1024;
+	rect.bottom = 1024;
+	rect.move_to(250, 0);
+	p_ft_text_->set_rect(rect);
 	p_ft_text_->set_font(p_font);
 
 	add_object(1234, p_ft_text_);

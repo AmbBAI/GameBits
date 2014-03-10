@@ -8,46 +8,40 @@
 namespace ge
 {
 
-class GEAtlasRender;
 class GE_API GEOTextFT : public GEOText
 {
 	DLL_MANAGE_CLASS(GEOTextFT);
 
-public:
 	GEOTextFT();
 	virtual ~GEOTextFT();
 
+public:
 	static const unsigned fvf;
 
 public:
 	virtual bool set_text(const char* text);
 	virtual bool set_font(GEFont* font);
-	
+	virtual bool set_rect(GE_IRECT& rect);
+
 	virtual bool update_font();
 	virtual bool update_text();
+	virtual bool update_quad();
 
 	virtual void render(time_t delta);
 
-	virtual bool set_size(GE_ISIZE& size);
-
-	virtual bool _update_quad();
-	virtual void _render_char_to_quad(GE_QUAD_EX& out_quad, const GE_FTRenderChar& render_char);
-
+protected:
+	virtual void _render_char_to_quad(GE_QUAD& out_quad, const GE_FTRenderChar& render_char);
 
 private:
-
-	//typedef std::map<FT_UInt, TGlyph> GLYPH_MAP;
-	//GLYPH_MAP		glyph_buff_;
-
 	typedef std::vector<GE_FTRenderChar> FT_RENDER_CHAR_LIST;
 	FT_RENDER_CHAR_LIST		render_char_buff_;
 
-	bool			need_update_text_;
-	bool			need_update_font_;
-	bool			need_update_quad_;
+	bool					need_update_text_;
+	bool					need_update_font_;
+	bool					need_update_quad_;
 
-	GEAtlasRender*	render_object_;
-	GE_ISIZE		render_size_;
+	GEAtlasRender*			render_object_;
+	GE_IRECT				render_rect_;
 };
 
 } // namespace ge

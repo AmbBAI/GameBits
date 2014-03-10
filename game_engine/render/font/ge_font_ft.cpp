@@ -222,9 +222,9 @@ bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap
 
 				render_char_buff_[buff_offset_].index = glyph_index;
 				render_char_buff_[buff_offset_].xys[0] = (float)pen_x + ptr_char->_bearing_x;
-				render_char_buff_[buff_offset_].xys[1] = -(float)pen_y + ptr_char->_bearing_y + ascender;
+				render_char_buff_[buff_offset_].xys[1] = (float)pen_y - ptr_char->_bearing_y - ascender;
 				render_char_buff_[buff_offset_].xys[2] = render_char_buff_[buff_offset_].xys[0] + ptr_char->width;
-				render_char_buff_[buff_offset_].xys[3] = render_char_buff_[buff_offset_].xys[1] - ptr_char->height;
+				render_char_buff_[buff_offset_].xys[3] = render_char_buff_[buff_offset_].xys[1] + ptr_char->height;
 				render_char_buff_[buff_offset_].page = ptr_char->page;
 				render_char_buff_[buff_offset_].uvs[0] = ptr_char->uvs[0];
 				render_char_buff_[buff_offset_].uvs[1] = ptr_char->uvs[1];

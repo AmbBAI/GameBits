@@ -9,7 +9,7 @@ namespace ge
 
 DLL_MANAGE_CLASS_IMPLEMENT(GEOTextFT);
 
-const unsigned GEOTextFT::fvf = (D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+const unsigned GEOTextFT::fvf = (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 
 
 GEOTextFT::GEOTextFT()
@@ -43,19 +43,19 @@ bool GEOTextFT::set_text( const char* text )
 	return b_ret;
 }
 
-bool GEOTextFT::set_size( GE_ISIZE& size )
+bool GEOTextFT::set_rect( GE_IRECT& rect )
 {
-	render_size_ = size;
-
+	render_rect_ = rect;
+	need_update_quad_ = true;
 	return true;
 }
 
-bool GEOTextFT::_update_quad()
+bool GEOTextFT::update_quad()
 {
 	render_object_->clear_quads();
 	FOR_EACH (FT_RENDER_CHAR_LIST, render_char_buff_, char_itor)
 	{
-		GE_QUAD_EX quad;
+		GE_QUAD quad;
 		_render_char_to_quad(quad, *char_itor);
 		render_object_->add_quad(quad);
 	}
@@ -104,46 +104,28 @@ bool GEOTextFT::update_font()
 	return true;
 }
 
-void GEOTextFT::_render_char_to_quad( GE_QUAD_EX& out_quad, const GE_FTRenderChar& render_char )
+void GEOTextFT::_render_char_to_quad( GE_QUAD& out_quad, const GE_FTRenderChar& render_char )
 {
 	GETextureGroup* texture_group = render_object_->get_texture_group();
 	if (texture_group == NULL) return;
 	GETexture* texture = texture_group->get_texture(render_char.page);
 	if	(texture == NULL) return;
 
-	GE_VERTEX* vertex_ptr[4];
-	vertex_ptr[0] = &(out_quad.tl);
-	vertex_ptr[1] = &(out_quad.tr);
-	vertex_ptr[2] = &(out_quad.br);
-	vertex_ptr[3] = &(out_quad.bl);
+	out_quad.texid = render_char.page;
+	out_quad.color = 0xffffffff;
+	out_quad.rhw = 1.f;
 
 	for (int i=0; i<4; ++i)
 	{
-		vertex_ptr[i]->set_decl(render_object_->get_vertex_decl());
-		vertex_ptr[i]->set_color(0xffffffff);
+		int xi = (((i >> 1) & 1) ^ (i & 1)) << 1; // 00 10 10 00
+		int yi = (((i >> 1) & 1) << 1) | 1; // 01 01 11 11
+		
+		out_quad.xys[i<<1] = render_char.xys[xi] + render_rect_.left;
+		out_quad.xys[i<<1|1] = render_char.xys[yi] + render_rect_.top;
+
+		out_quad.uvs[i<<1] = render_char.uvs[xi];
+		out_quad.uvs[i<<1|1] = render_char.uvs[yi];
 	}
-
-	float min_x = render_char.xys[0];
-	float min_y = render_char.xys[1];
-	float max_x = render_char.xys[2];
-	float max_y = render_char.xys[3];
-
-	out_quad.tl.set_position(min_x, min_y, 0.f);
-	out_quad.tr.set_position(max_x, min_y, 0.f);
-	out_quad.br.set_position(max_x, max_y, 0.f);
-	out_quad.bl.set_position(min_x, max_y, 0.f);
-
-	float u1 = render_char.uvs[0];
-	float v1 = render_char.uvs[1];
-	float u2 = render_char.uvs[2];
-	float v2 = render_char.uvs[3];
-
-	out_quad.tl.set_texcoords(u1, v1);
-	out_quad.tr.set_texcoords(u2, v1);
-	out_quad.br.set_texcoords(u2, v2);
-	out_quad.bl.set_texcoords(u1, v2);
-
-	out_quad.texid = render_char.page;
 
 	return;
 }
@@ -152,7 +134,7 @@ void GEOTextFT::render( time_t delta )
 {
 	if (need_update_font_) update_font();
 	if (need_update_text_) update_text();
-	if (need_update_quad_) _update_quad();
+	if (need_update_quad_) update_quad();
 
 	if (render_object_)
 	{

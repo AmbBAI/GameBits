@@ -60,6 +60,7 @@ public:
 	void			set_texcoords(float u, float v);
 	void			set_blend(UINT blend);
 	void			set_color(D3DCOLOR color);
+	void			set_rhw(float rhw);
 
 	bool			pack(void* mem_buff, int size);
 

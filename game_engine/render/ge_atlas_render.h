@@ -10,6 +10,7 @@ namespace ge
 struct GE_API GE_QUAD
 {
 	float		xys[8];
+	float		rhw;
 	unsigned	color;
 	int			texid;
 	float		uvs[8];

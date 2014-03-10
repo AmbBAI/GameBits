@@ -17,7 +17,6 @@ class GE_API GEOTextBM : public GEOText
 
 	DLL_MANAGE_CLASS(GEOTextBM);
 
-public:
 	GEOTextBM();
 	virtual ~GEOTextBM();
 

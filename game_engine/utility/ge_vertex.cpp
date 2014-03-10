@@ -143,6 +143,11 @@ void GE_VERTEX::set_position( float x, float y, float z )
 	position_.z = z;
 }
 
+void GE_VERTEX::set_rhw( float rhw )
+{
+	rhw_ = rhw;
+}
+
 void GE_VERTEX::set_normal( float x, float y, float z )
 {
 	normal_.x = x;

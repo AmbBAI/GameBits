@@ -272,6 +272,7 @@ bool GEAtlasRender::add_quad( GE_QUAD& quad )
 	{
 		GE_VERTEX vertex;
 		vertex.set_decl(vertex_decl_);
+		vertex.set_rhw(quad.rhw);
 		vertex.set_color(quad.color);
 		vertex.set_position(quad.xys[i<<1], quad.xys[i<<1|1], 0.f);
 		vertex.set_texcoords(quad.uvs[i<<1], quad.uvs[i<<1|1]);

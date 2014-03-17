@@ -2,21 +2,6 @@
 #include "ge_engine.h"
 #include "ge_game.h"
 
-LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
-{
-	ge::GEApp* _g_p_ge_app = ge::GEApp::get_instance();
-	if(_g_p_ge_app)
-	{
-		BOOL use_def_win_proc = TRUE;
-		LRESULT ge_win_proc_ret = 0;
-		ge_win_proc_ret = _g_p_ge_app->MsgProc( uMsg, wParam, lParam, use_def_win_proc );
-		if (!use_def_win_proc) return ge_win_proc_ret;
-	}
-
-	return DefWindowProc( hWnd, uMsg, wParam, lParam );
-}
-
-
 namespace ge
 {
 
@@ -35,6 +20,20 @@ GEApp* GEApp::get_instance()
 {
 	static GEApp _global_ge_app;
 	return &_global_ge_app;
+}
+
+LRESULT CALLBACK GEApp::WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
+{
+	ge::GEApp* _g_p_ge_app = ge::GEApp::get_instance();
+	if(_g_p_ge_app)
+	{
+		BOOL use_def_win_proc = TRUE;
+		LRESULT ge_win_proc_ret = 0;
+		ge_win_proc_ret = _g_p_ge_app->MsgProc( uMsg, wParam, lParam, use_def_win_proc );
+		if (!use_def_win_proc) return ge_win_proc_ret;
+	}
+
+	return DefWindowProc( hWnd, uMsg, wParam, lParam );
 }
 
 LRESULT GEApp::MsgProc( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bUseDefWindowsProc )
@@ -63,7 +62,7 @@ LRESULT GEApp::MainLoop()
 {
 	MSG  msg;
 	PeekMessage( &msg, NULL, 0U, 0U, PM_NOREMOVE );
-	h_accel_ = LoadAccelerators( NULL, MAKEINTRESOURCE(0) );
+	HACCEL h_accel = LoadAccelerators( NULL, MAKEINTRESOURCE(0) );
 
 	while( WM_QUIT != msg.message  )
 	{
@@ -71,7 +70,7 @@ LRESULT GEApp::MainLoop()
 
 		if (has_msg)
 		{
-			if( 0 == TranslateAccelerator( h_wnd_, h_accel_, &msg ) )
+			if( 0 == TranslateAccelerator( h_app_wnd_, h_accel, &msg ) )
 			{
 				if (PreTranslateMessage(&msg))
 				{
@@ -82,7 +81,7 @@ LRESULT GEApp::MainLoop()
 		}
 		else
 		{
-			this->process();
+			this->_process();
 		}
 	}
 	return 0;
@@ -95,7 +94,7 @@ bool GEApp::create_app( HINSTANCE h_app_inst, const char* title, int width, int 
 	WNDCLASS wnd_class;
 	ZeroMemory(&wnd_class, sizeof(wnd_class));
 	wnd_class.lpszClassName	= "DxApp Window";
-	wnd_class.lpfnWndProc	= (WNDPROC) WndProc;
+	wnd_class.lpfnWndProc	= (WNDPROC) GEApp::WndProc;
 	wnd_class.style			= CS_DBLCLKS | CS_VREDRAW | CS_HREDRAW;
 	wnd_class.hInstance		= h_app_inst;
 	wnd_class.hCursor		= LoadCursor( NULL, IDC_ARROW );
@@ -114,26 +113,6 @@ bool GEApp::create_app( HINSTANCE h_app_inst, const char* title, int width, int 
 	if(!ret) return false;
 
 	wnd_rect.move_to(0, 0);
-	if(!this->_calc_mid_wnd_pos(wnd_rect))
-		return false;
-
-	h_wnd_ = CreateWindow("DxApp Window", title, DEF_WND_STYLE,
-		wnd_rect.left, wnd_rect.top, wnd_rect.width(), wnd_rect.height(),
-		0L, 0L, h_app_inst, 0L);
-	if (h_wnd_ == NULL) return false;
-
-	GetClientRect(h_wnd_, &game_rect_);
-	UpdateWindow(h_wnd_);
-	ShowWindow(h_wnd_, SW_NORMAL);
-	input_.init();
-
-	is_app_created_ = true;
-	return true;
-}
-
-bool GEApp::_calc_mid_wnd_pos( GE_IRECT& wnd_rect )
-{
-	// 工作区大小
 	GE_IRECT work_area_rect;
 	if(!SystemParametersInfo(SPI_GETWORKAREA, 0, &work_area_rect, 0))
 		return false;
@@ -141,10 +120,22 @@ bool GEApp::_calc_mid_wnd_pos( GE_IRECT& wnd_rect )
 	int pos_x = (work_area_rect.width() - wnd_rect.width()) / 2;
 	int pos_y = (work_area_rect.height() - wnd_rect.height()) / 2;
 	wnd_rect.move_to(pos_x, pos_y);
+
+	h_app_wnd_ = CreateWindow("DxApp Window", title, DEF_WND_STYLE,
+		wnd_rect.left, wnd_rect.top, wnd_rect.width(), wnd_rect.height(),
+		0L, 0L, h_app_inst, 0L);
+	if (h_app_wnd_ == NULL) return false;
+
+	GetClientRect(h_app_wnd_, &game_rect_);
+	UpdateWindow(h_app_wnd_);
+	ShowWindow(h_app_wnd_, SW_NORMAL);
+	input_.init();
+
+	is_app_created_ = true;
 	return true;
 }
 
-void GEApp::process()
+void GEApp::_process()
 {
 	_update_time();
 	input_.update();
@@ -206,7 +197,7 @@ bool GEApp::show_console( bool is_show )
 
 bool GEApp::on_resize()
 {
-	GetClientRect(h_wnd_, &game_rect_);
+	GetClientRect(h_app_wnd_, &game_rect_);
 
 	int width = game_rect_.right - game_rect_.left;
 	int height = game_rect_.bottom - game_rect_.top;
@@ -216,7 +207,7 @@ bool GEApp::on_resize()
 		p_ge_engine_->set_resolution(width, height);
 	}
 
-	InvalidateRect(h_wnd_, 0, false);
+	InvalidateRect(h_app_wnd_, 0, false);
 
 	return true;
 }

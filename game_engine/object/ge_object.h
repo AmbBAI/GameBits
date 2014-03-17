@@ -20,7 +20,7 @@ class GE_API GEObject
 {
 	DLL_MANAGE_CLASS(GEObject);
 
-public:
+protected:
 	GEObject();
 	virtual ~GEObject();
 

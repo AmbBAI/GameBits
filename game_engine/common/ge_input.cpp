@@ -24,7 +24,7 @@ bool GEInput::init()
 	if (p_app == NULL) return false;
 	HINSTANCE h_app_inst = p_app->get_app_inst();
 	if (h_app_inst == NULL) return false;
-	HWND h_wnd = p_app->get_wnd();
+	HWND h_wnd = p_app->get_app_wnd();
 	if (h_wnd == NULL) return false;
 
 	HRESULT h_res = S_OK;
@@ -110,7 +110,7 @@ bool GEInput::get_mouse_pos( int& pos_x, int& pos_y )
 	POINT mouse_pos;
 	GetCursorPos(&mouse_pos);
 	
-	HWND h_wnd = GEApp::get_instance()->get_wnd();
+	HWND h_wnd = GEApp::get_instance()->get_app_wnd();
 	if (h_wnd != NULL) ScreenToClient(h_wnd, &mouse_pos);
 
 	pos_x = mouse_pos.x;

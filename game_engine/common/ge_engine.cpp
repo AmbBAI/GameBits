@@ -66,7 +66,7 @@ bool GEEngine::init_engine()
 	d3d_present_param_.MultiSampleType				= D3DMULTISAMPLE_NONE;
 	d3d_present_param_.MultiSampleQuality			= 0;
 	d3d_present_param_.SwapEffect					= D3DSWAPEFFECT_DISCARD;
-	d3d_present_param_.hDeviceWindow				= p_ge_app_->get_wnd();
+	d3d_present_param_.hDeviceWindow				= p_ge_app_->get_app_wnd();
 	d3d_present_param_.Windowed						= is_windowed_;
 	d3d_present_param_.EnableAutoDepthStencil		= TRUE;
 	d3d_present_param_.AutoDepthStencilFormat		= D3DFMT_D24X8;
@@ -77,7 +77,7 @@ bool GEEngine::init_engine()
 	d3d_present_param_.PresentationInterval			= D3DPRESENT_INTERVAL_IMMEDIATE;
 
 	h_res = p_d3d_->CreateDevice(D3DADAPTER_DEFAULT,
-		dev_type, p_ge_app_->get_wnd(), vertex_proc_type,
+		dev_type, p_ge_app_->get_app_wnd(), vertex_proc_type,
 		&d3d_present_param_, &p_d3d_device_);
 
 	if (FAILED(h_res)) return false;

@@ -1,6 +1,9 @@
 
 class GEScene
 {
+	static GEScene* create();
+	static void release(GEScene**);
+
 	void add_object(int key, GEObject* obj);
 	void remove_object(int key);
 }

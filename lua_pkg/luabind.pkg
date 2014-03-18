@@ -7,6 +7,11 @@ $pfile "pkg/ge_app.pkg"
 $pfile "pkg/ge_game.pkg"
 $pfile "pkg/ge_input.pkg"
 $pfile "pkg/ge_scene.pkg"
+
 $pfile "pkg/ge_object.pkg"
+$pfile "pkg/geo_spine.pkg"
+
+
+$pfile "pkg/ge_type.pkg"
 
 }

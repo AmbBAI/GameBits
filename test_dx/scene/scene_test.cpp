@@ -18,7 +18,7 @@ bool SceneTest::init_fps_text()
 	p_fps_text_ = ge::GEOTextDX::create();
 	if (p_fps_text_ == NULL) return false;
 
-	ge::GEFont* ge_font = ge::GEFontManager::create_font(ge::FontType_D3DXFont);
+	ge::GED3DXFont* ge_font = (ge::GED3DXFont*)ge::GEFontManager::create_font(ge::FontType_D3DXFont);
 	if (ge_font == NULL) return false;
 	ge_font->init("consolas", 32);
 
@@ -45,7 +45,7 @@ bool SceneTest::init_gdi_text()
 	p_gdi_text_ = ge::GEOTextGDI::create();
 	if (p_gdi_text_ == NULL) return false;
 
-	ge::GEFont* ge_font = ge::GEFontManager::create_font(ge::FontType_GDIFont);
+	ge::GEGDIFont* ge_font = (ge::GEGDIFont*)ge::GEFontManager::create_font(ge::FontType_GDIFont);
 	if (ge_font == NULL) return false;
 	ge_font->init("consolas", 32);
 
@@ -84,8 +84,8 @@ bool SceneTest::init_bm_text()
 
 bool SceneTest::init_ft_text()
 {
-	ge::GEFont* p_font = NULL;
-	p_font = ge::GEFontManager::create_font(ge::FontType_FTFont);
+	ge::GEFontFT* p_font = NULL;
+	p_font = (ge::GEFontFT*)ge::GEFontManager::create_font(ge::FontType_FTFont);
 	//p_font->init("font\\simsun.ttc", 32);
 	p_font->init("font\\simkai.ttf", 32);
 	//p_font->init("font\\msyh.ttf", 32);

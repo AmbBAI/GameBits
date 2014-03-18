@@ -21,13 +21,6 @@ GEFont::~GEFont()
 
 }
 
-bool GEFont::init( const char* face, int size )
-{
-	strcpy(face_, face);
-	size_ = size;
-	return _init_font();
-}
-
 bool GEFont::_init_font()
 {
 	return true;
@@ -96,6 +89,13 @@ void GED3DXFont::on_reset_device()
 	}
 }
 
+bool GED3DXFont::init( const char* font, int size )
+{
+	strcpy(face_, font);
+	size_ = size;
+	return _init_font();
+}
+
 
 GEGDIFont::GEGDIFont()
 : gdi_font_(NULL)
@@ -133,6 +133,13 @@ void GEGDIFont::destory()
 HFONT GEGDIFont::get_gdi_obj()
 {
 	return gdi_font_;
+}
+
+bool GEGDIFont::init( const char* font, int size )
+{
+	strcpy(face_, font);
+	size_ = size;
+	return _init_font();
 }
 
 }

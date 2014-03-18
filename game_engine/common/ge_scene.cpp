@@ -9,6 +9,7 @@ namespace ge
 DLL_MANAGE_CLASS_IMPLEMENT(GEScene)
 
 GEScene::GEScene()
+: object_map_()
 {
 
 }
@@ -20,7 +21,6 @@ GEScene::~GEScene()
 
 bool GEScene::init()
 {
-	object_map_.clear();
 	return true;
 }
 

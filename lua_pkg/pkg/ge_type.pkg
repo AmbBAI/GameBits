@@ -1,0 +1,60 @@
+
+struct GE_IPOINT
+{
+	int x;
+	int y;
+};
+
+struct GE_ISIZE
+{
+	int width;
+	int height;
+};
+
+struct GE_IRECT
+{
+	int left;
+	int top;
+	int right;
+	int bottom;
+
+	GE_IRECT();
+	GE_IRECT(int left_, int top_, int right_, int bottom_);
+
+	int width();
+	int height();
+
+	void move(int offset_x, int offset_y);
+	void move_to(int pos_x, int pos_y);
+	void include(int pos_x, int pos_y);
+};
+
+struct GE_FPOINT
+{
+	float x;
+	float y;
+};
+
+struct GE_FSIZE
+{
+	float width;
+	float height;
+};
+
+struct GE_FRECT
+{
+	float left;
+	float top;
+	float right;
+	float bottom;
+
+	GE_FRECT();
+	GE_FRECT(float left_, float top_, float right_, float bottom_);
+
+	float width();
+	float height();
+
+	void move(float offset_x, float offset_y);
+	void move_to(float pos_x, float pos_y);
+	void include(float pos_x, float pos_y);
+};

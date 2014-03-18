@@ -16,7 +16,6 @@ public:
 	virtual ~GEFont();
 
 public:
-	virtual bool init(const char* face, int size);
 	virtual void destory();
 
 protected:
@@ -44,6 +43,7 @@ public:
 	virtual void on_reset_device();
 
 public:
+	bool init(const char* font, int size);
 	LPD3DXFONT get_d3dx_obj();
 
 	virtual void destory();
@@ -63,6 +63,7 @@ public:
 	virtual ~GEGDIFont();
 
 public:
+	bool init(const char* font, int size);
 	HFONT get_gdi_obj();
 
 	virtual void destory();

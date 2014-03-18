@@ -23,8 +23,8 @@ protected:
 public:
 	static GEApp* get_instance();
 
-	virtual bool create_app(HINSTANCE h_instance, const char* wnd_title, int wnd_width, int wnd_height);
-	virtual void run() { MainLoop(); }
+	bool create_app(HINSTANCE h_instance, const char* wnd_title, int wnd_width, int wnd_height);
+	void run() { MainLoop(); }
 
 	bool		is_app_created()	{ return is_app_created_; }
 	GE_IRECT&	get_game_rect()		{ return game_rect_; }	

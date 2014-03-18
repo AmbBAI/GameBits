@@ -1,12 +1,20 @@
 #ifndef _GAME_ENGINE_OBJECT_ANIMATION_SPINE_H_
 #define _GAME_ENGINE_OBJECT_ANIMATION_SPINE_H_
 
-#include "spine/spine.h"
-#include "spine/extension.h"
-
 #include "../../common/ge_include.h"
 #include "../ge_object.h"
 #include "../ge_object_def.h"
+
+#include "spine/spine.h"
+#include "spine/extension.h"
+
+//struct spAtlas;
+//struct spSkeleton;
+//struct spSkeletonJson;
+//struct spSkeletonData;
+//struct spAnimation;
+//struct spAnimationState;
+//struct spAnimationStateData;
 
 namespace ge
 {

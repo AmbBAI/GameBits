@@ -18,40 +18,41 @@ class GEFontManager;
 
 class GE_API GEEngine
 {
-public:
+protected:
 	GEEngine();
 	virtual ~GEEngine();
 
-	static GEEngine*			get_instance();
+public:
 	static LPDIRECT3DDEVICE9	get_device();
+	static GEEngine*			get_instance();
 
 public:
-	virtual bool init_engine();
-	virtual void close_engine();
+	bool init_engine();
+	void close_engine();
 
-	virtual void process(time_t delta);
+	void process(time_t delta);
 
-	virtual void register_device_object(GED3DDeviceObject*);
-	virtual void unregister_device_object(GED3DDeviceObject*);
+	void register_device_object(GED3DDeviceObject*);
+	void unregister_device_object(GED3DDeviceObject*);
 
-	virtual bool set_resolution(int width, int height);
-	virtual bool set_windowed(bool is_windowed);
-	virtual bool get_windowed();
+	bool set_resolution(int width, int height);
+	bool set_windowed(bool is_windowed);
+	bool get_windowed();
 
 protected:
-	virtual bool _init_render();
-	virtual bool _init_font();
+	bool _init_render();
+	bool _init_font();
 
-	virtual bool _dx_begin_scene();
-	virtual bool _dx_end_scene();
-	virtual bool _dx_clear();
-	virtual bool _dx_present();
+	bool _dx_begin_scene();
+	bool _dx_end_scene();
+	bool _dx_clear();
+	bool _dx_present();
 	
-	virtual bool _dx_check();
-	virtual bool _dx_reset();
-	virtual void _on_lost_device();
-	virtual void _on_reset_device();
-	virtual bool _on_dx_reset();
+	bool _dx_check();
+	bool _dx_reset();
+	void _on_lost_device();
+	void _on_reset_device();
+	bool _on_dx_reset();
 
 private:
 	LPDIRECT3D9				p_d3d_;

@@ -5,31 +5,37 @@
 
 namespace ge
 {
+
 #define DEFINE_INPUT_DISL ( DISCL_NONEXCLUSIVE | DISCL_FOREGROUND )
+
+class GEApp;
+
 class GE_API GEInput
 {
-public:
+	friend GEApp;
+
+protected:
 	GEInput();
 	virtual ~GEInput();
 
 public:
-	virtual bool init();
-	virtual void destory();
+	bool init();
+	void destory();
 
-	virtual void update();
+	void update();
 
 public:
-	virtual bool get_mouse_move(int& delta_x, int& delta_y, int& delta_z);
-	virtual bool get_mouse_pos(int& pos_x, int& pos_y);
+	bool get_mouse_move(int& delta_x, int& delta_y, int& delta_z);
+	bool get_mouse_pos(int& pos_x, int& pos_y);
 
-	virtual bool get_key_down(char key);
-	virtual bool get_mouse_down(char button);
+	bool get_key_down(char key);
+	bool get_mouse_down(char button);
 
-	virtual bool get_key_hold(char key);
-	virtual bool get_mouse_hold(char button);
+	bool get_key_hold(char key);
+	bool get_mouse_hold(char button);
 
-	virtual bool get_key_up(char key);
-	virtual bool get_mouse_up(char button);
+	bool get_key_up(char key);
+	bool get_mouse_up(char button);
 
 private:
 	LPDIRECTINPUT			p_input_;

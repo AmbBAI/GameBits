@@ -1,0 +1,12 @@
+
+class GEGame
+{
+	static GEGame* get_instance();
+
+	int			add_scene(GEScene* ge_scene);
+	bool		is_valid_scene(int scene_id);
+	GEScene*	get_scene(int scene_id);
+	bool		switch_scene(int scene_id);
+	void		remove_scene(int scene_id);
+	void		remove_all_scenes();
+}

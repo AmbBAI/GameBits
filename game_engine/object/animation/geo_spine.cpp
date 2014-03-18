@@ -6,6 +6,7 @@
 #include "../../render/texture/ge_texture_manager.h"
 #include "../../render/ge_atlas_render.h"
 
+
 void _spAtlasPage_createTexture (spAtlasPage* self, const char* path) {
 	if (self == NULL) return;
 	ge::GETexture* render_object = ge::GETextureManager::create_texture(path);

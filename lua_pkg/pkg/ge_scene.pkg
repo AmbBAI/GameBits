@@ -1,0 +1,6 @@
+
+class GEScene
+{
+	void add_object(int key, GEObject* obj);
+	void remove_object(int key);
+}

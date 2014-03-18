@@ -27,6 +27,7 @@
     <ClInclude Include="tolua\tolua_event.h">
       <Filter>tolua</Filter>
     </ClInclude>
+    <ClInclude Include="ge_luabind.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tolua\tolua_event.c">
@@ -44,5 +45,6 @@
     <ClCompile Include="tolua\tolua_to.c">
       <Filter>tolua</Filter>
     </ClCompile>
+    <ClCompile Include="ge_luabind.cpp" />
   </ItemGroup>
 </Project>

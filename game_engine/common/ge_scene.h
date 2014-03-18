@@ -9,25 +9,25 @@ namespace ge
 class GEObject;
 class GE_API GEScene
 {
-protected:
-	typedef std::map<int, GEObject*> GE_OBJECT_MAP;
+	DLL_MANAGE_CLASS(GEScene)
 
-public:
+protected:
 	GEScene();
 	virtual ~GEScene();
 
 public:
-	virtual bool init();
-	virtual void add_object(int key, GEObject* obj);
-	virtual void remove_object(int key);
-	virtual void destory();
-	virtual bool show();
-	virtual bool hide();
+	bool init();
+	void add_object(int key, GEObject* obj);
+	void remove_object(int key);
+	void destory();
+	bool show();
+	bool hide();
 
-	virtual void update(time_t delta);
-	virtual void render(time_t delta);
+	void update(time_t delta);
+	void render(time_t delta);
 
 protected:
+	typedef std::map<int, GEObject*> GE_OBJECT_MAP;
 	GE_OBJECT_MAP object_map_;
 };
 

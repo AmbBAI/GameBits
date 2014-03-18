@@ -10,13 +10,12 @@ class GEScene;
 
 class GE_API GEGame
 {
-public:
-	typedef std::vector<GEScene*> GE_SCENE_VEC;
-
-public:
+protected:
 	GEGame();
 	virtual ~GEGame();
 
+
+public:
 	static GEGame* get_instance();
 
 public:
@@ -29,7 +28,8 @@ public:
 	void		remove_scene(int scene_id);
 	void		remove_all_scenes();
 
-protected:
+private:
+	typedef std::vector<GEScene*> GE_SCENE_VEC;
 	GE_SCENE_VEC	scene_vec_;
 	int				cur_scene_id_;
 };

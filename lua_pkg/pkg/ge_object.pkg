@@ -1,0 +1,6 @@
+
+class GEObject
+{
+	virtual bool init();
+	virtual void destory();
+}

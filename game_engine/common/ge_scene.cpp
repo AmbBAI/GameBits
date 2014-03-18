@@ -6,6 +6,8 @@
 namespace ge
 {
 
+DLL_MANAGE_CLASS_IMPLEMENT(GEScene)
+
 GEScene::GEScene()
 {
 

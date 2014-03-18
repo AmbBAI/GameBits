@@ -1,0 +1,19 @@
+
+
+$ge::GEApp*		ptr_ge_app;
+$ge::GEEngine*	ptr_ge_engine;
+$ge::GEGame*	ptr_ge_game;
+
+class GEApp
+{
+	static GEApp* get_instance();
+
+	void run();
+
+	GEInput*	get_input();
+
+	float get_fps();
+
+	bool show_console(bool is_show);
+	bool get_console_show();
+}

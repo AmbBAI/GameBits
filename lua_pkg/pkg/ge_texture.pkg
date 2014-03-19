@@ -1,0 +1,42 @@
+
+class GESurface
+{
+	static GESurface* create();
+	static void release(GESurface**);
+
+};
+
+class GETexture : public GESurface
+{
+	static GETexture* create();
+	static void release(GETexture**);
+};
+
+class GETextureGroup
+{
+
+	static GETextureGroup* create();
+	static void release(GETextureGroup**);
+
+	int add_texture();
+	int add_texture(GETexture* texture);
+	int add_texture_from_file(const char* texture_path);
+	GETexture* get_texture(int texture_id = 0);
+	bool replace_texture(int texture_id, const char* texture_path);
+	void release_texture(int texture_id);
+	void release_all_texture();
+
+	int get_texture_cnt();
+};
+
+class GETextureManager
+{
+	static GETexture* create_texture();
+	static GETexture* create_texture(const char* texture_path);
+	static bool refer_texture(GETexture* texture);
+	static void release_texture(GETexture* texture);
+
+	static GETextureGroup* create_texture_group();
+	static bool refer_texture_group(GETextureGroup* texture_group);
+	static void release_texture_group(GETextureGroup* texture_group);
+};

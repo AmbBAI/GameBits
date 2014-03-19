@@ -84,6 +84,9 @@ bool GEOTextFT::update_text()
 
 bool GEOTextFT::update_font()
 {
+	GEFontFT* font_ft = (GEFontFT*)font_obj_;
+	if (font_ft == NULL) return false;
+
 	if (!render_object_)
 	{
 		render_object_ = GEAtlasRender::create();
@@ -94,7 +97,6 @@ bool GEOTextFT::update_font()
 	}
 	if (!render_object_) return false;
 
-	GEFontFT* font_ft = (GEFontFT*)font_obj_;
 	GETextureGroup* texture_group = font_ft->get_texture_group();
 	if (texture_group == NULL) return false;
 	render_object_->set_texture_group(texture_group);

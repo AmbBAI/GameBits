@@ -84,13 +84,13 @@ public:
 	virtual ~GEFontFT();
 
 public:
-	virtual bool init(const char* face, int size);
+	bool init(const char* face, int size);
 	virtual void destory();
 
 	bool init_texture_group();
 	GETextureGroup* get_texture_group();
 
-	virtual bool set_size(int size);
+	bool set_size(int size);
 
 public:
 	bool begin_write(GE_FTRenderChar* char_buff, int buff_size);

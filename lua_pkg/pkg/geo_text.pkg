@@ -1,0 +1,19 @@
+class GEOText : public GEObject
+{
+	virtual bool set_font(GEFont* font);
+	virtual GEFont* get_font();
+
+	virtual bool set_text(const char* text);
+	virtual const char* get_text();
+};
+
+class GEOTextFT : public GEOText
+{
+	static GEOTextFT* create();
+	static void release(GEOTextFT**);
+
+public:
+	virtual bool set_text(const char* text);
+	virtual bool set_font(GEFont* font);
+	virtual bool set_rect(GE_IRECT& rect);
+};

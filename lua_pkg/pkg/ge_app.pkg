@@ -1,9 +1,3 @@
-
-
-$ge::GEApp*		ptr_ge_app;
-$ge::GEEngine*	ptr_ge_engine;
-$ge::GEGame*	ptr_ge_game;
-
 class GEApp
 {
 	static GEApp* get_instance();

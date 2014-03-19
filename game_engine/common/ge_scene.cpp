@@ -10,6 +10,12 @@ DLL_MANAGE_CLASS_IMPLEMENT(GEScene)
 
 GEScene::GEScene()
 : object_map_()
+, init_func_(NULL)
+, destory_func_(NULL)
+, show_func_(NULL)
+, hide_func_(NULL)
+, update_func_(NULL)
+//, render_func_(NULL)
 {
 
 }
@@ -21,18 +27,21 @@ GEScene::~GEScene()
 
 bool GEScene::init()
 {
+	if (init_func_) return init_func_();
 	return true;
 }
 
 void GEScene::destory()
 {
-	FOR_EACH (GE_OBJECT_MAP, object_map_, obj_it)
-	{
-		GEObject* p_obj = (GEObject*)(obj_it->second);
-		if (NULL == p_obj) continue;
-		p_obj->destory();
-		obj_it->second = NULL;
-	}
+	//FOR_EACH (GE_OBJECT_MAP, object_map_, obj_it)
+	//{
+	//	GEObject* p_obj = (GEObject*)(obj_it->second);
+	//	if (NULL == p_obj) continue;
+	//	p_obj->destory();
+	//	obj_it->second = NULL;
+	//}
+
+	if (destory_func_) destory_func_();
 	object_map_.clear();
 }
 
@@ -48,16 +57,20 @@ void GEScene::remove_object( int key )
 
 bool GEScene::show()
 {
+	if (show_func_) return show_func_();
 	return true;
 }
 
 bool GEScene::hide()
 {
+	if (hide_func_) return hide_func_();
 	return true;
 }
 
 void GEScene::update( time_t delta )
 {
+	if (update_func_) update_func_(delta);
+
 	FOR_EACH (GE_OBJECT_MAP, object_map_, obj_it)
 	{
 		GEObject* p_obj = (GEObject*)(obj_it->second);

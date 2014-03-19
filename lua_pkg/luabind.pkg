@@ -8,9 +8,12 @@ $pfile "pkg/ge_game.pkg"
 $pfile "pkg/ge_input.pkg"
 $pfile "pkg/ge_scene.pkg"
 
+$pfile "pkg/ge_texture.pkg"
+$pfile "pkg/ge_font.pkg"
+
 $pfile "pkg/ge_object.pkg"
 $pfile "pkg/geo_spine.pkg"
-
+$pfile "pkg/geo_text.pkg"
 
 $pfile "pkg/ge_type.pkg"
 

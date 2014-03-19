@@ -1,0 +1,48 @@
+enum GEFontType
+{
+	FontType_Default = 0,
+	FontType_D3DXFont,
+	FontType_GDIFont,
+	FontType_BMFont,
+	FontType_FTFont,
+};
+
+class GEFontManager
+{
+	static GEFont* create_font(GEFontType font_type);
+	static void release_font(GEFont* ptr_font);
+};
+
+
+class GEFont
+{
+};
+
+class GED3DXFont : public GEFont
+{
+	bool init(const char* font, int size);
+};
+
+class GEGDIFont : public GEFont
+{
+	bool init(const char* font, int size);
+};
+
+class GEFontBM : public GEFont
+{
+	bool init(const char* fnt_path);
+
+	bool init_effect(const char* fx_path);
+	void destory_effect();
+};
+
+class GEFontFT : public GEFont
+{
+	bool init(const char* face, int size);
+
+	bool init_texture_group();
+	GETextureGroup* get_texture_group();
+
+	bool set_size(int size);
+};
+

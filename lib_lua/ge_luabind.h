@@ -8,9 +8,11 @@ extern "C"
 #include "lua/lauxlib.h"
 
 #include "tolua/tolua++.h"
-
+#include "tolua/tolua_fix.h"
 
 };
+
+typedef int LUA_FUNCTION;
 
 #include "game_engine.h"
 

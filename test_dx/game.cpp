@@ -1,21 +1,7 @@
 #include "game_engine.h"
 #include "scene/scene_test.h"
 
-#include "ge_luabind.h"
-
-void report_error(lua_State* L)
-{
-	int count = lua_gettop(L);
-
-	while(count > 0)
-	{
-		const char* msg = lua_tostring(L, -1);
-
-		fprintf(stderr, "%s\n", msg);
-		lua_pop(L, 1);
-		count--;
-	}
-}
+#include "ge_luaengine.h"
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -36,15 +22,12 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		freopen("CONOUT$", "w", stdout);
 		freopen("CONOUT$", "w", stderr);
 
-		lua_State *L = lua_open();
+		ge::GELuaEngine* luaE = ge::GELuaEngine::get_instance();
 
-		luaL_openlibs(L);
-		tolua_luabind_open(L);
-
-		luaL_dofile(L, "lua/main.lua");
-		report_error(L);
-		
-		lua_close(L);
+		luaE->open();
+		luaE->run_script("lua\\main.lua");
+		luaE->report_error();
+		luaE->close();
 
 		//SceneTest* main_scene = new SceneTest();
 		//g_p_ge_game->add_scene(main_scene);

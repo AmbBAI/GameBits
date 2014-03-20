@@ -12,16 +12,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ge_luabind.h" />
+    <ClInclude Include="ge_luaengine.h" />
     <ClInclude Include="lua\lauxlib.h" />
     <ClInclude Include="lua\lua.h" />
     <ClInclude Include="lua\luaconf.h" />
     <ClInclude Include="lua\lualib.h" />
     <ClInclude Include="tolua\tolua++.h" />
     <ClInclude Include="tolua\tolua_event.h" />
+    <ClInclude Include="tolua\tolua_fix.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ge_luabind.cpp" />
+    <ClCompile Include="ge_luaengine.cpp" />
     <ClCompile Include="tolua\tolua_event.c" />
+    <ClCompile Include="tolua\tolua_fix.c" />
     <ClCompile Include="tolua\tolua_is.c" />
     <ClCompile Include="tolua\tolua_map.c" />
     <ClCompile Include="tolua\tolua_push.c" />

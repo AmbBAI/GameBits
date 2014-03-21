@@ -27,5 +27,6 @@
 #include "object/text/geo_text_bm.h"
 #include "object/text/geo_text_ft.h"
 
+#include "script/ge_luaengine.h"
 
 #endif // _GAME_ENGINE_H_

@@ -1,0 +1,1 @@
+"tolua++/tolua++.exe" -L build.lua -o "../ge_luabind.cpp" luabind.pkg

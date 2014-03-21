@@ -28,6 +28,15 @@
     <Filter Include="object\animation">
       <UniqueIdentifier>{1b258286-0917-4557-bdcb-1e7c9395b1b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="script">
+      <UniqueIdentifier>{83d71f69-452c-4e1c-a6cf-c44c478976e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\lua">
+      <UniqueIdentifier>{36318ba9-54f4-476f-ab46-db3b086bee1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\tolua">
+      <UniqueIdentifier>{aa63d650-138b-4907-8b4f-f54c35927fb4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="object\ge_object.cpp">
@@ -125,6 +134,123 @@
     </ClCompile>
     <ClCompile Include="object\animation\geo_armature.cpp">
       <Filter>object\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lapi.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lauxlib.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lbaselib.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lcode.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\ldblib.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\ldebug.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\ldo.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\ldump.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lfunc.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lgc.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\linit.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\liolib.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\llex.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lmathlib.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lmem.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\loadlib.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lobject.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lopcodes.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\loslib.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lparser.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lstate.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lstring.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lstrlib.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\ltable.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\ltablib.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\ltm.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lua.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lundump.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lvm.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\lzio.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\lua\print.c">
+      <Filter>script\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua\tolua_event.c">
+      <Filter>script\tolua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua\tolua_fix.c">
+      <Filter>script\tolua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua\tolua_is.c">
+      <Filter>script\tolua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua\tolua_map.c">
+      <Filter>script\tolua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua\tolua_push.c">
+      <Filter>script\tolua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua\tolua_to.c">
+      <Filter>script\tolua</Filter>
+    </ClCompile>
+    <ClCompile Include="script\ge_luaengine.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="script\ge_luabind.cpp">
+      <Filter>script</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +356,90 @@
     </ClInclude>
     <ClInclude Include="object\animation\geo_armature.h">
       <Filter>object\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lapi.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lauxlib.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lcode.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\ldebug.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\ldo.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lfunc.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lgc.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\llex.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\llimits.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lmem.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lobject.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lopcodes.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lparser.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lstate.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lstring.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\ltable.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\ltm.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lua.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\luaconf.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lualib.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lundump.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lvm.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\lua\lzio.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua\tolua++.h">
+      <Filter>script\tolua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua\tolua_event.h">
+      <Filter>script\tolua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua\tolua_fix.h">
+      <Filter>script\tolua</Filter>
+    </ClInclude>
+    <ClInclude Include="script\ge_luabind.h">
+      <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="script\ge_luaengine.h">
+      <Filter>script</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

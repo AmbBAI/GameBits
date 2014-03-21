@@ -11,7 +11,7 @@ end
 function new_fps_text()
 	fps_font = ge.GEFontManager:create_font(ge.FontType_FTFont)
 	fps_font = tolua.cast(fps_font, "ge::GEFontFT")
-	fps_font:init("font\\simkai.ttf", 32);
+	fps_font:init("font\\simsun.ttc", 32);
 	
 	fps_text = ge.GEOTextFT:create()
 	rect = ge.GE_IRECT:new(0, 0, 500, 400);

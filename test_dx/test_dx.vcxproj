@@ -100,11 +100,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="scene\scene_test.cpp" />
     <ClCompile Include="game.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="scene\scene_test.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\game_engine\game_engine.vcxproj">

@@ -126,8 +126,8 @@
     <ClCompile Include="render\texture\ge_texture.cpp" />
     <ClCompile Include="render\texture\ge_texture_group.cpp" />
     <ClCompile Include="render\texture\ge_texture_manager.cpp" />
-    <ClCompile Include="script\ge_luabind.cpp" />
-    <ClCompile Include="script\ge_luaengine.cpp" />
+    <ClCompile Include="script\ge_lua_bind.cpp" />
+    <ClCompile Include="script\ge_lua_engine.cpp" />
     <ClCompile Include="script\lua\lapi.c" />
     <ClCompile Include="script\lua\lauxlib.c" />
     <ClCompile Include="script\lua\lbaselib.c" />
@@ -201,8 +201,8 @@
     <ClInclude Include="render\texture\ge_texture.h" />
     <ClInclude Include="render\texture\ge_texture_group.h" />
     <ClInclude Include="render\texture\ge_texture_manager.h" />
-    <ClInclude Include="script\ge_luabind.h" />
-    <ClInclude Include="script\ge_luaengine.h" />
+    <ClInclude Include="script\ge_lua_bind.h" />
+    <ClInclude Include="script\ge_lua_engine.h" />
     <ClInclude Include="script\lua\lapi.h" />
     <ClInclude Include="script\lua\lauxlib.h" />
     <ClInclude Include="script\lua\lcode.h" />

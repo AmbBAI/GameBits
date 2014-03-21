@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 03/20/14 11:49:11.
+** Generated automatically by tolua++-1.0.92 on 03/21/14 11:27:14.
 */
 
 #ifndef __cplusplus
@@ -13,7 +13,8 @@
 /* Exported function */
 TOLUA_API int  tolua_luabind_open (lua_State* tolua_S);
 
-#include "ge_luabind.h"
+#include "ge_lua_bind.h"
+#include "../game_engine.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus

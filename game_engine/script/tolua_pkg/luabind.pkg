@@ -1,5 +1,5 @@
-$#include "ge_luabind.h"
-
+$#include "ge_lua_bind.h"
+$#include "../game_engine.h"
 
 namespace ge
 {

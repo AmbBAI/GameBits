@@ -246,10 +246,10 @@
     <ClCompile Include="script\tolua\tolua_to.c">
       <Filter>script\tolua</Filter>
     </ClCompile>
-    <ClCompile Include="script\ge_luaengine.cpp">
+    <ClCompile Include="script\ge_lua_engine.cpp">
       <Filter>script</Filter>
     </ClCompile>
-    <ClCompile Include="script\ge_luabind.cpp">
+    <ClCompile Include="script\ge_lua_bind.cpp">
       <Filter>script</Filter>
     </ClCompile>
   </ItemGroup>
@@ -435,10 +435,10 @@
     <ClInclude Include="script\tolua\tolua_fix.h">
       <Filter>script\tolua</Filter>
     </ClInclude>
-    <ClInclude Include="script\ge_luabind.h">
+    <ClInclude Include="script\ge_lua_engine.h">
       <Filter>script</Filter>
     </ClInclude>
-    <ClInclude Include="script\ge_luaengine.h">
+    <ClInclude Include="script\ge_lua_bind.h">
       <Filter>script</Filter>
     </ClInclude>
   </ItemGroup>

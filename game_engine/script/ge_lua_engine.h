@@ -1,19 +1,21 @@
 #ifndef _GAME_ENGINE_LUA_ENGINE_H_
 #define _GAME_ENGINE_LUA_ENGINE_H_
 
-#include "ge_luabind.h"
+#include "../common/ge_include.h"
+#include "ge_lua_bind.h"
 
 namespace ge
 {
 
-class GELuaEngine
+class GE_API GELuaEngine
 {
+
+protected:
 	GELuaEngine();
 	virtual ~GELuaEngine();
 
 public:
 	static GELuaEngine* get_instance();
-
 
 	bool open();
 	void close();

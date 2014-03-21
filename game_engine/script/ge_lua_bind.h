@@ -9,13 +9,10 @@ extern "C"
 
 #include "tolua/tolua++.h"
 #include "tolua/tolua_fix.h"
-
 };
 
 typedef int LUA_FUNCTION;
 typedef int LUA_TABLE;
-
-#include "../game_engine.h"
 
 TOLUA_API int  tolua_luabind_open (lua_State* tolua_S);
 

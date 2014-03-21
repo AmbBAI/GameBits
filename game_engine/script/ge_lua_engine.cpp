@@ -1,4 +1,4 @@
-#include "ge_luaengine.h"
+#include "ge_lua_engine.h"
 
 namespace ge
 {

@@ -27,6 +27,7 @@ bool GELuaEngine::open()
 
 	luaL_openlibs(lua_state_);
 	tolua_luabind_open(lua_state_);
+	toluafix_open(lua_state_);
 	return true;
 }
 
@@ -107,6 +108,30 @@ int GELuaEngine::_execute_function( int args_cnt )
 	lua_pop(lua_state_, 1);
 
 	return ret;
+}
+
+void GELuaEngine::push_int( int val )
+{
+	if (lua_state_)
+	{
+		lua_pushinteger(lua_state_, val);
+	}
+}
+
+void GELuaEngine::push_float( float val )
+{
+	if (lua_state_)
+	{
+		lua_pushnumber(lua_state_, val);
+	}
+}
+
+void GELuaEngine::push_string( const char* val )
+{
+	if (lua_state_)
+	{
+		lua_pushstring(lua_state_, val);
+	}
 }
 
 

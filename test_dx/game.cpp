@@ -23,7 +23,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 		g_p_ge_lua_engine->open();
 		g_p_ge_lua_engine->run_script("lua\\main.lua");
-		g_p_ge_lua_engine->report_error();
 		g_p_ge_lua_engine->close();
 	}
 

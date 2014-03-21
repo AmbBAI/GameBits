@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 03/21/14 11:27:14.
+** Generated automatically by tolua++-1.0.92 on 03/21/14 13:30:38.
 */
 
 #ifndef __cplusplus
@@ -39,7 +39,7 @@ static int tolua_collect_ge__GE_FRECT (lua_State* tolua_S)
 static void tolua_reg_types (lua_State* tolua_S)
 {
  tolua_usertype(tolua_S,"ge::GEGDIFont");
- tolua_usertype(tolua_S,"ge::GEOSpine");
+ tolua_usertype(tolua_S,"ge::GEObject");
  tolua_usertype(tolua_S,"ge::GETextureGroup");
  tolua_usertype(tolua_S,"ge::GETextureManager");
  tolua_usertype(tolua_S,"ge::GEGame");
@@ -50,17 +50,18 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ge::GEInput");
  tolua_usertype(tolua_S,"ge::GEScene");
  tolua_usertype(tolua_S,"ge::GED3DXFont");
+ tolua_usertype(tolua_S,"ge::GEOText");
  tolua_usertype(tolua_S,"ge::GE_FRECT");
- tolua_usertype(tolua_S,"ge::GEOTextFT");
  tolua_usertype(tolua_S,"ge::GE_FPOINT");
- tolua_usertype(tolua_S,"ge::GEObject");
+ tolua_usertype(tolua_S,"ge::GEFontBM");
  tolua_usertype(tolua_S,"ge::GE_ISIZE");
  tolua_usertype(tolua_S,"ge::GE_IPOINT");
+ tolua_usertype(tolua_S,"ge::GEOTextFT");
  tolua_usertype(tolua_S,"ge::GE_FSIZE");
- tolua_usertype(tolua_S,"ge::GEOText");
- tolua_usertype(tolua_S,"ge::GEFontFT");
- tolua_usertype(tolua_S,"ge::GEFontBM");
  tolua_usertype(tolua_S,"time_t");
+ tolua_usertype(tolua_S,"ge::GEFontFT");
+ tolua_usertype(tolua_S,"LUA_FUNCTION");
+ tolua_usertype(tolua_S,"ge::GEOSpine");
  tolua_usertype(tolua_S,"ge::GE_IRECT");
  tolua_usertype(tolua_S,"ge::GESurface");
 }
@@ -886,6 +887,171 @@ static int tolua_luabind_ge_GEScene_remove_object00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'remove_object'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_init_func of class  ge::GEScene */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEScene_set_init_func00
+static int tolua_luabind_ge_GEScene_set_init_func00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEScene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluafix_isfunction(tolua_S,2,"LUA_FUNCTION",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEScene* self = (ge::GEScene*)  tolua_tousertype(tolua_S,1,0);
+  LUA_FUNCTION init_func = ((LUA_FUNCTION)  toluafix_ref_function(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_init_func'", NULL);
+#endif
+  {
+   self->set_init_func(init_func);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_init_func'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_destory_func of class  ge::GEScene */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEScene_set_destory_func00
+static int tolua_luabind_ge_GEScene_set_destory_func00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEScene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluafix_isfunction(tolua_S,2,"LUA_FUNCTION",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEScene* self = (ge::GEScene*)  tolua_tousertype(tolua_S,1,0);
+  LUA_FUNCTION destory_func = ((LUA_FUNCTION)  toluafix_ref_function(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_destory_func'", NULL);
+#endif
+  {
+   self->set_destory_func(destory_func);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_destory_func'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_show_func of class  ge::GEScene */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEScene_set_show_func00
+static int tolua_luabind_ge_GEScene_set_show_func00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEScene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluafix_isfunction(tolua_S,2,"LUA_FUNCTION",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEScene* self = (ge::GEScene*)  tolua_tousertype(tolua_S,1,0);
+  LUA_FUNCTION show_func = ((LUA_FUNCTION)  toluafix_ref_function(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_show_func'", NULL);
+#endif
+  {
+   self->set_show_func(show_func);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_show_func'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_hide_func of class  ge::GEScene */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEScene_set_hide_func00
+static int tolua_luabind_ge_GEScene_set_hide_func00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEScene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluafix_isfunction(tolua_S,2,"LUA_FUNCTION",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEScene* self = (ge::GEScene*)  tolua_tousertype(tolua_S,1,0);
+  LUA_FUNCTION hide_func = ((LUA_FUNCTION)  toluafix_ref_function(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_hide_func'", NULL);
+#endif
+  {
+   self->set_hide_func(hide_func);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_hide_func'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_update_func of class  ge::GEScene */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEScene_set_update_func00
+static int tolua_luabind_ge_GEScene_set_update_func00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEScene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluafix_isfunction(tolua_S,2,"LUA_FUNCTION",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEScene* self = (ge::GEScene*)  tolua_tousertype(tolua_S,1,0);
+  LUA_FUNCTION update_func = ((LUA_FUNCTION)  toluafix_ref_function(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_update_func'", NULL);
+#endif
+  {
+   self->set_update_func(update_func);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_update_func'.",&tolua_err);
  return 0;
 #endif
 }
@@ -3684,6 +3850,11 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"release",tolua_luabind_ge_GEScene_release00);
     tolua_function(tolua_S,"add_object",tolua_luabind_ge_GEScene_add_object00);
     tolua_function(tolua_S,"remove_object",tolua_luabind_ge_GEScene_remove_object00);
+    tolua_function(tolua_S,"set_init_func",tolua_luabind_ge_GEScene_set_init_func00);
+    tolua_function(tolua_S,"set_destory_func",tolua_luabind_ge_GEScene_set_destory_func00);
+    tolua_function(tolua_S,"set_show_func",tolua_luabind_ge_GEScene_set_show_func00);
+    tolua_function(tolua_S,"set_hide_func",tolua_luabind_ge_GEScene_set_hide_func00);
+    tolua_function(tolua_S,"set_update_func",tolua_luabind_ge_GEScene_set_update_func00);
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GESurface","ge::GESurface","",NULL);
    tolua_beginmodule(tolua_S,"GESurface");

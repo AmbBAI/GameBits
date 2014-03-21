@@ -9,7 +9,6 @@ namespace ge
 
 class GE_API GELuaEngine
 {
-
 protected:
 	GELuaEngine();
 	virtual ~GELuaEngine();
@@ -22,6 +21,10 @@ public:
 
 	bool run_script(const char* path);
 	int run_function(LUA_FUNCTION func_id, int args_cnt);
+
+	void push_int(int val);
+	void push_float(float val);
+	void push_string(const char* val);
 
 	void report_error();
 

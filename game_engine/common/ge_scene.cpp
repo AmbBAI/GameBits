@@ -2,6 +2,7 @@
 #include "../common/ge_engine.h"
 #include "../object/ge_object.h"
 #include "../render/ge_render.h"
+#include "../script/ge_lua_engine.h"
 
 namespace ge
 {
@@ -27,7 +28,11 @@ GEScene::~GEScene()
 
 bool GEScene::init()
 {
-	if (init_func_) return init_func_();
+	if (init_func_)
+	{
+		GELuaEngine* p_lua_engine = GELuaEngine::get_instance();
+		p_lua_engine->run_function(init_func_, 0);
+	}
 	return true;
 }
 
@@ -41,7 +46,11 @@ void GEScene::destory()
 	//	obj_it->second = NULL;
 	//}
 
-	if (destory_func_) destory_func_();
+	if (destory_func_)
+	{
+		GELuaEngine* p_lua_engine = GELuaEngine::get_instance();
+		p_lua_engine->run_function(destory_func_, 0);
+	}
 	object_map_.clear();
 }
 
@@ -57,19 +66,33 @@ void GEScene::remove_object( int key )
 
 bool GEScene::show()
 {
-	if (show_func_) return show_func_();
+	if (show_func_)
+	{
+		GELuaEngine* p_lua_engine = GELuaEngine::get_instance();
+		p_lua_engine->run_function(show_func_, 0);
+	}
 	return true;
 }
 
 bool GEScene::hide()
 {
-	if (hide_func_) return hide_func_();
+	if (hide_func_)
+	{
+		GELuaEngine* p_lua_engine = GELuaEngine::get_instance();
+		p_lua_engine->run_function(hide_func_, 0);
+	}
 	return true;
 }
 
 void GEScene::update( time_t delta )
 {
-	if (update_func_) update_func_(delta);
+	if (update_func_)
+	{
+		GELuaEngine* p_lua_engine = GELuaEngine::get_instance();
+		float fdelta = delta / 1000.f;
+		p_lua_engine->push_float(fdelta);
+		p_lua_engine->run_function(update_func_, 1);
+	}
 
 	FOR_EACH (GE_OBJECT_MAP, object_map_, obj_it)
 	{

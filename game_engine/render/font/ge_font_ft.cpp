@@ -219,6 +219,10 @@ bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap
 				if (ptr_char == NULL) continue;
 
 				glyph_index = ptr_char->index;
+				pre_glyph_index = glyph_index;
+				pen_x += ptr_char->_advance;
+				
+				if (ptr_char->page == -1) continue;
 
 				render_char_buff_[buff_offset_].index = glyph_index;
 				render_char_buff_[buff_offset_].xys[0] = (float)pen_x + ptr_char->_bearing_x;
@@ -230,10 +234,6 @@ bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap
 				render_char_buff_[buff_offset_].uvs[1] = ptr_char->uvs[1];
 				render_char_buff_[buff_offset_].uvs[2] = ptr_char->uvs[2];
 				render_char_buff_[buff_offset_].uvs[3] = ptr_char->uvs[3];
-
-				pen_x += ptr_char->_advance;
-				pre_glyph_index = glyph_index;
-
 				++ buff_offset_;
 				if (buff_offset_ >= buff_size_) return true;
 			}
@@ -436,6 +436,13 @@ GE_FTBuffChar* GEFontFT::_build_buff_char( FT_UInt glyph_index, int width, int h
 
 	buff_char_map_[glyph_index] = buff_char;
 	buff_char->index = glyph_index;
+
+	if (width == 0 || height == 0)
+	{
+		buff_char->page = -1;
+		return buff_char;
+	}
+
 	buff_char->page = current_page_id_;
 	buff_char->width = width + 1;
 	buff_char->height = height + 1;
@@ -495,7 +502,17 @@ GE_FTBuffChar* GEFontFT::_get_buff_char_with_outline( wchar_t ch )
 	GEFreeType::get_instance()->span_render(this, glyph_slot);
 	GEFreeType::get_instance()->span_render_outline(this, glyph_slot);
 
-	if (span_list_.empty()) return NULL;
+	if (span_list_.empty())
+	{
+		GE_FTBuffChar* buff_char = _build_buff_char(glyph_index, 0, 0);
+		if (buff_char)
+		{
+			buff_char->_advance = glyph_slot->metrics.horiAdvance >> 6;
+			buff_char->_bearing_x = glyph_slot->metrics.horiBearingX >> 6;
+			buff_char->_bearing_y = glyph_slot->metrics.horiBearingY >> 6;
+		}
+		return buff_char;
+	}
 
 	GE_IRECT span_rect;
 	span_rect.move_to(span_list_.front().x, span_list_.front().y);

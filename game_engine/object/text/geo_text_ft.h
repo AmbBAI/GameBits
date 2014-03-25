@@ -23,11 +23,12 @@ public:
 	virtual bool set_font(GEFont* font);
 	virtual bool set_rect(GE_IRECT& rect);
 
+	virtual void render(time_t delta);
+
+protected:
 	virtual bool update_font();
 	virtual bool update_text();
 	virtual bool update_quad();
-
-	virtual void render(time_t delta);
 
 protected:
 	virtual void _render_char_to_quad(GE_QUAD& out_quad, const GE_FTRenderChar& render_char);
@@ -35,6 +36,7 @@ protected:
 private:
 	typedef std::vector<GE_FTRenderChar> FT_RENDER_CHAR_LIST;
 	FT_RENDER_CHAR_LIST		render_char_buff_;
+	int						render_char_cnt_;
 
 	bool					need_update_text_;
 	bool					need_update_font_;

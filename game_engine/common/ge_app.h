@@ -42,7 +42,7 @@ protected:
 	void		_process();
 
 	HINSTANCE	get_app_inst()		{ return h_app_inst_; }	
-	HWND&		get_app_wnd()		{ return h_app_wnd_; }
+	HWND		get_app_wnd()		{ return h_app_wnd_; }
 
 	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 	LRESULT	MsgProc(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bUseDefWindowsProc);

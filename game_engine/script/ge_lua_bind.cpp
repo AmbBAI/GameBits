@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 03/21/14 13:30:38.
+** Generated automatically by tolua++-1.0.92 on 03/25/14 11:42:07.
 */
 
 #ifndef __cplusplus
@@ -578,7 +578,7 @@ static int tolua_luabind_ge_GEInput_get_key_down00(lua_State* tolua_S)
 #endif
  {
   ge::GEInput* self = (ge::GEInput*)  tolua_tousertype(tolua_S,1,0);
-  char key = ((char)  tolua_tonumber(tolua_S,2,0));
+  ge::GEInput::GEKeyCode key = ((ge::GEInput::GEKeyCode) (int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_key_down'", NULL);
 #endif
@@ -646,7 +646,7 @@ static int tolua_luabind_ge_GEInput_get_key_hold00(lua_State* tolua_S)
 #endif
  {
   ge::GEInput* self = (ge::GEInput*)  tolua_tousertype(tolua_S,1,0);
-  char key = ((char)  tolua_tonumber(tolua_S,2,0));
+  ge::GEInput::GEKeyCode key = ((ge::GEInput::GEKeyCode) (int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_key_hold'", NULL);
 #endif
@@ -714,7 +714,7 @@ static int tolua_luabind_ge_GEInput_get_key_up00(lua_State* tolua_S)
 #endif
  {
   ge::GEInput* self = (ge::GEInput*)  tolua_tousertype(tolua_S,1,0);
-  char key = ((char)  tolua_tonumber(tolua_S,2,0));
+  ge::GEInput::GEKeyCode key = ((ge::GEInput::GEKeyCode) (int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_key_up'", NULL);
 #endif
@@ -3835,6 +3835,150 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GEInput","ge::GEInput","",NULL);
    tolua_beginmodule(tolua_S,"GEInput");
+    tolua_constant(tolua_S,"KC_ESCAPE",ge::GEInput::KC_ESCAPE);
+    tolua_constant(tolua_S,"KC_1",ge::GEInput::KC_1);
+    tolua_constant(tolua_S,"KC_2",ge::GEInput::KC_2);
+    tolua_constant(tolua_S,"KC_3",ge::GEInput::KC_3);
+    tolua_constant(tolua_S,"KC_4",ge::GEInput::KC_4);
+    tolua_constant(tolua_S,"KC_5",ge::GEInput::KC_5);
+    tolua_constant(tolua_S,"KC_6",ge::GEInput::KC_6);
+    tolua_constant(tolua_S,"KC_7",ge::GEInput::KC_7);
+    tolua_constant(tolua_S,"KC_8",ge::GEInput::KC_8);
+    tolua_constant(tolua_S,"KC_9",ge::GEInput::KC_9);
+    tolua_constant(tolua_S,"KC_0",ge::GEInput::KC_0);
+    tolua_constant(tolua_S,"KC_MINUS",ge::GEInput::KC_MINUS);
+    tolua_constant(tolua_S,"KC_EQUALS",ge::GEInput::KC_EQUALS);
+    tolua_constant(tolua_S,"KC_BACK",ge::GEInput::KC_BACK);
+    tolua_constant(tolua_S,"KC_TAB",ge::GEInput::KC_TAB);
+    tolua_constant(tolua_S,"KC_Q",ge::GEInput::KC_Q);
+    tolua_constant(tolua_S,"KC_W",ge::GEInput::KC_W);
+    tolua_constant(tolua_S,"KC_E",ge::GEInput::KC_E);
+    tolua_constant(tolua_S,"KC_R",ge::GEInput::KC_R);
+    tolua_constant(tolua_S,"KC_T",ge::GEInput::KC_T);
+    tolua_constant(tolua_S,"KC_Y",ge::GEInput::KC_Y);
+    tolua_constant(tolua_S,"KC_U",ge::GEInput::KC_U);
+    tolua_constant(tolua_S,"KC_I",ge::GEInput::KC_I);
+    tolua_constant(tolua_S,"KC_O",ge::GEInput::KC_O);
+    tolua_constant(tolua_S,"KC_P",ge::GEInput::KC_P);
+    tolua_constant(tolua_S,"KC_LBRACKET",ge::GEInput::KC_LBRACKET);
+    tolua_constant(tolua_S,"KC_RBRACKET",ge::GEInput::KC_RBRACKET);
+    tolua_constant(tolua_S,"KC_RETURN",ge::GEInput::KC_RETURN);
+    tolua_constant(tolua_S,"KC_LCONTROL",ge::GEInput::KC_LCONTROL);
+    tolua_constant(tolua_S,"KC_A",ge::GEInput::KC_A);
+    tolua_constant(tolua_S,"KC_S",ge::GEInput::KC_S);
+    tolua_constant(tolua_S,"KC_D",ge::GEInput::KC_D);
+    tolua_constant(tolua_S,"KC_F",ge::GEInput::KC_F);
+    tolua_constant(tolua_S,"KC_G",ge::GEInput::KC_G);
+    tolua_constant(tolua_S,"KC_H",ge::GEInput::KC_H);
+    tolua_constant(tolua_S,"KC_J",ge::GEInput::KC_J);
+    tolua_constant(tolua_S,"KC_K",ge::GEInput::KC_K);
+    tolua_constant(tolua_S,"KC_L",ge::GEInput::KC_L);
+    tolua_constant(tolua_S,"KC_SEMICOLON",ge::GEInput::KC_SEMICOLON);
+    tolua_constant(tolua_S,"KC_APOSTROPHE",ge::GEInput::KC_APOSTROPHE);
+    tolua_constant(tolua_S,"KC_GRAVE",ge::GEInput::KC_GRAVE);
+    tolua_constant(tolua_S,"KC_LSHIFT",ge::GEInput::KC_LSHIFT);
+    tolua_constant(tolua_S,"KC_BACKSLASH",ge::GEInput::KC_BACKSLASH);
+    tolua_constant(tolua_S,"KC_Z",ge::GEInput::KC_Z);
+    tolua_constant(tolua_S,"KC_X",ge::GEInput::KC_X);
+    tolua_constant(tolua_S,"KC_C",ge::GEInput::KC_C);
+    tolua_constant(tolua_S,"KC_V",ge::GEInput::KC_V);
+    tolua_constant(tolua_S,"KC_B",ge::GEInput::KC_B);
+    tolua_constant(tolua_S,"KC_N",ge::GEInput::KC_N);
+    tolua_constant(tolua_S,"KC_M",ge::GEInput::KC_M);
+    tolua_constant(tolua_S,"KC_COMMA",ge::GEInput::KC_COMMA);
+    tolua_constant(tolua_S,"KC_PERIOD",ge::GEInput::KC_PERIOD);
+    tolua_constant(tolua_S,"KC_SLASH",ge::GEInput::KC_SLASH);
+    tolua_constant(tolua_S,"KC_RSHIFT",ge::GEInput::KC_RSHIFT);
+    tolua_constant(tolua_S,"KC_MULTIPLY",ge::GEInput::KC_MULTIPLY);
+    tolua_constant(tolua_S,"KC_LMENU",ge::GEInput::KC_LMENU);
+    tolua_constant(tolua_S,"KC_SPACE",ge::GEInput::KC_SPACE);
+    tolua_constant(tolua_S,"KC_CAPITAL",ge::GEInput::KC_CAPITAL);
+    tolua_constant(tolua_S,"KC_F1",ge::GEInput::KC_F1);
+    tolua_constant(tolua_S,"KC_F2",ge::GEInput::KC_F2);
+    tolua_constant(tolua_S,"KC_F3",ge::GEInput::KC_F3);
+    tolua_constant(tolua_S,"KC_F4",ge::GEInput::KC_F4);
+    tolua_constant(tolua_S,"KC_F5",ge::GEInput::KC_F5);
+    tolua_constant(tolua_S,"KC_F6",ge::GEInput::KC_F6);
+    tolua_constant(tolua_S,"KC_F7",ge::GEInput::KC_F7);
+    tolua_constant(tolua_S,"KC_F8",ge::GEInput::KC_F8);
+    tolua_constant(tolua_S,"KC_F9",ge::GEInput::KC_F9);
+    tolua_constant(tolua_S,"KC_F10",ge::GEInput::KC_F10);
+    tolua_constant(tolua_S,"KC_NUMLOCK",ge::GEInput::KC_NUMLOCK);
+    tolua_constant(tolua_S,"KC_SCROLL",ge::GEInput::KC_SCROLL);
+    tolua_constant(tolua_S,"KC_NUMPAD7",ge::GEInput::KC_NUMPAD7);
+    tolua_constant(tolua_S,"KC_NUMPAD8",ge::GEInput::KC_NUMPAD8);
+    tolua_constant(tolua_S,"KC_NUMPAD9",ge::GEInput::KC_NUMPAD9);
+    tolua_constant(tolua_S,"KC_SUBTRACT",ge::GEInput::KC_SUBTRACT);
+    tolua_constant(tolua_S,"KC_NUMPAD4",ge::GEInput::KC_NUMPAD4);
+    tolua_constant(tolua_S,"KC_NUMPAD5",ge::GEInput::KC_NUMPAD5);
+    tolua_constant(tolua_S,"KC_NUMPAD6",ge::GEInput::KC_NUMPAD6);
+    tolua_constant(tolua_S,"KC_ADD",ge::GEInput::KC_ADD);
+    tolua_constant(tolua_S,"KC_NUMPAD1",ge::GEInput::KC_NUMPAD1);
+    tolua_constant(tolua_S,"KC_NUMPAD2",ge::GEInput::KC_NUMPAD2);
+    tolua_constant(tolua_S,"KC_NUMPAD3",ge::GEInput::KC_NUMPAD3);
+    tolua_constant(tolua_S,"KC_NUMPAD0",ge::GEInput::KC_NUMPAD0);
+    tolua_constant(tolua_S,"KC_DECIMAL",ge::GEInput::KC_DECIMAL);
+    tolua_constant(tolua_S,"KC_OEM_102",ge::GEInput::KC_OEM_102);
+    tolua_constant(tolua_S,"KC_F11",ge::GEInput::KC_F11);
+    tolua_constant(tolua_S,"KC_F12",ge::GEInput::KC_F12);
+    tolua_constant(tolua_S,"KC_F13",ge::GEInput::KC_F13);
+    tolua_constant(tolua_S,"KC_F14",ge::GEInput::KC_F14);
+    tolua_constant(tolua_S,"KC_F15",ge::GEInput::KC_F15);
+    tolua_constant(tolua_S,"KC_KANA",ge::GEInput::KC_KANA);
+    tolua_constant(tolua_S,"KC_ABNT_C1",ge::GEInput::KC_ABNT_C1);
+    tolua_constant(tolua_S,"KC_CONVERT",ge::GEInput::KC_CONVERT);
+    tolua_constant(tolua_S,"KC_NOCONVERT",ge::GEInput::KC_NOCONVERT);
+    tolua_constant(tolua_S,"KC_YEN",ge::GEInput::KC_YEN);
+    tolua_constant(tolua_S,"KC_ABNT_C2",ge::GEInput::KC_ABNT_C2);
+    tolua_constant(tolua_S,"KC_NUMPADEQUALS",ge::GEInput::KC_NUMPADEQUALS);
+    tolua_constant(tolua_S,"KC_PREVTRACK",ge::GEInput::KC_PREVTRACK);
+    tolua_constant(tolua_S,"KC_AT",ge::GEInput::KC_AT);
+    tolua_constant(tolua_S,"KC_COLON",ge::GEInput::KC_COLON);
+    tolua_constant(tolua_S,"KC_UNDERLINE",ge::GEInput::KC_UNDERLINE);
+    tolua_constant(tolua_S,"KC_KANJI",ge::GEInput::KC_KANJI);
+    tolua_constant(tolua_S,"KC_STOP",ge::GEInput::KC_STOP);
+    tolua_constant(tolua_S,"KC_AX",ge::GEInput::KC_AX);
+    tolua_constant(tolua_S,"KC_UNLABELED",ge::GEInput::KC_UNLABELED);
+    tolua_constant(tolua_S,"KC_NEXTTRACK",ge::GEInput::KC_NEXTTRACK);
+    tolua_constant(tolua_S,"KC_NUMPADENTER",ge::GEInput::KC_NUMPADENTER);
+    tolua_constant(tolua_S,"KC_RCONTROL",ge::GEInput::KC_RCONTROL);
+    tolua_constant(tolua_S,"KC_MUTE",ge::GEInput::KC_MUTE);
+    tolua_constant(tolua_S,"KC_CALCULATOR",ge::GEInput::KC_CALCULATOR);
+    tolua_constant(tolua_S,"KC_PLAYPAUSE",ge::GEInput::KC_PLAYPAUSE);
+    tolua_constant(tolua_S,"KC_MEDIASTOP",ge::GEInput::KC_MEDIASTOP);
+    tolua_constant(tolua_S,"KC_VOLUMEDOWN",ge::GEInput::KC_VOLUMEDOWN);
+    tolua_constant(tolua_S,"KC_VOLUMEUP",ge::GEInput::KC_VOLUMEUP);
+    tolua_constant(tolua_S,"KC_WEBHOME",ge::GEInput::KC_WEBHOME);
+    tolua_constant(tolua_S,"KC_NUMPADCOMMA",ge::GEInput::KC_NUMPADCOMMA);
+    tolua_constant(tolua_S,"KC_DIVIDE",ge::GEInput::KC_DIVIDE);
+    tolua_constant(tolua_S,"KC_SYSRQ",ge::GEInput::KC_SYSRQ);
+    tolua_constant(tolua_S,"KC_RMENU",ge::GEInput::KC_RMENU);
+    tolua_constant(tolua_S,"KC_PAUSE",ge::GEInput::KC_PAUSE);
+    tolua_constant(tolua_S,"KC_HOME",ge::GEInput::KC_HOME);
+    tolua_constant(tolua_S,"KC_UP",ge::GEInput::KC_UP);
+    tolua_constant(tolua_S,"KC_PGUP",ge::GEInput::KC_PGUP);
+    tolua_constant(tolua_S,"KC_LEFT",ge::GEInput::KC_LEFT);
+    tolua_constant(tolua_S,"KC_RIGHT",ge::GEInput::KC_RIGHT);
+    tolua_constant(tolua_S,"KC_END",ge::GEInput::KC_END);
+    tolua_constant(tolua_S,"KC_DOWN",ge::GEInput::KC_DOWN);
+    tolua_constant(tolua_S,"KC_PGDOWN",ge::GEInput::KC_PGDOWN);
+    tolua_constant(tolua_S,"KC_INSERT",ge::GEInput::KC_INSERT);
+    tolua_constant(tolua_S,"KC_DELETE",ge::GEInput::KC_DELETE);
+    tolua_constant(tolua_S,"KC_LWIN",ge::GEInput::KC_LWIN);
+    tolua_constant(tolua_S,"KC_RWIN",ge::GEInput::KC_RWIN);
+    tolua_constant(tolua_S,"KC_APPS",ge::GEInput::KC_APPS);
+    tolua_constant(tolua_S,"KC_POWER",ge::GEInput::KC_POWER);
+    tolua_constant(tolua_S,"KC_SLEEP",ge::GEInput::KC_SLEEP);
+    tolua_constant(tolua_S,"KC_WAKE",ge::GEInput::KC_WAKE);
+    tolua_constant(tolua_S,"KC_WEBSEARCH",ge::GEInput::KC_WEBSEARCH);
+    tolua_constant(tolua_S,"KC_WEBFAVORITES",ge::GEInput::KC_WEBFAVORITES);
+    tolua_constant(tolua_S,"KC_WEBREFRESH",ge::GEInput::KC_WEBREFRESH);
+    tolua_constant(tolua_S,"KC_WEBSTOP",ge::GEInput::KC_WEBSTOP);
+    tolua_constant(tolua_S,"KC_WEBFORWARD",ge::GEInput::KC_WEBFORWARD);
+    tolua_constant(tolua_S,"KC_WEBBACK",ge::GEInput::KC_WEBBACK);
+    tolua_constant(tolua_S,"KC_MYCOMPUTER",ge::GEInput::KC_MYCOMPUTER);
+    tolua_constant(tolua_S,"KC_MAIL",ge::GEInput::KC_MAIL);
+    tolua_constant(tolua_S,"KC_MEDIASELECT",ge::GEInput::KC_MEDIASELECT);
     tolua_function(tolua_S,"get_mouse_move",tolua_luabind_ge_GEInput_get_mouse_move00);
     tolua_function(tolua_S,"get_mouse_pos",tolua_luabind_ge_GEInput_get_mouse_pos00);
     tolua_function(tolua_S,"get_key_down",tolua_luabind_ge_GEInput_get_key_down00);

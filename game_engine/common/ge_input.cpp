@@ -118,11 +118,11 @@ bool GEInput::get_mouse_pos( int& pos_x, int& pos_y )
 	return true;
 }
 
-bool GEInput::get_key_down(char key)
+bool GEInput::get_key_down(GEKeyCode key)
 {
 	unsigned _cs = current_state_;
-	bool cur_on = 0 != (keyboard_state_[_cs][(unsigned char)key] & 0x80);
-	bool old_on = 0 != (keyboard_state_[1^_cs][(unsigned char)key] & 0x80);
+	bool cur_on = 0 != (keyboard_state_[_cs][key] & 0x80);
+	bool old_on = 0 != (keyboard_state_[1^_cs][key] & 0x80);
 
 	return (cur_on) && (!old_on);
 }
@@ -136,11 +136,11 @@ bool GEInput::get_mouse_down( char button )
 	return (cur_on) && (!old_on);
 }
 
-bool GEInput::get_key_hold( char key )
+bool GEInput::get_key_hold( GEKeyCode key )
 {
 	unsigned _cs = current_state_;
-	bool cur_on = 0 != (keyboard_state_[_cs][(unsigned char)key] & 0x80);
-	bool old_on = 0 != (keyboard_state_[1^_cs][(unsigned char)key] & 0x80);
+	bool cur_on = 0 != (keyboard_state_[_cs][key] & 0x80);
+	bool old_on = 0 != (keyboard_state_[1^_cs][key] & 0x80);
 
 	return (cur_on) && (old_on);
 }
@@ -154,11 +154,11 @@ bool GEInput::get_mouse_hold( char button )
 	return (cur_on) && (old_on);
 }
 
-bool GEInput::get_key_up( char key )
+bool GEInput::get_key_up( GEKeyCode key )
 {
 	unsigned _cs = current_state_;
-	bool cur_on = 0 != (keyboard_state_[_cs][(unsigned char)key] & 0x80);
-	bool old_on = 0 != (keyboard_state_[1^_cs][(unsigned char)key] & 0x80);
+	bool cur_on = 0 != (keyboard_state_[_cs][key] & 0x80);
+	bool old_on = 0 != (keyboard_state_[1^_cs][key] & 0x80);
 
 	return (!cur_on) && (old_on);
 }

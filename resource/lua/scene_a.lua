@@ -11,10 +11,10 @@ end
 local function new_fps_text()
 	new_font = ge.GEFontManager:create_font(ge.FontType_FTFont)
 	new_font = tolua.cast(new_font, "ge::GEFontFT")
-	new_font:init("font\\simsun.ttc", 32);
+	new_font:init("font\\simsun.ttc", 18);
 	
 	new_text = ge.GEOTextFT:create()
-	rect = ge.GE_IRECT:new(0, 0, 500, 400);
+	rect = ge.GE_IRECT:new(0, 0, 0, 0);
 	new_text:set_rect(rect);
 	new_text:set_font(new_font);
 	new_text:set_text("hello lua!")
@@ -41,9 +41,30 @@ end
 
 local function scene_update_callback()
 	ge_app = ge.GEApp:get_instance()
-	fps = ge_app:get_fps()
+	ge_input = ge_app:get_input()
 
-	text_test:set_text(string.format("fps: %.2f", fps))
+	fps = ge_app:get_fps()
+	ret, mx, my = ge_input:get_mouse_pos(0, 0)
+	fps_text = string.format("fps: %.2f\n", fps)
+	fps_text = fps_text .. string.format("mouse: %d, %d\n", mx, my)
+
+	if ge_input:get_key_hold(ge.GEInput.KC_UP) then
+		fps_text = fps_text .. "U"
+	end
+
+	if ge_input:get_key_hold(ge.GEInput.KC_LEFT) then
+		fps_text = fps_text .. "L"
+	end
+
+	if ge_input:get_key_hold(ge.GEInput.KC_RIGHT) then
+		fps_text = fps_text .. "R"
+	end
+
+	if ge_input:get_key_hold(ge.GEInput.KC_DOWN) then
+		fps_text = fps_text .. "D"
+	end
+
+	text_test:set_text(fps_text)
 end
 
 scene_test = ge.GEScene:create()

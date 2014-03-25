@@ -15,7 +15,6 @@ const unsigned GEOTextFT::fvf = (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 GEOTextFT::GEOTextFT()
 : need_update_text_(true)
 , need_update_font_(true)
-, need_update_quad_(true)
 , render_object_(NULL)
 , render_char_buff_()
 {
@@ -38,8 +37,8 @@ bool GEOTextFT::set_font( GEFont* font )
 
 bool GEOTextFT::set_text( const char* text )
 {
+	if (text_ != text) need_update_text_ = true;
 	bool b_ret = GEOText::set_text(text);
-	need_update_text_ = true;
 	return b_ret;
 }
 
@@ -47,20 +46,6 @@ bool GEOTextFT::set_rect( GE_IRECT& rect )
 {
 	render_rect_ = rect;
 	need_update_quad_ = true;
-	return true;
-}
-
-bool GEOTextFT::update_quad()
-{
-	render_object_->clear_quads();
-	FOR_EACH (FT_RENDER_CHAR_LIST, render_char_buff_, char_itor)
-	{
-		GE_QUAD quad;
-		_render_char_to_quad(quad, *char_itor);
-		render_object_->add_quad(quad);
-	}
-
-	need_update_quad_ = false;
 	return true;
 }
 
@@ -75,9 +60,9 @@ bool GEOTextFT::update_text()
 	render_char_buff_.resize(wtext.length());
 	font->begin_write(&(render_char_buff_[0]), render_char_buff_.size());
 	font->write_text(wtext.c_str(), 0, 0, false);
-	int cnt = font->end_write();
+	render_char_cnt_ = font->end_write();
 
-	if (cnt) need_update_quad_ = true;
+	need_update_quad_ = true;
 	need_update_text_ = false;
 	return true;
 }
@@ -101,8 +86,21 @@ bool GEOTextFT::update_font()
 	if (texture_group == NULL) return false;
 	render_object_->set_texture_group(texture_group);
 
-	need_update_quad_ = true;
+	need_update_text_ = true;
 	need_update_font_ = false;
+	return true;
+}
+
+bool GEOTextFT::update_quad()
+{
+	render_object_->clear_quads();
+	for (int i=0; i<render_char_cnt_; ++i)
+	{
+		GE_QUAD quad;
+		_render_char_to_quad(quad, render_char_buff_[i]);
+		render_object_->add_quad(quad);
+	}
+	need_update_quad_ = false;
 	return true;
 }
 

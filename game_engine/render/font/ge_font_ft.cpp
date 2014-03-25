@@ -80,7 +80,7 @@ bool GEFreeType::span_render_outline( GEFontFT* font_obj, FT_GlyphSlot glyph_slo
 	if (stroker)
 	{
 		FT_Stroker_Set(stroker,
-			(int)(2.0f * 64),
+			(int)(1.0f * 64),
 			FT_STROKER_LINECAP_ROUND,
 			FT_STROKER_LINEJOIN_ROUND,
 			0);

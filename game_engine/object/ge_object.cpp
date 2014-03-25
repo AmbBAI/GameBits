@@ -6,6 +6,7 @@ namespace ge
 DLL_MANAGE_CLASS_IMPLEMENT(GEObject);
 
 GEObject::GEObject()
+: parent_(NULL)
 {
 	memset(&transform_, 0, sizeof(transform_));
 	transform_.sx = 1.f;
@@ -91,6 +92,18 @@ void GEObject::set_transform( GETransform& transform )
 {
 	transform_ = transform;
 	is_transform_dirty_ = true;
+}
+
+void GEObject::add_child( GEObject* obj )
+{
+	if (obj == NULL) return;
+	childs_.push_back(obj);
+	obj->set_parent(this);
+}
+
+void GEObject::set_parent( GEObject* obj )
+{
+	parent_ = obj;
 }
 
 

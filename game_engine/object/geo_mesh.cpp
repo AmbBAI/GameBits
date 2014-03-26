@@ -163,8 +163,6 @@ void GEOMesh::update( time_t delta )
 
 void GEOMesh::render( time_t delta )
 {
-	GEObject::render(delta);
-
 	LPDIRECT3DDEVICE9 p_d3d_device = ge::GEEngine::get_instance()->get_device();
 	if (p_d3d_device == NULL) return;
 

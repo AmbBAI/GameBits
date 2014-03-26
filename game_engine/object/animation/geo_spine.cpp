@@ -4,8 +4,9 @@
 #include "../../utility/ge_type.h"
 #include "../../utility/ge_vertex.h"
 #include "../../render/texture/ge_texture_manager.h"
+#include "../../render/ge_render.h"
+#include "../../render/draw/ge_draw.h"
 #include "../../render/draw/ge_draw_atlas.h"
-
 
 void _spAtlasPage_createTexture (spAtlasPage* self, const char* path) {
 	if (self == NULL) return;
@@ -91,10 +92,7 @@ void GEOSpine::update( time_t delta )
 	spSkeleton_update(p_skeleton_, delta / 1000.f);
 	spAnimationState_update(p_animation_state_, delta / 1000.f);
 	spAnimationState_apply(p_animation_state_, p_skeleton_);
-}
 
-void GEOSpine::render( time_t delta )
-{
 	if (p_skeleton_ == NULL) return;
 	spSkeleton_updateWorldTransform(p_skeleton_);
 
@@ -202,8 +200,7 @@ void GEOSpine::_do_render()
 		}
 	}
 
-	render_object_->prepare_render();
-	render_object_->draw_quads();
+	GERender::push_render(render_object_);
 }
 
 }

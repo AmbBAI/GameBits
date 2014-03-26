@@ -338,6 +338,14 @@ void GEDrawAtlas::clear_quads()
 
 bool GEDrawAtlas::draw_quads( GEREffect* effect/* = NULL*/ )
 {
+	if (need_render_update_)
+	{
+		if (!init_render()) return false;
+		if (!update_render()) return false;
+		need_render_update_ = false;
+	}
+
+
 	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_instance()->get_device();
 	if (p_d3d_device == NULL) return false;
 
@@ -395,16 +403,9 @@ bool GEDrawAtlas::draw_quads( GEREffect* effect/* = NULL*/ )
 	return true;
 }
 
-bool GEDrawAtlas::prepare_render()
+void GEDrawAtlas::render( time_t delta )
 {
-	if (need_render_update_)
-	{
-		if (!init_render()) return false;
-		if (!update_render()) return false;
-		need_render_update_ = false;
-	}
-	return true;
+	draw_quads(effect_);
 }
-
 
 }

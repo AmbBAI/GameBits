@@ -35,7 +35,6 @@ public:
 	virtual void destory();
 
 	virtual void update(time_t delta);
-	virtual void render(time_t delta);
 
 	bool set_skin(const char* skin_name);
 	bool set_mix(const char* from_ani, const char* to_ani, float duration);

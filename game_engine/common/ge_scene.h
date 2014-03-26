@@ -23,7 +23,6 @@ public:
 	virtual bool hide();
 
 	virtual void update(time_t delta);
-	virtual void render(time_t delta);
 
 	void add_object(int key, GEObject* obj);
 	void remove_object(int key);

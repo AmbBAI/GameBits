@@ -23,9 +23,7 @@ public:
 	virtual bool set_font(GEFont* font);
 	virtual bool set_rect(GE_IRECT& rect);
 
-	virtual void render(time_t delta);
-
-protected:
+	virtual void update(time_t delta);
 	virtual bool update_font();
 	virtual bool update_text();
 	virtual bool update_quad();

@@ -7,15 +7,23 @@
 namespace ge
 {
 
+class GEREffect;
 class GE_API GEDraw
 {
 	DLL_MANAGE_CLASS(GEDraw);
 
+protected:
 	GEDraw();
 	virtual ~GEDraw();
 
-private:
+public:
+	virtual void render(time_t delta);
 
+	virtual bool set_effect(GEREffect* effect);
+	virtual GEREffect* get_effect();
+
+protected:
+	GEREffect* effect_;
 };
 
 } // namespace ge

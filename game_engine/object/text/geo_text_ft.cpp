@@ -1,5 +1,6 @@
 #include "geo_text_ft.h"
 #include "../../common/ge_engine.h"
+#include "../../render/ge_render.h"
 #include "../../render/draw/ge_draw_atlas.h"
 #include "../../render/texture/ge_texture.h"
 #include "../../utility/ge_unicode.h"
@@ -93,6 +94,8 @@ bool GEOTextFT::update_font()
 
 bool GEOTextFT::update_quad()
 {
+	if (render_object_ == NULL) return false; 
+
 	render_object_->clear_quads();
 	for (int i=0; i<render_char_cnt_; ++i)
 	{
@@ -130,18 +133,13 @@ void GEOTextFT::_render_char_to_quad( GE_QUAD& out_quad, const GE_FTRenderChar& 
 	return;
 }
 
-void GEOTextFT::render( time_t delta )
+void GEOTextFT::update( time_t delta )
 {
 	if (need_update_font_) update_font();
 	if (need_update_text_) update_text();
 	if (need_update_quad_) update_quad();
 
-	if (render_object_)
-	{
-		render_object_->prepare_render();
-		render_object_->draw_quads();
-	}
-
+	GERender::push_render(render_object_);
 }
 
 }

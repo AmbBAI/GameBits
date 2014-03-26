@@ -29,7 +29,6 @@ public:
 	virtual void destory();
 
 	virtual void update(time_t delta);
-	virtual void render(time_t delta);
 
 	virtual void add_child(GEObject* obj);
 	virtual void set_parent(GEObject* obj);

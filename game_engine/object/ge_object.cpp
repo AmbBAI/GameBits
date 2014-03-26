@@ -35,16 +35,6 @@ void GEObject::update( time_t delta )
 
 }
 
-void GEObject::render( time_t delta )
-{
-	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_instance()->get_device();
-	if (p_d3d_device == NULL) return;
-	
-	get_world_transform();
-
-	p_d3d_device->SetTransform(D3DTS_WORLD, &d3d_world_transform_);
-}
-
 D3DXMATRIX& GEObject::get_world_transform()
 {
 	if (is_transform_dirty_)

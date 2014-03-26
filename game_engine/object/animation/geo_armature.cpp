@@ -62,7 +62,6 @@ void CCTextureAtlas::drawQuads()
 	ge::GEDrawAtlas* render_object = (ge::GEDrawAtlas*)m_pRenderObject;
 	if (render_object == NULL) return;
 
-	render_object->prepare_render();
 	render_object->draw_quads();
 }
 

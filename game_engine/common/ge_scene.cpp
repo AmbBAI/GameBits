@@ -102,17 +102,4 @@ void GEScene::update( time_t delta )
 	}
 }
 
-void GEScene::render( time_t delta )
-{
-	GERender* p_render = GERender::get_instance();
-	if (p_render == NULL) return;
-
-	FOR_EACH (GE_OBJECT_MAP, object_map_, obj_it)
-	{
-		GEObject* p_obj = (GEObject*)(obj_it->second);
-		if (NULL == p_obj) continue;
-		p_render->push_render(p_obj);
-	}
-}
-
 }

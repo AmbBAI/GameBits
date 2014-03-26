@@ -1,6 +1,7 @@
 #include "geo_text_bm.h"
 #include "../../common/ge_engine.h"
 #include "../../render/texture/ge_texture_manager.h"
+#include "../../render/ge_render.h"
 #include "../../render/ger_effect.h"
 #include "../../utility/ge_unicode.h"
 
@@ -147,7 +148,7 @@ void GEOTextBM::_render_char_to_quad( GE_QUAD_EX& out_quad, const bmfont::SCharR
 	return;
 }
 
-void GEOTextBM::render( time_t delta )
+void GEOTextBM::update( time_t delta )
 {
 	if (need_update_font_) update_font();
 	if (need_update_text_) update_text();
@@ -158,14 +159,10 @@ void GEOTextBM::render( time_t delta )
 			bm_font->update_effect();
 		
 		effect_->set_technique("RenderWithOutline");
-		render_object_->prepare_render();
-		render_object_->draw_quads(effect_);
+		render_object_->set_effect(effect_);
 	}
-	else
-	{
-		render_object_->prepare_render();
-		render_object_->draw_quads();
-	}
+
+	GERender::push_render(render_object_);
 }
 
 }

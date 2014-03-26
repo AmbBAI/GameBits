@@ -7,12 +7,12 @@
 namespace ge
 {
 
-class GE_API GEPrimitiveDraw
+class GE_API GEDrawPrimitive
 {
-	DLL_MANAGE_CLASS(GEPrimitiveDraw);
+	DLL_MANAGE_CLASS(GEDrawPrimitive);
 
-	GEPrimitiveDraw();
-	virtual ~GEPrimitiveDraw();
+	GEDrawPrimitive();
+	virtual ~GEDrawPrimitive();
 
 private:
 

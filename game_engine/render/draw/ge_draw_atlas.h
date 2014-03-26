@@ -3,6 +3,7 @@
 
 #include "../../common/ge_include.h"
 #include "../../utility/ge_vertex.h"
+#include "ge_draw.h"
 
 namespace ge
 {
@@ -27,7 +28,7 @@ struct GE_API GE_QUAD_EX
 
 class GETextureGroup;
 class GEREffect;
-class GE_API GEDrawAtlas
+class GE_API GEDrawAtlas : public GEDraw
 {
 	DLL_MANAGE_CLASS(GEDrawAtlas);
 
@@ -50,7 +51,6 @@ public:
 	virtual bool init_render();
 	virtual bool update_render();
 	virtual void release_render();
-	virtual bool prepare_render();
 
 	virtual bool add_quad(GE_QUAD& quad);
 	virtual bool add_quad(GE_QUAD_EX& quad);
@@ -61,6 +61,8 @@ public:
 public:
 	virtual bool init();
 	virtual void destory();
+
+	virtual void render(time_t delta);
 
 protected:
 	virtual bool _set_verties(std::vector<GE_VERTEX>& vertex_array);

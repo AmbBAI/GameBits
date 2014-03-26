@@ -3,14 +3,14 @@
 namespace ge
 {
 
-DLL_MANAGE_CLASS_IMPLEMENT(GEPrimitiveDraw);
+DLL_MANAGE_CLASS_IMPLEMENT(GEDrawPrimitive);
 
-GEPrimitiveDraw::GEPrimitiveDraw()
+GEDrawPrimitive::GEDrawPrimitive()
 {
 
 }
 
-GEPrimitiveDraw::~GEPrimitiveDraw()
+GEDrawPrimitive::~GEDrawPrimitive()
 {
 
 }

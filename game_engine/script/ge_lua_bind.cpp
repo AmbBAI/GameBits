@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 03/25/14 11:42:07.
+** Generated automatically by tolua++-1.0.92 on 03/26/14 15:32:14.
 */
 
 #ifndef __cplusplus
@@ -50,15 +50,15 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ge::GEInput");
  tolua_usertype(tolua_S,"ge::GEScene");
  tolua_usertype(tolua_S,"ge::GED3DXFont");
- tolua_usertype(tolua_S,"ge::GEOText");
+ tolua_usertype(tolua_S,"ge::GEOTextFT");
  tolua_usertype(tolua_S,"ge::GE_FRECT");
  tolua_usertype(tolua_S,"ge::GE_FPOINT");
  tolua_usertype(tolua_S,"ge::GEFontBM");
  tolua_usertype(tolua_S,"ge::GE_ISIZE");
  tolua_usertype(tolua_S,"ge::GE_IPOINT");
- tolua_usertype(tolua_S,"ge::GEOTextFT");
+ tolua_usertype(tolua_S,"ge::GEOTextBM");
  tolua_usertype(tolua_S,"ge::GE_FSIZE");
- tolua_usertype(tolua_S,"time_t");
+ tolua_usertype(tolua_S,"ge::GEOText");
  tolua_usertype(tolua_S,"ge::GEFontFT");
  tolua_usertype(tolua_S,"LUA_FUNCTION");
  tolua_usertype(tolua_S,"ge::GEOSpine");
@@ -2243,72 +2243,6 @@ static int tolua_luabind_ge_GEOSpine_destory00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: update of class  ge::GEOSpine */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOSpine_update00
-static int tolua_luabind_ge_GEOSpine_update00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ge::GEOSpine",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"time_t",0,&tolua_err)) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ge::GEOSpine* self = (ge::GEOSpine*)  tolua_tousertype(tolua_S,1,0);
-  time_t delta = *((time_t*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'update'", NULL);
-#endif
-  {
-   self->update(delta);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'update'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: render of class  ge::GEOSpine */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOSpine_render00
-static int tolua_luabind_ge_GEOSpine_render00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ge::GEOSpine",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"time_t",0,&tolua_err)) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ge::GEOSpine* self = (ge::GEOSpine*)  tolua_tousertype(tolua_S,1,0);
-  time_t delta = *((time_t*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'render'", NULL);
-#endif
-  {
-   self->render(delta);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'render'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: set_skin of class  ge::GEOSpine */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOSpine_set_skin00
 static int tolua_luabind_ge_GEOSpine_set_skin00(lua_State* tolua_S)
@@ -2742,6 +2676,132 @@ static int tolua_luabind_ge_GEOTextFT_set_rect00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'set_rect'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  ge::GEOTextBM */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOTextBM_create00
+static int tolua_luabind_ge_GEOTextBM_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEOTextBM",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GEOTextBM* tolua_ret = (ge::GEOTextBM*)  ge::GEOTextBM::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GEOTextBM");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: release of class  ge::GEOTextBM */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOTextBM_release00
+static int tolua_luabind_ge_GEOTextBM_release00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEOTextBM",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GEOTextBM",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEOTextBM* tolua_var_7 = ((ge::GEOTextBM*)  tolua_tousertype(tolua_S,2,0));
+  {
+   ge::GEOTextBM::release(&tolua_var_7);
+    tolua_pushusertype(tolua_S,(void*)tolua_var_7,"ge::GEOTextBM");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_font of class  ge::GEOTextBM */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOTextBM_set_font00
+static int tolua_luabind_ge_GEOTextBM_set_font00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEOTextBM",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GEFont",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEOTextBM* self = (ge::GEOTextBM*)  tolua_tousertype(tolua_S,1,0);
+  ge::GEFont* font = ((ge::GEFont*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_font'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->set_font(font);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_font'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_text of class  ge::GEOTextBM */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOTextBM_set_text00
+static int tolua_luabind_ge_GEOTextBM_set_text00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEOTextBM",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEOTextBM* self = (ge::GEOTextBM*)  tolua_tousertype(tolua_S,1,0);
+  const char* text = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_text'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->set_text(text);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_text'.",&tolua_err);
  return 0;
 #endif
 }
@@ -4078,8 +4138,6 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"release",tolua_luabind_ge_GEOSpine_release00);
     tolua_function(tolua_S,"init",tolua_luabind_ge_GEOSpine_init00);
     tolua_function(tolua_S,"destory",tolua_luabind_ge_GEOSpine_destory00);
-    tolua_function(tolua_S,"update",tolua_luabind_ge_GEOSpine_update00);
-    tolua_function(tolua_S,"render",tolua_luabind_ge_GEOSpine_render00);
     tolua_function(tolua_S,"set_skin",tolua_luabind_ge_GEOSpine_set_skin00);
     tolua_function(tolua_S,"set_mix",tolua_luabind_ge_GEOSpine_set_mix00);
     tolua_function(tolua_S,"set_animation",tolua_luabind_ge_GEOSpine_set_animation00);
@@ -4099,6 +4157,13 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"set_text",tolua_luabind_ge_GEOTextFT_set_text00);
     tolua_function(tolua_S,"set_font",tolua_luabind_ge_GEOTextFT_set_font00);
     tolua_function(tolua_S,"set_rect",tolua_luabind_ge_GEOTextFT_set_rect00);
+   tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GEOTextBM","ge::GEOTextBM","ge::GEOText",NULL);
+   tolua_beginmodule(tolua_S,"GEOTextBM");
+    tolua_function(tolua_S,"create",tolua_luabind_ge_GEOTextBM_create00);
+    tolua_function(tolua_S,"release",tolua_luabind_ge_GEOTextBM_release00);
+    tolua_function(tolua_S,"set_font",tolua_luabind_ge_GEOTextBM_set_font00);
+    tolua_function(tolua_S,"set_text",tolua_luabind_ge_GEOTextBM_set_text00);
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GE_IPOINT","ge::GE_IPOINT","",NULL);
    tolua_beginmodule(tolua_S,"GE_IPOINT");

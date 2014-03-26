@@ -26,11 +26,9 @@ public:
 	virtual bool set_font(GEFont* font);
 	virtual bool set_text(const char* text);
 
+	virtual void update(time_t delta);
 	virtual bool update_font();
 	virtual bool update_text();
-
-public:
-	virtual void render(time_t delta);
 
 protected:
 	void _clear_render_chars();

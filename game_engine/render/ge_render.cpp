@@ -1,7 +1,7 @@
 #include "ge_render.h"
 #include "../common/ge_app.h"
 #include "../common/ge_engine.h"
-#include "../object/ge_object.h"
+#include "draw/ge_draw.h"
 
 namespace ge
 {
@@ -60,10 +60,10 @@ void GERender::render(time_t delta)
 {
 	while (!render_task_que_.empty())
 	{
-		GEObject* p_obj = render_task_que_.front();
+		GEDraw* p_draw = render_task_que_.front();
 		render_task_que_.pop();
-		if(!p_obj) continue;
-		p_obj->render(delta);
+		if(!p_draw) continue;
+		p_draw->render(delta);
 	}
 
 	return;
@@ -141,9 +141,15 @@ DWORD GERender::get_sampler_state( D3DSAMPLERSTATETYPE type )
 	return value;
 }
 
-void GERender::push_render( GEObject* p_object )
+void GERender::_push_render( GEDraw* p_draw )
 {
-	render_task_que_.push(p_object);
+	render_task_que_.push(p_draw);
+}
+
+void GERender::push_render( GEDraw* p_draw )
+{
+	GERender* ge_render = get_instance();
+	ge_render->_push_render(p_draw);
 }
 
 }

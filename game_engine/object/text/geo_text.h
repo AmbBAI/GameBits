@@ -35,9 +35,6 @@ public:
 	virtual const char* get_text();
 
 public:
-	virtual void render(time_t delta);
-
-public:
 	std::string					text_;
 	GEFont*						font_obj_;
 };

@@ -8,17 +8,18 @@
 namespace ge
 {
 
-class GEObject;
+class GEDraw;
 class GE_API GERender
 {
 protected:
-	typedef std::queue<GEObject*> RENDER_TASK_QUE;
+	typedef std::queue<GEDraw*> RENDER_TASK_QUE;
 
 public:
 	GERender();
 	virtual ~GERender();
 
 	static GERender* get_instance();
+	static void push_render(GEDraw* p_draw);
 
 public:
 	bool init();
@@ -26,7 +27,7 @@ public:
 	void render(time_t delta);
 	void destory();
 
-	void push_render(GEObject* p_object);
+	void _push_render(GEDraw* p_draw);
 
 	virtual bool do_view_trans(D3DXVECTOR3& position, D3DXVECTOR3& target, D3DXVECTOR3& up);
 	virtual bool do_projection_trans(float fovy);

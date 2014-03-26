@@ -32,11 +32,6 @@ const char* GEOText::get_text()
 	return text_.c_str();
 }
 
-void GEOText::render( time_t delta )
-{
-
-}
-
 bool GEOText::set_font( GEFont* font )
 {
 	if (font == NULL) return false;

@@ -29,7 +29,6 @@ void GEGame::process( time_t delta )
 	}
 
 	scene_vec_[cur_scene_id_]->update(delta);
-	scene_vec_[cur_scene_id_]->render(delta);
 }
 
 int GEGame::add_scene( GEScene* ge_scene )

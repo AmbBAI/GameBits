@@ -1,5 +1,5 @@
 #include "geo_armature.h"
-#include "../../render/ge_atlas_render.h"
+#include "../../render/draw/ge_draw_atlas.h"
 #include "../../render/texture/ge_texture_manager.h"
 
 namespace CC
@@ -20,7 +20,7 @@ void CCTextureAtlas::release()
 
 void CCTextureAtlas::addQuad( const CC_PAINT_QUAD& quad )
 {
-	ge::GEAtlasRender* render_object = (ge::GEAtlasRender*)m_pRenderObject;
+	ge::GEDrawAtlas* render_object = (ge::GEDrawAtlas*)m_pRenderObject;
 	if (render_object == NULL) return;
 
 	ge::GE_QUAD_EX ge_quad;
@@ -51,7 +51,7 @@ void CCTextureAtlas::addQuad( const CC_PAINT_QUAD& quad )
 
 void CCTextureAtlas::clearQuads()
 {
-	ge::GEAtlasRender* render_object = (ge::GEAtlasRender*)m_pRenderObject;
+	ge::GEDrawAtlas* render_object = (ge::GEDrawAtlas*)m_pRenderObject;
 	if (render_object == NULL) return;
 
 	render_object->clear_quads();
@@ -59,7 +59,7 @@ void CCTextureAtlas::clearQuads()
 
 void CCTextureAtlas::drawQuads()
 {
-	ge::GEAtlasRender* render_object = (ge::GEAtlasRender*)m_pRenderObject;
+	ge::GEDrawAtlas* render_object = (ge::GEDrawAtlas*)m_pRenderObject;
 	if (render_object == NULL) return;
 
 	render_object->prepare_render();
@@ -70,8 +70,8 @@ bool CCTextureAtlas::initTexture( const char* texturePath )
 {
 	releaseTexture();
 
-	ge::GEAtlasRender* render_object = NULL;
-	render_object = ge::GEAtlasRender::create();
+	ge::GEDrawAtlas* render_object = NULL;
+	render_object = ge::GEDrawAtlas::create();
 	if (render_object == NULL) return false;
 	m_pRenderObject = render_object;
 
@@ -94,10 +94,10 @@ bool CCTextureAtlas::initTexture( const char* texturePath )
 
 void CCTextureAtlas::releaseTexture()
 {
-	ge::GEAtlasRender* render_object = (ge::GEAtlasRender*)m_pRenderObject;
+	ge::GEDrawAtlas* render_object = (ge::GEDrawAtlas*)m_pRenderObject;
 	if (render_object)
 	{
-		ge::GEAtlasRender::release(&render_object);
+		ge::GEDrawAtlas::release(&render_object);
 	}
 
 	m_pRenderObject = NULL;

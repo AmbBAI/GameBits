@@ -1,8 +1,8 @@
-#ifndef _GAME_ENGINE_RENDER_ATLAS_RENDER_H_
-#define _GAME_ENGINE_RENDER_ATLAS_RENDER_H_
+#ifndef _GAME_ENGINE_RENDER_DRAW_ATLAS_H_
+#define _GAME_ENGINE_RENDER_DRAW_ATLAS_H_
 
-#include "../common/ge_include.h"
-#include "../utility/ge_vertex.h"
+#include "../../common/ge_include.h"
+#include "../../utility/ge_vertex.h"
 
 namespace ge
 {
@@ -27,12 +27,12 @@ struct GE_API GE_QUAD_EX
 
 class GETextureGroup;
 class GEREffect;
-class GE_API GEAtlasRender
+class GE_API GEDrawAtlas
 {
-	DLL_MANAGE_CLASS(GEAtlasRender);
+	DLL_MANAGE_CLASS(GEDrawAtlas);
 
-	GEAtlasRender();
-	virtual ~GEAtlasRender();
+	GEDrawAtlas();
+	virtual ~GEDrawAtlas();
 
 public:
 	static const DWORD DEFAULT_FVF_FORMAT;
@@ -95,4 +95,4 @@ protected:
 
 } // namespace ge
 
-#endif // _GAME_ENGINE_RENDER_ATLAS_RENDER_H_
+#endif // _GAME_ENGINE_RENDER_DRAW_ATLAS_H_

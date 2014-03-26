@@ -4,7 +4,7 @@
 #include "../../utility/ge_type.h"
 #include "../../utility/ge_vertex.h"
 #include "../../render/texture/ge_texture_manager.h"
-#include "../../render/ge_atlas_render.h"
+#include "../../render/draw/ge_draw_atlas.h"
 
 
 void _spAtlasPage_createTexture (spAtlasPage* self, const char* path) {
@@ -81,7 +81,7 @@ void GEOSpine::destory()
 	p_skeleton_json_			= NULL;
 	p_atlas_					= NULL;
 
-	GEAtlasRender::release(&render_object_);
+	GEDrawAtlas::release(&render_object_);
 	page_id_map_.clear();
 }
 
@@ -138,7 +138,7 @@ bool GEOSpine::add_animation( const char* ani_name, bool loop /*= false*/, float
 
 bool GEOSpine::_init_render()
 {
-	if (render_object_ == NULL) render_object_ = GEAtlasRender::create();
+	if (render_object_ == NULL) render_object_ = GEDrawAtlas::create();
 	if (render_object_ == NULL) return false;
 
 	render_object_->set_vertex_fvf(D3DFVF_XYZ | D3DFVF_TEX1);

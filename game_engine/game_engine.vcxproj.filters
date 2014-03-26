@@ -37,6 +37,9 @@
     <Filter Include="script\tolua">
       <UniqueIdentifier>{aa63d650-138b-4907-8b4f-f54c35927fb4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="render\draw">
+      <UniqueIdentifier>{47ee7de6-eafd-4524-aeec-ff78c7a3e20f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="object\ge_object.cpp">
@@ -125,9 +128,6 @@
     </ClCompile>
     <ClCompile Include="utility\ge_vertex.cpp">
       <Filter>utility</Filter>
-    </ClCompile>
-    <ClCompile Include="render\ge_atlas_render.cpp">
-      <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="object\animation\geo_spine.cpp">
       <Filter>object\animation</Filter>
@@ -252,6 +252,15 @@
     <ClCompile Include="script\ge_lua_bind.cpp">
       <Filter>script</Filter>
     </ClCompile>
+    <ClCompile Include="render\draw\ge_draw.cpp">
+      <Filter>render\draw</Filter>
+    </ClCompile>
+    <ClCompile Include="render\draw\ge_draw_primitive.cpp">
+      <Filter>render\draw</Filter>
+    </ClCompile>
+    <ClCompile Include="render\draw\ge_draw_atlas.cpp">
+      <Filter>render\draw</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\ge_object.h">
@@ -348,9 +357,6 @@
     <ClInclude Include="utility\ge_vertex.h">
       <Filter>utility</Filter>
     </ClInclude>
-    <ClInclude Include="render\ge_atlas_render.h">
-      <Filter>render</Filter>
-    </ClInclude>
     <ClInclude Include="object\animation\geo_spine.h">
       <Filter>object\animation</Filter>
     </ClInclude>
@@ -440,6 +446,15 @@
     </ClInclude>
     <ClInclude Include="script\ge_lua_bind.h">
       <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="render\draw\ge_draw.h">
+      <Filter>render\draw</Filter>
+    </ClInclude>
+    <ClInclude Include="render\draw\ge_draw_primitive.h">
+      <Filter>render\draw</Filter>
+    </ClInclude>
+    <ClInclude Include="render\draw\ge_draw_atlas.h">
+      <Filter>render\draw</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

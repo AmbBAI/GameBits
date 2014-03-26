@@ -39,7 +39,7 @@ local function scene_destory_callback()
 	text_test = nil
 end
 
-local function scene_update_callback()
+local function scene_update_callback(delta)
 	ge_app = ge.GEApp:get_instance()
 	ge_input = ge_app:get_input()
 
@@ -49,19 +49,19 @@ local function scene_update_callback()
 	fps_text = fps_text .. string.format("mouse: %d, %d\n", mx, my)
 
 	if ge_input:get_key_hold(ge.GEInput.KC_UP) then
-		fps_text = fps_text .. "U"
+		fps_text = fps_text .. "¡ü"
 	end
 
 	if ge_input:get_key_hold(ge.GEInput.KC_LEFT) then
-		fps_text = fps_text .. "L"
+		fps_text = fps_text .. "¡û"
 	end
 
 	if ge_input:get_key_hold(ge.GEInput.KC_RIGHT) then
-		fps_text = fps_text .. "R"
+		fps_text = fps_text .. "¡ú"
 	end
 
 	if ge_input:get_key_hold(ge.GEInput.KC_DOWN) then
-		fps_text = fps_text .. "D"
+		fps_text = fps_text .. "¡ý"
 	end
 
 	text_test:set_text(fps_text)

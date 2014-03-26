@@ -1,6 +1,6 @@
 #include "geo_text_ft.h"
 #include "../../common/ge_engine.h"
-#include "../../render/ge_atlas_render.h"
+#include "../../render/draw/ge_draw_atlas.h"
 #include "../../render/texture/ge_texture.h"
 #include "../../utility/ge_unicode.h"
 
@@ -74,7 +74,7 @@ bool GEOTextFT::update_font()
 
 	if (!render_object_)
 	{
-		render_object_ = GEAtlasRender::create();
+		render_object_ = GEDrawAtlas::create();
 		if (render_object_)
 		{
 			render_object_->set_vertex_fvf(fvf);

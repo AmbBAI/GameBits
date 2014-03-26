@@ -20,7 +20,7 @@ namespace ge
 {
 
 struct GE_VERTEX_DECL;
-class GEAtlasRender;
+class GEDrawAtlas;
 class GETexture;
 
 class GE_API GEOSpine : public GEObject
@@ -55,7 +55,7 @@ private:
 	spAnimationState*		p_animation_state_;
 	spAnimationStateData*	p_animation_state_data_;
 
-	GEAtlasRender*			render_object_;
+	GEDrawAtlas*			render_object_;
 	typedef std::map<GETexture*, int> PAGE_ID_MAP;
 	PAGE_ID_MAP				page_id_map_;
 };

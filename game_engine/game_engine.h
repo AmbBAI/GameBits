@@ -11,6 +11,12 @@
 #include "render/ger_effect.h"
 #include "render/ger_material.h"
 #include "render/ger_light.h"
+#include "render/font/ge_font.h"
+#include "render/font/ge_font_bm.h"
+#include "render/draw/ge_drawbuff.h"
+#include "render/draw/ge_draw.h"
+#include "render/draw/ge_atlas_draw.h"
+#include "render/draw/ge_primitive_draw.h"
 
 #include "utility/ge_type.h"
 #include "utility/ge_vertex.h"
@@ -20,8 +26,6 @@
 #include "object/animation/geo_spine.h"
 #include "object/animation/geo_armature.h"
 
-#include "render/font/ge_font.h"
-#include "render/font/ge_font_bm.h"
 #include "object/text/geo_text_dx.h"
 #include "object/text/geo_text_gdi.h"
 #include "object/text/geo_text_bm.h"

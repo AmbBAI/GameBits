@@ -1,5 +1,5 @@
-#ifndef _GAME_ENGINE_RENDER_DRAW_PRIMITIVE_H_
-#define _GAME_ENGINE_RENDER_DRAW_PRIMITIVE_H_
+#ifndef _GAME_ENGINE_RENDER_PRIMITIVE_DRAW_H_
+#define _GAME_ENGINE_RENDER_PRIMITIVE_DRAW_H_
 
 #include "../../common/ge_include.h"
 #include "../../utility/ge_vertex.h"
@@ -33,19 +33,19 @@ public:
 };
 
 class GEDrawBuff;
-class GE_API GEDrawPrimitive
+class GE_API GEPrimitiveDraw
 {
-	DLL_MANAGE_CLASS(GEDrawPrimitive);
+	DLL_MANAGE_CLASS(GEPrimitiveDraw);
 
 	friend GEPrimitiveDrawTask;
 
 protected:
-	GEDrawPrimitive();
-	virtual ~GEDrawPrimitive();
+	GEPrimitiveDraw();
+	virtual ~GEPrimitiveDraw();
 
 public:
 	static const unsigned DEFAULT_FVF_FORMAT;
-	static GEDrawPrimitive* get_instance();
+	static GEPrimitiveDraw* get_instance();
 
 	//static bool draw_point(GE_FPOINT& point, unsigned color);
 	//static bool draw_line(GE_FPOINT& from, GE_FPOINT& to, unsigned color);
@@ -74,4 +74,4 @@ private:
 
 } // namespace ge
 
-#endif // _GAME_ENGINE_RENDER_DRAW_PRIMITIVE_H_
+#endif // _GAME_ENGINE_RENDER_PRIMITIVE_DRAW_H_

@@ -1,4 +1,4 @@
-#include "ge_draw_primitive.h"
+#include "ge_primitive_draw.h"
 #include "../ge_render.h"
 #include "ge_drawbuff.h"
 
@@ -8,7 +8,7 @@ namespace ge
 
 void GEPrimitiveDrawTask::render()
 {
-	GEDrawPrimitive* ge_draw_primitive = GEDrawPrimitive::get_instance();
+	GEPrimitiveDraw* ge_draw_primitive = GEPrimitiveDraw::get_instance();
 	switch (type)
 	{
 	case GEPrimitiveType_Point:
@@ -28,46 +28,46 @@ void GEPrimitiveDrawTask::render()
 
 
 
-DLL_MANAGE_CLASS_IMPLEMENT(GEDrawPrimitive);
+DLL_MANAGE_CLASS_IMPLEMENT(GEPrimitiveDraw);
 
 
-const unsigned GEDrawPrimitive::DEFAULT_FVF_FORMAT = (D3DFVF_XYZRHW | D3DFVF_DIFFUSE);
+const unsigned GEPrimitiveDraw::DEFAULT_FVF_FORMAT = (D3DFVF_XYZRHW | D3DFVF_DIFFUSE);
 
-GEDrawPrimitive::GEDrawPrimitive()
+GEPrimitiveDraw::GEPrimitiveDraw()
 {
 
 }
 
-GEDrawPrimitive::~GEDrawPrimitive()
+GEPrimitiveDraw::~GEPrimitiveDraw()
 {
 	_release_render();
 }
 
-GEDrawPrimitive* GEDrawPrimitive::get_instance()
+GEPrimitiveDraw* GEPrimitiveDraw::get_instance()
 {
-	static GEDrawPrimitive _global_ge_draw_primitive;
+	static GEPrimitiveDraw _global_ge_draw_primitive;
 	return &_global_ge_draw_primitive;
 }
 
-int GEDrawPrimitive::_get_cur_offset()
+int GEPrimitiveDraw::_get_cur_offset()
 {
 	return task_list_.size();
 }
 
-bool GEDrawPrimitive::_push_task( const GEPrimitiveDrawTask& task )
+bool GEPrimitiveDraw::_push_task( const GEPrimitiveDrawTask& task )
 {
 	task_list_.push_back(task);
 	GERender::push_render(&(task_list_.back()));
 	return true;
 }
 
-bool GEDrawPrimitive::_push_vertex( GE_VERTEX& vertex )
+bool GEPrimitiveDraw::_push_vertex( GE_VERTEX& vertex )
 {
 	vertex_list_.push_back(vertex);
 	return true;
 }
 
-bool GEDrawPrimitive::_init_render()
+bool GEPrimitiveDraw::_init_render()
 {
 	if (draw_buff_ == NULL)
 		draw_buff_ = GEDrawBuff::create();
@@ -80,7 +80,7 @@ bool GEDrawPrimitive::_init_render()
 	return true;
 }
 
-void GEDrawPrimitive::_release_render()
+void GEPrimitiveDraw::_release_render()
 {
 	if (draw_buff_)
 	{
@@ -90,9 +90,9 @@ void GEDrawPrimitive::_release_render()
 	draw_buff_ = NULL;
 }
 
-bool GEDrawPrimitive::draw_rect( GE_FRECT& rect, unsigned color )
+bool GEPrimitiveDraw::draw_rect( GE_FRECT& rect, unsigned color )
 {
-	GEDrawPrimitive* ge_draw_primitive = get_instance();
+	GEPrimitiveDraw* ge_draw_primitive = get_instance();
 
 	GEPrimitiveDrawTask task;
 	task.offset = ge_draw_primitive->_get_cur_offset();
@@ -124,7 +124,7 @@ bool GEDrawPrimitive::draw_rect( GE_FRECT& rect, unsigned color )
 	return true;
 }
 
-bool GEDrawPrimitive::_draw_line_strip( GEPrimitiveDrawTask* task )
+bool GEPrimitiveDraw::_draw_line_strip( GEPrimitiveDrawTask* task )
 {
 	if (!_init_render()) return false;
 

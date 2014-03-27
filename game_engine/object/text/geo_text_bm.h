@@ -4,13 +4,13 @@
 #include "../ge_object.h"
 #include "../../render/font/bm_font/bm_font.h"
 #include "../../render/font/ge_font_bm.h"
-#include "../../render/draw/ge_draw_atlas.h"
+#include "../../render/draw/ge_atlas_draw.h"
 #include "geo_text.h"
 
 namespace ge
 {
 
-class GEDrawAtlas;
+class GEAtlasDraw;
 class GEREffect;
 class GE_API GEOTextBM : public GEOText
 {
@@ -38,7 +38,7 @@ protected:
 private:
 	typedef std::vector<bmfont::SCharRenderObject>	RENDER_CHAR_LIST;
 
-	GEDrawAtlas*				render_object_;
+	GEAtlasDraw*				render_object_;
 	RENDER_CHAR_LIST			render_chars_;
 	int							render_char_cnt_;
 

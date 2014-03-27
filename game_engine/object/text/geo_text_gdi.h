@@ -9,7 +9,7 @@
 namespace ge
 {
 
-class GEDrawAtlas;
+class GEAtlasDraw;
 
 class GE_API GEOTextGDI : public GEOText
 {
@@ -52,7 +52,7 @@ private:
 	HBITMAP			h_bitmap_;
 	HDC				h_dc_;
 
-	GEDrawAtlas*	render_object_;
+	GEAtlasDraw*	render_object_;
 
 	bool			need_update_quad_;
 	bool			need_update_text_;

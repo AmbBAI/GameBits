@@ -255,13 +255,13 @@
     <ClCompile Include="render\draw\ge_draw.cpp">
       <Filter>render\draw</Filter>
     </ClCompile>
-    <ClCompile Include="render\draw\ge_draw_primitive.cpp">
-      <Filter>render\draw</Filter>
-    </ClCompile>
-    <ClCompile Include="render\draw\ge_draw_atlas.cpp">
-      <Filter>render\draw</Filter>
-    </ClCompile>
     <ClCompile Include="render\draw\ge_drawbuff.cpp">
+      <Filter>render\draw</Filter>
+    </ClCompile>
+    <ClCompile Include="render\draw\ge_atlas_draw.cpp">
+      <Filter>render\draw</Filter>
+    </ClCompile>
+    <ClCompile Include="render\draw\ge_primitive_draw.cpp">
       <Filter>render\draw</Filter>
     </ClCompile>
   </ItemGroup>
@@ -453,13 +453,13 @@
     <ClInclude Include="render\draw\ge_draw.h">
       <Filter>render\draw</Filter>
     </ClInclude>
-    <ClInclude Include="render\draw\ge_draw_primitive.h">
-      <Filter>render\draw</Filter>
-    </ClInclude>
-    <ClInclude Include="render\draw\ge_draw_atlas.h">
-      <Filter>render\draw</Filter>
-    </ClInclude>
     <ClInclude Include="render\draw\ge_drawbuff.h">
+      <Filter>render\draw</Filter>
+    </ClInclude>
+    <ClInclude Include="render\draw\ge_atlas_draw.h">
+      <Filter>render\draw</Filter>
+    </ClInclude>
+    <ClInclude Include="render\draw\ge_primitive_draw.h">
       <Filter>render\draw</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,7 +3,7 @@
 
 #include "geo_text.h"
 #include "../../render/font/ge_font_ft.h"
-#include "../../render/draw/ge_draw_atlas.h"
+#include "../../render/draw/ge_atlas_draw.h"
 
 namespace ge
 {
@@ -40,7 +40,7 @@ private:
 	bool					need_update_font_;
 	bool					need_update_quad_;
 
-	GEDrawAtlas*			render_object_;
+	GEAtlasDraw*			render_object_;
 	GE_IRECT				render_rect_;
 };
 

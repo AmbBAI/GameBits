@@ -107,8 +107,8 @@
     <ClCompile Include="object\text\geo_text_dx.cpp" />
     <ClCompile Include="object\text\geo_text_ft.cpp" />
     <ClCompile Include="render\draw\ge_draw.cpp" />
-    <ClCompile Include="render\draw\ge_draw_atlas.cpp" />
-    <ClCompile Include="render\draw\ge_draw_primitive.cpp" />
+    <ClCompile Include="render\draw\ge_atlas_draw.cpp" />
+    <ClCompile Include="render\draw\ge_primitive_draw.cpp" />
     <ClCompile Include="render\draw\ge_drawbuff.cpp" />
     <ClCompile Include="render\font\bm_font\bm_font.cpp" />
     <ClCompile Include="render\font\bm_font\bm_unicode.cpp" />
@@ -184,8 +184,8 @@
     <ClInclude Include="object\text\geo_text_dx.h" />
     <ClInclude Include="object\text\geo_text_ft.h" />
     <ClInclude Include="render\draw\ge_draw.h" />
-    <ClInclude Include="render\draw\ge_draw_atlas.h" />
-    <ClInclude Include="render\draw\ge_draw_primitive.h" />
+    <ClInclude Include="render\draw\ge_atlas_draw.h" />
+    <ClInclude Include="render\draw\ge_primitive_draw.h" />
     <ClInclude Include="render\draw\ge_drawbuff.h" />
     <ClInclude Include="render\font\bm_font\bm_font.h" />
     <ClInclude Include="render\font\bm_font\bm_unicode.h" />

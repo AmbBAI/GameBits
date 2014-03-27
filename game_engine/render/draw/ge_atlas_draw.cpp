@@ -1,4 +1,4 @@
-#include "ge_draw_atlas.h"
+#include "ge_atlas_draw.h"
 #include "../../common/ge_engine.h"
 #include "../../render/texture/ge_texture_manager.h"
 #include "../../render/ger_effect.h"
@@ -7,11 +7,11 @@
 namespace ge
 {
 
-DLL_MANAGE_CLASS_IMPLEMENT(GEDrawAtlas);
+DLL_MANAGE_CLASS_IMPLEMENT(GEAtlasDraw);
 
-const DWORD GEDrawAtlas::DEFAULT_FVF_FORMAT = (D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+const DWORD GEAtlasDraw::DEFAULT_FVF_FORMAT = (D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 
-GEDrawAtlas::GEDrawAtlas()
+GEAtlasDraw::GEAtlasDraw()
 : draw_buff_(NULL)
 , vertex_list_()
 , vertex_decl_(NULL)
@@ -21,17 +21,17 @@ GEDrawAtlas::GEDrawAtlas()
 	set_vertex_fvf(DEFAULT_FVF_FORMAT);
 }
 
-GEDrawAtlas::~GEDrawAtlas()
+GEAtlasDraw::~GEAtlasDraw()
 {
 	destory();
 }
 
-bool GEDrawAtlas::init()
+bool GEAtlasDraw::init()
 {
 	return true;
 }
 
-void GEDrawAtlas::destory()
+void GEAtlasDraw::destory()
 {
 	release_render();
 	release_texture_group();
@@ -39,7 +39,7 @@ void GEDrawAtlas::destory()
 	vertex_decl_ = NULL;
 }
 
-bool GEDrawAtlas::init_texture_group()
+bool GEAtlasDraw::init_texture_group()
 {
 	if (texture_group_ == NULL)
 		texture_group_ = GETextureGroup::create();
@@ -48,7 +48,7 @@ bool GEDrawAtlas::init_texture_group()
 	return true;
 }
 
-bool GEDrawAtlas::set_texture_group( GETextureGroup* texture_group )
+bool GEAtlasDraw::set_texture_group( GETextureGroup* texture_group )
 {
 	release_texture_group();
 	texture_group_ = texture_group;
@@ -56,12 +56,12 @@ bool GEDrawAtlas::set_texture_group( GETextureGroup* texture_group )
 	return true;
 }
 
-GETextureGroup* GEDrawAtlas::get_texture_group()
+GETextureGroup* GEAtlasDraw::get_texture_group()
 {
 	return texture_group_;
 }
 
-void GEDrawAtlas::release_texture_group()
+void GEAtlasDraw::release_texture_group()
 {
 	if (texture_group_)
 	{
@@ -70,12 +70,12 @@ void GEDrawAtlas::release_texture_group()
 	}
 }
 
-bool GEDrawAtlas::set_vertex_fvf( DWORD fvf )
+bool GEAtlasDraw::set_vertex_fvf( DWORD fvf )
 {
 	return set_vertex_decl(GEVertexDecl::get_vertex_decl(fvf));
 }
 
-bool GEDrawAtlas::set_vertex_decl( GE_VERTEX_DECL* vertex_decl )
+bool GEAtlasDraw::set_vertex_decl( GE_VERTEX_DECL* vertex_decl )
 {
 	if (vertex_decl == NULL) return false;
 	if (!vertex_decl->is_valid()) return false;
@@ -86,12 +86,12 @@ bool GEDrawAtlas::set_vertex_decl( GE_VERTEX_DECL* vertex_decl )
 	return true;
 }
 
-GE_VERTEX_DECL* GEDrawAtlas::get_vertex_decl()
+GE_VERTEX_DECL* GEAtlasDraw::get_vertex_decl()
 {
 	return vertex_decl_;
 }
 
-bool GEDrawAtlas::init_render()
+bool GEAtlasDraw::init_render()
 {
 	if (draw_buff_ == NULL)
 		draw_buff_ = GEDrawBuff::create();
@@ -101,13 +101,13 @@ bool GEDrawAtlas::init_render()
 	return draw_buff_->init_quad_buff(vertex_list_.size() / 4);
 }
 
-bool GEDrawAtlas::update_render()
+bool GEAtlasDraw::update_render()
 {
 	if (draw_buff_ == NULL) return false;
 	return draw_buff_->set_verties(&vertex_list_[0], vertex_list_.size());
 }
 
-bool GEDrawAtlas::_update_render_task( int quad_index, int texture_id )
+bool GEAtlasDraw::_update_render_task( int quad_index, int texture_id )
 {
 	int current_task = render_task_list_.size() - 1;
 
@@ -138,7 +138,7 @@ bool GEDrawAtlas::_update_render_task( int quad_index, int texture_id )
 	return true;
 }
 
-void GEDrawAtlas::release_render()
+void GEAtlasDraw::release_render()
 {
 	if (draw_buff_)
 	{
@@ -148,7 +148,7 @@ void GEDrawAtlas::release_render()
 	draw_buff_ = NULL;
 }
 
-bool GEDrawAtlas::add_quad( GE_QUAD_EX& quad )
+bool GEAtlasDraw::add_quad( GE_QUAD_EX& quad )
 {
 	if (vertex_decl_ != quad.tl.get_decl()) return false;
 	if (vertex_decl_ != quad.tr.get_decl()) return false;
@@ -169,7 +169,7 @@ bool GEDrawAtlas::add_quad( GE_QUAD_EX& quad )
 	return true;
 }
 
-bool GEDrawAtlas::add_quad( GE_QUAD& quad )
+bool GEAtlasDraw::add_quad( GE_QUAD& quad )
 {
 	int quad_index = vertex_list_.size() / 4;
 	int texture_id = quad.texid;
@@ -189,7 +189,7 @@ bool GEDrawAtlas::add_quad( GE_QUAD& quad )
 	return true;
 }
 
-bool GEDrawAtlas::add_quad( int texture_id /*= 0*/ )
+bool GEAtlasDraw::add_quad( int texture_id /*= 0*/ )
 {
 	if (texture_group_ == NULL) return false;
 
@@ -234,14 +234,14 @@ bool GEDrawAtlas::add_quad( int texture_id /*= 0*/ )
 	return add_quad(out_quad);
 }
 
-void GEDrawAtlas::clear_quads()
+void GEAtlasDraw::clear_quads()
 {
 	vertex_list_.clear();
 	render_task_list_.clear();
 	need_render_update_ = true;
 }
 
-bool GEDrawAtlas::draw_quads( GEREffect* effect/* = NULL*/ )
+bool GEAtlasDraw::draw_quads( GEREffect* effect/* = NULL*/ )
 {
 	if (need_render_update_)
 	{
@@ -300,7 +300,7 @@ bool GEDrawAtlas::draw_quads( GEREffect* effect/* = NULL*/ )
 	return true;
 }
 
-void GEDrawAtlas::render()
+void GEAtlasDraw::render()
 {
 	draw_quads(effect_);
 }

@@ -63,7 +63,7 @@ void GERender::render(time_t delta)
 		GEDraw* p_draw = render_task_que_.front();
 		render_task_que_.pop();
 		if(!p_draw) continue;
-		p_draw->render(delta);
+		p_draw->render();
 	}
 
 	return;

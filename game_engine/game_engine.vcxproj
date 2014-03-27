@@ -109,6 +109,7 @@
     <ClCompile Include="render\draw\ge_draw.cpp" />
     <ClCompile Include="render\draw\ge_draw_atlas.cpp" />
     <ClCompile Include="render\draw\ge_draw_primitive.cpp" />
+    <ClCompile Include="render\draw\ge_drawbuff.cpp" />
     <ClCompile Include="render\font\bm_font\bm_font.cpp" />
     <ClCompile Include="render\font\bm_font\bm_unicode.cpp" />
     <ClCompile Include="render\font\ge_font_bm.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="render\draw\ge_draw.h" />
     <ClInclude Include="render\draw\ge_draw_atlas.h" />
     <ClInclude Include="render\draw\ge_draw_primitive.h" />
+    <ClInclude Include="render\draw\ge_drawbuff.h" />
     <ClInclude Include="render\font\bm_font\bm_font.h" />
     <ClInclude Include="render\font\bm_font\bm_unicode.h" />
     <ClInclude Include="render\font\ge_font_bm.h" />

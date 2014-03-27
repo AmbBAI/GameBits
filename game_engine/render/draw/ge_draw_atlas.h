@@ -28,6 +28,7 @@ struct GE_API GE_QUAD_EX
 
 class GETextureGroup;
 class GEREffect;
+class GEDrawBuff;
 class GE_API GEDrawAtlas : public GEDraw
 {
 	DLL_MANAGE_CLASS(GEDrawAtlas);
@@ -62,12 +63,9 @@ public:
 	virtual bool init();
 	virtual void destory();
 
-	virtual void render(time_t delta);
+	virtual void render();
 
 protected:
-	virtual bool _set_verties(std::vector<GE_VERTEX>& vertex_array);
-	virtual bool _set_indices(std::vector<WORD>& index_array);
-
 	virtual bool _update_render_task(int quad_index, int texture_id);
 
 protected:
@@ -90,9 +88,7 @@ protected:
 	typedef std::vector<QUAD_RENDER_TASK> QUAD_RENDER_TASK_LIST;	
 	QUAD_RENDER_TASK_LIST	render_task_list_;
 
-	LPDIRECT3DVERTEXBUFFER9	dx_vertex_buff_;
-	LPDIRECT3DINDEXBUFFER9	dx_index_buff_;
-	int						dx_quads_cnt_;
+	GEDrawBuff*			draw_buff_;
 };
 
 } // namespace ge

@@ -16,7 +16,7 @@ GEDraw::~GEDraw()
 
 }
 
-void GEDraw::render( time_t delta )
+void GEDraw::render()
 {
 
 }

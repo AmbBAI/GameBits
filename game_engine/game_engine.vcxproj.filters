@@ -261,6 +261,9 @@
     <ClCompile Include="render\draw\ge_draw_atlas.cpp">
       <Filter>render\draw</Filter>
     </ClCompile>
+    <ClCompile Include="render\draw\ge_drawbuff.cpp">
+      <Filter>render\draw</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\ge_object.h">
@@ -454,6 +457,9 @@
       <Filter>render\draw</Filter>
     </ClInclude>
     <ClInclude Include="render\draw\ge_draw_atlas.h">
+      <Filter>render\draw</Filter>
+    </ClInclude>
+    <ClInclude Include="render\draw\ge_drawbuff.h">
       <Filter>render\draw</Filter>
     </ClInclude>
   </ItemGroup>

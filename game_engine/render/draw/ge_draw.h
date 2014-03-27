@@ -17,7 +17,7 @@ protected:
 	virtual ~GEDraw();
 
 public:
-	virtual void render(time_t delta);
+	virtual void render();
 
 	virtual bool set_effect(GEREffect* effect);
 	virtual GEREffect* get_effect();

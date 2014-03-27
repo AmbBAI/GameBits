@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 03/26/14 15:32:14.
+** Generated automatically by tolua++-1.0.92 on 03/27/14 18:42:52.
 */
 
 #ifndef __cplusplus
@@ -18,6 +18,13 @@ TOLUA_API int  tolua_luabind_open (lua_State* tolua_S);
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
+
+static int tolua_collect_ge__GE_VERTEX_DECL (lua_State* tolua_S)
+{
+ ge::GE_VERTEX_DECL* self = (ge::GE_VERTEX_DECL*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
 
 static int tolua_collect_ge__GE_IRECT (lua_State* tolua_S)
 {
@@ -38,32 +45,45 @@ static int tolua_collect_ge__GE_FRECT (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"ge::GEGDIFont");
- tolua_usertype(tolua_S,"ge::GEObject");
- tolua_usertype(tolua_S,"ge::GETextureGroup");
- tolua_usertype(tolua_S,"ge::GETextureManager");
- tolua_usertype(tolua_S,"ge::GEGame");
- tolua_usertype(tolua_S,"ge::GEFont");
- tolua_usertype(tolua_S,"ge::GEApp");
- tolua_usertype(tolua_S,"ge::GETexture");
- tolua_usertype(tolua_S,"ge::GEFontManager");
- tolua_usertype(tolua_S,"ge::GEInput");
- tolua_usertype(tolua_S,"ge::GEScene");
- tolua_usertype(tolua_S,"ge::GED3DXFont");
- tolua_usertype(tolua_S,"ge::GEOTextFT");
- tolua_usertype(tolua_S,"ge::GE_FRECT");
- tolua_usertype(tolua_S,"ge::GE_FPOINT");
- tolua_usertype(tolua_S,"ge::GEFontBM");
- tolua_usertype(tolua_S,"ge::GE_ISIZE");
  tolua_usertype(tolua_S,"ge::GE_IPOINT");
- tolua_usertype(tolua_S,"ge::GEOTextBM");
+ tolua_usertype(tolua_S,"ge::GETextureGroup");
+ tolua_usertype(tolua_S,"ge::GEPrimitiveDraw");
+ tolua_usertype(tolua_S,"ge::GETextureManager");
+ tolua_usertype(tolua_S,"ge::GE_VERTEX_DECL");
+ tolua_usertype(tolua_S,"ge::GE_FPOINT");
+ tolua_usertype(tolua_S,"ge::GEDraw");
+ tolua_usertype(tolua_S,"ge::GEOTextFT");
+ tolua_usertype(tolua_S,"ge::GEDrawBuff");
+ tolua_usertype(tolua_S,"ge::GEAtlasDraw");
+ tolua_usertype(tolua_S,"UINT");
  tolua_usertype(tolua_S,"ge::GE_FSIZE");
- tolua_usertype(tolua_S,"ge::GEOText");
  tolua_usertype(tolua_S,"ge::GEFontFT");
  tolua_usertype(tolua_S,"LUA_FUNCTION");
- tolua_usertype(tolua_S,"ge::GEOSpine");
+ tolua_usertype(tolua_S,"ge::GEVertexDecl");
  tolua_usertype(tolua_S,"ge::GE_IRECT");
+ tolua_usertype(tolua_S,"ge::GEGDIFont");
+ tolua_usertype(tolua_S,"ge::GEOSpine");
+ tolua_usertype(tolua_S,"ge::GEGame");
+ tolua_usertype(tolua_S,"ge::GEFont");
  tolua_usertype(tolua_S,"ge::GESurface");
+ tolua_usertype(tolua_S,"DWORD");
+ tolua_usertype(tolua_S,"ge::GE_QUAD_EX");
+ tolua_usertype(tolua_S,"ge::GEInput");
+ tolua_usertype(tolua_S,"ge::GEScene");
+ tolua_usertype(tolua_S,"D3DCOLOR");
+ tolua_usertype(tolua_S,"ge::GE_FRECT");
+ tolua_usertype(tolua_S,"ge::GE_VERTEX");
+ tolua_usertype(tolua_S,"ge::GEObject");
+ tolua_usertype(tolua_S,"ge::GEApp");
+ tolua_usertype(tolua_S,"ge::GETexture");
+ tolua_usertype(tolua_S,"ge::GEFontBM");
+ tolua_usertype(tolua_S,"ge::GE_QUAD");
+ tolua_usertype(tolua_S,"ge::GEFontManager");
+ tolua_usertype(tolua_S,"ge::GE_ISIZE");
+ tolua_usertype(tolua_S,"ge::GED3DXFont");
+ tolua_usertype(tolua_S,"ge::GEOTextBM");
+ tolua_usertype(tolua_S,"ge::GEOText");
+ tolua_usertype(tolua_S,"ge::GEREffect");
 }
 
 /* method: get_instance of class  ge::GEApp */
@@ -2055,6 +2075,1469 @@ static int tolua_luabind_ge_GEFontFT_set_size00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: create of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_create00
+static int tolua_luabind_ge_GEDrawBuff_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GEDrawBuff* tolua_ret = (ge::GEDrawBuff*)  ge::GEDrawBuff::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GEDrawBuff");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: release of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_release00
+static int tolua_luabind_ge_GEDrawBuff_release00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* tolua_var_5 = ((ge::GEDrawBuff*)  tolua_tousertype(tolua_S,2,0));
+  {
+   ge::GEDrawBuff::release(&tolua_var_5);
+    tolua_pushusertype(tolua_S,(void*)tolua_var_5,"ge::GEDrawBuff");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_vertex_decl of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_set_vertex_decl00
+static int tolua_luabind_ge_GEDrawBuff_set_vertex_decl00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GE_VERTEX_DECL",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+  ge::GE_VERTEX_DECL* decl = ((ge::GE_VERTEX_DECL*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_vertex_decl'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->set_vertex_decl(decl);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_vertex_decl'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_vertex_decl of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_get_vertex_decl00
+static int tolua_luabind_ge_GEDrawBuff_get_vertex_decl00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_vertex_decl'", NULL);
+#endif
+  {
+   ge::GE_VERTEX_DECL* tolua_ret = (ge::GE_VERTEX_DECL*)  self->get_vertex_decl();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_VERTEX_DECL");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_vertex_decl'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: init_vertex_buff of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_init_vertex_buff00
+static int tolua_luabind_ge_GEDrawBuff_init_vertex_buff00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+  int vertex_cnt = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'init_vertex_buff'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->init_vertex_buff(vertex_cnt);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'init_vertex_buff'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: init_index_buff of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_init_index_buff00
+static int tolua_luabind_ge_GEDrawBuff_init_index_buff00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+  int index_cnt = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'init_index_buff'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->init_index_buff(index_cnt);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'init_index_buff'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: init_quad_buff of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_init_quad_buff00
+static int tolua_luabind_ge_GEDrawBuff_init_quad_buff00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+  int quad_cnt = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'init_quad_buff'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->init_quad_buff(quad_cnt);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'init_quad_buff'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: destory_vertex_buff of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_destory_vertex_buff00
+static int tolua_luabind_ge_GEDrawBuff_destory_vertex_buff00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'destory_vertex_buff'", NULL);
+#endif
+  {
+   self->destory_vertex_buff();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'destory_vertex_buff'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: destory_index_buff of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_destory_index_buff00
+static int tolua_luabind_ge_GEDrawBuff_destory_index_buff00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'destory_index_buff'", NULL);
+#endif
+  {
+   self->destory_index_buff();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'destory_index_buff'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: destory_buff of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_destory_buff00
+static int tolua_luabind_ge_GEDrawBuff_destory_buff00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'destory_buff'", NULL);
+#endif
+  {
+   self->destory_buff();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'destory_buff'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: prepare_drawbuff of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_prepare_drawbuff00
+static int tolua_luabind_ge_GEDrawBuff_prepare_drawbuff00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'prepare_drawbuff'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->prepare_drawbuff();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'prepare_drawbuff'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_verties of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_set_verties00
+static int tolua_luabind_ge_GEDrawBuff_set_verties00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GE_VERTEX",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+  ge::GE_VERTEX* verties = ((ge::GE_VERTEX*)  tolua_tousertype(tolua_S,2,0));
+  int size = ((int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_verties'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->set_verties(verties,size);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_verties'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_indices of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_set_indices00
+static int tolua_luabind_ge_GEDrawBuff_set_indices00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+  unsigned short indices = ((unsigned short)  tolua_tonumber(tolua_S,2,0));
+  int size = ((int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_indices'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->set_indices(&indices,size);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+   tolua_pushnumber(tolua_S,(lua_Number)indices);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_indices'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  ge::GEDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDraw_create00
+static int tolua_luabind_ge_GEDraw_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GEDraw* tolua_ret = (ge::GEDraw*)  ge::GEDraw::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GEDraw");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: release of class  ge::GEDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDraw_release00
+static int tolua_luabind_ge_GEDraw_release00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEDraw",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GEDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDraw* tolua_var_6 = ((ge::GEDraw*)  tolua_tousertype(tolua_S,2,0));
+  {
+   ge::GEDraw::release(&tolua_var_6);
+    tolua_pushusertype(tolua_S,(void*)tolua_var_6,"ge::GEDraw");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_effect of class  ge::GEDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDraw_set_effect00
+static int tolua_luabind_ge_GEDraw_set_effect00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDraw",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GEREffect",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDraw* self = (ge::GEDraw*)  tolua_tousertype(tolua_S,1,0);
+  ge::GEREffect* effect = ((ge::GEREffect*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_effect'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->set_effect(effect);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_effect'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_effect of class  ge::GEDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDraw_get_effect00
+static int tolua_luabind_ge_GEDraw_get_effect00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDraw* self = (ge::GEDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_effect'", NULL);
+#endif
+  {
+   ge::GEREffect* tolua_ret = (ge::GEREffect*)  self->get_effect();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GEREffect");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_effect'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: xys of class  ge::GE_QUAD */
+#ifndef TOLUA_DISABLE_tolua_get_luabind_ge_GE_QUAD_xys
+static int tolua_get_luabind_ge_GE_QUAD_xys(lua_State* tolua_S)
+{
+ int tolua_index;
+  ge::GE_QUAD* self;
+ lua_pushstring(tolua_S,".self");
+ lua_rawget(tolua_S,1);
+ self = (ge::GE_QUAD*)  lua_touserdata(tolua_S,-1);
+#ifndef TOLUA_RELEASE
+ {
+  tolua_Error tolua_err;
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
+ }
+#endif
+ tolua_index = (int)tolua_tonumber(tolua_S,2,0);
+#ifndef TOLUA_RELEASE
+ if (tolua_index<0 || tolua_index>=8)
+  tolua_error(tolua_S,"array indexing out of range.",NULL);
+#endif
+ tolua_pushnumber(tolua_S,(lua_Number)self->xys[tolua_index]);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: xys of class  ge::GE_QUAD */
+#ifndef TOLUA_DISABLE_tolua_set_luabind_ge_GE_QUAD_xys
+static int tolua_set_luabind_ge_GE_QUAD_xys(lua_State* tolua_S)
+{
+ int tolua_index;
+  ge::GE_QUAD* self;
+ lua_pushstring(tolua_S,".self");
+ lua_rawget(tolua_S,1);
+ self = (ge::GE_QUAD*)  lua_touserdata(tolua_S,-1);
+#ifndef TOLUA_RELEASE
+ {
+  tolua_Error tolua_err;
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
+ }
+#endif
+ tolua_index = (int)tolua_tonumber(tolua_S,2,0);
+#ifndef TOLUA_RELEASE
+ if (tolua_index<0 || tolua_index>=8)
+  tolua_error(tolua_S,"array indexing out of range.",NULL);
+#endif
+  self->xys[tolua_index] = ((float)  tolua_tonumber(tolua_S,3,0));
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: rhw of class  ge::GE_QUAD */
+#ifndef TOLUA_DISABLE_tolua_get_ge__GE_QUAD_rhw
+static int tolua_get_ge__GE_QUAD_rhw(lua_State* tolua_S)
+{
+  ge::GE_QUAD* self = (ge::GE_QUAD*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'rhw'",NULL);
+#endif
+  tolua_pushnumber(tolua_S,(lua_Number)self->rhw);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: rhw of class  ge::GE_QUAD */
+#ifndef TOLUA_DISABLE_tolua_set_ge__GE_QUAD_rhw
+static int tolua_set_ge__GE_QUAD_rhw(lua_State* tolua_S)
+{
+  ge::GE_QUAD* self = (ge::GE_QUAD*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'rhw'",NULL);
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->rhw = ((float)  tolua_tonumber(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: color of class  ge::GE_QUAD */
+#ifndef TOLUA_DISABLE_tolua_get_ge__GE_QUAD_color
+static int tolua_get_ge__GE_QUAD_color(lua_State* tolua_S)
+{
+  ge::GE_QUAD* self = (ge::GE_QUAD*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'color'",NULL);
+#endif
+  tolua_pushnumber(tolua_S,(lua_Number)self->color);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: color of class  ge::GE_QUAD */
+#ifndef TOLUA_DISABLE_tolua_set_ge__GE_QUAD_color
+static int tolua_set_ge__GE_QUAD_color(lua_State* tolua_S)
+{
+  ge::GE_QUAD* self = (ge::GE_QUAD*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'color'",NULL);
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->color = ((unsigned)  tolua_tonumber(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: texid of class  ge::GE_QUAD */
+#ifndef TOLUA_DISABLE_tolua_get_ge__GE_QUAD_texid
+static int tolua_get_ge__GE_QUAD_texid(lua_State* tolua_S)
+{
+  ge::GE_QUAD* self = (ge::GE_QUAD*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'texid'",NULL);
+#endif
+  tolua_pushnumber(tolua_S,(lua_Number)self->texid);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: texid of class  ge::GE_QUAD */
+#ifndef TOLUA_DISABLE_tolua_set_ge__GE_QUAD_texid
+static int tolua_set_ge__GE_QUAD_texid(lua_State* tolua_S)
+{
+  ge::GE_QUAD* self = (ge::GE_QUAD*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'texid'",NULL);
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->texid = ((int)  tolua_tonumber(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: uvs of class  ge::GE_QUAD */
+#ifndef TOLUA_DISABLE_tolua_get_luabind_ge_GE_QUAD_uvs
+static int tolua_get_luabind_ge_GE_QUAD_uvs(lua_State* tolua_S)
+{
+ int tolua_index;
+  ge::GE_QUAD* self;
+ lua_pushstring(tolua_S,".self");
+ lua_rawget(tolua_S,1);
+ self = (ge::GE_QUAD*)  lua_touserdata(tolua_S,-1);
+#ifndef TOLUA_RELEASE
+ {
+  tolua_Error tolua_err;
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
+ }
+#endif
+ tolua_index = (int)tolua_tonumber(tolua_S,2,0);
+#ifndef TOLUA_RELEASE
+ if (tolua_index<0 || tolua_index>=8)
+  tolua_error(tolua_S,"array indexing out of range.",NULL);
+#endif
+ tolua_pushnumber(tolua_S,(lua_Number)self->uvs[tolua_index]);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: uvs of class  ge::GE_QUAD */
+#ifndef TOLUA_DISABLE_tolua_set_luabind_ge_GE_QUAD_uvs
+static int tolua_set_luabind_ge_GE_QUAD_uvs(lua_State* tolua_S)
+{
+ int tolua_index;
+  ge::GE_QUAD* self;
+ lua_pushstring(tolua_S,".self");
+ lua_rawget(tolua_S,1);
+ self = (ge::GE_QUAD*)  lua_touserdata(tolua_S,-1);
+#ifndef TOLUA_RELEASE
+ {
+  tolua_Error tolua_err;
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
+ }
+#endif
+ tolua_index = (int)tolua_tonumber(tolua_S,2,0);
+#ifndef TOLUA_RELEASE
+ if (tolua_index<0 || tolua_index>=8)
+  tolua_error(tolua_S,"array indexing out of range.",NULL);
+#endif
+  self->uvs[tolua_index] = ((float)  tolua_tonumber(tolua_S,3,0));
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: tl of class  ge::GE_QUAD_EX */
+#ifndef TOLUA_DISABLE_tolua_get_ge__GE_QUAD_EX_tl
+static int tolua_get_ge__GE_QUAD_EX_tl(lua_State* tolua_S)
+{
+  ge::GE_QUAD_EX* self = (ge::GE_QUAD_EX*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'tl'",NULL);
+#endif
+   tolua_pushusertype(tolua_S,(void*)&self->tl,"ge::GE_VERTEX");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: tl of class  ge::GE_QUAD_EX */
+#ifndef TOLUA_DISABLE_tolua_set_ge__GE_QUAD_EX_tl
+static int tolua_set_ge__GE_QUAD_EX_tl(lua_State* tolua_S)
+{
+  ge::GE_QUAD_EX* self = (ge::GE_QUAD_EX*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'tl'",NULL);
+  if ((tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_VERTEX",0,&tolua_err)))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->tl = *((ge::GE_VERTEX*)  tolua_tousertype(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: tr of class  ge::GE_QUAD_EX */
+#ifndef TOLUA_DISABLE_tolua_get_ge__GE_QUAD_EX_tr
+static int tolua_get_ge__GE_QUAD_EX_tr(lua_State* tolua_S)
+{
+  ge::GE_QUAD_EX* self = (ge::GE_QUAD_EX*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'tr'",NULL);
+#endif
+   tolua_pushusertype(tolua_S,(void*)&self->tr,"ge::GE_VERTEX");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: tr of class  ge::GE_QUAD_EX */
+#ifndef TOLUA_DISABLE_tolua_set_ge__GE_QUAD_EX_tr
+static int tolua_set_ge__GE_QUAD_EX_tr(lua_State* tolua_S)
+{
+  ge::GE_QUAD_EX* self = (ge::GE_QUAD_EX*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'tr'",NULL);
+  if ((tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_VERTEX",0,&tolua_err)))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->tr = *((ge::GE_VERTEX*)  tolua_tousertype(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: bl of class  ge::GE_QUAD_EX */
+#ifndef TOLUA_DISABLE_tolua_get_ge__GE_QUAD_EX_bl
+static int tolua_get_ge__GE_QUAD_EX_bl(lua_State* tolua_S)
+{
+  ge::GE_QUAD_EX* self = (ge::GE_QUAD_EX*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'bl'",NULL);
+#endif
+   tolua_pushusertype(tolua_S,(void*)&self->bl,"ge::GE_VERTEX");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: bl of class  ge::GE_QUAD_EX */
+#ifndef TOLUA_DISABLE_tolua_set_ge__GE_QUAD_EX_bl
+static int tolua_set_ge__GE_QUAD_EX_bl(lua_State* tolua_S)
+{
+  ge::GE_QUAD_EX* self = (ge::GE_QUAD_EX*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'bl'",NULL);
+  if ((tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_VERTEX",0,&tolua_err)))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->bl = *((ge::GE_VERTEX*)  tolua_tousertype(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: br of class  ge::GE_QUAD_EX */
+#ifndef TOLUA_DISABLE_tolua_get_ge__GE_QUAD_EX_br
+static int tolua_get_ge__GE_QUAD_EX_br(lua_State* tolua_S)
+{
+  ge::GE_QUAD_EX* self = (ge::GE_QUAD_EX*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'br'",NULL);
+#endif
+   tolua_pushusertype(tolua_S,(void*)&self->br,"ge::GE_VERTEX");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: br of class  ge::GE_QUAD_EX */
+#ifndef TOLUA_DISABLE_tolua_set_ge__GE_QUAD_EX_br
+static int tolua_set_ge__GE_QUAD_EX_br(lua_State* tolua_S)
+{
+  ge::GE_QUAD_EX* self = (ge::GE_QUAD_EX*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'br'",NULL);
+  if ((tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_VERTEX",0,&tolua_err)))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->br = *((ge::GE_VERTEX*)  tolua_tousertype(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: texid of class  ge::GE_QUAD_EX */
+#ifndef TOLUA_DISABLE_tolua_get_ge__GE_QUAD_EX_texid
+static int tolua_get_ge__GE_QUAD_EX_texid(lua_State* tolua_S)
+{
+  ge::GE_QUAD_EX* self = (ge::GE_QUAD_EX*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'texid'",NULL);
+#endif
+  tolua_pushnumber(tolua_S,(lua_Number)self->texid);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: texid of class  ge::GE_QUAD_EX */
+#ifndef TOLUA_DISABLE_tolua_set_ge__GE_QUAD_EX_texid
+static int tolua_set_ge__GE_QUAD_EX_texid(lua_State* tolua_S)
+{
+  ge::GE_QUAD_EX* self = (ge::GE_QUAD_EX*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'texid'",NULL);
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->texid = ((int)  tolua_tonumber(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_create00
+static int tolua_luabind_ge_GEAtlasDraw_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GEAtlasDraw* tolua_ret = (ge::GEAtlasDraw*)  ge::GEAtlasDraw::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GEAtlasDraw");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: release of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_release00
+static int tolua_luabind_ge_GEAtlasDraw_release00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* tolua_var_7 = ((ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,2,0));
+  {
+   ge::GEAtlasDraw::release(&tolua_var_7);
+    tolua_pushusertype(tolua_S,(void*)tolua_var_7,"ge::GEAtlasDraw");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_vertex_fvf of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_set_vertex_fvf00
+static int tolua_luabind_ge_GEAtlasDraw_set_vertex_fvf00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"DWORD",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+  DWORD fvf = *((DWORD*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_vertex_fvf'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->set_vertex_fvf(fvf);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_vertex_fvf'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_vertex_decl of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_set_vertex_decl00
+static int tolua_luabind_ge_GEAtlasDraw_set_vertex_decl00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GE_VERTEX_DECL",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+  ge::GE_VERTEX_DECL* vertex_decl = ((ge::GE_VERTEX_DECL*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_vertex_decl'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->set_vertex_decl(vertex_decl);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_vertex_decl'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_vertex_decl of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_get_vertex_decl00
+static int tolua_luabind_ge_GEAtlasDraw_get_vertex_decl00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_vertex_decl'", NULL);
+#endif
+  {
+   ge::GE_VERTEX_DECL* tolua_ret = (ge::GE_VERTEX_DECL*)  self->get_vertex_decl();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_VERTEX_DECL");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_vertex_decl'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: init_texture_group of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_init_texture_group00
+static int tolua_luabind_ge_GEAtlasDraw_init_texture_group00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'init_texture_group'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->init_texture_group();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'init_texture_group'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_texture_group of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_set_texture_group00
+static int tolua_luabind_ge_GEAtlasDraw_set_texture_group00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GETextureGroup",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+  ge::GETextureGroup* texture_group = ((ge::GETextureGroup*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_texture_group'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->set_texture_group(texture_group);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_texture_group'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_texture_group of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_get_texture_group00
+static int tolua_luabind_ge_GEAtlasDraw_get_texture_group00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_texture_group'", NULL);
+#endif
+  {
+   ge::GETextureGroup* tolua_ret = (ge::GETextureGroup*)  self->get_texture_group();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GETextureGroup");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_texture_group'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: release_texture_group of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_release_texture_group00
+static int tolua_luabind_ge_GEAtlasDraw_release_texture_group00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release_texture_group'", NULL);
+#endif
+  {
+   self->release_texture_group();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'release_texture_group'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: init_render of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_init_render00
+static int tolua_luabind_ge_GEAtlasDraw_init_render00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'init_render'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->init_render();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'init_render'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: update_render of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_update_render00
+static int tolua_luabind_ge_GEAtlasDraw_update_render00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'update_render'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->update_render();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'update_render'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: release_render of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_release_render00
+static int tolua_luabind_ge_GEAtlasDraw_release_render00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release_render'", NULL);
+#endif
+  {
+   self->release_render();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'release_render'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: add_quad of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_add_quad00
+static int tolua_luabind_ge_GEAtlasDraw_add_quad00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_QUAD",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+  ge::GE_QUAD* quad = ((ge::GE_QUAD*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'add_quad'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->add_quad(*quad);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'add_quad'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: add_quad of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_add_quad01
+static int tolua_luabind_ge_GEAtlasDraw_add_quad01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_QUAD_EX",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+  ge::GE_QUAD_EX* quad = ((ge::GE_QUAD_EX*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'add_quad'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->add_quad(*quad);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_luabind_ge_GEAtlasDraw_add_quad00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: add_quad of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_add_quad02
+static int tolua_luabind_ge_GEAtlasDraw_add_quad02(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+  int texture_id = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'add_quad'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->add_quad(texture_id);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_luabind_ge_GEAtlasDraw_add_quad01(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: clear_quads of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_clear_quads00
+static int tolua_luabind_ge_GEAtlasDraw_clear_quads00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clear_quads'", NULL);
+#endif
+  {
+   self->clear_quads();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'clear_quads'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: draw_quads of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_draw_quads00
+static int tolua_luabind_ge_GEAtlasDraw_draw_quads00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GEREffect",1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+  ge::GEREffect* effect = ((ge::GEREffect*)  tolua_tousertype(tolua_S,2,NULL));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'draw_quads'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->draw_quads(effect);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'draw_quads'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: draw_rect of class  ge::GEPrimitiveDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDraw_draw_rect00
+static int tolua_luabind_ge_GEPrimitiveDraw_draw_rect00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEPrimitiveDraw",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_FRECT",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_FRECT* rect = ((ge::GE_FRECT*)  tolua_tousertype(tolua_S,2,0));
+  unsigned color = ((unsigned)  tolua_tonumber(tolua_S,3,0));
+  {
+   bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_rect(*rect,color);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'draw_rect'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: init of class  ge::GEObject */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEObject_init00
 static int tolua_luabind_ge_GEObject_init00(lua_State* tolua_S)
@@ -2161,10 +3644,10 @@ static int tolua_luabind_ge_GEOSpine_release00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GEOSpine* tolua_var_5 = ((ge::GEOSpine*)  tolua_tousertype(tolua_S,2,0));
+  ge::GEOSpine* tolua_var_8 = ((ge::GEOSpine*)  tolua_tousertype(tolua_S,2,0));
   {
-   ge::GEOSpine::release(&tolua_var_5);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_5,"ge::GEOSpine");
+   ge::GEOSpine::release(&tolua_var_8);
+    tolua_pushusertype(tolua_S,(void*)tolua_var_8,"ge::GEOSpine");
   }
  }
  return 1;
@@ -2564,10 +4047,10 @@ static int tolua_luabind_ge_GEOTextFT_release00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GEOTextFT* tolua_var_6 = ((ge::GEOTextFT*)  tolua_tousertype(tolua_S,2,0));
+  ge::GEOTextFT* tolua_var_9 = ((ge::GEOTextFT*)  tolua_tousertype(tolua_S,2,0));
   {
-   ge::GEOTextFT::release(&tolua_var_6);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_6,"ge::GEOTextFT");
+   ge::GEOTextFT::release(&tolua_var_9);
+    tolua_pushusertype(tolua_S,(void*)tolua_var_9,"ge::GEOTextFT");
   }
  }
  return 1;
@@ -2724,10 +4207,10 @@ static int tolua_luabind_ge_GEOTextBM_release00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GEOTextBM* tolua_var_7 = ((ge::GEOTextBM*)  tolua_tousertype(tolua_S,2,0));
+  ge::GEOTextBM* tolua_var_10 = ((ge::GEOTextBM*)  tolua_tousertype(tolua_S,2,0));
   {
-   ge::GEOTextBM::release(&tolua_var_7);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_7,"ge::GEOTextBM");
+   ge::GEOTextBM::release(&tolua_var_10);
+    tolua_pushusertype(tolua_S,(void*)tolua_var_10,"ge::GEOTextBM");
   }
  }
  return 1;
@@ -3865,6 +5348,521 @@ static int tolua_luabind_ge_GE_FRECT_include00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* get function: fvf of class  ge::GE_VERTEX_DECL */
+#ifndef TOLUA_DISABLE_tolua_get_ge__GE_VERTEX_DECL_fvf
+static int tolua_get_ge__GE_VERTEX_DECL_fvf(lua_State* tolua_S)
+{
+  ge::GE_VERTEX_DECL* self = (ge::GE_VERTEX_DECL*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'fvf'",NULL);
+#endif
+   tolua_pushusertype(tolua_S,(void*)&self->fvf,"DWORD");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: fvf of class  ge::GE_VERTEX_DECL */
+#ifndef TOLUA_DISABLE_tolua_set_ge__GE_VERTEX_DECL_fvf
+static int tolua_set_ge__GE_VERTEX_DECL_fvf(lua_State* tolua_S)
+{
+  ge::GE_VERTEX_DECL* self = (ge::GE_VERTEX_DECL*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'fvf'",NULL);
+  if ((tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"DWORD",0,&tolua_err)))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->fvf = *((DWORD*)  tolua_tousertype(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: size of class  ge::GE_VERTEX_DECL */
+#ifndef TOLUA_DISABLE_tolua_get_ge__GE_VERTEX_DECL_size
+static int tolua_get_ge__GE_VERTEX_DECL_size(lua_State* tolua_S)
+{
+  ge::GE_VERTEX_DECL* self = (ge::GE_VERTEX_DECL*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'size'",NULL);
+#endif
+  tolua_pushnumber(tolua_S,(lua_Number)self->size);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: size of class  ge::GE_VERTEX_DECL */
+#ifndef TOLUA_DISABLE_tolua_set_ge__GE_VERTEX_DECL_size
+static int tolua_set_ge__GE_VERTEX_DECL_size(lua_State* tolua_S)
+{
+  ge::GE_VERTEX_DECL* self = (ge::GE_VERTEX_DECL*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'size'",NULL);
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->size = ((int)  tolua_tonumber(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  ge::GE_VERTEX_DECL */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_VERTEX_DECL_new00
+static int tolua_luabind_ge_GE_VERTEX_DECL_new00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_VERTEX_DECL",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GE_VERTEX_DECL* tolua_ret = (ge::GE_VERTEX_DECL*)  Mtolua_new((ge::GE_VERTEX_DECL)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_VERTEX_DECL");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  ge::GE_VERTEX_DECL */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_VERTEX_DECL_new00_local
+static int tolua_luabind_ge_GE_VERTEX_DECL_new00_local(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_VERTEX_DECL",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GE_VERTEX_DECL* tolua_ret = (ge::GE_VERTEX_DECL*)  Mtolua_new((ge::GE_VERTEX_DECL)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_VERTEX_DECL");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: is_valid of class  ge::GE_VERTEX_DECL */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_VERTEX_DECL_is_valid00
+static int tolua_luabind_ge_GE_VERTEX_DECL_is_valid00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_VERTEX_DECL",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_VERTEX_DECL* self = (ge::GE_VERTEX_DECL*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'is_valid'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->is_valid();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'is_valid'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_instance of class  ge::GEVertexDecl */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEVertexDecl_get_instance00
+static int tolua_luabind_ge_GEVertexDecl_get_instance00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEVertexDecl",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GEVertexDecl* tolua_ret = (ge::GEVertexDecl*)  ge::GEVertexDecl::get_instance();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GEVertexDecl");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_instance'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_vertex_decl of class  ge::GEVertexDecl */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEVertexDecl_get_vertex_decl00
+static int tolua_luabind_ge_GEVertexDecl_get_vertex_decl00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEVertexDecl",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"DWORD",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  DWORD fvf = *((DWORD*)  tolua_tousertype(tolua_S,2,0));
+  {
+   ge::GE_VERTEX_DECL* tolua_ret = (ge::GE_VERTEX_DECL*)  ge::GEVertexDecl::get_vertex_decl(fvf);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_VERTEX_DECL");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_vertex_decl'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_fvf of class  ge::GE_VERTEX */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_VERTEX_set_fvf00
+static int tolua_luabind_ge_GE_VERTEX_set_fvf00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_VERTEX",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"DWORD",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_VERTEX* self = (ge::GE_VERTEX*)  tolua_tousertype(tolua_S,1,0);
+  DWORD fvf = *((DWORD*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_fvf'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->set_fvf(fvf);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_fvf'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_decl of class  ge::GE_VERTEX */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_VERTEX_set_decl00
+static int tolua_luabind_ge_GE_VERTEX_set_decl00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_VERTEX",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GE_VERTEX_DECL",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_VERTEX* self = (ge::GE_VERTEX*)  tolua_tousertype(tolua_S,1,0);
+  ge::GE_VERTEX_DECL* decl = ((ge::GE_VERTEX_DECL*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_decl'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->set_decl(decl);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_decl'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_decl of class  ge::GE_VERTEX */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_VERTEX_get_decl00
+static int tolua_luabind_ge_GE_VERTEX_get_decl00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_VERTEX",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_VERTEX* self = (ge::GE_VERTEX*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_decl'", NULL);
+#endif
+  {
+   ge::GE_VERTEX_DECL* tolua_ret = (ge::GE_VERTEX_DECL*)  self->get_decl();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_VERTEX_DECL");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_decl'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_position of class  ge::GE_VERTEX */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_VERTEX_set_position00
+static int tolua_luabind_ge_GE_VERTEX_set_position00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_VERTEX",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_VERTEX* self = (ge::GE_VERTEX*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+  float z = ((float)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_position'", NULL);
+#endif
+  {
+   self->set_position(x,y,z);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_position'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_normal of class  ge::GE_VERTEX */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_VERTEX_set_normal00
+static int tolua_luabind_ge_GE_VERTEX_set_normal00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_VERTEX",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_VERTEX* self = (ge::GE_VERTEX*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+  float z = ((float)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_normal'", NULL);
+#endif
+  {
+   self->set_normal(x,y,z);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_normal'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_texcoords of class  ge::GE_VERTEX */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_VERTEX_set_texcoords00
+static int tolua_luabind_ge_GE_VERTEX_set_texcoords00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_VERTEX",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_VERTEX* self = (ge::GE_VERTEX*)  tolua_tousertype(tolua_S,1,0);
+  float u = ((float)  tolua_tonumber(tolua_S,2,0));
+  float v = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_texcoords'", NULL);
+#endif
+  {
+   self->set_texcoords(u,v);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_texcoords'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_blend of class  ge::GE_VERTEX */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_VERTEX_set_blend00
+static int tolua_luabind_ge_GE_VERTEX_set_blend00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_VERTEX",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"UINT",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_VERTEX* self = (ge::GE_VERTEX*)  tolua_tousertype(tolua_S,1,0);
+  UINT blend = *((UINT*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_blend'", NULL);
+#endif
+  {
+   self->set_blend(blend);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_blend'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_color of class  ge::GE_VERTEX */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_VERTEX_set_color00
+static int tolua_luabind_ge_GE_VERTEX_set_color00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_VERTEX",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"D3DCOLOR",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_VERTEX* self = (ge::GE_VERTEX*)  tolua_tousertype(tolua_S,1,0);
+  D3DCOLOR color = *((D3DCOLOR*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_color'", NULL);
+#endif
+  {
+   self->set_color(color);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_color'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_rhw of class  ge::GE_VERTEX */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_VERTEX_set_rhw00
+static int tolua_luabind_ge_GE_VERTEX_set_rhw00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_VERTEX",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_VERTEX* self = (ge::GE_VERTEX*)  tolua_tousertype(tolua_S,1,0);
+  float rhw = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_rhw'", NULL);
+#endif
+  {
+   self->set_rhw(rhw);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_rhw'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
 {
@@ -4127,6 +6125,72 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"get_texture_group",tolua_luabind_ge_GEFontFT_get_texture_group00);
     tolua_function(tolua_S,"set_size",tolua_luabind_ge_GEFontFT_set_size00);
    tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GEDrawBuff","ge::GEDrawBuff","",NULL);
+   tolua_beginmodule(tolua_S,"GEDrawBuff");
+    tolua_function(tolua_S,"create",tolua_luabind_ge_GEDrawBuff_create00);
+    tolua_function(tolua_S,"release",tolua_luabind_ge_GEDrawBuff_release00);
+    tolua_function(tolua_S,"set_vertex_decl",tolua_luabind_ge_GEDrawBuff_set_vertex_decl00);
+    tolua_function(tolua_S,"get_vertex_decl",tolua_luabind_ge_GEDrawBuff_get_vertex_decl00);
+    tolua_function(tolua_S,"init_vertex_buff",tolua_luabind_ge_GEDrawBuff_init_vertex_buff00);
+    tolua_function(tolua_S,"init_index_buff",tolua_luabind_ge_GEDrawBuff_init_index_buff00);
+    tolua_function(tolua_S,"init_quad_buff",tolua_luabind_ge_GEDrawBuff_init_quad_buff00);
+    tolua_function(tolua_S,"destory_vertex_buff",tolua_luabind_ge_GEDrawBuff_destory_vertex_buff00);
+    tolua_function(tolua_S,"destory_index_buff",tolua_luabind_ge_GEDrawBuff_destory_index_buff00);
+    tolua_function(tolua_S,"destory_buff",tolua_luabind_ge_GEDrawBuff_destory_buff00);
+    tolua_function(tolua_S,"prepare_drawbuff",tolua_luabind_ge_GEDrawBuff_prepare_drawbuff00);
+    tolua_function(tolua_S,"set_verties",tolua_luabind_ge_GEDrawBuff_set_verties00);
+    tolua_function(tolua_S,"set_indices",tolua_luabind_ge_GEDrawBuff_set_indices00);
+   tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GEDraw","ge::GEDraw","",NULL);
+   tolua_beginmodule(tolua_S,"GEDraw");
+    tolua_function(tolua_S,"create",tolua_luabind_ge_GEDraw_create00);
+    tolua_function(tolua_S,"release",tolua_luabind_ge_GEDraw_release00);
+    tolua_function(tolua_S,"set_effect",tolua_luabind_ge_GEDraw_set_effect00);
+    tolua_function(tolua_S,"get_effect",tolua_luabind_ge_GEDraw_get_effect00);
+   tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GE_QUAD","ge::GE_QUAD","",NULL);
+   tolua_beginmodule(tolua_S,"GE_QUAD");
+    tolua_array(tolua_S,"xys",tolua_get_luabind_ge_GE_QUAD_xys,tolua_set_luabind_ge_GE_QUAD_xys);
+    tolua_variable(tolua_S,"rhw",tolua_get_ge__GE_QUAD_rhw,tolua_set_ge__GE_QUAD_rhw);
+    tolua_variable(tolua_S,"color",tolua_get_ge__GE_QUAD_color,tolua_set_ge__GE_QUAD_color);
+    tolua_variable(tolua_S,"texid",tolua_get_ge__GE_QUAD_texid,tolua_set_ge__GE_QUAD_texid);
+    tolua_array(tolua_S,"uvs",tolua_get_luabind_ge_GE_QUAD_uvs,tolua_set_luabind_ge_GE_QUAD_uvs);
+   tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GE_QUAD_EX","ge::GE_QUAD_EX","",NULL);
+   tolua_beginmodule(tolua_S,"GE_QUAD_EX");
+    tolua_variable(tolua_S,"tl",tolua_get_ge__GE_QUAD_EX_tl,tolua_set_ge__GE_QUAD_EX_tl);
+    tolua_variable(tolua_S,"tr",tolua_get_ge__GE_QUAD_EX_tr,tolua_set_ge__GE_QUAD_EX_tr);
+    tolua_variable(tolua_S,"bl",tolua_get_ge__GE_QUAD_EX_bl,tolua_set_ge__GE_QUAD_EX_bl);
+    tolua_variable(tolua_S,"br",tolua_get_ge__GE_QUAD_EX_br,tolua_set_ge__GE_QUAD_EX_br);
+    tolua_variable(tolua_S,"texid",tolua_get_ge__GE_QUAD_EX_texid,tolua_set_ge__GE_QUAD_EX_texid);
+   tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GEAtlasDraw","ge::GEAtlasDraw","ge::GEDraw",NULL);
+   tolua_beginmodule(tolua_S,"GEAtlasDraw");
+    tolua_function(tolua_S,"create",tolua_luabind_ge_GEAtlasDraw_create00);
+    tolua_function(tolua_S,"release",tolua_luabind_ge_GEAtlasDraw_release00);
+    tolua_function(tolua_S,"set_vertex_fvf",tolua_luabind_ge_GEAtlasDraw_set_vertex_fvf00);
+    tolua_function(tolua_S,"set_vertex_decl",tolua_luabind_ge_GEAtlasDraw_set_vertex_decl00);
+    tolua_function(tolua_S,"get_vertex_decl",tolua_luabind_ge_GEAtlasDraw_get_vertex_decl00);
+    tolua_function(tolua_S,"init_texture_group",tolua_luabind_ge_GEAtlasDraw_init_texture_group00);
+    tolua_function(tolua_S,"set_texture_group",tolua_luabind_ge_GEAtlasDraw_set_texture_group00);
+    tolua_function(tolua_S,"get_texture_group",tolua_luabind_ge_GEAtlasDraw_get_texture_group00);
+    tolua_function(tolua_S,"release_texture_group",tolua_luabind_ge_GEAtlasDraw_release_texture_group00);
+    tolua_function(tolua_S,"init_render",tolua_luabind_ge_GEAtlasDraw_init_render00);
+    tolua_function(tolua_S,"update_render",tolua_luabind_ge_GEAtlasDraw_update_render00);
+    tolua_function(tolua_S,"release_render",tolua_luabind_ge_GEAtlasDraw_release_render00);
+    tolua_function(tolua_S,"add_quad",tolua_luabind_ge_GEAtlasDraw_add_quad00);
+    tolua_function(tolua_S,"add_quad",tolua_luabind_ge_GEAtlasDraw_add_quad01);
+    tolua_function(tolua_S,"add_quad",tolua_luabind_ge_GEAtlasDraw_add_quad02);
+    tolua_function(tolua_S,"clear_quads",tolua_luabind_ge_GEAtlasDraw_clear_quads00);
+    tolua_function(tolua_S,"draw_quads",tolua_luabind_ge_GEAtlasDraw_draw_quads00);
+   tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GEPrimitiveDraw","ge::GEPrimitiveDraw","",NULL);
+   tolua_beginmodule(tolua_S,"GEPrimitiveDraw");
+    tolua_function(tolua_S,"draw_rect",tolua_luabind_ge_GEPrimitiveDraw_draw_rect00);
+   tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GEREffect","ge::GEREffect","",NULL);
+   tolua_beginmodule(tolua_S,"GEREffect");
+   tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GEObject","ge::GEObject","",NULL);
    tolua_beginmodule(tolua_S,"GEObject");
     tolua_function(tolua_S,"init",tolua_luabind_ge_GEObject_init00);
@@ -4228,6 +6292,36 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"move",tolua_luabind_ge_GE_FRECT_move00);
     tolua_function(tolua_S,"move_to",tolua_luabind_ge_GE_FRECT_move_to00);
     tolua_function(tolua_S,"include",tolua_luabind_ge_GE_FRECT_include00);
+   tolua_endmodule(tolua_S);
+   #ifdef __cplusplus
+   tolua_cclass(tolua_S,"GE_VERTEX_DECL","ge::GE_VERTEX_DECL","",tolua_collect_ge__GE_VERTEX_DECL);
+   #else
+   tolua_cclass(tolua_S,"GE_VERTEX_DECL","ge::GE_VERTEX_DECL","",NULL);
+   #endif
+   tolua_beginmodule(tolua_S,"GE_VERTEX_DECL");
+    tolua_variable(tolua_S,"fvf",tolua_get_ge__GE_VERTEX_DECL_fvf,tolua_set_ge__GE_VERTEX_DECL_fvf);
+    tolua_variable(tolua_S,"size",tolua_get_ge__GE_VERTEX_DECL_size,tolua_set_ge__GE_VERTEX_DECL_size);
+    tolua_function(tolua_S,"new",tolua_luabind_ge_GE_VERTEX_DECL_new00);
+    tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_VERTEX_DECL_new00_local);
+    tolua_function(tolua_S,".call",tolua_luabind_ge_GE_VERTEX_DECL_new00_local);
+    tolua_function(tolua_S,"is_valid",tolua_luabind_ge_GE_VERTEX_DECL_is_valid00);
+   tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GEVertexDecl","ge::GEVertexDecl","",NULL);
+   tolua_beginmodule(tolua_S,"GEVertexDecl");
+    tolua_function(tolua_S,"get_instance",tolua_luabind_ge_GEVertexDecl_get_instance00);
+    tolua_function(tolua_S,"get_vertex_decl",tolua_luabind_ge_GEVertexDecl_get_vertex_decl00);
+   tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GE_VERTEX","ge::GE_VERTEX","",NULL);
+   tolua_beginmodule(tolua_S,"GE_VERTEX");
+    tolua_function(tolua_S,"set_fvf",tolua_luabind_ge_GE_VERTEX_set_fvf00);
+    tolua_function(tolua_S,"set_decl",tolua_luabind_ge_GE_VERTEX_set_decl00);
+    tolua_function(tolua_S,"get_decl",tolua_luabind_ge_GE_VERTEX_get_decl00);
+    tolua_function(tolua_S,"set_position",tolua_luabind_ge_GE_VERTEX_set_position00);
+    tolua_function(tolua_S,"set_normal",tolua_luabind_ge_GE_VERTEX_set_normal00);
+    tolua_function(tolua_S,"set_texcoords",tolua_luabind_ge_GE_VERTEX_set_texcoords00);
+    tolua_function(tolua_S,"set_blend",tolua_luabind_ge_GE_VERTEX_set_blend00);
+    tolua_function(tolua_S,"set_color",tolua_luabind_ge_GE_VERTEX_set_color00);
+    tolua_function(tolua_S,"set_rhw",tolua_luabind_ge_GE_VERTEX_set_rhw00);
    tolua_endmodule(tolua_S);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);

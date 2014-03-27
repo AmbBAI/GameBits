@@ -21,15 +21,31 @@ local function new_fps_text()
 	return new_text
 end
 
+local function new_fps_text2()
+	new_font = ge.GEFontManager:create_font(ge.FontType_BMFont)
+	new_font = tolua.cast(new_font, "ge::GEFontBM")
+	new_font:init("bmfont\\arial24.fnt");
+	new_font:init_effect("bmfont\\font.fx");
+	
+	new_text = ge.GEOTextBM:create()
+	new_text:set_font(new_font);
+	new_text:set_text("hello lua!")
+	return new_text
+end
+
 local spine_test = nil
 local text_test = nil
+local text_test2 = nil
 
 local function scene_init_callback()
 	spine_test = new_spine_test()
-	scene_test:add_object(1, spine_test)
+	--scene_test:add_object(1, spine_test)
 
 	text_test = new_fps_text()
-	scene_test:add_object(2, text_test)
+	scene_test:add_object(3, text_test)
+
+	text_test2 = new_fps_text2()
+	scene_test:add_object(2, text_test2)
 end
 
 local function scene_destory_callback()
@@ -65,6 +81,10 @@ local function scene_update_callback(delta)
 	end
 
 	text_test:set_text(fps_text)
+	text_test2:set_text(fps_text)
+
+	rect = ge.GE_FRECT:new_local(10, 10, 100, 100)
+	ge.GEPrimitiveDraw:draw_rect(rect, 0xffffffff)
 end
 
 scene_test = ge.GEScene:create()

@@ -11,11 +11,16 @@ $pfile "pkg/ge_scene.pkg"
 
 $pfile "pkg/ge_texture.pkg"
 $pfile "pkg/ge_font.pkg"
+$pfile "pkg/ge_draw.pkg"
+$pfile "pkg/ge_effect.pkg"
+
 
 $pfile "pkg/ge_object.pkg"
 $pfile "pkg/geo_spine.pkg"
 $pfile "pkg/geo_text.pkg"
 
 $pfile "pkg/ge_type.pkg"
+$pfile "pkg/ge_vertex.pkg"
+
 
 }

@@ -73,6 +73,7 @@ bool GEPrimitiveDraw::_init_render()
 		draw_buff_ = GEDrawBuff::create();
 	if (draw_buff_ == NULL) return false;
 
+	vertex_decl_ = GEVertexDecl::get_vertex_decl(DEFAULT_FVF_FORMAT);
 	if (!draw_buff_->set_vertex_decl(vertex_decl_)) return false;
 	if (!draw_buff_->init_vertex_buff(vertex_list_.size())) return false;
 
@@ -135,11 +136,8 @@ bool GEPrimitiveDraw::_draw_line_strip( GEPrimitiveDrawTask* task )
 	if (!draw_buff_->prepare_drawbuff()) return false;
 
 	HRESULT h_res = S_OK;
-	h_res = p_d3d_device->DrawIndexedPrimitive(D3DPT_LINESTRIP,
-		0,						// BaseVertexIndex
-		0,						// MinVertexIndex
-		vertex_list_.size(),	// NumVertices
-		task->offset,			// StartIndex
+	h_res = p_d3d_device->DrawPrimitive(D3DPT_LINESTRIP,
+		task->offset,			// StartVertex
 		task->count);			// PrimitiveCount
 	assert(SUCCEEDED(h_res));
 	return SUCCEEDED(h_res);

@@ -1,0 +1,81 @@
+class GEDrawBuff
+{
+	static GEDrawBuff* create();
+	static void release(GEDrawBuff**);
+
+	bool set_vertex_decl(GE_VERTEX_DECL* decl);
+	GE_VERTEX_DECL* get_vertex_decl();
+
+	bool init_vertex_buff(int vertex_cnt);
+	bool init_index_buff(int index_cnt);
+	bool init_quad_buff(int quad_cnt);
+	void destory_vertex_buff();
+	void destory_index_buff();
+	void destory_buff();
+
+	bool prepare_drawbuff();
+
+	bool set_verties(GE_VERTEX* verties, int size);
+	bool set_indices(unsigned short* indices, int size);
+};
+
+class GEDraw
+{
+	static GEDraw* create();
+	static void release(GEDraw**);
+
+	virtual bool set_effect(GEREffect* effect);
+	virtual GEREffect* get_effect();
+};
+
+struct GE_QUAD
+{
+	float		xys[8];
+	float		rhw;
+	unsigned	color;
+	int			texid;
+	float		uvs[8];
+};
+
+struct GE_QUAD_EX
+{
+	GE_VERTEX tl;
+	GE_VERTEX tr;
+	GE_VERTEX bl;
+	GE_VERTEX br;
+	int texid;
+};
+
+class GEAtlasDraw : public GEDraw
+{
+	static GEAtlasDraw* create();
+	static void release(GEAtlasDraw**);
+
+	bool set_vertex_fvf(DWORD fvf);
+	bool set_vertex_decl(GE_VERTEX_DECL* vertex_decl);
+	GE_VERTEX_DECL* get_vertex_decl();
+
+	bool init_texture_group();
+	bool set_texture_group(GETextureGroup* texture_group);
+	GETextureGroup* get_texture_group();
+	void release_texture_group();
+
+	bool init_render();
+	bool update_render();
+	void release_render();
+
+	bool add_quad(GE_QUAD& quad);
+	bool add_quad(GE_QUAD_EX& quad);
+	bool add_quad(int texture_id = 0);
+	void clear_quads();
+	bool draw_quads(GEREffect* effect = NULL);
+};
+
+class GEPrimitiveDraw
+{
+	//static bool draw_point(GE_FPOINT& point, unsigned color);
+	//static bool draw_line(GE_FPOINT& from, GE_FPOINT& to, unsigned color);
+	//static bool draw_line_list(GE_FPOINT* list, int cnt, unsigned color);
+	static bool draw_rect(GE_FRECT& rect, unsigned color);
+	//static bool draw_solid_rect(GE_FRECT& rect, unsigned color);
+};

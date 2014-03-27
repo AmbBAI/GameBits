@@ -40,7 +40,7 @@ GEDrawPrimitive::GEDrawPrimitive()
 
 GEDrawPrimitive::~GEDrawPrimitive()
 {
-
+	_release_render();
 }
 
 GEDrawPrimitive* GEDrawPrimitive::get_instance()
@@ -73,8 +73,11 @@ bool GEDrawPrimitive::_init_render()
 		draw_buff_ = GEDrawBuff::create();
 	if (draw_buff_ == NULL) return false;
 
-	draw_buff_->set_vertex_decl(vertex_decl_);
-	return draw_buff_->init_vertex_buff(vertex_list_.size());
+	if (!draw_buff_->set_vertex_decl(vertex_decl_)) return false;
+	if (!draw_buff_->init_vertex_buff(vertex_list_.size())) return false;
+
+	if (!draw_buff_->set_verties(&vertex_list_[0], vertex_list_.size())) return false;
+	return true;
 }
 
 void GEDrawPrimitive::_release_render()
@@ -123,7 +126,23 @@ bool GEDrawPrimitive::draw_rect( GE_FRECT& rect, unsigned color )
 
 bool GEDrawPrimitive::_draw_line_strip( GEPrimitiveDrawTask* task )
 {
-	return true;
+	if (!_init_render()) return false;
+
+	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_instance()->get_device();
+	if (p_d3d_device == NULL) return false;
+
+	if (draw_buff_ == NULL) return false;
+	if (!draw_buff_->prepare_drawbuff()) return false;
+
+	HRESULT h_res = S_OK;
+	h_res = p_d3d_device->DrawIndexedPrimitive(D3DPT_LINESTRIP,
+		0,						// BaseVertexIndex
+		0,						// MinVertexIndex
+		vertex_list_.size(),	// NumVertices
+		task->offset,			// StartIndex
+		task->count);			// PrimitiveCount
+	assert(SUCCEEDED(h_res));
+	return SUCCEEDED(h_res);
 }
 
 

@@ -253,6 +253,7 @@ bool GEDrawAtlas::draw_quads( GEREffect* effect/* = NULL*/ )
 	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_instance()->get_device();
 	if (p_d3d_device == NULL) return false;
 
+	if (draw_buff_ == NULL) return false;
 	if (!draw_buff_->prepare_drawbuff()) return false;
 
 	HRESULT h_res = S_OK;

@@ -29,6 +29,7 @@ public:
 	virtual void update(time_t delta);
 	virtual bool update_font();
 	virtual bool update_text();
+	virtual bool update_quad();
 
 protected:
 	void _clear_render_chars();
@@ -39,9 +40,11 @@ private:
 
 	GEDrawAtlas*				render_object_;
 	RENDER_CHAR_LIST			render_chars_;
+	int							render_char_cnt_;
 
 	bool						need_update_text_;
 	bool						need_update_font_;
+	bool						need_update_quad_;
 
 	GEREffect*					effect_;
 };

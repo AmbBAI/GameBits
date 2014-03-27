@@ -99,6 +99,7 @@ bool GEOTextFT::update_quad()
 	render_object_->clear_quads();
 	for (int i=0; i<render_char_cnt_; ++i)
 	{
+		if (i > (int)render_char_buff_.size()) return false;
 		GE_QUAD quad;
 		_render_char_to_quad(quad, render_char_buff_[i]);
 		render_object_->add_quad(quad);

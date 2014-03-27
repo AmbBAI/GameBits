@@ -15,6 +15,7 @@ GEOTextBM::GEOTextBM()
 : render_object_(NULL)
 , need_update_font_(true)
 , need_update_text_(true)
+, effect_(NULL)
 {
 }
 
@@ -63,8 +64,6 @@ bool GEOTextBM::update_font()
 		int png_id = texture_group->add_texture_from_file(page_path);
 		assert(png_id == i);
 	}
-	transform_.px = 400;
-	transform_.py = 0;
 	effect_ = bm_font->get_effect();
 	if (effect_) effect_->set_matrix("WORLD", get_world_transform());
 	need_update_font_ = false;
@@ -82,20 +81,26 @@ bool GEOTextBM::update_text()
 
 	bm_font->begin_write(&(render_chars_[0]), render_chars_.max_size());
 	bm_font->write_text(text_.c_str(), 400, 0, true);
-	int ret = bm_font->end_write();
+	render_char_cnt_ = bm_font->end_write();
 
-	if (ret)
-	{
-		render_object_->clear_quads();
-		FOR_EACH (RENDER_CHAR_LIST, render_chars_, char_itor)
-		{
-			GE_QUAD_EX quad;
-			_render_char_to_quad(quad, *char_itor);
-			render_object_->add_quad(quad);
-		}
-	}
+	need_update_quad_ = true;
 	need_update_text_ = false;
-	return 0 != ret;
+	return true;
+}
+
+bool GEOTextBM::update_quad()
+{
+	render_object_->clear_quads();
+	for (int i=0; i<render_char_cnt_; ++i)
+	//FOR_EACH (RENDER_CHAR_LIST, render_chars_, char_itor)
+	{
+		if (i > (int)render_chars_.size()) return false;
+		GE_QUAD_EX quad;
+		_render_char_to_quad(quad, render_chars_[i]);
+		render_object_->add_quad(quad);
+	}
+	need_update_quad_ = false;
+	return true;
 }
 
 void GEOTextBM::_clear_render_chars()
@@ -152,6 +157,7 @@ void GEOTextBM::update( time_t delta )
 {
 	if (need_update_font_) update_font();
 	if (need_update_text_) update_text();
+	if (need_update_quad_) update_quad();
 
 	if(effect_)
 	{

@@ -547,7 +547,7 @@ GE_FTBuffChar* GEFontFT::_get_buff_char_with_outline( wchar_t ch )
 		for (int j=0; j<rect.width(); ++j)
 		{
 			int pos = i * pitch / 2 + j;
-			buff[pos << 1] = 0xff;
+			buff[pos << 1] = 0x00;
 			buff[pos << 1 | 1] = 0x00;
 		}
 	}

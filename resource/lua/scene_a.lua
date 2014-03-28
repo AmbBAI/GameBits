@@ -36,6 +36,7 @@ end
 local spine_test = nil
 local text_test = nil
 local text_test2 = nil
+local mouse_pos = ge.GE_FRECT:new_local(0, 0, 0, 0)
 
 local function scene_init_callback()
 	spine_test = new_spine_test()
@@ -83,8 +84,18 @@ local function scene_update_callback(delta)
 	text_test:set_text(fps_text)
 	text_test2:set_text(fps_text)
 
-	rect = ge.GE_FRECT:new_local(10, 10, 100, 100)
-	ge.GEPrimitiveDraw:draw_rect(rect, 0xffffffff)
+	local rect = ge.GE_FRECT:new_local(10, 10, 100, 100)
+	ge.GEPrimitiveDraw:draw_rect(rect, 0xff00ffff)
+	ge.GEPrimitiveDraw:draw_solid_rect(rect, 0x8800ffff)
+
+	if ge_input:get_mouse_down(0) then
+		ret, mouse_pos.left, mouse_pos.top = ge_input:get_mouse_pos(0, 0)
+	elseif ge_input:get_mouse_hold(0) then
+		ret, mouse_pos.right, mouse_pos.bottom = ge_input:get_mouse_pos(0, 0)
+		ge.GEPrimitiveDraw:draw_rect(mouse_pos, 0xffff00ff)
+		ge.GEPrimitiveDraw:draw_solid_rect(mouse_pos, 0x88ff00ff)
+	end
+
 end
 
 scene_test = ge.GEScene:create()

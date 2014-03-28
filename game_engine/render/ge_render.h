@@ -19,7 +19,7 @@ public:
 	virtual ~GERender();
 
 	static GERender* get_instance();
-	static void push_render(GEDraw* p_draw);
+	static void push_render(const GEDraw* p_draw);
 
 public:
 	bool init();

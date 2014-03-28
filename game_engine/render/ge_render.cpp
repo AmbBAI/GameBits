@@ -146,10 +146,10 @@ void GERender::_push_render( GEDraw* p_draw )
 	render_task_que_.push(p_draw);
 }
 
-void GERender::push_render( GEDraw* p_draw )
+void GERender::push_render( const GEDraw* p_draw )
 {
 	GERender* ge_render = get_instance();
-	ge_render->_push_render(p_draw);
+	ge_render->_push_render((GEDraw*)p_draw);
 }
 
 }

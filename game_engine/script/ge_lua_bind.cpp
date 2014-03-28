@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 03/27/14 18:42:52.
+** Generated automatically by tolua++-1.0.92 on 03/28/14 09:56:22.
 */
 
 #ifndef __cplusplus
@@ -3538,6 +3538,38 @@ static int tolua_luabind_ge_GEPrimitiveDraw_draw_rect00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: draw_solid_rect of class  ge::GEPrimitiveDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDraw_draw_solid_rect00
+static int tolua_luabind_ge_GEPrimitiveDraw_draw_solid_rect00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEPrimitiveDraw",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_FRECT",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_FRECT* rect = ((ge::GE_FRECT*)  tolua_tousertype(tolua_S,2,0));
+  unsigned color = ((unsigned)  tolua_tonumber(tolua_S,3,0));
+  {
+   bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_solid_rect(*rect,color);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'draw_solid_rect'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: init of class  ge::GEObject */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEObject_init00
 static int tolua_luabind_ge_GEObject_init00(lua_State* tolua_S)
@@ -6187,6 +6219,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_cclass(tolua_S,"GEPrimitiveDraw","ge::GEPrimitiveDraw","",NULL);
    tolua_beginmodule(tolua_S,"GEPrimitiveDraw");
     tolua_function(tolua_S,"draw_rect",tolua_luabind_ge_GEPrimitiveDraw_draw_rect00);
+    tolua_function(tolua_S,"draw_solid_rect",tolua_luabind_ge_GEPrimitiveDraw_draw_solid_rect00);
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GEREffect","ge::GEREffect","",NULL);
    tolua_beginmodule(tolua_S,"GEREffect");

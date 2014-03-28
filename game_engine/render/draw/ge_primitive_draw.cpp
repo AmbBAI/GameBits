@@ -5,6 +5,7 @@
 namespace ge
 {
 
+DLL_MANAGE_CLASS_IMPLEMENT(GEPrimitiveDrawTask);
 
 void GEPrimitiveDrawTask::render()
 {
@@ -20,20 +21,22 @@ void GEPrimitiveDrawTask::render()
 		break;
 	case GEPrimitiveType_SolidRect:
 	case GEPrimitiveType_SolidPolygon:
-		//ge_draw_primitive->_draw_triangle_strip(this);
+		ge_draw_primitive->_draw_triangle_strip(this);
 		break;
 	}
+	ge_draw_primitive->_release_task(this);
 }
 
-
-
-
-DLL_MANAGE_CLASS_IMPLEMENT(GEPrimitiveDraw);
 
 
 const unsigned GEPrimitiveDraw::DEFAULT_FVF_FORMAT = (D3DFVF_XYZRHW | D3DFVF_DIFFUSE);
 
 GEPrimitiveDraw::GEPrimitiveDraw()
+: task_cnt_(0)
+, task_pool_()
+, vertex_list_()
+, vertex_decl_(NULL)
+, draw_buff_(NULL)
 {
 
 }
@@ -51,14 +54,36 @@ GEPrimitiveDraw* GEPrimitiveDraw::get_instance()
 
 int GEPrimitiveDraw::_get_cur_offset()
 {
-	return task_list_.size();
+	return vertex_list_.size();
 }
 
-bool GEPrimitiveDraw::_push_task( const GEPrimitiveDrawTask& task )
+GEPrimitiveDrawTask* GEPrimitiveDraw::_create_task()
 {
-	task_list_.push_back(task);
-	GERender::push_render(&(task_list_.back()));
-	return true;
+	GEPrimitiveDrawTask* task = NULL;
+	if (task_pool_.empty())
+	{
+		task = GEPrimitiveDrawTask::create();
+	}
+	else
+	{
+		task = task_pool_.front();
+		task_pool_.pop();
+	}
+
+	GERender::push_render(task);
+	++ task_cnt_;
+	return task;
+}
+
+void GEPrimitiveDraw::_release_task( GEPrimitiveDrawTask* task )
+{
+	task_pool_.push(task);
+	-- task_cnt_;
+	if (task_cnt_ <= 0)
+	{
+		task_cnt_ = 0;
+		vertex_list_.clear();
+	}
 }
 
 bool GEPrimitiveDraw::_push_vertex( GE_VERTEX& vertex )
@@ -95,11 +120,10 @@ bool GEPrimitiveDraw::draw_rect( GE_FRECT& rect, unsigned color )
 {
 	GEPrimitiveDraw* ge_draw_primitive = get_instance();
 
-	GEPrimitiveDrawTask task;
-	task.offset = ge_draw_primitive->_get_cur_offset();
-	task.count = 5;
-	task.type = GEPrimitiveType_Rect;
-	ge_draw_primitive->_push_task(task);
+	GEPrimitiveDrawTask* task = ge_draw_primitive->_create_task();
+	task->offset = ge_draw_primitive->_get_cur_offset();
+	task->count = 4;
+	task->type = GEPrimitiveType_Rect;
 
 	GE_VERTEX vertex[5];
 
@@ -125,6 +149,38 @@ bool GEPrimitiveDraw::draw_rect( GE_FRECT& rect, unsigned color )
 	return true;
 }
 
+bool GEPrimitiveDraw::draw_solid_rect( GE_FRECT& rect, unsigned color )
+{
+	GEPrimitiveDraw* ge_draw_primitive = get_instance();
+
+	GEPrimitiveDrawTask* task = ge_draw_primitive->_create_task();
+	task->offset = ge_draw_primitive->_get_cur_offset();
+	task->count = 2;
+	task->type = GEPrimitiveType_SolidRect;
+
+	GE_VERTEX vertex[4];
+
+	float minx = rect.left;
+	float miny = rect.top;
+	float maxx = rect.right;
+	float maxy = rect.bottom;
+
+	vertex[0].set_position(minx, miny, 0.f);
+	vertex[1].set_position(minx, maxy, 0.f);
+	vertex[2].set_position(maxx, miny, 0.f);
+	vertex[3].set_position(maxx, maxy, 0.f);
+
+	for (int i=0; i<4; ++i)
+	{
+		vertex[i].set_fvf(DEFAULT_FVF_FORMAT);
+		vertex[i].set_rhw(1.f);
+		vertex[i].set_color(color);
+		ge_draw_primitive->_push_vertex(vertex[i]);
+	}
+
+	return true;
+}
+
 bool GEPrimitiveDraw::_draw_line_strip( GEPrimitiveDrawTask* task )
 {
 	if (!_init_render()) return false;
@@ -137,6 +193,24 @@ bool GEPrimitiveDraw::_draw_line_strip( GEPrimitiveDrawTask* task )
 
 	HRESULT h_res = S_OK;
 	h_res = p_d3d_device->DrawPrimitive(D3DPT_LINESTRIP,
+		task->offset,			// StartVertex
+		task->count);			// PrimitiveCount
+	assert(SUCCEEDED(h_res));
+	return SUCCEEDED(h_res);
+}
+
+bool GEPrimitiveDraw::_draw_triangle_strip( GEPrimitiveDrawTask* task )
+{
+	if (!_init_render()) return false;
+
+	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_instance()->get_device();
+	if (p_d3d_device == NULL) return false;
+
+	if (draw_buff_ == NULL) return false;
+	if (!draw_buff_->prepare_drawbuff()) return false;
+
+	HRESULT h_res = S_OK;
+	h_res = p_d3d_device->DrawPrimitive(D3DPT_TRIANGLESTRIP,
 		task->offset,			// StartVertex
 		task->count);			// PrimitiveCount
 	assert(SUCCEEDED(h_res));

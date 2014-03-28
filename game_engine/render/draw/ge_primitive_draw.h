@@ -24,6 +24,8 @@ enum GEPrimitiveType
 
 class GE_API GEPrimitiveDrawTask : public GEDraw
 {
+	DLL_MANAGE_CLASS(GEPrimitiveDrawTask);
+
 public:
 	int				offset;
 	int				count;
@@ -35,7 +37,6 @@ public:
 class GEDrawBuff;
 class GE_API GEPrimitiveDraw
 {
-	DLL_MANAGE_CLASS(GEPrimitiveDraw);
 
 	friend GEPrimitiveDrawTask;
 
@@ -51,7 +52,7 @@ public:
 	//static bool draw_line(GE_FPOINT& from, GE_FPOINT& to, unsigned color);
 	//static bool draw_line_list(GE_FPOINT* list, int cnt, unsigned color);
 	static bool draw_rect(GE_FRECT& rect, unsigned color);
-	//static bool draw_solid_rect(GE_FRECT& rect, unsigned color);
+	static bool draw_solid_rect(GE_FRECT& rect, unsigned color);
 
 protected:
 	int _get_cur_offset();
@@ -59,14 +60,17 @@ protected:
 
 	bool _init_render();
 	void _release_render();
-	bool _push_task(const GEPrimitiveDrawTask& task);
+
+	GEPrimitiveDrawTask* _create_task();
+	void _release_task(GEPrimitiveDrawTask* task);
 
 	bool _draw_line_strip(GEPrimitiveDrawTask* task);
-	//bool _draw_triangle_strip(GEPrimitiveDrawTask* task);
+	bool _draw_triangle_strip(GEPrimitiveDrawTask* task);
 
 private:
 	std::vector<GE_VERTEX> vertex_list_;
-	std::vector<GEPrimitiveDrawTask> task_list_;
+	std::queue<GEPrimitiveDrawTask*> task_pool_;
+	int						task_cnt_;
 
 	GE_VERTEX_DECL*			vertex_decl_;
 	GEDrawBuff*				draw_buff_;

@@ -176,13 +176,12 @@ bool GEPrimitiveDraw::draw_line_strip( GE_FPOINT* list, int cnt, unsigned color 
 	std::vector<GE_VERTEX> verties;
 	verties.resize(cnt);
 
-	for (int i=0; i<5; ++i)
+	for (int i=0; i<cnt; ++i)
 	{
 		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
 		verties[i].set_rhw(1.f);
 		verties[i].set_color(color);
 		verties[i].set_position(list[i].x, list[i].y, 0.f);
-
 		ge_draw_primitive->_push_vertex(verties[i]);
 	}
 

@@ -87,13 +87,13 @@ bool GERender::do_projection_trans( float fovy )
 	if (p_d3d_device == NULL) return false;
 	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
 
-	D3DXMatrixPerspectiveFovLH(
-		&proj_matrix_,
-		D3DX_PI * fovy,
-		(float) wnd_rect.width() / wnd_rect.height(),
-		0.f, 1000.f);
+	//D3DXMatrixPerspectiveFovLH(
+	//	&proj_matrix_,
+	//	D3DX_PI * fovy,
+	//	(float) wnd_rect.width() / wnd_rect.height(),
+	//	0.f, 1000.f);
 
-	//D3DXMatrixOrthoLH(&proj_matrix_, wnd_rect.width(), wnd_rect.height(), 0.f, 1000.f);
+	D3DXMatrixOrthoLH(&proj_matrix_, wnd_rect.width(), wnd_rect.height(), 0.f, 1000.f);
 
 	HRESULT h_res = p_d3d_device->SetTransform(D3DTS_PROJECTION, &proj_matrix_);
 	return SUCCEEDED(h_res);

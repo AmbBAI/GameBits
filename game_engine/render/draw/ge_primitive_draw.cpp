@@ -13,15 +13,16 @@ void GEPrimitiveDrawTask::render()
 	switch (type)
 	{
 	case GEPrimitiveType_Point:
+		ge_draw_primitive->_draw_point_list(this);
 		break;
-	case GEPrimitiveType_LineList:
+	case GEPrimitiveType_LineStrip:
 	case GEPrimitiveType_Rect:
 	case GEPrimitiveType_Polygon:
 		ge_draw_primitive->_draw_line_strip(this);
 		break;
 	case GEPrimitiveType_SolidRect:
 	case GEPrimitiveType_SolidPolygon:
-		ge_draw_primitive->_draw_triangle_strip(this);
+		ge_draw_primitive->_draw_triangle_fan(this);
 		break;
 	}
 	ge_draw_primitive->_release_task(this);
@@ -116,6 +117,78 @@ void GEPrimitiveDraw::_release_render()
 	draw_buff_ = NULL;
 }
 
+bool GEPrimitiveDraw::draw_point( GE_FPOINT& point, unsigned color )
+{
+	GEPrimitiveDraw* ge_draw_primitive = get_instance();
+
+	GEPrimitiveDrawTask* task = ge_draw_primitive->_create_task();
+	task->offset = ge_draw_primitive->_get_cur_offset();
+	task->count = 1;
+	task->type = GEPrimitiveType_Point;
+
+	GE_VERTEX verties;
+	verties.set_position(point.x, point.y, 0.f);
+	verties.set_fvf(DEFAULT_FVF_FORMAT);
+	verties.set_rhw(1.f);
+	verties.set_color(color);
+	ge_draw_primitive->_push_vertex(verties);
+
+	return true;
+}
+
+bool GEPrimitiveDraw::draw_line( GE_FPOINT& from, GE_FPOINT& to, unsigned color )
+{
+	GEPrimitiveDraw* ge_draw_primitive = get_instance();
+
+	GEPrimitiveDrawTask* task = ge_draw_primitive->_create_task();
+	task->offset = ge_draw_primitive->_get_cur_offset();
+	task->count = 1;
+	task->type = GEPrimitiveType_LineStrip;
+
+	GE_VERTEX verties[2];
+
+	verties[0].set_position(from.x, from.y, 0.f);
+	verties[1].set_position(to.x, to.y, 0.f);
+
+	for (int i=0; i<2; ++i)
+	{
+		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
+		verties[i].set_rhw(1.f);
+		verties[i].set_color(color);
+		ge_draw_primitive->_push_vertex(verties[i]);
+	}
+
+	return true;
+}
+
+bool GEPrimitiveDraw::draw_line_strip( GE_FPOINT* list, int cnt, unsigned color )
+{
+	if (list == NULL) return false;
+	if (cnt <= 1) return false;
+
+	GEPrimitiveDraw* ge_draw_primitive = get_instance();
+
+	GEPrimitiveDrawTask* task = ge_draw_primitive->_create_task();
+	task->offset = ge_draw_primitive->_get_cur_offset();
+	task->count = cnt - 1;
+	task->type = GEPrimitiveType_LineStrip;
+
+	std::vector<GE_VERTEX> verties;
+	verties.resize(cnt);
+
+	for (int i=0; i<5; ++i)
+	{
+		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
+		verties[i].set_rhw(1.f);
+		verties[i].set_color(color);
+		verties[i].set_position(list[i].x, list[i].y, 0.f);
+
+		ge_draw_primitive->_push_vertex(verties[i]);
+	}
+
+	return true;
+}
+
 bool GEPrimitiveDraw::draw_rect( GE_FRECT& rect, unsigned color )
 {
 	GEPrimitiveDraw* ge_draw_primitive = get_instance();
@@ -125,25 +198,25 @@ bool GEPrimitiveDraw::draw_rect( GE_FRECT& rect, unsigned color )
 	task->count = 4;
 	task->type = GEPrimitiveType_Rect;
 
-	GE_VERTEX vertex[5];
+	GE_VERTEX verties[5];
 
 	float minx = rect.left;
 	float miny = rect.top;
 	float maxx = rect.right;
 	float maxy = rect.bottom;
 
-	vertex[0].set_position(minx, miny, 0.f);
-	vertex[1].set_position(minx, maxy, 0.f);
-	vertex[2].set_position(maxx, maxy, 0.f);
-	vertex[3].set_position(maxx, miny, 0.f);
-	vertex[4].set_position(minx, miny, 0.f);
+	verties[0].set_position(minx, miny, 0.f);
+	verties[1].set_position(minx, maxy, 0.f);
+	verties[2].set_position(maxx, maxy, 0.f);
+	verties[3].set_position(maxx, miny, 0.f);
+	verties[4].set_position(minx, miny, 0.f);
 
 	for (int i=0; i<5; ++i)
 	{
-		vertex[i].set_fvf(DEFAULT_FVF_FORMAT);
-		vertex[i].set_rhw(1.f);
-		vertex[i].set_color(color);
-		ge_draw_primitive->_push_vertex(vertex[i]);
+		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
+		verties[i].set_rhw(1.f);
+		verties[i].set_color(color);
+		ge_draw_primitive->_push_vertex(verties[i]);
 	}
 
 	return true;
@@ -158,27 +231,101 @@ bool GEPrimitiveDraw::draw_solid_rect( GE_FRECT& rect, unsigned color )
 	task->count = 2;
 	task->type = GEPrimitiveType_SolidRect;
 
-	GE_VERTEX vertex[4];
+	GE_VERTEX verties[4];
 
 	float minx = rect.left;
 	float miny = rect.top;
 	float maxx = rect.right;
 	float maxy = rect.bottom;
 
-	vertex[0].set_position(minx, miny, 0.f);
-	vertex[1].set_position(minx, maxy, 0.f);
-	vertex[2].set_position(maxx, miny, 0.f);
-	vertex[3].set_position(maxx, maxy, 0.f);
+	verties[0].set_position(minx, miny, 0.f);
+	verties[1].set_position(minx, maxy, 0.f);
+	verties[2].set_position(maxx, maxy, 0.f);
+	verties[3].set_position(maxx, miny, 0.f);
 
 	for (int i=0; i<4; ++i)
 	{
-		vertex[i].set_fvf(DEFAULT_FVF_FORMAT);
-		vertex[i].set_rhw(1.f);
-		vertex[i].set_color(color);
-		ge_draw_primitive->_push_vertex(vertex[i]);
+		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
+		verties[i].set_rhw(1.f);
+		verties[i].set_color(color);
+		ge_draw_primitive->_push_vertex(verties[i]);
 	}
 
 	return true;
+}
+
+bool GEPrimitiveDraw::draw_polygon( GE_FPOINT* list, int cnt, unsigned color )
+{
+	if (list == NULL) return false;
+	if (cnt <= 2) return false;
+
+	GEPrimitiveDraw* ge_draw_primitive = get_instance();
+
+	GEPrimitiveDrawTask* task = ge_draw_primitive->_create_task();
+	task->offset = ge_draw_primitive->_get_cur_offset();
+	task->count = cnt;
+	task->type = GEPrimitiveType_Polygon;
+
+	std::vector<GE_VERTEX> verties;
+	verties.resize(cnt+1);
+
+	for (int i=0; i<cnt+1; ++i)
+	{
+		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
+		verties[i].set_rhw(1.f);
+		verties[i].set_color(color);
+		if (i == cnt) verties[i].set_position(list[0].x, list[0].y, 0.f);
+		else verties[i].set_position(list[i].x, list[i].y, 0.f);
+		ge_draw_primitive->_push_vertex(verties[i]);
+	}
+
+	return true;
+}
+
+bool GEPrimitiveDraw::draw_solid_polygon( GE_FPOINT* list, int cnt, unsigned color )
+{
+	if (list == NULL) return false;
+	if (cnt <= 2) return false;
+
+	GEPrimitiveDraw* ge_draw_primitive = get_instance();
+
+	GEPrimitiveDrawTask* task = ge_draw_primitive->_create_task();
+	task->offset = ge_draw_primitive->_get_cur_offset();
+	task->count = cnt-2;
+	task->type = GEPrimitiveType_Polygon;
+
+	std::vector<GE_VERTEX> verties;
+	verties.resize(cnt+1);
+
+	for (int i=0; i<cnt+1; ++i)
+	{
+		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
+		verties[i].set_rhw(1.f);
+		verties[i].set_color(color);
+		if (i == cnt) verties[i].set_position(list[0].x, list[0].y, 0.f);
+		else verties[i].set_position(list[i].x, list[i].y, 0.f);
+		ge_draw_primitive->_push_vertex(verties[i]);
+	}
+
+	return true;
+}
+
+bool GEPrimitiveDraw::_draw_point_list( GEPrimitiveDrawTask* task )
+{
+	if (!_init_render()) return false;
+
+	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_instance()->get_device();
+	if (p_d3d_device == NULL) return false;
+
+	if (draw_buff_ == NULL) return false;
+	if (!draw_buff_->prepare_drawbuff()) return false;
+
+	HRESULT h_res = S_OK;
+	h_res = p_d3d_device->DrawPrimitive(D3DPT_POINTLIST,
+		task->offset,			// StartVertex
+		task->count);			// PrimitiveCount
+	assert(SUCCEEDED(h_res));
+	return SUCCEEDED(h_res);
 }
 
 bool GEPrimitiveDraw::_draw_line_strip( GEPrimitiveDrawTask* task )
@@ -216,6 +363,25 @@ bool GEPrimitiveDraw::_draw_triangle_strip( GEPrimitiveDrawTask* task )
 	assert(SUCCEEDED(h_res));
 	return SUCCEEDED(h_res);
 }
+
+bool GEPrimitiveDraw::_draw_triangle_fan( GEPrimitiveDrawTask* task )
+{
+	if (!_init_render()) return false;
+
+	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_instance()->get_device();
+	if (p_d3d_device == NULL) return false;
+
+	if (draw_buff_ == NULL) return false;
+	if (!draw_buff_->prepare_drawbuff()) return false;
+
+	HRESULT h_res = S_OK;
+	h_res = p_d3d_device->DrawPrimitive(D3DPT_TRIANGLEFAN,
+		task->offset,			// StartVertex
+		task->count);			// PrimitiveCount
+	assert(SUCCEEDED(h_res));
+	return SUCCEEDED(h_res);
+}
+
 
 
 

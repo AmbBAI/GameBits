@@ -42,6 +42,8 @@
 
 #define FOR_EACH(type, obj, it) for (type::iterator it = obj.begin(); it != obj.end(); ++it)
 
+#define _PRINT_FUNCTION_ puts(__FUNCTION__);
+
 #define DLL_MANAGE_CLASS(type) \
 public:\
 	static type* create();\

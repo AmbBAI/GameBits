@@ -73,9 +73,11 @@ class GEAtlasDraw : public GEDraw
 
 class GEPrimitiveDraw
 {
-	//static bool draw_point(GE_FPOINT& point, unsigned color);
-	//static bool draw_line(GE_FPOINT& from, GE_FPOINT& to, unsigned color);
-	//static bool draw_line_list(GE_FPOINT* list, int cnt, unsigned color);
+	static bool draw_point(GE_FPOINT& point, unsigned color);
+	static bool draw_line(GE_FPOINT& from, GE_FPOINT& to, unsigned color);
+	static bool draw_line_strip(GE_FPOINT* list, int cnt, unsigned color);
 	static bool draw_rect(GE_FRECT& rect, unsigned color);
 	static bool draw_solid_rect(GE_FRECT& rect, unsigned color);
+	static bool draw_polygon(GE_FPOINT* list, int cnt, unsigned color);
+	static bool draw_solid_polygon(GE_FPOINT* list, int cnt, unsigned color);
 };

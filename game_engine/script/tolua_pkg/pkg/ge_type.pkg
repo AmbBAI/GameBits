@@ -1,12 +1,20 @@
 
 struct GE_IPOINT
 {
+	GE_IPOINT();
+	GE_IPOINT(int x, int y);
+	~GE_IPOINT();
+
 	int x;
 	int y;
 };
 
 struct GE_ISIZE
 {
+	GE_ISIZE();
+	GE_ISIZE(int width, int height);
+	~GE_ISIZE();
+
 	int width;
 	int height;
 };
@@ -20,6 +28,7 @@ struct GE_IRECT
 
 	GE_IRECT();
 	GE_IRECT(int left_, int top_, int right_, int bottom_);
+	~GE_IRECT();
 
 	int width();
 	int height();
@@ -31,12 +40,20 @@ struct GE_IRECT
 
 struct GE_FPOINT
 {
+	GE_FPOINT();
+	GE_FPOINT(float x, float y);
+	~GE_FPOINT();
+
 	float x;
 	float y;
 };
 
 struct GE_FSIZE
 {
+	GE_FSIZE();
+	GE_FSIZE(float width, float height);
+	~GE_FSIZE();
+
 	float width;
 	float height;
 };
@@ -50,6 +67,7 @@ struct GE_FRECT
 
 	GE_FRECT();
 	GE_FRECT(float left_, float top_, float right_, float bottom_);
+	~GE_FRECT();
 
 	float width();
 	float height();

@@ -7,6 +7,7 @@ DLL_MANAGE_CLASS_IMPLEMENT(GEObject);
 
 GEObject::GEObject()
 : parent_(NULL)
+, is_transform_dirty_(true)
 {
 	memset(&transform_, 0, sizeof(transform_));
 	transform_.sx = 1.f;

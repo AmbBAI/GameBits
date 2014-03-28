@@ -14,7 +14,7 @@ local function new_fps_text()
 	new_font:init("font\\simsun.ttc", 18);
 	
 	new_text = ge.GEOTextFT:create()
-	rect = ge.GE_IRECT:new(0, 0, 0, 0);
+	local rect = ge.GE_IRECT:new_local(0, 0, 0, 0);
 	new_text:set_rect(rect);
 	new_text:set_font(new_font);
 	new_text:set_text("hello lua!")
@@ -37,10 +37,13 @@ local spine_test = nil
 local text_test = nil
 local text_test2 = nil
 local mouse_pos = ge.GE_FRECT:new_local(0, 0, 0, 0)
+local from = ge.GE_FPOINT:new_local(0, 0)
+local to = ge.GE_FPOINT:new_local(0, 0)
+local draw_rect = ge.GE_FRECT:new_local(10, 10, 100, 100)
 
 local function scene_init_callback()
 	spine_test = new_spine_test()
-	--scene_test:add_object(1, spine_test)
+	scene_test:add_object(1, spine_test)
 
 	text_test = new_fps_text()
 	scene_test:add_object(3, text_test)
@@ -52,8 +55,10 @@ end
 local function scene_destory_callback()
 	ge.GEOSpine:release(spine_test)
 	ge.GEOTextFT:release(text_test)
+	ge.GEOTextBM:release(text_test2)
 	spine_test = nil
 	text_test = nil
+	text_test2 = nil
 end
 
 local function scene_update_callback(delta)
@@ -84,18 +89,24 @@ local function scene_update_callback(delta)
 	text_test:set_text(fps_text)
 	text_test2:set_text(fps_text)
 
-	local rect = ge.GE_FRECT:new_local(10, 10, 100, 100)
-	ge.GEPrimitiveDraw:draw_rect(rect, 0xff00ffff)
-	ge.GEPrimitiveDraw:draw_solid_rect(rect, 0x8800ffff)
+	ge.GEPrimitiveDraw:draw_rect(draw_rect, 0xff00ffff)
+	ge.GEPrimitiveDraw:draw_solid_rect(draw_rect, 0x8800ffff)
 
 	if ge_input:get_mouse_down(0) then
 		ret, mouse_pos.left, mouse_pos.top = ge_input:get_mouse_pos(0, 0)
 	elseif ge_input:get_mouse_hold(0) then
 		ret, mouse_pos.right, mouse_pos.bottom = ge_input:get_mouse_pos(0, 0)
-		ge.GEPrimitiveDraw:draw_rect(mouse_pos, 0xffff00ff)
-		ge.GEPrimitiveDraw:draw_solid_rect(mouse_pos, 0x88ff00ff)
-	end
+		ge.GEPrimitiveDraw:draw_rect(mouse_pos, 0xffff8800)
+		ge.GEPrimitiveDraw:draw_solid_rect(mouse_pos, 0x88ff8800)
 
+		-- local from = ge.GE_FPOINT:new_local(mouse_pos.left, mouse_pos.top)
+		-- local to = ge.GE_FPOINT:new_local(mouse_pos.right, mouse_pos.bottom)
+		from.x = mouse_pos.left
+		from.y = mouse_pos.top
+		to.x = mouse_pos.right
+		to.y = mouse_pos.bottom
+		ge.GEPrimitiveDraw:draw_line(from, to, 0xffff8800)
+	end
 end
 
 scene_test = ge.GEScene:create()

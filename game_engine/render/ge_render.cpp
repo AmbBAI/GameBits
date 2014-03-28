@@ -46,7 +46,7 @@ bool GERender::init_state()
 	//b_res = b_res && set_render_state(D3DRS_NORMALIZENORMALS, true);
 	//b_res = b_res && set_render_state(D3DRS_SPECULARENABLE, true);
 	set_render_state(D3DRS_CULLMODE, D3DCULL_NONE);
-	//b_res = b_res && set_render_state(D3DRS_ZENABLE, true);
+	//set_render_state(D3DRS_ZENABLE, true);
 	//b_res = b_res && set_render_state(D3DRS_ZFUNC, D3DCMP_LESSEQUAL); //??
 	//b_res = b_res && set_render_state(D3DRS_ZWRITEENABLE, true);
 

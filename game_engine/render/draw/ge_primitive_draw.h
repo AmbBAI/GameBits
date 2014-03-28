@@ -13,7 +13,7 @@ enum GEPrimitiveType
 {
 	GEPrimitiveType_Null = 0,
 	GEPrimitiveType_Point,
-	GEPrimitiveType_LineList,
+	GEPrimitiveType_LineStrip,
 	GEPrimitiveType_Rect,
 	GEPrimitiveType_SolidRect,
 	GEPrimitiveType_Polygon,
@@ -48,11 +48,13 @@ public:
 	static const unsigned DEFAULT_FVF_FORMAT;
 	static GEPrimitiveDraw* get_instance();
 
-	//static bool draw_point(GE_FPOINT& point, unsigned color);
-	//static bool draw_line(GE_FPOINT& from, GE_FPOINT& to, unsigned color);
-	//static bool draw_line_list(GE_FPOINT* list, int cnt, unsigned color);
+	static bool draw_point(GE_FPOINT& point, unsigned color);
+	static bool draw_line(GE_FPOINT& from, GE_FPOINT& to, unsigned color);
+	static bool draw_line_strip(GE_FPOINT* list, int cnt, unsigned color);
 	static bool draw_rect(GE_FRECT& rect, unsigned color);
 	static bool draw_solid_rect(GE_FRECT& rect, unsigned color);
+	static bool draw_polygon(GE_FPOINT* list, int cnt, unsigned color);
+	static bool draw_solid_polygon(GE_FPOINT* list, int cnt, unsigned color);
 
 protected:
 	int _get_cur_offset();
@@ -64,8 +66,10 @@ protected:
 	GEPrimitiveDrawTask* _create_task();
 	void _release_task(GEPrimitiveDrawTask* task);
 
+	bool _draw_point_list(GEPrimitiveDrawTask* task);
 	bool _draw_line_strip(GEPrimitiveDrawTask* task);
 	bool _draw_triangle_strip(GEPrimitiveDrawTask* task);
+	bool _draw_triangle_fan(GEPrimitiveDrawTask* task);
 
 private:
 	std::vector<GE_VERTEX> vertex_list_;

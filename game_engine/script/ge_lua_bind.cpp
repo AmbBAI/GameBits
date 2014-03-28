@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 03/28/14 09:56:22.
+** Generated automatically by tolua++-1.0.92 on 03/28/14 11:44:40.
 */
 
 #ifndef __cplusplus
@@ -19,9 +19,37 @@ TOLUA_API int  tolua_luabind_open (lua_State* tolua_S);
 /* function to release collected object via destructor */
 #ifdef __cplusplus
 
-static int tolua_collect_ge__GE_VERTEX_DECL (lua_State* tolua_S)
+static int tolua_collect_ge__GE_IPOINT (lua_State* tolua_S)
 {
- ge::GE_VERTEX_DECL* self = (ge::GE_VERTEX_DECL*) tolua_tousertype(tolua_S,1,0);
+ ge::GE_IPOINT* self = (ge::GE_IPOINT*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_ge__GE_FSIZE (lua_State* tolua_S)
+{
+ ge::GE_FSIZE* self = (ge::GE_FSIZE*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_ge__GE_FRECT (lua_State* tolua_S)
+{
+ ge::GE_FRECT* self = (ge::GE_FRECT*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_ge__GE_FPOINT (lua_State* tolua_S)
+{
+ ge::GE_FPOINT* self = (ge::GE_FPOINT*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_ge__GE_ISIZE (lua_State* tolua_S)
+{
+ ge::GE_ISIZE* self = (ge::GE_ISIZE*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -33,9 +61,9 @@ static int tolua_collect_ge__GE_IRECT (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_ge__GE_FRECT (lua_State* tolua_S)
+static int tolua_collect_ge__GE_VERTEX_DECL (lua_State* tolua_S)
 {
- ge::GE_FRECT* self = (ge::GE_FRECT*) tolua_tousertype(tolua_S,1,0);
+ ge::GE_VERTEX_DECL* self = (ge::GE_VERTEX_DECL*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -3506,6 +3534,106 @@ static int tolua_luabind_ge_GEAtlasDraw_draw_quads00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: draw_point of class  ge::GEPrimitiveDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDraw_draw_point00
+static int tolua_luabind_ge_GEPrimitiveDraw_draw_point00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEPrimitiveDraw",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_FPOINT",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_FPOINT* point = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+  unsigned color = ((unsigned)  tolua_tonumber(tolua_S,3,0));
+  {
+   bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_point(*point,color);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'draw_point'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: draw_line of class  ge::GEPrimitiveDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDraw_draw_line00
+static int tolua_luabind_ge_GEPrimitiveDraw_draw_line00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEPrimitiveDraw",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_FPOINT",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"ge::GE_FPOINT",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_FPOINT* from = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+  ge::GE_FPOINT* to = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,3,0));
+  unsigned color = ((unsigned)  tolua_tonumber(tolua_S,4,0));
+  {
+   bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_line(*from,*to,color);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'draw_line'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: draw_line_strip of class  ge::GEPrimitiveDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDraw_draw_line_strip00
+static int tolua_luabind_ge_GEPrimitiveDraw_draw_line_strip00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEPrimitiveDraw",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GE_FPOINT",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_FPOINT* list = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+  int cnt = ((int)  tolua_tonumber(tolua_S,3,0));
+  unsigned color = ((unsigned)  tolua_tonumber(tolua_S,4,0));
+  {
+   bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_line_strip(list,cnt,color);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'draw_line_strip'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: draw_rect of class  ge::GEPrimitiveDraw */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDraw_draw_rect00
 static int tolua_luabind_ge_GEPrimitiveDraw_draw_rect00(lua_State* tolua_S)
@@ -3565,6 +3693,74 @@ static int tolua_luabind_ge_GEPrimitiveDraw_draw_solid_rect00(lua_State* tolua_S
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'draw_solid_rect'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: draw_polygon of class  ge::GEPrimitiveDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDraw_draw_polygon00
+static int tolua_luabind_ge_GEPrimitiveDraw_draw_polygon00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEPrimitiveDraw",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GE_FPOINT",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_FPOINT* list = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+  int cnt = ((int)  tolua_tonumber(tolua_S,3,0));
+  unsigned color = ((unsigned)  tolua_tonumber(tolua_S,4,0));
+  {
+   bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_polygon(list,cnt,color);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'draw_polygon'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: draw_solid_polygon of class  ge::GEPrimitiveDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDraw_draw_solid_polygon00
+static int tolua_luabind_ge_GEPrimitiveDraw_draw_solid_polygon00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEPrimitiveDraw",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GE_FPOINT",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_FPOINT* list = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+  int cnt = ((int)  tolua_tonumber(tolua_S,3,0));
+  unsigned color = ((unsigned)  tolua_tonumber(tolua_S,4,0));
+  {
+   bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_solid_polygon(list,cnt,color);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'draw_solid_polygon'.",&tolua_err);
  return 0;
 #endif
 }
@@ -4322,6 +4518,147 @@ static int tolua_luabind_ge_GEOTextBM_set_text00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: new of class  ge::GE_IPOINT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_IPOINT_new00
+static int tolua_luabind_ge_GE_IPOINT_new00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_IPOINT",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GE_IPOINT* tolua_ret = (ge::GE_IPOINT*)  Mtolua_new((ge::GE_IPOINT)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_IPOINT");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  ge::GE_IPOINT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_IPOINT_new00_local
+static int tolua_luabind_ge_GE_IPOINT_new00_local(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_IPOINT",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GE_IPOINT* tolua_ret = (ge::GE_IPOINT*)  Mtolua_new((ge::GE_IPOINT)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_IPOINT");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  ge::GE_IPOINT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_IPOINT_new01
+static int tolua_luabind_ge_GE_IPOINT_new01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_IPOINT",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  int x = ((int)  tolua_tonumber(tolua_S,2,0));
+  int y = ((int)  tolua_tonumber(tolua_S,3,0));
+  {
+   ge::GE_IPOINT* tolua_ret = (ge::GE_IPOINT*)  Mtolua_new((ge::GE_IPOINT)(x,y));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_IPOINT");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_luabind_ge_GE_IPOINT_new00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  ge::GE_IPOINT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_IPOINT_new01_local
+static int tolua_luabind_ge_GE_IPOINT_new01_local(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_IPOINT",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  int x = ((int)  tolua_tonumber(tolua_S,2,0));
+  int y = ((int)  tolua_tonumber(tolua_S,3,0));
+  {
+   ge::GE_IPOINT* tolua_ret = (ge::GE_IPOINT*)  Mtolua_new((ge::GE_IPOINT)(x,y));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_IPOINT");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_luabind_ge_GE_IPOINT_new00_local(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: delete of class  ge::GE_IPOINT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_IPOINT_delete00
+static int tolua_luabind_ge_GE_IPOINT_delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_IPOINT",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_IPOINT* self = (ge::GE_IPOINT*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
+#endif
+  Mtolua_delete(self);
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* get function: x of class  ge::GE_IPOINT */
 #ifndef TOLUA_DISABLE_tolua_get_ge__GE_IPOINT_x
 static int tolua_get_ge__GE_IPOINT_x(lua_State* tolua_S)
@@ -4379,6 +4716,147 @@ static int tolua_set_ge__GE_IPOINT_y(lua_State* tolua_S)
   self->y = ((int)  tolua_tonumber(tolua_S,2,0))
 ;
  return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  ge::GE_ISIZE */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_ISIZE_new00
+static int tolua_luabind_ge_GE_ISIZE_new00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_ISIZE",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GE_ISIZE* tolua_ret = (ge::GE_ISIZE*)  Mtolua_new((ge::GE_ISIZE)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_ISIZE");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  ge::GE_ISIZE */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_ISIZE_new00_local
+static int tolua_luabind_ge_GE_ISIZE_new00_local(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_ISIZE",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GE_ISIZE* tolua_ret = (ge::GE_ISIZE*)  Mtolua_new((ge::GE_ISIZE)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_ISIZE");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  ge::GE_ISIZE */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_ISIZE_new01
+static int tolua_luabind_ge_GE_ISIZE_new01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_ISIZE",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  int width = ((int)  tolua_tonumber(tolua_S,2,0));
+  int height = ((int)  tolua_tonumber(tolua_S,3,0));
+  {
+   ge::GE_ISIZE* tolua_ret = (ge::GE_ISIZE*)  Mtolua_new((ge::GE_ISIZE)(width,height));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_ISIZE");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_luabind_ge_GE_ISIZE_new00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  ge::GE_ISIZE */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_ISIZE_new01_local
+static int tolua_luabind_ge_GE_ISIZE_new01_local(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_ISIZE",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  int width = ((int)  tolua_tonumber(tolua_S,2,0));
+  int height = ((int)  tolua_tonumber(tolua_S,3,0));
+  {
+   ge::GE_ISIZE* tolua_ret = (ge::GE_ISIZE*)  Mtolua_new((ge::GE_ISIZE)(width,height));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_ISIZE");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_luabind_ge_GE_ISIZE_new00_local(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: delete of class  ge::GE_ISIZE */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_ISIZE_delete00
+static int tolua_luabind_ge_GE_ISIZE_delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_ISIZE",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_ISIZE* self = (ge::GE_ISIZE*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
+#endif
+  Mtolua_delete(self);
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
+ return 0;
+#endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -4682,6 +5160,35 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: delete of class  ge::GE_IRECT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_IRECT_delete00
+static int tolua_luabind_ge_GE_IRECT_delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_IRECT",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_IRECT* self = (ge::GE_IRECT*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
+#endif
+  Mtolua_delete(self);
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: width of class  ge::GE_IRECT */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_IRECT_width00
 static int tolua_luabind_ge_GE_IRECT_width00(lua_State* tolua_S)
@@ -4851,6 +5358,147 @@ static int tolua_luabind_ge_GE_IRECT_include00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: new of class  ge::GE_FPOINT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FPOINT_new00
+static int tolua_luabind_ge_GE_FPOINT_new00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_FPOINT",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GE_FPOINT* tolua_ret = (ge::GE_FPOINT*)  Mtolua_new((ge::GE_FPOINT)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FPOINT");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  ge::GE_FPOINT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FPOINT_new00_local
+static int tolua_luabind_ge_GE_FPOINT_new00_local(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_FPOINT",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GE_FPOINT* tolua_ret = (ge::GE_FPOINT*)  Mtolua_new((ge::GE_FPOINT)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FPOINT");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  ge::GE_FPOINT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FPOINT_new01
+static int tolua_luabind_ge_GE_FPOINT_new01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_FPOINT",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   ge::GE_FPOINT* tolua_ret = (ge::GE_FPOINT*)  Mtolua_new((ge::GE_FPOINT)(x,y));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FPOINT");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_luabind_ge_GE_FPOINT_new00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  ge::GE_FPOINT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FPOINT_new01_local
+static int tolua_luabind_ge_GE_FPOINT_new01_local(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_FPOINT",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   ge::GE_FPOINT* tolua_ret = (ge::GE_FPOINT*)  Mtolua_new((ge::GE_FPOINT)(x,y));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FPOINT");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_luabind_ge_GE_FPOINT_new00_local(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: delete of class  ge::GE_FPOINT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FPOINT_delete00
+static int tolua_luabind_ge_GE_FPOINT_delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_FPOINT",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_FPOINT* self = (ge::GE_FPOINT*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
+#endif
+  Mtolua_delete(self);
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* get function: x of class  ge::GE_FPOINT */
 #ifndef TOLUA_DISABLE_tolua_get_ge__GE_FPOINT_x
 static int tolua_get_ge__GE_FPOINT_x(lua_State* tolua_S)
@@ -4908,6 +5556,147 @@ static int tolua_set_ge__GE_FPOINT_y(lua_State* tolua_S)
   self->y = ((float)  tolua_tonumber(tolua_S,2,0))
 ;
  return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  ge::GE_FSIZE */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FSIZE_new00
+static int tolua_luabind_ge_GE_FSIZE_new00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_FSIZE",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GE_FSIZE* tolua_ret = (ge::GE_FSIZE*)  Mtolua_new((ge::GE_FSIZE)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FSIZE");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  ge::GE_FSIZE */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FSIZE_new00_local
+static int tolua_luabind_ge_GE_FSIZE_new00_local(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_FSIZE",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GE_FSIZE* tolua_ret = (ge::GE_FSIZE*)  Mtolua_new((ge::GE_FSIZE)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FSIZE");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  ge::GE_FSIZE */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FSIZE_new01
+static int tolua_luabind_ge_GE_FSIZE_new01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_FSIZE",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  float width = ((float)  tolua_tonumber(tolua_S,2,0));
+  float height = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   ge::GE_FSIZE* tolua_ret = (ge::GE_FSIZE*)  Mtolua_new((ge::GE_FSIZE)(width,height));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FSIZE");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_luabind_ge_GE_FSIZE_new00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  ge::GE_FSIZE */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FSIZE_new01_local
+static int tolua_luabind_ge_GE_FSIZE_new01_local(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GE_FSIZE",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  float width = ((float)  tolua_tonumber(tolua_S,2,0));
+  float height = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   ge::GE_FSIZE* tolua_ret = (ge::GE_FSIZE*)  Mtolua_new((ge::GE_FSIZE)(width,height));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FSIZE");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_luabind_ge_GE_FSIZE_new00_local(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: delete of class  ge::GE_FSIZE */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FSIZE_delete00
+static int tolua_luabind_ge_GE_FSIZE_delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_FSIZE",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_FSIZE* self = (ge::GE_FSIZE*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
+#endif
+  Mtolua_delete(self);
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
+ return 0;
+#endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -5208,6 +5997,35 @@ static int tolua_luabind_ge_GE_FRECT_new01_local(lua_State* tolua_S)
  return 1;
 tolua_lerror:
  return tolua_luabind_ge_GE_FRECT_new00_local(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: delete of class  ge::GE_FRECT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FRECT_delete00
+static int tolua_luabind_ge_GE_FRECT_delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GE_FRECT",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
+#endif
+  Mtolua_delete(self);
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
+ return 0;
+#endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -6218,8 +7036,13 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GEPrimitiveDraw","ge::GEPrimitiveDraw","",NULL);
    tolua_beginmodule(tolua_S,"GEPrimitiveDraw");
+    tolua_function(tolua_S,"draw_point",tolua_luabind_ge_GEPrimitiveDraw_draw_point00);
+    tolua_function(tolua_S,"draw_line",tolua_luabind_ge_GEPrimitiveDraw_draw_line00);
+    tolua_function(tolua_S,"draw_line_strip",tolua_luabind_ge_GEPrimitiveDraw_draw_line_strip00);
     tolua_function(tolua_S,"draw_rect",tolua_luabind_ge_GEPrimitiveDraw_draw_rect00);
     tolua_function(tolua_S,"draw_solid_rect",tolua_luabind_ge_GEPrimitiveDraw_draw_solid_rect00);
+    tolua_function(tolua_S,"draw_polygon",tolua_luabind_ge_GEPrimitiveDraw_draw_polygon00);
+    tolua_function(tolua_S,"draw_solid_polygon",tolua_luabind_ge_GEPrimitiveDraw_draw_solid_polygon00);
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GEREffect","ge::GEREffect","",NULL);
    tolua_beginmodule(tolua_S,"GEREffect");
@@ -6262,13 +7085,35 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"set_font",tolua_luabind_ge_GEOTextBM_set_font00);
     tolua_function(tolua_S,"set_text",tolua_luabind_ge_GEOTextBM_set_text00);
    tolua_endmodule(tolua_S);
+   #ifdef __cplusplus
+   tolua_cclass(tolua_S,"GE_IPOINT","ge::GE_IPOINT","",tolua_collect_ge__GE_IPOINT);
+   #else
    tolua_cclass(tolua_S,"GE_IPOINT","ge::GE_IPOINT","",NULL);
+   #endif
    tolua_beginmodule(tolua_S,"GE_IPOINT");
+    tolua_function(tolua_S,"new",tolua_luabind_ge_GE_IPOINT_new00);
+    tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_IPOINT_new00_local);
+    tolua_function(tolua_S,".call",tolua_luabind_ge_GE_IPOINT_new00_local);
+    tolua_function(tolua_S,"new",tolua_luabind_ge_GE_IPOINT_new01);
+    tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_IPOINT_new01_local);
+    tolua_function(tolua_S,".call",tolua_luabind_ge_GE_IPOINT_new01_local);
+    tolua_function(tolua_S,"delete",tolua_luabind_ge_GE_IPOINT_delete00);
     tolua_variable(tolua_S,"x",tolua_get_ge__GE_IPOINT_x,tolua_set_ge__GE_IPOINT_x);
     tolua_variable(tolua_S,"y",tolua_get_ge__GE_IPOINT_y,tolua_set_ge__GE_IPOINT_y);
    tolua_endmodule(tolua_S);
+   #ifdef __cplusplus
+   tolua_cclass(tolua_S,"GE_ISIZE","ge::GE_ISIZE","",tolua_collect_ge__GE_ISIZE);
+   #else
    tolua_cclass(tolua_S,"GE_ISIZE","ge::GE_ISIZE","",NULL);
+   #endif
    tolua_beginmodule(tolua_S,"GE_ISIZE");
+    tolua_function(tolua_S,"new",tolua_luabind_ge_GE_ISIZE_new00);
+    tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_ISIZE_new00_local);
+    tolua_function(tolua_S,".call",tolua_luabind_ge_GE_ISIZE_new00_local);
+    tolua_function(tolua_S,"new",tolua_luabind_ge_GE_ISIZE_new01);
+    tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_ISIZE_new01_local);
+    tolua_function(tolua_S,".call",tolua_luabind_ge_GE_ISIZE_new01_local);
+    tolua_function(tolua_S,"delete",tolua_luabind_ge_GE_ISIZE_delete00);
     tolua_variable(tolua_S,"width",tolua_get_ge__GE_ISIZE_width,tolua_set_ge__GE_ISIZE_width);
     tolua_variable(tolua_S,"height",tolua_get_ge__GE_ISIZE_height,tolua_set_ge__GE_ISIZE_height);
    tolua_endmodule(tolua_S);
@@ -6288,19 +7133,42 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"new",tolua_luabind_ge_GE_IRECT_new01);
     tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_IRECT_new01_local);
     tolua_function(tolua_S,".call",tolua_luabind_ge_GE_IRECT_new01_local);
+    tolua_function(tolua_S,"delete",tolua_luabind_ge_GE_IRECT_delete00);
     tolua_function(tolua_S,"width",tolua_luabind_ge_GE_IRECT_width00);
     tolua_function(tolua_S,"height",tolua_luabind_ge_GE_IRECT_height00);
     tolua_function(tolua_S,"move",tolua_luabind_ge_GE_IRECT_move00);
     tolua_function(tolua_S,"move_to",tolua_luabind_ge_GE_IRECT_move_to00);
     tolua_function(tolua_S,"include",tolua_luabind_ge_GE_IRECT_include00);
    tolua_endmodule(tolua_S);
+   #ifdef __cplusplus
+   tolua_cclass(tolua_S,"GE_FPOINT","ge::GE_FPOINT","",tolua_collect_ge__GE_FPOINT);
+   #else
    tolua_cclass(tolua_S,"GE_FPOINT","ge::GE_FPOINT","",NULL);
+   #endif
    tolua_beginmodule(tolua_S,"GE_FPOINT");
+    tolua_function(tolua_S,"new",tolua_luabind_ge_GE_FPOINT_new00);
+    tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_FPOINT_new00_local);
+    tolua_function(tolua_S,".call",tolua_luabind_ge_GE_FPOINT_new00_local);
+    tolua_function(tolua_S,"new",tolua_luabind_ge_GE_FPOINT_new01);
+    tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_FPOINT_new01_local);
+    tolua_function(tolua_S,".call",tolua_luabind_ge_GE_FPOINT_new01_local);
+    tolua_function(tolua_S,"delete",tolua_luabind_ge_GE_FPOINT_delete00);
     tolua_variable(tolua_S,"x",tolua_get_ge__GE_FPOINT_x,tolua_set_ge__GE_FPOINT_x);
     tolua_variable(tolua_S,"y",tolua_get_ge__GE_FPOINT_y,tolua_set_ge__GE_FPOINT_y);
    tolua_endmodule(tolua_S);
+   #ifdef __cplusplus
+   tolua_cclass(tolua_S,"GE_FSIZE","ge::GE_FSIZE","",tolua_collect_ge__GE_FSIZE);
+   #else
    tolua_cclass(tolua_S,"GE_FSIZE","ge::GE_FSIZE","",NULL);
+   #endif
    tolua_beginmodule(tolua_S,"GE_FSIZE");
+    tolua_function(tolua_S,"new",tolua_luabind_ge_GE_FSIZE_new00);
+    tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_FSIZE_new00_local);
+    tolua_function(tolua_S,".call",tolua_luabind_ge_GE_FSIZE_new00_local);
+    tolua_function(tolua_S,"new",tolua_luabind_ge_GE_FSIZE_new01);
+    tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_FSIZE_new01_local);
+    tolua_function(tolua_S,".call",tolua_luabind_ge_GE_FSIZE_new01_local);
+    tolua_function(tolua_S,"delete",tolua_luabind_ge_GE_FSIZE_delete00);
     tolua_variable(tolua_S,"width",tolua_get_ge__GE_FSIZE_width,tolua_set_ge__GE_FSIZE_width);
     tolua_variable(tolua_S,"height",tolua_get_ge__GE_FSIZE_height,tolua_set_ge__GE_FSIZE_height);
    tolua_endmodule(tolua_S);
@@ -6320,6 +7188,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"new",tolua_luabind_ge_GE_FRECT_new01);
     tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_FRECT_new01_local);
     tolua_function(tolua_S,".call",tolua_luabind_ge_GE_FRECT_new01_local);
+    tolua_function(tolua_S,"delete",tolua_luabind_ge_GE_FRECT_delete00);
     tolua_function(tolua_S,"width",tolua_luabind_ge_GE_FRECT_width00);
     tolua_function(tolua_S,"height",tolua_luabind_ge_GE_FRECT_height00);
     tolua_function(tolua_S,"move",tolua_luabind_ge_GE_FRECT_move00);

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 04/01/14 16:51:34.
+** Generated automatically by tolua++-1.0.92 on 04/01/14 17:49:34.
 */
 
 #ifndef __cplusplus
@@ -1628,42 +1628,6 @@ static int tolua_luabind_ge_GETextureGroup_get_texture00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: replace_texture of class  ge::GETextureGroup */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GETextureGroup_replace_texture00
-static int tolua_luabind_ge_GETextureGroup_replace_texture00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ge::GETextureGroup",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isstring(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ge::GETextureGroup* self = (ge::GETextureGroup*)  tolua_tousertype(tolua_S,1,0);
-  int texture_id = ((int)  tolua_tonumber(tolua_S,2,0));
-  const char* texture_path = ((const char*)  tolua_tostring(tolua_S,3,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'replace_texture'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->replace_texture(texture_id,texture_path);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'replace_texture'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: release_texture of class  ge::GETextureGroup */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GETextureGroup_release_texture00
 static int tolua_luabind_ge_GETextureGroup_release_texture00(lua_State* tolua_S)
@@ -1768,38 +1732,12 @@ static int tolua_luabind_ge_GETextureManager_create_texture00(lua_State* tolua_S
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"ge::GETextureManager",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   ge::GETexture* tolua_ret = (ge::GETexture*)  ge::GETextureManager::create_texture();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GETexture");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'create_texture'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: create_texture of class  ge::GETextureManager */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GETextureManager_create_texture01
-static int tolua_luabind_ge_GETextureManager_create_texture01(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"ge::GETextureManager",0,&tolua_err) ||
      !tolua_isstring(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
+#endif
  {
   const char* texture_path = ((const char*)  tolua_tostring(tolua_S,2,0));
   {
@@ -1808,36 +1746,9 @@ static int tolua_luabind_ge_GETextureManager_create_texture01(lua_State* tolua_S
   }
  }
  return 1;
-tolua_lerror:
- return tolua_luabind_ge_GETextureManager_create_texture00(tolua_S);
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: refer_texture of class  ge::GETextureManager */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GETextureManager_refer_texture00
-static int tolua_luabind_ge_GETextureManager_refer_texture00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"ge::GETextureManager",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GETexture",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ge::GETexture* texture = ((ge::GETexture*)  tolua_tousertype(tolua_S,2,0));
-  {
-   bool tolua_ret = (bool)  ge::GETextureManager::refer_texture(texture);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'refer_texture'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'create_texture'.",&tolua_err);
  return 0;
 #endif
 }
@@ -1851,109 +1762,22 @@ static int tolua_luabind_ge_GETextureManager_release_texture00(lua_State* tolua_
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"ge::GETextureManager",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GETexture",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ge::GETexture* texture = ((ge::GETexture*)  tolua_tousertype(tolua_S,2,0));
+  const char* texture_key = ((const char*)  tolua_tostring(tolua_S,2,0));
   {
-   ge::GETextureManager::release_texture(texture);
+   ge::GETextureManager::release_texture(texture_key);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'release_texture'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: create_texture_group of class  ge::GETextureManager */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GETextureManager_create_texture_group00
-static int tolua_luabind_ge_GETextureManager_create_texture_group00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"ge::GETextureManager",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   ge::GETextureGroup* tolua_ret = (ge::GETextureGroup*)  ge::GETextureManager::create_texture_group();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GETextureGroup");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'create_texture_group'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: refer_texture_group of class  ge::GETextureManager */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GETextureManager_refer_texture_group00
-static int tolua_luabind_ge_GETextureManager_refer_texture_group00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"ge::GETextureManager",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GETextureGroup",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ge::GETextureGroup* texture_group = ((ge::GETextureGroup*)  tolua_tousertype(tolua_S,2,0));
-  {
-   bool tolua_ret = (bool)  ge::GETextureManager::refer_texture_group(texture_group);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'refer_texture_group'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: release_texture_group of class  ge::GETextureManager */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GETextureManager_release_texture_group00
-static int tolua_luabind_ge_GETextureManager_release_texture_group00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"ge::GETextureManager",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GETextureGroup",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ge::GETextureGroup* texture_group = ((ge::GETextureGroup*)  tolua_tousertype(tolua_S,2,0));
-  {
-   ge::GETextureManager::release_texture_group(texture_group);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'release_texture_group'.",&tolua_err);
  return 0;
 #endif
 }
@@ -7246,7 +7070,6 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"add_texture",tolua_luabind_ge_GETextureGroup_add_texture01);
     tolua_function(tolua_S,"add_texture_from_file",tolua_luabind_ge_GETextureGroup_add_texture_from_file00);
     tolua_function(tolua_S,"get_texture",tolua_luabind_ge_GETextureGroup_get_texture00);
-    tolua_function(tolua_S,"replace_texture",tolua_luabind_ge_GETextureGroup_replace_texture00);
     tolua_function(tolua_S,"release_texture",tolua_luabind_ge_GETextureGroup_release_texture00);
     tolua_function(tolua_S,"release_all_texture",tolua_luabind_ge_GETextureGroup_release_all_texture00);
     tolua_function(tolua_S,"get_texture_cnt",tolua_luabind_ge_GETextureGroup_get_texture_cnt00);
@@ -7254,12 +7077,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_cclass(tolua_S,"GETextureManager","ge::GETextureManager","",NULL);
    tolua_beginmodule(tolua_S,"GETextureManager");
     tolua_function(tolua_S,"create_texture",tolua_luabind_ge_GETextureManager_create_texture00);
-    tolua_function(tolua_S,"create_texture",tolua_luabind_ge_GETextureManager_create_texture01);
-    tolua_function(tolua_S,"refer_texture",tolua_luabind_ge_GETextureManager_refer_texture00);
     tolua_function(tolua_S,"release_texture",tolua_luabind_ge_GETextureManager_release_texture00);
-    tolua_function(tolua_S,"create_texture_group",tolua_luabind_ge_GETextureManager_create_texture_group00);
-    tolua_function(tolua_S,"refer_texture_group",tolua_luabind_ge_GETextureManager_refer_texture_group00);
-    tolua_function(tolua_S,"release_texture_group",tolua_luabind_ge_GETextureManager_release_texture_group00);
    tolua_endmodule(tolua_S);
    tolua_constant(tolua_S,"FontType_Default",ge::FontType_Default);
    tolua_constant(tolua_S,"FontType_D3DXFont",ge::FontType_D3DXFont);

@@ -25,14 +25,15 @@ void GETextureGroup::destory()
 
 int GETextureGroup::add_texture()
 {
-	GETexture* texture = GETextureManager::create_texture();
+	GETexture* texture = GETexture::create();
+	texture->retain();
 	texture_list_.push_back(texture);
 	return (int)texture_list_.size() - 1;
 }
 
 int GETextureGroup::add_texture( GETexture* texture )
 {
-	GETextureManager::refer_texture(texture);
+	if (texture) texture->retain();
 	texture_list_.push_back(texture);
 	return (int)texture_list_.size() - 1;
 }
@@ -40,8 +41,7 @@ int GETextureGroup::add_texture( GETexture* texture )
 int GETextureGroup::add_texture_from_file( const char* texture_path )
 {
 	GETexture* texture = GETextureManager::create_texture(texture_path);
-	texture_list_.push_back(texture);
-	return (int)texture_list_.size() - 1;
+	return add_texture(texture);
 }
 
 GETexture* GETextureGroup::get_texture( int texture_id/* = 0*/ )
@@ -51,25 +51,11 @@ GETexture* GETextureGroup::get_texture( int texture_id/* = 0*/ )
 	return texture_list_[texture_id];
 }
 
-bool GETextureGroup::replace_texture( int texture_id, const char* texture_path )
-{
-	if (texture_id < 0) return false;
-	if ((int)texture_list_.size() <= texture_id) return false;
-	release_texture(texture_id);
-	texture_list_[texture_id] = GETextureManager::create_texture(texture_path);
-	return true;
-}
-
 void GETextureGroup::release_texture( int texture_id )
 {
 	if (texture_id < 0) return;
 	if ((int)texture_list_.size() <= texture_id) return;
-	GETexture* texture = texture_list_[texture_id];
-	if (texture)
-	{
-		GETextureManager::release_texture(texture);
-		texture_list_[texture_id] = NULL;
-	}
+	GE_RELEASE(texture_list_[texture_id]);
 }
 
 void GETextureGroup::release_all_texture()

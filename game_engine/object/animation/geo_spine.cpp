@@ -18,9 +18,7 @@ void _spAtlasPage_createTexture (spAtlasPage* self, const char* path) {
 
 void _spAtlasPage_disposeTexture (spAtlasPage* self) {
 	ge::GETexture* render_object = (ge::GETexture*)(self->rendererObject);
-	if (render_object == NULL) return;
-	ge::GETextureManager::release_texture(render_object);
-	render_object = NULL;
+	GE_RELEASE(render_object);
 }
 
 char* _spUtil_readFile (const char* path, int* length) {

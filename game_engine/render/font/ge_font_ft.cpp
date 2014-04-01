@@ -473,9 +473,10 @@ GETextureGroup* GEFontFT::get_texture_group()
 bool GEFontFT::init_texture_group()
 {
 	if (texture_group_ == NULL)
-		texture_group_ = GETextureManager::create_texture_group();
+		texture_group_ = GETextureGroup::create();
 
 	if (texture_group_ == NULL) return false;
+	else texture_group_->retain();
 	return true;
 }
 

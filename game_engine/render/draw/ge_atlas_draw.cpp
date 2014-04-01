@@ -45,6 +45,7 @@ bool GEAtlasDraw::init_texture_group()
 		texture_group_ = GETextureGroup::create();
 
 	if (texture_group_ == NULL) return false;
+	else texture_group_->retain();
 	return true;
 }
 
@@ -52,7 +53,7 @@ bool GEAtlasDraw::set_texture_group( GETextureGroup* texture_group )
 {
 	release_texture_group();
 	texture_group_ = texture_group;
-	if (texture_group_) GETextureManager::refer_texture_group(texture_group_);
+	if (texture_group_) texture_group_->retain();
 	return true;
 }
 
@@ -63,11 +64,7 @@ GETextureGroup* GEAtlasDraw::get_texture_group()
 
 void GEAtlasDraw::release_texture_group()
 {
-	if (texture_group_)
-	{
-		GETextureManager::release_texture_group(texture_group_);
-		texture_group_ = NULL;
-	}
+	GE_RELEASE(texture_group_);
 }
 
 bool GEAtlasDraw::set_vertex_fvf( DWORD fvf )

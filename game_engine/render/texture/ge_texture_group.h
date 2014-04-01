@@ -20,7 +20,6 @@ public:
 	virtual int add_texture(GETexture* texture);
 	virtual int add_texture_from_file(const char* texture_path);
 	virtual GETexture* get_texture(int texture_id = 0);
-	virtual bool replace_texture(int texture_id, const char* texture_path);
 	virtual void release_texture(int texture_id);
 	virtual void release_all_texture();
 	virtual void destory();

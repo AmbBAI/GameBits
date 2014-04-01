@@ -50,12 +50,6 @@ local function scene_init_callback()
 end
 
 local function scene_destory_callback()
-	ge.GEOSpine:release(spine_test)
-	ge.GEOTextFT:release(text_test)
-	ge.GEOTextBM:release(text_test2)
-	spine_test = nil
-	text_test = nil
-	text_test2 = nil
 end
 
 local function scene_update_callback(delta)

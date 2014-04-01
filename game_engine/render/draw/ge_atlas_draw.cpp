@@ -35,8 +35,7 @@ void GEAtlasDraw::destory()
 {
 	release_render();
 	release_texture_group();
-
-	vertex_decl_ = NULL;
+	release_vertex_decl();
 }
 
 bool GEAtlasDraw::init_texture_group()
@@ -72,14 +71,19 @@ bool GEAtlasDraw::set_vertex_fvf( DWORD fvf )
 	return set_vertex_decl(GEVertexDecl::get_vertex_decl(fvf));
 }
 
-bool GEAtlasDraw::set_vertex_decl( GE_VERTEX_DECL* vertex_decl )
+bool GEAtlasDraw::set_vertex_decl( GE_VERTEX_DECL* decl )
 {
-	if (vertex_decl == NULL) return false;
-	if (!vertex_decl->is_valid()) return false;
+	if (decl == vertex_decl_) return true;
+	GE_RELEASE(vertex_decl_);
 
-	vertex_decl_ = vertex_decl;
+	if (decl == NULL) return false;
+	if (!decl->is_valid()) return false;
 
-	release_render();
+	vertex_decl_ = decl;
+	vertex_decl_->retain();
+
+	if (draw_buff_)
+		return draw_buff_->set_vertex_decl(decl);
 	return true;
 }
 
@@ -88,13 +92,20 @@ GE_VERTEX_DECL* GEAtlasDraw::get_vertex_decl()
 	return vertex_decl_;
 }
 
+void GEAtlasDraw::release_vertex_decl()
+{
+	GE_RELEASE(vertex_decl_);
+}
+
 bool GEAtlasDraw::init_render()
 {
 	if (draw_buff_ == NULL)
+	{
 		draw_buff_ = GEDrawBuff::create();
+		if (draw_buff_) draw_buff_->retain();
+	}
 	if (draw_buff_ == NULL) return false;
-
-	draw_buff_->set_vertex_decl(vertex_decl_);
+	if (!draw_buff_->set_vertex_decl(vertex_decl_)) return false;
 	return draw_buff_->init_quad_buff(vertex_list_.size() / 4);
 }
 
@@ -137,12 +148,7 @@ bool GEAtlasDraw::_update_render_task( int quad_index, int texture_id )
 
 void GEAtlasDraw::release_render()
 {
-	if (draw_buff_)
-	{
-		draw_buff_->destory_buff();
-		GE_RELEASE(draw_buff_);
-	}
-	draw_buff_ = NULL;
+	GE_RELEASE(draw_buff_);
 }
 
 bool GEAtlasDraw::add_quad( GE_QUAD_EX& quad )

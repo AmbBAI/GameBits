@@ -43,6 +43,7 @@ public:
 	bool set_vertex_fvf(DWORD fvf);
 	bool set_vertex_decl(GE_VERTEX_DECL* vertex_decl);
 	GE_VERTEX_DECL* get_vertex_decl();
+	void release_vertex_decl();
 
 	bool init_texture_group();
 	bool set_texture_group(GETextureGroup* texture_group);

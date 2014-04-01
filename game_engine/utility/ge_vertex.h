@@ -15,11 +15,12 @@ struct GE_API GE_VERTEX_DECL
 
 	GE_VERTEX_DECL();
 	bool is_valid();
+	DLL_MANAGE_CLASS(GE_VERTEX_DECL);
 };
 
 class GE_API GEVertexDecl
 {
-public:
+protected:
 	GEVertexDecl();
 	virtual ~GEVertexDecl();
 
@@ -28,6 +29,7 @@ public:
 
 public:
 	static GE_VERTEX_DECL* get_vertex_decl(DWORD fvf);
+	static void release_vertex_decl(DWORD fvf);
 
 protected:
 	bool				_init_vertex_decl(GE_VERTEX_DECL* out_decl, DWORD fvf);
@@ -37,7 +39,6 @@ protected:
 	void				_release_vertex_decl(DWORD fvf);
 
 private:
-
 	typedef std::map<DWORD, GE_VERTEX_DECL*> VERTEX_DECL_MAP;
 	VERTEX_DECL_MAP		vertex_decl_map_;
 };
@@ -48,6 +49,7 @@ class GE_API GE_VERTEX
 {
 public:
 	GE_VERTEX();
+	GE_VERTEX(const GE_VERTEX& copy);
 	virtual ~GE_VERTEX();
 
 public:

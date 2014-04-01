@@ -4,6 +4,8 @@
 namespace ge
 {
 
+DLL_MANAGE_CLASS_IMPLEMENT(GE_VERTEX_DECL);
+
 GE_VERTEX_DECL::GE_VERTEX_DECL()
 : fvf(NULL)
 , size(0)
@@ -28,11 +30,10 @@ GEVertexDecl::GEVertexDecl()
 
 GEVertexDecl::~GEVertexDecl()
 {
-	FOR_EACH (VERTEX_DECL_MAP, vertex_decl_map_, decl_itor)
+	FOR_EACH (VERTEX_DECL_MAP, vertex_decl_map_, itor_decl)
 	{
-		_destory_vertex_decl(decl_itor->second);
-		delete vertex_decl_map_[decl_itor->first];
-		vertex_decl_map_[decl_itor->first] = NULL;
+		_destory_vertex_decl(itor_decl->second);
+		GE_RELEASE(itor_decl->second);
 	}
 	vertex_decl_map_.clear();
 }
@@ -77,15 +78,23 @@ void GEVertexDecl::_destory_vertex_decl( GE_VERTEX_DECL* out_decl )
 bool GEVertexDecl::_create_vertex_decl( DWORD fvf )
 {
 	if (vertex_decl_map_.find(fvf) != vertex_decl_map_.end()) return true;
-	vertex_decl_map_[fvf] = new GE_VERTEX_DECL;
-	return _init_vertex_decl(vertex_decl_map_[fvf], fvf);
+	GE_VERTEX_DECL* _decl = GE_VERTEX_DECL::create();
+	if (_decl)
+	{
+		vertex_decl_map_[fvf] = _decl;
+		_decl->retain();
+		return _init_vertex_decl(_decl, fvf);
+	}
+	return false;
 }
 
 void GEVertexDecl::_release_vertex_decl( DWORD fvf )
 {
-	if (vertex_decl_map_.find(fvf) == vertex_decl_map_.end()) return;
-	_destory_vertex_decl(vertex_decl_map_[fvf]);
-	delete vertex_decl_map_[fvf];
+	VERTEX_DECL_MAP::iterator itor_decl = vertex_decl_map_.find(fvf);
+	if (itor_decl == vertex_decl_map_.end()) return;
+	_destory_vertex_decl(itor_decl->second);
+	GE_RELEASE(itor_decl->second);
+	vertex_decl_map_.erase(itor_decl);
 }
 
 GE_VERTEX_DECL* GEVertexDecl::_get_vertex_decl( DWORD fvf )
@@ -101,6 +110,12 @@ GE_VERTEX_DECL* GEVertexDecl::get_vertex_decl( DWORD fvf )
 	return vertex_decl->_get_vertex_decl(fvf);
 }
 
+void GEVertexDecl::release_vertex_decl( DWORD fvf )
+{
+	GEVertexDecl* vertex_decl = GEVertexDecl::get_instance();
+	vertex_decl->_release_vertex_decl(fvf);
+}
+
 
 
 GE_VERTEX::GE_VERTEX()
@@ -113,9 +128,22 @@ GE_VERTEX::GE_VERTEX()
 {
 }
 
+GE_VERTEX::GE_VERTEX( const GE_VERTEX& copy )
+{
+	position_	= copy.position_;
+	rhw_		= copy.rhw_;
+	blend_		= copy.blend_;
+	normal_		= copy.normal_;
+	color_		= copy.color_;
+	texcoords_	= copy.texcoords_;
+
+	decl_		= NULL;
+	set_decl(copy.decl_);
+}
+
 GE_VERTEX::~GE_VERTEX()
 {
-
+	GE_RELEASE(decl_);
 }
 
 bool GE_VERTEX::set_fvf( DWORD fvf )
@@ -125,9 +153,15 @@ bool GE_VERTEX::set_fvf( DWORD fvf )
 
 bool GE_VERTEX::set_decl( GE_VERTEX_DECL* decl )
 {
+	if (decl == decl_) return true;
+	GE_RELEASE(decl_);
+
 	if (decl == NULL) return false;
 	if (!decl->is_valid()) return false;
+
 	decl_ = decl;
+	decl_->retain();
+
 	return true;
 }
 

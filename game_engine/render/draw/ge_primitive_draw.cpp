@@ -96,7 +96,10 @@ bool GEPrimitiveDraw::_push_vertex( GE_VERTEX& vertex )
 bool GEPrimitiveDraw::_init_render()
 {
 	if (draw_buff_ == NULL)
+	{
 		draw_buff_ = GEDrawBuff::create();
+		if (draw_buff_) draw_buff_->retain();
+	}
 	if (draw_buff_ == NULL) return false;
 
 	vertex_decl_ = GEVertexDecl::get_vertex_decl(DEFAULT_FVF_FORMAT);

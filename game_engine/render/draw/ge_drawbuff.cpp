@@ -18,12 +18,21 @@ GEDrawBuff::GEDrawBuff()
 GEDrawBuff::~GEDrawBuff()
 {
 	destory_buff();
+	GE_RELEASE(vertex_decl_);
 }
 
 bool GEDrawBuff::set_vertex_decl( GE_VERTEX_DECL* decl )
 {
-	if (vertex_decl_ != decl) destory_vertex_buff();
+	if (decl == vertex_decl_) return true;
+	GE_RELEASE(vertex_decl_);
+
+	if (decl == NULL) return false;
+	if (!decl->is_valid()) return false;
+
 	vertex_decl_ = decl;
+	vertex_decl_->retain();
+	destory_vertex_buff();
+
 	return true;
 }
 

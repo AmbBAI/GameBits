@@ -1,3 +1,4 @@
+$#include "lua_object/ge_lua_scene.h"
 
 class GEScene
 {
@@ -6,6 +7,12 @@ class GEScene
 
 	void add_object(int key, GEObject* obj);
 	void remove_object(int key);
+}
+
+class GELuaScene : public GEScene
+{
+	static GELuaScene* create();
+	static void release(GELuaScene**);
 
 	void set_init_func(LUA_FUNCTION init_func);
 	void set_destory_func(LUA_FUNCTION destory_func);

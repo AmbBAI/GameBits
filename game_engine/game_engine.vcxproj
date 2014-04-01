@@ -162,6 +162,7 @@
     <ClCompile Include="script\lua\lvm.c" />
     <ClCompile Include="script\lua\lzio.c" />
     <ClCompile Include="script\lua\print.c" />
+    <ClCompile Include="script\lua_object\ge_lua_scene.cpp" />
     <ClCompile Include="script\tolua\tolua_event.c" />
     <ClCompile Include="script\tolua\tolua_fix.c" />
     <ClCompile Include="script\tolua\tolua_is.c" />
@@ -232,6 +233,7 @@
     <ClInclude Include="script\lua\lundump.h" />
     <ClInclude Include="script\lua\lvm.h" />
     <ClInclude Include="script\lua\lzio.h" />
+    <ClInclude Include="script\lua_object\ge_lua_scene.h" />
     <ClInclude Include="script\tolua\tolua++.h" />
     <ClInclude Include="script\tolua\tolua_event.h" />
     <ClInclude Include="script\tolua\tolua_fix.h" />

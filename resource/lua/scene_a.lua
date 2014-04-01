@@ -36,10 +36,7 @@ end
 local spine_test = nil
 local text_test = nil
 local text_test2 = nil
-local mouse_pos = ge.GE_FRECT:new_local(0, 0, 0, 0)
-local from = ge.GE_FPOINT:new_local(0, 0)
-local to = ge.GE_FPOINT:new_local(0, 0)
-local draw_rect = ge.GE_FRECT:new_local(10, 10, 100, 100)
+local drag_rect = ge.GE_FRECT(0, 0, 0, 0)
 
 local function scene_init_callback()
 	spine_test = new_spine_test()
@@ -89,27 +86,24 @@ local function scene_update_callback(delta)
 	text_test:set_text(fps_text)
 	text_test2:set_text(fps_text)
 
-	ge.GEPrimitiveDraw:draw_rect(draw_rect, 0xff00ffff)
-	ge.GEPrimitiveDraw:draw_solid_rect(draw_rect, 0x8800ffff)
+	local rect = ge.GE_FRECT(10, 10, 100, 100)
+	ge.GEPrimitiveDraw:draw_rect(rect, 0xff00ffff)
+	ge.GEPrimitiveDraw:draw_solid_rect(rect, 0x8800ffff)
 
 	if ge_input:get_mouse_down(0) then
-		ret, mouse_pos.left, mouse_pos.top = ge_input:get_mouse_pos(0, 0)
+		ret, drag_rect.left, drag_rect.top = ge_input:get_mouse_pos(0, 0)
 	elseif ge_input:get_mouse_hold(0) then
-		ret, mouse_pos.right, mouse_pos.bottom = ge_input:get_mouse_pos(0, 0)
-		ge.GEPrimitiveDraw:draw_rect(mouse_pos, 0xffff8800)
-		ge.GEPrimitiveDraw:draw_solid_rect(mouse_pos, 0x88ff8800)
+		ret, drag_rect.right, drag_rect.bottom = ge_input:get_mouse_pos(0, 0)
+		ge.GEPrimitiveDraw:draw_rect(drag_rect, 0xffff8800)
+		ge.GEPrimitiveDraw:draw_solid_rect(drag_rect, 0x88ff8800)
 
-		-- local from = ge.GE_FPOINT:new_local(mouse_pos.left, mouse_pos.top)
-		-- local to = ge.GE_FPOINT:new_local(mouse_pos.right, mouse_pos.bottom)
-		from.x = mouse_pos.left
-		from.y = mouse_pos.top
-		to.x = mouse_pos.right
-		to.y = mouse_pos.bottom
+		local from = ge.GE_FPOINT(drag_rect.left, drag_rect.top)
+		local to = ge.GE_FPOINT(drag_rect.right, drag_rect.bottom)
 		ge.GEPrimitiveDraw:draw_line(from, to, 0xffff8800)
 	end
 end
 
-scene_test = ge.GEScene:create()
+scene_test = ge.GELuaScene:create()
 print(scene_test, tolua.type(scene_test))
 scene_test:set_init_func(scene_init_callback)
 scene_test:set_destory_func(scene_destory_callback)

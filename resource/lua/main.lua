@@ -10,6 +10,6 @@ ge_game:add_scene(scene_test)
 ge_app:run()
 
 ge_game:remove_all_scenes()
-ge.GEScene:release(scene_test)
+ge.GELuaScene:release(scene_test)
 
 print("exit!")

@@ -37,6 +37,7 @@
 #define DEF_WND_STYLE ((WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX) | WS_CLIPCHILDREN | WS_VISIBLE)
 
 #define D3D_RELEASE(p) { if(p) { (p)->Release(); (p)=NULL; } } 
+#define GE_RELEASE(p) { if(p) { (p)->release(); (p)=NULL; } }
 
 #define RGBA(r, g, b, a)   ((D3DCOLOR) (((a) << 24) | ((r) << 16) | ((g) << 8) | (b)))
 
@@ -47,19 +48,32 @@
 #define DLL_MANAGE_CLASS(type) \
 public:\
 	static type* create();\
-	static void release(type** ptr);\
-private:
+	virtual void retain();\
+	virtual void release();\
+private:\
+	int	ref_cnt_;
 
 #define DLL_MANAGE_CLASS_IMPLEMENT(type) \
 type* type::create()\
 {\
-	return new type();\
+	type* new_obj = new type();\
+	if (new_obj == NULL) return NULL;\
+	new_obj->ref_cnt_ = 0;\
+	return new_obj;\
 }\
 \
-void type::release(type** ptr)\
+void type::retain()\
 {\
-	delete *ptr;\
-	*ptr = NULL;\
+	++ ref_cnt_;\
+}\
+\
+void type::release()\
+{\
+	-- ref_cnt_;\
+	if (ref_cnt_ <= 0)\
+	{\
+		delete this;\
+	}\
 }
 
 #endif // _GAME_ENGINE_INCLUDE_H_

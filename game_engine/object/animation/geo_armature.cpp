@@ -96,7 +96,7 @@ void CCTextureAtlas::releaseTexture()
 	ge::GEAtlasDraw* render_object = (ge::GEAtlasDraw*)m_pRenderObject;
 	if (render_object)
 	{
-		ge::GEAtlasDraw::release(&render_object);
+		GE_RELEASE(render_object);
 	}
 
 	m_pRenderObject = NULL;

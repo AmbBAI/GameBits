@@ -15,6 +15,11 @@ GETextureGroup::GETextureGroup()
 
 GETextureGroup::~GETextureGroup()
 {
+	destory();
+}
+
+void GETextureGroup::destory()
+{
 	release_all_texture();
 }
 
@@ -80,5 +85,6 @@ int GETextureGroup::get_texture_cnt()
 {
 	return (int)texture_list_.size();
 }
+
 
 }

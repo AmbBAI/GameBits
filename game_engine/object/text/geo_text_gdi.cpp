@@ -25,7 +25,7 @@ GEOTextGDI::~GEOTextGDI()
 	text_.clear();
 	if (render_object_)
 	{
-		GEAtlasDraw::release(&render_object_);
+		GE_RELEASE(render_object_);
 	}
 }
 

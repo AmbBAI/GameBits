@@ -1,7 +1,8 @@
 class GEOSpine : public GEObject
 {
 	static GEOSpine* create();
-	static void release(GEOSpine**);
+	void retain();
+	void release();
 
 	virtual bool init(const char* atlas_file, const char* skeleton_file);
 	virtual void destory();

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 04/01/14 14:35:32.
+** Generated automatically by tolua++-1.0.92 on 04/01/14 16:51:34.
 */
 
 #ifndef __cplusplus
@@ -844,6 +844,37 @@ static int tolua_luabind_ge_GEScene_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: retain of class  ge::GEScene */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEScene_retain00
+static int tolua_luabind_ge_GEScene_retain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEScene",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEScene* self = (ge::GEScene*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
+#endif
+  {
+   self->retain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: release of class  ge::GEScene */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEScene_release00
 static int tolua_luabind_ge_GEScene_release00(lua_State* tolua_S)
@@ -851,21 +882,22 @@ static int tolua_luabind_ge_GEScene_release00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertable(tolua_S,1,"ge::GEScene",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GEScene",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"ge::GEScene",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ge::GEScene* tolua_var_1 = ((ge::GEScene*)  tolua_tousertype(tolua_S,2,0));
+  ge::GEScene* self = (ge::GEScene*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
+#endif
   {
-   ge::GEScene::release(&tolua_var_1);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_1,"ge::GEScene");
+   self->release();
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
@@ -970,6 +1002,37 @@ static int tolua_luabind_ge_GELuaScene_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: retain of class  ge::GELuaScene */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GELuaScene_retain00
+static int tolua_luabind_ge_GELuaScene_retain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GELuaScene",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GELuaScene* self = (ge::GELuaScene*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
+#endif
+  {
+   self->retain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: release of class  ge::GELuaScene */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GELuaScene_release00
 static int tolua_luabind_ge_GELuaScene_release00(lua_State* tolua_S)
@@ -977,21 +1040,22 @@ static int tolua_luabind_ge_GELuaScene_release00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertable(tolua_S,1,"ge::GELuaScene",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GELuaScene",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"ge::GELuaScene",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ge::GELuaScene* tolua_var_2 = ((ge::GELuaScene*)  tolua_tousertype(tolua_S,2,0));
+  ge::GELuaScene* self = (ge::GELuaScene*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
+#endif
   {
-   ge::GELuaScene::release(&tolua_var_2);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_2,"ge::GELuaScene");
+   self->release();
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
@@ -1193,6 +1257,37 @@ static int tolua_luabind_ge_GESurface_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: retain of class  ge::GESurface */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GESurface_retain00
+static int tolua_luabind_ge_GESurface_retain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GESurface",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GESurface* self = (ge::GESurface*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
+#endif
+  {
+   self->retain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: release of class  ge::GESurface */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GESurface_release00
 static int tolua_luabind_ge_GESurface_release00(lua_State* tolua_S)
@@ -1200,21 +1295,22 @@ static int tolua_luabind_ge_GESurface_release00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertable(tolua_S,1,"ge::GESurface",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GESurface",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"ge::GESurface",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ge::GESurface* tolua_var_3 = ((ge::GESurface*)  tolua_tousertype(tolua_S,2,0));
+  ge::GESurface* self = (ge::GESurface*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
+#endif
   {
-   ge::GESurface::release(&tolua_var_3);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_3,"ge::GESurface");
+   self->release();
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
@@ -1251,6 +1347,37 @@ static int tolua_luabind_ge_GETexture_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: retain of class  ge::GETexture */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GETexture_retain00
+static int tolua_luabind_ge_GETexture_retain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GETexture",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GETexture* self = (ge::GETexture*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
+#endif
+  {
+   self->retain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: release of class  ge::GETexture */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GETexture_release00
 static int tolua_luabind_ge_GETexture_release00(lua_State* tolua_S)
@@ -1258,21 +1385,22 @@ static int tolua_luabind_ge_GETexture_release00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertable(tolua_S,1,"ge::GETexture",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GETexture",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"ge::GETexture",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ge::GETexture* tolua_var_4 = ((ge::GETexture*)  tolua_tousertype(tolua_S,2,0));
+  ge::GETexture* self = (ge::GETexture*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
+#endif
   {
-   ge::GETexture::release(&tolua_var_4);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_4,"ge::GETexture");
+   self->release();
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
@@ -1309,6 +1437,37 @@ static int tolua_luabind_ge_GETextureGroup_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: retain of class  ge::GETextureGroup */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GETextureGroup_retain00
+static int tolua_luabind_ge_GETextureGroup_retain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GETextureGroup",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GETextureGroup* self = (ge::GETextureGroup*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
+#endif
+  {
+   self->retain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: release of class  ge::GETextureGroup */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GETextureGroup_release00
 static int tolua_luabind_ge_GETextureGroup_release00(lua_State* tolua_S)
@@ -1316,21 +1475,22 @@ static int tolua_luabind_ge_GETextureGroup_release00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertable(tolua_S,1,"ge::GETextureGroup",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GETextureGroup",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"ge::GETextureGroup",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ge::GETextureGroup* tolua_var_5 = ((ge::GETextureGroup*)  tolua_tousertype(tolua_S,2,0));
+  ge::GETextureGroup* self = (ge::GETextureGroup*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
+#endif
   {
-   ge::GETextureGroup::release(&tolua_var_5);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_5,"ge::GETextureGroup");
+   self->release();
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
@@ -2191,6 +2351,37 @@ static int tolua_luabind_ge_GEDrawBuff_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: retain of class  ge::GEDrawBuff */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_retain00
+static int tolua_luabind_ge_GEDrawBuff_retain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
+#endif
+  {
+   self->retain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: release of class  ge::GEDrawBuff */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDrawBuff_release00
 static int tolua_luabind_ge_GEDrawBuff_release00(lua_State* tolua_S)
@@ -2198,21 +2389,22 @@ static int tolua_luabind_ge_GEDrawBuff_release00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertable(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GEDrawBuff",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"ge::GEDrawBuff",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ge::GEDrawBuff* tolua_var_6 = ((ge::GEDrawBuff*)  tolua_tousertype(tolua_S,2,0));
+  ge::GEDrawBuff* self = (ge::GEDrawBuff*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
+#endif
   {
-   ge::GEDrawBuff::release(&tolua_var_6);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_6,"ge::GEDrawBuff");
+   self->release();
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
@@ -2615,6 +2807,37 @@ static int tolua_luabind_ge_GEDraw_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: retain of class  ge::GEDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDraw_retain00
+static int tolua_luabind_ge_GEDraw_retain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEDraw* self = (ge::GEDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
+#endif
+  {
+   self->retain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: release of class  ge::GEDraw */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEDraw_release00
 static int tolua_luabind_ge_GEDraw_release00(lua_State* tolua_S)
@@ -2622,21 +2845,22 @@ static int tolua_luabind_ge_GEDraw_release00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertable(tolua_S,1,"ge::GEDraw",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GEDraw",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"ge::GEDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ge::GEDraw* tolua_var_7 = ((ge::GEDraw*)  tolua_tousertype(tolua_S,2,0));
+  ge::GEDraw* self = (ge::GEDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
+#endif
   {
-   ge::GEDraw::release(&tolua_var_7);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_7,"ge::GEDraw");
+   self->release();
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
@@ -3083,6 +3307,37 @@ static int tolua_luabind_ge_GEAtlasDraw_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: retain of class  ge::GEAtlasDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_retain00
+static int tolua_luabind_ge_GEAtlasDraw_retain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
+#endif
+  {
+   self->retain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: release of class  ge::GEAtlasDraw */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEAtlasDraw_release00
 static int tolua_luabind_ge_GEAtlasDraw_release00(lua_State* tolua_S)
@@ -3090,21 +3345,22 @@ static int tolua_luabind_ge_GEAtlasDraw_release00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertable(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GEAtlasDraw",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"ge::GEAtlasDraw",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ge::GEAtlasDraw* tolua_var_8 = ((ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,2,0));
+  ge::GEAtlasDraw* self = (ge::GEAtlasDraw*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
+#endif
   {
-   ge::GEAtlasDraw::release(&tolua_var_8);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_8,"ge::GEAtlasDraw");
+   self->release();
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
@@ -3815,6 +4071,37 @@ static int tolua_luabind_ge_GEOSpine_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: retain of class  ge::GEOSpine */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOSpine_retain00
+static int tolua_luabind_ge_GEOSpine_retain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEOSpine",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEOSpine* self = (ge::GEOSpine*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
+#endif
+  {
+   self->retain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: release of class  ge::GEOSpine */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOSpine_release00
 static int tolua_luabind_ge_GEOSpine_release00(lua_State* tolua_S)
@@ -3822,21 +4109,22 @@ static int tolua_luabind_ge_GEOSpine_release00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertable(tolua_S,1,"ge::GEOSpine",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GEOSpine",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"ge::GEOSpine",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ge::GEOSpine* tolua_var_9 = ((ge::GEOSpine*)  tolua_tousertype(tolua_S,2,0));
+  ge::GEOSpine* self = (ge::GEOSpine*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
+#endif
   {
-   ge::GEOSpine::release(&tolua_var_9);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_9,"ge::GEOSpine");
+   self->release();
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
@@ -4218,6 +4506,37 @@ static int tolua_luabind_ge_GEOTextFT_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: retain of class  ge::GEOTextFT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOTextFT_retain00
+static int tolua_luabind_ge_GEOTextFT_retain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEOTextFT",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEOTextFT* self = (ge::GEOTextFT*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
+#endif
+  {
+   self->retain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: release of class  ge::GEOTextFT */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOTextFT_release00
 static int tolua_luabind_ge_GEOTextFT_release00(lua_State* tolua_S)
@@ -4225,21 +4544,22 @@ static int tolua_luabind_ge_GEOTextFT_release00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertable(tolua_S,1,"ge::GEOTextFT",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GEOTextFT",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"ge::GEOTextFT",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ge::GEOTextFT* tolua_var_10 = ((ge::GEOTextFT*)  tolua_tousertype(tolua_S,2,0));
+  ge::GEOTextFT* self = (ge::GEOTextFT*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
+#endif
   {
-   ge::GEOTextFT::release(&tolua_var_10);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_10,"ge::GEOTextFT");
+   self->release();
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
@@ -4378,6 +4698,37 @@ static int tolua_luabind_ge_GEOTextBM_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: retain of class  ge::GEOTextBM */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOTextBM_retain00
+static int tolua_luabind_ge_GEOTextBM_retain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEOTextBM",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEOTextBM* self = (ge::GEOTextBM*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
+#endif
+  {
+   self->retain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: release of class  ge::GEOTextBM */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOTextBM_release00
 static int tolua_luabind_ge_GEOTextBM_release00(lua_State* tolua_S)
@@ -4385,21 +4736,22 @@ static int tolua_luabind_ge_GEOTextBM_release00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertable(tolua_S,1,"ge::GEOTextBM",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ge::GEOTextBM",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"ge::GEOTextBM",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ge::GEOTextBM* tolua_var_11 = ((ge::GEOTextBM*)  tolua_tousertype(tolua_S,2,0));
+  ge::GEOTextBM* self = (ge::GEOTextBM*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
+#endif
   {
-   ge::GEOTextBM::release(&tolua_var_11);
-    tolua_pushusertype(tolua_S,(void*)tolua_var_11,"ge::GEOTextBM");
+   self->release();
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
@@ -6857,6 +7209,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_cclass(tolua_S,"GEScene","ge::GEScene","",NULL);
    tolua_beginmodule(tolua_S,"GEScene");
     tolua_function(tolua_S,"create",tolua_luabind_ge_GEScene_create00);
+    tolua_function(tolua_S,"retain",tolua_luabind_ge_GEScene_retain00);
     tolua_function(tolua_S,"release",tolua_luabind_ge_GEScene_release00);
     tolua_function(tolua_S,"add_object",tolua_luabind_ge_GEScene_add_object00);
     tolua_function(tolua_S,"remove_object",tolua_luabind_ge_GEScene_remove_object00);
@@ -6864,6 +7217,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_cclass(tolua_S,"GELuaScene","ge::GELuaScene","ge::GEScene",NULL);
    tolua_beginmodule(tolua_S,"GELuaScene");
     tolua_function(tolua_S,"create",tolua_luabind_ge_GELuaScene_create00);
+    tolua_function(tolua_S,"retain",tolua_luabind_ge_GELuaScene_retain00);
     tolua_function(tolua_S,"release",tolua_luabind_ge_GELuaScene_release00);
     tolua_function(tolua_S,"set_init_func",tolua_luabind_ge_GELuaScene_set_init_func00);
     tolua_function(tolua_S,"set_destory_func",tolua_luabind_ge_GELuaScene_set_destory_func00);
@@ -6874,16 +7228,19 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_cclass(tolua_S,"GESurface","ge::GESurface","",NULL);
    tolua_beginmodule(tolua_S,"GESurface");
     tolua_function(tolua_S,"create",tolua_luabind_ge_GESurface_create00);
+    tolua_function(tolua_S,"retain",tolua_luabind_ge_GESurface_retain00);
     tolua_function(tolua_S,"release",tolua_luabind_ge_GESurface_release00);
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GETexture","ge::GETexture","ge::GESurface",NULL);
    tolua_beginmodule(tolua_S,"GETexture");
     tolua_function(tolua_S,"create",tolua_luabind_ge_GETexture_create00);
+    tolua_function(tolua_S,"retain",tolua_luabind_ge_GETexture_retain00);
     tolua_function(tolua_S,"release",tolua_luabind_ge_GETexture_release00);
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GETextureGroup","ge::GETextureGroup","",NULL);
    tolua_beginmodule(tolua_S,"GETextureGroup");
     tolua_function(tolua_S,"create",tolua_luabind_ge_GETextureGroup_create00);
+    tolua_function(tolua_S,"retain",tolua_luabind_ge_GETextureGroup_retain00);
     tolua_function(tolua_S,"release",tolua_luabind_ge_GETextureGroup_release00);
     tolua_function(tolua_S,"add_texture",tolua_luabind_ge_GETextureGroup_add_texture00);
     tolua_function(tolua_S,"add_texture",tolua_luabind_ge_GETextureGroup_add_texture01);
@@ -6941,6 +7298,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_cclass(tolua_S,"GEDrawBuff","ge::GEDrawBuff","",NULL);
    tolua_beginmodule(tolua_S,"GEDrawBuff");
     tolua_function(tolua_S,"create",tolua_luabind_ge_GEDrawBuff_create00);
+    tolua_function(tolua_S,"retain",tolua_luabind_ge_GEDrawBuff_retain00);
     tolua_function(tolua_S,"release",tolua_luabind_ge_GEDrawBuff_release00);
     tolua_function(tolua_S,"set_vertex_decl",tolua_luabind_ge_GEDrawBuff_set_vertex_decl00);
     tolua_function(tolua_S,"get_vertex_decl",tolua_luabind_ge_GEDrawBuff_get_vertex_decl00);
@@ -6957,6 +7315,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_cclass(tolua_S,"GEDraw","ge::GEDraw","",NULL);
    tolua_beginmodule(tolua_S,"GEDraw");
     tolua_function(tolua_S,"create",tolua_luabind_ge_GEDraw_create00);
+    tolua_function(tolua_S,"retain",tolua_luabind_ge_GEDraw_retain00);
     tolua_function(tolua_S,"release",tolua_luabind_ge_GEDraw_release00);
     tolua_function(tolua_S,"set_effect",tolua_luabind_ge_GEDraw_set_effect00);
     tolua_function(tolua_S,"get_effect",tolua_luabind_ge_GEDraw_get_effect00);
@@ -6980,6 +7339,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_cclass(tolua_S,"GEAtlasDraw","ge::GEAtlasDraw","ge::GEDraw",NULL);
    tolua_beginmodule(tolua_S,"GEAtlasDraw");
     tolua_function(tolua_S,"create",tolua_luabind_ge_GEAtlasDraw_create00);
+    tolua_function(tolua_S,"retain",tolua_luabind_ge_GEAtlasDraw_retain00);
     tolua_function(tolua_S,"release",tolua_luabind_ge_GEAtlasDraw_release00);
     tolua_function(tolua_S,"set_vertex_fvf",tolua_luabind_ge_GEAtlasDraw_set_vertex_fvf00);
     tolua_function(tolua_S,"set_vertex_decl",tolua_luabind_ge_GEAtlasDraw_set_vertex_decl00);
@@ -7015,6 +7375,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_cclass(tolua_S,"GEOSpine","ge::GEOSpine","ge::GEObject",NULL);
    tolua_beginmodule(tolua_S,"GEOSpine");
     tolua_function(tolua_S,"create",tolua_luabind_ge_GEOSpine_create00);
+    tolua_function(tolua_S,"retain",tolua_luabind_ge_GEOSpine_retain00);
     tolua_function(tolua_S,"release",tolua_luabind_ge_GEOSpine_release00);
     tolua_function(tolua_S,"init",tolua_luabind_ge_GEOSpine_init00);
     tolua_function(tolua_S,"destory",tolua_luabind_ge_GEOSpine_destory00);
@@ -7033,6 +7394,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_cclass(tolua_S,"GEOTextFT","ge::GEOTextFT","ge::GEOText",NULL);
    tolua_beginmodule(tolua_S,"GEOTextFT");
     tolua_function(tolua_S,"create",tolua_luabind_ge_GEOTextFT_create00);
+    tolua_function(tolua_S,"retain",tolua_luabind_ge_GEOTextFT_retain00);
     tolua_function(tolua_S,"release",tolua_luabind_ge_GEOTextFT_release00);
     tolua_function(tolua_S,"set_text",tolua_luabind_ge_GEOTextFT_set_text00);
     tolua_function(tolua_S,"set_font",tolua_luabind_ge_GEOTextFT_set_font00);
@@ -7041,6 +7403,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_cclass(tolua_S,"GEOTextBM","ge::GEOTextBM","ge::GEOText",NULL);
    tolua_beginmodule(tolua_S,"GEOTextBM");
     tolua_function(tolua_S,"create",tolua_luabind_ge_GEOTextBM_create00);
+    tolua_function(tolua_S,"retain",tolua_luabind_ge_GEOTextBM_retain00);
     tolua_function(tolua_S,"release",tolua_luabind_ge_GEOTextBM_release00);
     tolua_function(tolua_S,"set_font",tolua_luabind_ge_GEOTextBM_set_font00);
     tolua_function(tolua_S,"set_text",tolua_luabind_ge_GEOTextBM_set_text00);

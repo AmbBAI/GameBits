@@ -82,7 +82,7 @@ void GEOSpine::destory()
 	p_skeleton_json_			= NULL;
 	p_atlas_					= NULL;
 
-	GEAtlasDraw::release(&render_object_);
+	GE_RELEASE(render_object_);
 	page_id_map_.clear();
 }
 

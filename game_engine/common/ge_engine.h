@@ -55,7 +55,6 @@ protected:
 	bool _on_dx_reset();
 
 private:
-	LPDIRECT3D9				p_d3d_;
 	LPDIRECT3DDEVICE9		p_d3d_device_;
 	D3DPRESENT_PARAMETERS	d3d_present_param_;
 

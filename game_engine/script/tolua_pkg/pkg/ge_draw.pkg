@@ -1,7 +1,8 @@
 class GEDrawBuff
 {
 	static GEDrawBuff* create();
-	static void release(GEDrawBuff**);
+	void retain();
+	void release();
 
 	bool set_vertex_decl(GE_VERTEX_DECL* decl);
 	GE_VERTEX_DECL* get_vertex_decl();
@@ -22,7 +23,8 @@ class GEDrawBuff
 class GEDraw
 {
 	static GEDraw* create();
-	static void release(GEDraw**);
+	void retain();
+	void release();
 
 	virtual bool set_effect(GEREffect* effect);
 	virtual GEREffect* get_effect();
@@ -49,7 +51,8 @@ struct GE_QUAD_EX
 class GEAtlasDraw : public GEDraw
 {
 	static GEAtlasDraw* create();
-	static void release(GEAtlasDraw**);
+	void retain();
+	void release();
 
 	bool set_vertex_fvf(DWORD fvf);
 	bool set_vertex_decl(GE_VERTEX_DECL* vertex_decl);

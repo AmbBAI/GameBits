@@ -10,7 +10,8 @@ class GEOText : public GEObject
 class GEOTextFT : public GEOText
 {
 	static GEOTextFT* create();
-	static void release(GEOTextFT**);
+	void retain();
+	void release();
 
 public:
 	virtual bool set_text(const char* text);
@@ -21,7 +22,8 @@ public:
 class GEOTextBM : public GEOText
 {
 	static GEOTextBM* create();
-	static void release(GEOTextBM**);
+	void retain();
+	void release();
 
 	virtual bool set_font(GEFont* font);
 	virtual bool set_text(const char* text);

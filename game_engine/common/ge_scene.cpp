@@ -26,17 +26,30 @@ bool GEScene::init()
 
 void GEScene::destory()
 {
+	FOR_EACH (GE_OBJECT_MAP, object_map_, obj_it)
+	{
+		GEObject* p_obj = (GEObject*)(obj_it->second);
+		if (NULL == p_obj) continue;
+		GE_RELEASE(p_obj);
+	}
+
 	object_map_.clear();
 }
 
 void GEScene::add_object( int key, GEObject* obj )
 {
 	object_map_[key] = obj;
+	obj->retain();
 }
 
 void GEScene::remove_object( int key )
 {
-	object_map_.erase(key);
+	GE_OBJECT_MAP::iterator itor_key = object_map_.find(key);
+	if (itor_key != object_map_.end())
+	{
+		GE_RELEASE((GEObject*)itor_key->second);
+		object_map_.erase(itor_key);
+	}
 }
 
 bool GEScene::show()

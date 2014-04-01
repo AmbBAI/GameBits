@@ -6,8 +6,7 @@ namespace ge
 {
 
 GEEngine::GEEngine()
-: p_d3d_(NULL)
-, p_d3d_device_(NULL)
+: p_d3d_device_(NULL)
 , p_ge_render_(NULL)
 , is_windowed_(true)
 {
@@ -37,17 +36,18 @@ bool GEEngine::init_engine()
 
 	HRESULT h_res = S_OK;
 
-	p_d3d_ = Direct3DCreate9(D3D_SDK_VERSION);
-	if (NULL == p_d3d_) return false;
+	LPDIRECT3D9 p_d3d = NULL;
+	p_d3d = Direct3DCreate9(D3D_SDK_VERSION);
+	if (NULL == p_d3d) return false;
 
 	UINT adapter_type	= D3DADAPTER_DEFAULT;
 	D3DDEVTYPE dev_type	= D3DDEVTYPE_HAL;
 	D3DCAPS9 d3d_caps;
-	h_res = p_d3d_->GetDeviceCaps(adapter_type, dev_type, &d3d_caps);
+	h_res = p_d3d->GetDeviceCaps(adapter_type, dev_type, &d3d_caps);
 	if (FAILED(h_res))
 	{
 		dev_type = D3DDEVTYPE_REF;
-		h_res = p_d3d_->GetDeviceCaps(adapter_type, dev_type, &d3d_caps);
+		h_res = p_d3d->GetDeviceCaps(adapter_type, dev_type, &d3d_caps);
 	}
 	if (FAILED(h_res)) return false;
 
@@ -76,13 +76,13 @@ bool GEEngine::init_engine()
 	//d3d_present_param_.PresentationInterval			= D3DPRESENT_INTERVAL_ONE;
 	d3d_present_param_.PresentationInterval			= D3DPRESENT_INTERVAL_IMMEDIATE;
 
-	h_res = p_d3d_->CreateDevice(D3DADAPTER_DEFAULT,
+	h_res = p_d3d->CreateDevice(D3DADAPTER_DEFAULT,
 		dev_type, p_ge_app_->get_app_wnd(), vertex_proc_type,
 		&d3d_present_param_, &p_d3d_device_);
 
 	if (FAILED(h_res)) return false;
 
-	D3D_RELEASE(p_d3d_);
+	D3D_RELEASE(p_d3d);
 
 	if (!_init_render()) return false;
 	if (!_init_font()) return false;

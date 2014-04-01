@@ -74,8 +74,7 @@ void GETextureManager::_release_texture( GETexture* texture )
 		std::string texture_key = texture->get_key();
 		texture_key_map_.erase(texture_key);
 
-		texture->destory();
-		GETexture::release(&texture);
+		GE_RELEASE(texture);
 	}
 }
 
@@ -99,7 +98,10 @@ void GETextureManager::_release_texture_group( GETextureGroup* texture_group )
 	TEXTURE_GROUP_REF_MAP::iterator itor_ref = texture_group_ref_map_.find(texture_group);
 	if (itor_ref == texture_group_ref_map_.end()) return;
 	int ref_cnt = -- itor_ref->second;
-	if (ref_cnt == 0) GETextureGroup::release(&texture_group);
+	if (ref_cnt == 0)
+	{
+		GE_RELEASE(texture_group);
+	}
 }
 
 GETextureGroup* GETextureManager::create_texture_group()

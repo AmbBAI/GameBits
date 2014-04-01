@@ -2,21 +2,23 @@
 class GESurface
 {
 	static GESurface* create();
-	static void release(GESurface**);
-
+	void retain();
+	void release();
 };
 
 class GETexture : public GESurface
 {
 	static GETexture* create();
-	static void release(GETexture**);
+	void retain();
+	void release();
 };
 
 class GETextureGroup
 {
 
 	static GETextureGroup* create();
-	static void release(GETextureGroup**);
+	void retain();
+	void release();
 
 	int add_texture();
 	int add_texture(GETexture* texture);

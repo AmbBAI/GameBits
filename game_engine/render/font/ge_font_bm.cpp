@@ -57,7 +57,10 @@ bool GEFontBM::update_effect()
 
 void GEFontBM::destory_effect()
 {
-	if (effect_) GEREffect::release(&effect_);
+	if (effect_)
+	{
+		GE_RELEASE(effect_);
+	}
 }
 
 GEREffect* GEFontBM::get_effect()

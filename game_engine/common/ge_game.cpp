@@ -36,6 +36,7 @@ int GEGame::add_scene( GEScene* ge_scene )
 	if(NULL == ge_scene) return -1;
 
 	ge_scene->init();
+	ge_scene->retain();
 	scene_vec_.push_back(ge_scene);
 	int new_scene_id = (int)scene_vec_.size() - 1;
 	if (cur_scene_id_ == -1)
@@ -78,8 +79,7 @@ void GEGame::remove_scene( int scene_id )
 			scene_vec_[scene_id]->hide();
 		}
 
-		scene_vec_[scene_id]->destory();
-		scene_vec_[scene_id] = NULL;
+		GE_RELEASE(scene_vec_[scene_id]);
 
 		if (cur_scene_id_ == scene_id)
 		{

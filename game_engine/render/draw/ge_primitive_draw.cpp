@@ -112,7 +112,7 @@ void GEPrimitiveDraw::_release_render()
 	if (draw_buff_)
 	{
 		draw_buff_->destory_buff();
-		GEDrawBuff::release(&draw_buff_);
+		GE_RELEASE(draw_buff_);
 	}
 	draw_buff_ = NULL;
 }

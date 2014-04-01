@@ -23,6 +23,7 @@ public:
 	virtual bool replace_texture(int texture_id, const char* texture_path);
 	virtual void release_texture(int texture_id);
 	virtual void release_all_texture();
+	virtual void destory();
 
 	int get_texture_cnt();
 

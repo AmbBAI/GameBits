@@ -1,4 +1,5 @@
 #include "game_engine.h"
+#include "script/ge_lua_engine.h"
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {

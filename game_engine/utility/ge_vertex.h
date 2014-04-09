@@ -2,13 +2,14 @@
 #define _GAME_ENGINE_UTILITY_VERTEX_H_
 
 #include "../common/ge_include.h"
+#include "ge_type.h"
 
 namespace ge
 {
 
 struct GE_API GE_VERTEX_DECL
 {
-	DWORD							fvf;
+	U32								fvf;
 	int								size;
 	LPDIRECT3DVERTEXDECLARATION9	decl;
 	D3DVERTEXELEMENT9				element[MAX_FVF_DECL_SIZE];
@@ -53,15 +54,16 @@ public:
 	virtual ~GE_VERTEX();
 
 public:
-	bool			set_fvf(DWORD fvf);
+	bool			set_fvf(U32 fvf);
 	bool			set_decl(GE_VERTEX_DECL* decl);
 	GE_VERTEX_DECL*	get_decl();
 
 	void			set_position(float x, float y, float z);
 	void			set_normal(float x, float y, float z);
 	void			set_texcoords(float u, float v);
-	void			set_blend(UINT blend);
-	void			set_color(D3DCOLOR color);
+	void			set_blend(U32 blend);
+	void			set_color(GE_COLOR& color);
+	void			set_color(U32 color);
 	void			set_rhw(float rhw);
 
 	bool			pack(void* mem_buff, int size);

@@ -76,3 +76,12 @@ struct GE_FRECT
 	void move_to(float pos_x, float pos_y);
 	void include(float pos_x, float pos_y);
 };
+
+struct GE_COLOR
+{
+	unsigned argb;
+
+	GE_COLOR();
+	GE_COLOR(unsigned char a, unsigned char r, unsigned char g, unsigned char b);
+	GE_COLOR(unsigned argb);
+};

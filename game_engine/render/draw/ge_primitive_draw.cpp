@@ -385,6 +385,25 @@ bool GEPrimitiveDraw::_draw_triangle_fan( GEPrimitiveDrawTask* task )
 }
 
 
+bool GEPrimitiveDraw::draw_point( GE_FPOINT& point, GE_COLOR& color )
+{
+	return draw_point( point, color.argb );
+}
+
+bool GEPrimitiveDraw::draw_line( GE_FPOINT& from, GE_FPOINT& to, GE_COLOR& color )
+{
+	return draw_line( from, to, color.argb );
+}
+
+bool GEPrimitiveDraw::draw_rect( GE_FRECT& rect, GE_COLOR& color )
+{
+	return draw_rect( rect, color.argb );
+}
+
+bool GEPrimitiveDraw::draw_solid_rect( GE_FRECT& rect, GE_COLOR& color )
+{
+	return draw_solid_rect( rect, color.argb );
+}
 
 
 }

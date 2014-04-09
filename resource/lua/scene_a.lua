@@ -81,19 +81,20 @@ local function scene_update_callback(delta)
 	text_test2:set_text(fps_text)
 
 	local rect = ge.GE_FRECT(10, 10, 100, 100)
-	ge.GEPrimitiveDraw:draw_rect(rect, 0xff00ffff)
-	ge.GEPrimitiveDraw:draw_solid_rect(rect, 0x8800ffff)
+	ge.GEPrimitiveDraw:draw_rect(rect, ge.GE_COLOR( 0xff, 0x00, 0xff, 0xff))
+	ge.GEPrimitiveDraw:draw_solid_rect(rect, ge.GE_COLOR( 0x88, 0x00, 0xff, 0xff))
+
 
 	if ge_input:get_mouse_down(0) then
 		ret, drag_rect.left, drag_rect.top = ge_input:get_mouse_pos(0, 0)
 	elseif ge_input:get_mouse_hold(0) then
 		ret, drag_rect.right, drag_rect.bottom = ge_input:get_mouse_pos(0, 0)
-		ge.GEPrimitiveDraw:draw_rect(drag_rect, 0xffff8800)
-		ge.GEPrimitiveDraw:draw_solid_rect(drag_rect, 0x88ff8800)
+		ge.GEPrimitiveDraw:draw_rect(drag_rect, ge.GE_COLOR( 0xff, 0xff, 0x88, 0x00))
+		ge.GEPrimitiveDraw:draw_solid_rect(drag_rect, ge.GE_COLOR( 0x88, 0xff, 0x88, 0x00))
 
 		local from = ge.GE_FPOINT(drag_rect.left, drag_rect.top)
 		local to = ge.GE_FPOINT(drag_rect.right, drag_rect.bottom)
-		ge.GEPrimitiveDraw:draw_line(from, to, 0xffff8800)
+		ge.GEPrimitiveDraw:draw_line(from, to, ge.GE_COLOR( 0xff, 0xff, 0x88, 0x00))
 	end
 end
 

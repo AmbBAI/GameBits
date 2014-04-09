@@ -1,6 +1,6 @@
 struct GE_VERTEX_DECL
 {
-	DWORD							fvf;
+	unsigned						fvf;
 	int								size;
 
 	GE_VERTEX_DECL();
@@ -10,21 +10,21 @@ struct GE_VERTEX_DECL
 class GEVertexDecl
 {
 	static GEVertexDecl* get_instance();
-	static GE_VERTEX_DECL* get_vertex_decl(DWORD fvf);
+	static GE_VERTEX_DECL* get_vertex_decl(unsigned fvf);
 };
 
 
 
 class GE_VERTEX
 {
-	bool			set_fvf(DWORD fvf);
+	bool			set_fvf(unsigned fvf);
 	bool			set_decl(GE_VERTEX_DECL* decl);
 	GE_VERTEX_DECL*	get_decl();
 
 	void			set_position(float x, float y, float z);
 	void			set_normal(float x, float y, float z);
 	void			set_texcoords(float u, float v);
-	void			set_blend(UINT blend);
-	void			set_color(D3DCOLOR color);
+	void			set_blend(unsigned blend);
+	void			set_color(GE_COLOR& color);
 	void			set_rhw(float rhw);
 };

@@ -146,7 +146,7 @@ GE_VERTEX::~GE_VERTEX()
 	GE_RELEASE(decl_);
 }
 
-bool GE_VERTEX::set_fvf( DWORD fvf )
+bool GE_VERTEX::set_fvf( U32 fvf )
 {
 	return set_decl(GEVertexDecl::get_vertex_decl(fvf));
 }
@@ -195,14 +195,19 @@ void GE_VERTEX::set_texcoords( float u, float v )
 	texcoords_.y = v;
 }
 
-void GE_VERTEX::set_blend( UINT blend )
+void GE_VERTEX::set_blend( U32 blend )
 {
 	blend_ = blend;
 }
 
-void GE_VERTEX::set_color( D3DCOLOR color )
+void GE_VERTEX::set_color( U32 color )
 {
 	color_ = color;
+}
+
+void GE_VERTEX::set_color( GE_COLOR& color )
+{
+	color_ = color.argb;
 }
 
 bool GE_VERTEX::pack( void* mem_buff, int size )
@@ -244,13 +249,13 @@ bool GE_VERTEX::pack( void* mem_buff, int size )
 			break;
 		case D3DDECLUSAGE_COLOR:
 			{
-				_append_data(mem_buff, buff_offset, (void*)&(color_), sizeof(D3DCOLOR));
+				_append_data(mem_buff, buff_offset, (void*)&(color_), sizeof(U32));
 			}
 			break;
 		case D3DDECLUSAGE_BLENDINDICES:
 			{
 				//if (true)
-					_append_data(mem_buff, buff_offset, (void*)&(blend_), sizeof(unsigned));
+					_append_data(mem_buff, buff_offset, (void*)&(blend_), sizeof(U32));
 				//else
 			}
 			break;

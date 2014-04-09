@@ -130,17 +130,13 @@ init_faild:
 
 void GEDrawBuff::destory_vertex_buff()
 {
-	if (dx_vertex_buff_)
-		D3D_RELEASE(dx_vertex_buff_);
-	dx_vertex_buff_ = NULL;
+	D3D_RELEASE(dx_vertex_buff_);
 	dx_vertex_cnt_ = 0;
 }
 
 void GEDrawBuff::destory_index_buff()
 {
-	if (dx_index_buff_)
-		D3D_RELEASE(dx_index_buff_);
-	dx_index_buff_ = NULL;
+	D3D_RELEASE(dx_index_buff_);
 	dx_index_cnt_ = 0;
 }
 

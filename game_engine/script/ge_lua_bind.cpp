@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 04/09/14 14:54:23.
+** Generated automatically by tolua++-1.0.92 on 04/10/14 11:21:07.
 */
 
 #ifndef __cplusplus
@@ -27,23 +27,16 @@ static int tolua_collect_ge__GE_IPOINT (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_ge__GE_FSIZE (lua_State* tolua_S)
-{
- ge::GE_FSIZE* self = (ge::GE_FSIZE*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
-static int tolua_collect_ge__GE_FPOINT (lua_State* tolua_S)
-{
- ge::GE_FPOINT* self = (ge::GE_FPOINT*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
 static int tolua_collect_ge__GE_FRECT (lua_State* tolua_S)
 {
  ge::GE_FRECT* self = (ge::GE_FRECT*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_ge__GEPrimitiveDrawUnit (lua_State* tolua_S)
+{
+ ge::GEPrimitiveDrawUnit* self = (ge::GEPrimitiveDrawUnit*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -55,9 +48,23 @@ static int tolua_collect_ge__GE_COLOR (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_ge__GE_ISIZE (lua_State* tolua_S)
+static int tolua_collect_ge__GE_VERTEX_DECL (lua_State* tolua_S)
 {
- ge::GE_ISIZE* self = (ge::GE_ISIZE*) tolua_tousertype(tolua_S,1,0);
+ ge::GE_VERTEX_DECL* self = (ge::GE_VERTEX_DECL*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_ge__GE_FPOINT (lua_State* tolua_S)
+{
+ ge::GE_FPOINT* self = (ge::GE_FPOINT*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_ge__GE_FSIZE (lua_State* tolua_S)
+{
+ ge::GE_FSIZE* self = (ge::GE_FSIZE*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -69,9 +76,9 @@ static int tolua_collect_ge__GE_IRECT (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_ge__GE_VERTEX_DECL (lua_State* tolua_S)
+static int tolua_collect_ge__GE_ISIZE (lua_State* tolua_S)
 {
- ge::GE_VERTEX_DECL* self = (ge::GE_VERTEX_DECL*) tolua_tousertype(tolua_S,1,0);
+ ge::GE_ISIZE* self = (ge::GE_ISIZE*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -91,6 +98,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ge::GEOTextFT");
  tolua_usertype(tolua_S,"ge::GEDrawBuff");
  tolua_usertype(tolua_S,"ge::GEAtlasDraw");
+ tolua_usertype(tolua_S,"ge::GEPrimitiveDrawUnit");
  tolua_usertype(tolua_S,"ge::GE_COLOR");
  tolua_usertype(tolua_S,"ge::GE_FSIZE");
  tolua_usertype(tolua_S,"ge::GEFontFT");
@@ -109,14 +117,14 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ge::GE_FRECT");
  tolua_usertype(tolua_S,"ge::GE_VERTEX");
  tolua_usertype(tolua_S,"ge::GEObject");
- tolua_usertype(tolua_S,"ge::GEApp");
  tolua_usertype(tolua_S,"ge::GEFontBM");
- tolua_usertype(tolua_S,"ge::GEFontManager");
+ tolua_usertype(tolua_S,"ge::GEApp");
+ tolua_usertype(tolua_S,"ge::GE_ISIZE");
  tolua_usertype(tolua_S,"ge::GE_QUAD");
  tolua_usertype(tolua_S,"ge::GELuaScene");
- tolua_usertype(tolua_S,"ge::GE_ISIZE");
- tolua_usertype(tolua_S,"ge::GED3DXFont");
+ tolua_usertype(tolua_S,"ge::GEFontManager");
  tolua_usertype(tolua_S,"ge::GEOTextBM");
+ tolua_usertype(tolua_S,"ge::GED3DXFont");
  tolua_usertype(tolua_S,"ge::GEOText");
  tolua_usertype(tolua_S,"ge::GEREffect");
 }
@@ -3809,6 +3817,252 @@ static int tolua_luabind_ge_GEPrimitiveDraw_draw_solid_rect00(lua_State* tolua_S
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: draw_unit of class  ge::GEPrimitiveDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDraw_draw_unit00
+static int tolua_luabind_ge_GEPrimitiveDraw_draw_unit00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEPrimitiveDraw",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ge::GEPrimitiveDrawUnit",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEPrimitiveDrawUnit* draw_obj = ((ge::GEPrimitiveDrawUnit*)  tolua_tousertype(tolua_S,2,0));
+  {
+   bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_unit(draw_obj);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'draw_unit'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  ge::GEPrimitiveDrawUnit */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDrawUnit_new00
+static int tolua_luabind_ge_GEPrimitiveDrawUnit_new00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEPrimitiveDrawUnit",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GEPrimitiveDrawUnit* tolua_ret = (ge::GEPrimitiveDrawUnit*)  Mtolua_new((ge::GEPrimitiveDrawUnit)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GEPrimitiveDrawUnit");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  ge::GEPrimitiveDrawUnit */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDrawUnit_new00_local
+static int tolua_luabind_ge_GEPrimitiveDrawUnit_new00_local(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEPrimitiveDrawUnit",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GEPrimitiveDrawUnit* tolua_ret = (ge::GEPrimitiveDrawUnit*)  Mtolua_new((ge::GEPrimitiveDrawUnit)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GEPrimitiveDrawUnit");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: delete of class  ge::GEPrimitiveDrawUnit */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDrawUnit_delete00
+static int tolua_luabind_ge_GEPrimitiveDrawUnit_delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEPrimitiveDrawUnit",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEPrimitiveDrawUnit* self = (ge::GEPrimitiveDrawUnit*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
+#endif
+  Mtolua_delete(self);
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_type of class  ge::GEPrimitiveDrawUnit */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDrawUnit_set_type00
+static int tolua_luabind_ge_GEPrimitiveDrawUnit_set_type00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEPrimitiveDrawUnit",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEPrimitiveDrawUnit* self = (ge::GEPrimitiveDrawUnit*)  tolua_tousertype(tolua_S,1,0);
+  ge::GEPrimitiveDrawUnit::DrawType type = ((ge::GEPrimitiveDrawUnit::DrawType) (int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_type'", NULL);
+#endif
+  {
+   self->set_type(type);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_type'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_color of class  ge::GEPrimitiveDrawUnit */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDrawUnit_set_color00
+static int tolua_luabind_ge_GEPrimitiveDrawUnit_set_color00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEPrimitiveDrawUnit",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_COLOR",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEPrimitiveDrawUnit* self = (ge::GEPrimitiveDrawUnit*)  tolua_tousertype(tolua_S,1,0);
+  ge::GE_COLOR* color = ((ge::GE_COLOR*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_color'", NULL);
+#endif
+  {
+   self->set_color(*color);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_color'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: add_point of class  ge::GEPrimitiveDrawUnit */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDrawUnit_add_point00
+static int tolua_luabind_ge_GEPrimitiveDrawUnit_add_point00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEPrimitiveDrawUnit",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_FPOINT",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEPrimitiveDrawUnit* self = (ge::GEPrimitiveDrawUnit*)  tolua_tousertype(tolua_S,1,0);
+  ge::GE_FPOINT* point = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'add_point'", NULL);
+#endif
+  {
+   self->add_point(*point);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'add_point'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: clear_points of class  ge::GEPrimitiveDrawUnit */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDrawUnit_clear_points00
+static int tolua_luabind_ge_GEPrimitiveDrawUnit_clear_points00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEPrimitiveDrawUnit",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEPrimitiveDrawUnit* self = (ge::GEPrimitiveDrawUnit*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clear_points'", NULL);
+#endif
+  {
+   self->clear_points();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'clear_points'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: init of class  ge::GEObject */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEObject_init00
 static int tolua_luabind_ge_GEObject_init00(lua_State* tolua_S)
@@ -7387,6 +7641,26 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"draw_line",tolua_luabind_ge_GEPrimitiveDraw_draw_line00);
     tolua_function(tolua_S,"draw_rect",tolua_luabind_ge_GEPrimitiveDraw_draw_rect00);
     tolua_function(tolua_S,"draw_solid_rect",tolua_luabind_ge_GEPrimitiveDraw_draw_solid_rect00);
+    tolua_function(tolua_S,"draw_unit",tolua_luabind_ge_GEPrimitiveDraw_draw_unit00);
+   tolua_endmodule(tolua_S);
+   #ifdef __cplusplus
+   tolua_cclass(tolua_S,"GEPrimitiveDrawUnit","ge::GEPrimitiveDrawUnit","",tolua_collect_ge__GEPrimitiveDrawUnit);
+   #else
+   tolua_cclass(tolua_S,"GEPrimitiveDrawUnit","ge::GEPrimitiveDrawUnit","",NULL);
+   #endif
+   tolua_beginmodule(tolua_S,"GEPrimitiveDrawUnit");
+    tolua_function(tolua_S,"new",tolua_luabind_ge_GEPrimitiveDrawUnit_new00);
+    tolua_function(tolua_S,"new_local",tolua_luabind_ge_GEPrimitiveDrawUnit_new00_local);
+    tolua_function(tolua_S,".call",tolua_luabind_ge_GEPrimitiveDrawUnit_new00_local);
+    tolua_function(tolua_S,"delete",tolua_luabind_ge_GEPrimitiveDrawUnit_delete00);
+    tolua_constant(tolua_S,"DrawType_Point",ge::GEPrimitiveDrawUnit::DrawType_Point);
+    tolua_constant(tolua_S,"DrawType_Line",ge::GEPrimitiveDrawUnit::DrawType_Line);
+    tolua_constant(tolua_S,"DrawType_Polygon",ge::GEPrimitiveDrawUnit::DrawType_Polygon);
+    tolua_constant(tolua_S,"DrawType_SolidPolygon",ge::GEPrimitiveDrawUnit::DrawType_SolidPolygon);
+    tolua_function(tolua_S,"set_type",tolua_luabind_ge_GEPrimitiveDrawUnit_set_type00);
+    tolua_function(tolua_S,"set_color",tolua_luabind_ge_GEPrimitiveDrawUnit_set_color00);
+    tolua_function(tolua_S,"add_point",tolua_luabind_ge_GEPrimitiveDrawUnit_add_point00);
+    tolua_function(tolua_S,"clear_points",tolua_luabind_ge_GEPrimitiveDrawUnit_clear_points00);
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GEREffect","ge::GEREffect","",NULL);
    tolua_beginmodule(tolua_S,"GEREffect");

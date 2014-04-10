@@ -139,6 +139,33 @@ bool GEPrimitiveDraw::draw_point( GE_FPOINT& point, unsigned color )
 	return true;
 }
 
+bool GEPrimitiveDraw::draw_point( GE_FPOINT* list, int cnt, unsigned color )
+{
+	if (list == NULL) return false;
+	if (cnt <= 0) return false;
+
+	GEPrimitiveDraw* ge_draw_primitive = get_instance();
+
+	GEPrimitiveDrawTask* task = ge_draw_primitive->_create_task();
+	task->offset = ge_draw_primitive->_get_cur_offset();
+	task->count = cnt;
+	task->type = GEPrimitiveType_Point;
+
+	std::vector<GE_VERTEX> verties;
+	verties.resize(cnt);
+
+	for (int i=0; i<cnt; ++i)
+	{
+		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
+		verties[i].set_rhw(1.f);
+		verties[i].set_color(color);
+		verties[i].set_position(list[i].x, list[i].y, 0.f);
+		ge_draw_primitive->_push_vertex(verties[i]);
+	}
+
+	return true;
+}
+
 bool GEPrimitiveDraw::draw_line( GE_FPOINT& from, GE_FPOINT& to, unsigned color )
 {
 	GEPrimitiveDraw* ge_draw_primitive = get_instance();
@@ -404,6 +431,63 @@ bool GEPrimitiveDraw::draw_solid_rect( GE_FRECT& rect, GE_COLOR& color )
 {
 	return draw_solid_rect( rect, color.argb );
 }
+
+bool GEPrimitiveDraw::draw_unit( GEPrimitiveDrawUnit* unit )
+{
+	if (unit == NULL) return false;
+
+	GE_FPOINT* list = &(unit->draw_point_list_[0]);
+	int cnt = (int)unit->draw_point_list_.size();
+
+	switch (unit->draw_type_)
+	{
+	case GEPrimitiveDrawUnit::DrawType_Point:
+		return draw_point(list, cnt, unit->draw_color_);
+	case GEPrimitiveDrawUnit::DrawType_Line:
+		return draw_line_strip(list, cnt, unit->draw_color_);
+	case GEPrimitiveDrawUnit::DrawType_Polygon:
+		return draw_polygon(list, cnt, unit->draw_color_);
+	case GEPrimitiveDrawUnit::DrawType_SolidPolygon:
+		return draw_solid_polygon(list, cnt, unit->draw_color_);
+	}
+	return false;
+}
+
+
+
+GEPrimitiveDrawUnit::GEPrimitiveDrawUnit()
+: draw_type_(DrawType_Point)
+, draw_color_(0xffffffff)
+, draw_point_list_()
+{
+}
+
+GEPrimitiveDrawUnit::~GEPrimitiveDrawUnit()
+{
+	clear_points();
+}
+
+void GEPrimitiveDrawUnit::set_type( DrawType type )
+{
+	draw_type_ = type;
+}
+
+void GEPrimitiveDrawUnit::set_color( GE_COLOR& color )
+{
+	draw_color_ = color.argb;
+}
+
+void GEPrimitiveDrawUnit::add_point( GE_FPOINT& point )
+{
+	draw_point_list_.push_back(point);
+}
+
+void GEPrimitiveDrawUnit::clear_points()
+{
+	draw_point_list_.clear();
+}
+
+
 
 
 }

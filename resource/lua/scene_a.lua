@@ -37,10 +37,13 @@ local spine_test = nil
 local text_test = nil
 local text_test2 = nil
 local drag_rect = ge.GE_FRECT(0, 0, 0, 0)
+local drag_line = ge.GEPrimitiveDrawUnit()
+drag_line:set_type(ge.GEPrimitiveDrawUnit.DrawType_Line)
+drag_line:set_color(ge.GE_COLOR( 0xff, 0xff, 0x88, 0x00))
 
 local function scene_init_callback()
 	spine_test = new_spine_test()
-	scene_test:add_object(1, spine_test)
+	--scene_test:add_object(1, spine_test)
 
 	text_test = new_fps_text()
 	scene_test:add_object(3, text_test)
@@ -86,11 +89,25 @@ local function scene_update_callback(delta)
 
 
 	if ge_input:get_mouse_down(0) then
-		ret, drag_rect.left, drag_rect.top = ge_input:get_mouse_pos(0, 0)
+		p = ge.GE_FPOINT(0, 0)
+		ret, p.x, p.y = ge_input:get_mouse_pos(0, 0)
+		
+		drag_rect.left, drag_rect.top = p.x, p.y
+
+		drag_line:clear_points()
+		drag_line:add_point(p)
+
 	elseif ge_input:get_mouse_hold(0) then
-		ret, drag_rect.right, drag_rect.bottom = ge_input:get_mouse_pos(0, 0)
+		p = ge.GE_FPOINT(0, 0)
+
+		ret, p.x, p.y = ge_input:get_mouse_pos(0, 0)
+		drag_rect.right, drag_rect.bottom = p.x, p.y
 		ge.GEPrimitiveDraw:draw_rect(drag_rect, ge.GE_COLOR( 0xff, 0xff, 0x88, 0x00))
 		ge.GEPrimitiveDraw:draw_solid_rect(drag_rect, ge.GE_COLOR( 0x88, 0xff, 0x88, 0x00))
+
+		drag_line:add_point(p)
+
+		ge.GEPrimitiveDraw:draw_unit(drag_line)
 
 		local from = ge.GE_FPOINT(drag_rect.left, drag_rect.top)
 		local to = ge.GE_FPOINT(drag_rect.right, drag_rect.bottom)

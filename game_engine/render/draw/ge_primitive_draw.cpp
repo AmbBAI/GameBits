@@ -131,12 +131,12 @@ bool GEPrimitiveDraw::draw_point( GE_FPOINT& point, unsigned color )
 	task->count = 1;
 	task->type = GEPrimitiveType_Point;
 
-	GE_VERTEX verties;
-	verties.set_position(point.x, point.y, 0.f);
-	verties.set_fvf(DEFAULT_FVF_FORMAT);
-	verties.set_rhw(1.f);
-	verties.set_color(color);
-	ge_draw_primitive->_push_vertex(verties);
+	GE_VERTEX vertex;
+	vertex.set_position(point.x, point.y, 0.f);
+	vertex.set_fvf(DEFAULT_FVF_FORMAT);
+	vertex.set_rhw(1.f);
+	vertex.set_color(color);
+	ge_draw_primitive->_push_vertex(vertex);
 
 	return true;
 }
@@ -153,16 +153,15 @@ bool GEPrimitiveDraw::draw_point( GE_FPOINT* list, int cnt, unsigned color )
 	task->count = cnt;
 	task->type = GEPrimitiveType_Point;
 
-	std::vector<GE_VERTEX> verties;
-	verties.resize(cnt);
+	GE_VERTEX vertex;
+	vertex.set_fvf(DEFAULT_FVF_FORMAT);
+	vertex.set_rhw(1.f);
+	vertex.set_color(color);
 
 	for (int i=0; i<cnt; ++i)
 	{
-		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
-		verties[i].set_rhw(1.f);
-		verties[i].set_color(color);
-		verties[i].set_position(list[i].x, list[i].y, 0.f);
-		ge_draw_primitive->_push_vertex(verties[i]);
+		vertex.set_position(list[i].x, list[i].y, 0.f);
+		ge_draw_primitive->_push_vertex(vertex);
 	}
 
 	return true;
@@ -205,16 +204,15 @@ bool GEPrimitiveDraw::draw_line_strip( GE_FPOINT* list, int cnt, unsigned color 
 	task->count = cnt - 1;
 	task->type = GEPrimitiveType_LineStrip;
 
-	std::vector<GE_VERTEX> verties;
-	verties.resize(cnt);
+	GE_VERTEX vertex;
+	vertex.set_fvf(DEFAULT_FVF_FORMAT);
+	vertex.set_rhw(1.f);
+	vertex.set_color(color);
 
 	for (int i=0; i<cnt; ++i)
 	{
-		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
-		verties[i].set_rhw(1.f);
-		verties[i].set_color(color);
-		verties[i].set_position(list[i].x, list[i].y, 0.f);
-		ge_draw_primitive->_push_vertex(verties[i]);
+		vertex.set_position(list[i].x, list[i].y, 0.f);
+		ge_draw_primitive->_push_vertex(vertex);
 	}
 
 	return true;
@@ -297,17 +295,16 @@ bool GEPrimitiveDraw::draw_polygon( GE_FPOINT* list, int cnt, unsigned color )
 	task->count = cnt;
 	task->type = GEPrimitiveType_Polygon;
 
-	std::vector<GE_VERTEX> verties;
-	verties.resize(cnt+1);
+	GE_VERTEX vertex;
+	vertex.set_fvf(DEFAULT_FVF_FORMAT);
+	vertex.set_rhw(1.f);
+	vertex.set_color(color);
 
 	for (int i=0; i<cnt+1; ++i)
 	{
-		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
-		verties[i].set_rhw(1.f);
-		verties[i].set_color(color);
-		if (i == cnt) verties[i].set_position(list[0].x, list[0].y, 0.f);
-		else verties[i].set_position(list[i].x, list[i].y, 0.f);
-		ge_draw_primitive->_push_vertex(verties[i]);
+		if (i == cnt) vertex.set_position(list[0].x, list[0].y, 0.f);
+		else vertex.set_position(list[i].x, list[i].y, 0.f);
+		ge_draw_primitive->_push_vertex(vertex);
 	}
 
 	return true;
@@ -325,17 +322,16 @@ bool GEPrimitiveDraw::draw_solid_polygon( GE_FPOINT* list, int cnt, unsigned col
 	task->count = cnt-2;
 	task->type = GEPrimitiveType_Polygon;
 
-	std::vector<GE_VERTEX> verties;
-	verties.resize(cnt+1);
+	GE_VERTEX vertex;
+	vertex.set_fvf(DEFAULT_FVF_FORMAT);
+	vertex.set_rhw(1.f);
+	vertex.set_color(color);
 
 	for (int i=0; i<cnt+1; ++i)
 	{
-		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
-		verties[i].set_rhw(1.f);
-		verties[i].set_color(color);
-		if (i == cnt) verties[i].set_position(list[0].x, list[0].y, 0.f);
-		else verties[i].set_position(list[i].x, list[i].y, 0.f);
-		ge_draw_primitive->_push_vertex(verties[i]);
+		if (i == cnt) vertex.set_position(list[0].x, list[0].y, 0.f);
+		else vertex.set_position(list[i].x, list[i].y, 0.f);
+		ge_draw_primitive->_push_vertex(vertex);
 	}
 
 	return true;
@@ -352,8 +348,10 @@ bool GEPrimitiveDraw::draw_circle( GE_FPOINT& center, float radius, int segment,
 	task->count = segment;
 	task->type = GEPrimitiveType_Circle;
 
-	std::vector<GE_VERTEX> verties;
-	verties.resize(segment + 1);
+	GE_VERTEX vertex;
+	vertex.set_fvf(DEFAULT_FVF_FORMAT);
+	vertex.set_rhw(1.f);
+	vertex.set_color(color);
 
 	const float coef = 2.0f * (float)M_PI / segment;
 	for(int i = 0;i < segment + 1; i++)
@@ -362,11 +360,8 @@ bool GEPrimitiveDraw::draw_circle( GE_FPOINT& center, float radius, int segment,
 		float x = radius * cosf(rads) + center.x;
 		float y = radius * sinf(rads) + center.y;
 
-		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
-		verties[i].set_rhw(1.f);
-		verties[i].set_color(color);
-		verties[i].set_position(x, y, 0.f);
-		ge_draw_primitive->_push_vertex(verties[i]);
+		vertex.set_position(x, y, 0.f);
+		ge_draw_primitive->_push_vertex(vertex);
 	}
 	return true;
 }
@@ -382,8 +377,10 @@ bool GEPrimitiveDraw::draw_solid_circle( GE_FPOINT& center, float radius, int se
 	task->count = segment - 2;
 	task->type = GEPrimitiveType_SolidCircle;
 
-	std::vector<GE_VERTEX> verties;
-	verties.resize(segment + 1);
+	GE_VERTEX vertex;
+	vertex.set_fvf(DEFAULT_FVF_FORMAT);
+	vertex.set_rhw(1.f);
+	vertex.set_color(color);
 
 	const float coef = 2.0f * (float)M_PI / segment;
 	for(int i = 0;i < segment + 1; i++)
@@ -392,11 +389,8 @@ bool GEPrimitiveDraw::draw_solid_circle( GE_FPOINT& center, float radius, int se
 		float x = radius * cosf(rads) + center.x;
 		float y = radius * sinf(rads) + center.y;
 
-		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
-		verties[i].set_rhw(1.f);
-		verties[i].set_color(color);
-		verties[i].set_position(x, y, 0.f);
-		ge_draw_primitive->_push_vertex(verties[i]);
+		vertex.set_position(x, y, 0.f);
+		ge_draw_primitive->_push_vertex(vertex);
 	}
 	return true;
 }

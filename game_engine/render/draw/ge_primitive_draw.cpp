@@ -33,6 +33,7 @@ void GEPrimitiveDrawTask::render()
 
 
 const unsigned GEPrimitiveDraw::DEFAULT_FVF_FORMAT = (D3DFVF_XYZRHW | D3DFVF_DIFFUSE);
+const unsigned GEPrimitiveDraw::DEFAULT_VERTEX_BLOCK_SIZE = 512;
 
 GEPrimitiveDraw::GEPrimitiveDraw()
 : task_cnt_(0)
@@ -106,8 +107,10 @@ bool GEPrimitiveDraw::_init_render()
 
 	vertex_decl_ = GEVertexDecl::get_vertex_decl(DEFAULT_FVF_FORMAT);
 	if (!draw_buff_->set_vertex_decl(vertex_decl_)) return false;
-	if (!draw_buff_->init_vertex_buff(vertex_list_.size())) return false;
 
+	int vsize = DEFAULT_VERTEX_BLOCK_SIZE;
+	while ((int)vertex_list_.size() > vsize) vsize += DEFAULT_VERTEX_BLOCK_SIZE;
+	if (!draw_buff_->init_vertex_buff(vsize)) return false;
 	if (!draw_buff_->set_verties(&vertex_list_[0], vertex_list_.size())) return false;
 	return true;
 }

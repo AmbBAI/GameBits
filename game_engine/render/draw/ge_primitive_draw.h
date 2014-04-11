@@ -46,6 +46,7 @@ protected:
 
 public:
 	static const unsigned DEFAULT_FVF_FORMAT;
+	static const unsigned DEFAULT_VERTEX_BLOCK_SIZE;
 	static GEPrimitiveDraw* get_instance();
 
 	static bool draw_point(GE_FPOINT& point, unsigned color);

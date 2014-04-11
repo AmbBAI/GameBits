@@ -35,7 +35,7 @@ void GE_IRECT::move_to( int pos_x, int pos_y )
 	top		= pos_y;
 }
 
-void GE_IRECT::include( int pos_x, int pos_y )
+void GE_IRECT::expand( int pos_x, int pos_y )
 {
 	if (left > pos_x)	left = pos_x;
 	if (right < pos_x)	right = pos_x;
@@ -76,12 +76,18 @@ void GE_FRECT::move_to( float pos_x, float pos_y )
 	top		= pos_y;
 }
 
-void GE_FRECT::include( float pos_x, float pos_y )
+void GE_FRECT::expand( float pos_x, float pos_y )
 {
 	if (left > pos_x)	left = pos_x;
 	if (right < pos_x)	right = pos_x;
 	if (top > pos_y)	top = pos_y;
 	if (bottom < pos_y)	bottom = pos_y;
+}
+
+
+float GE_FPOINT::distance( const GE_FPOINT& point ) const
+{
+	return sqrt((point.x - x) * (point.x - x) + (point.y - y) * (point.y - y));
 }
 
 }

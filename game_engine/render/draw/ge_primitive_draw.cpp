@@ -18,10 +18,12 @@ void GEPrimitiveDrawTask::render()
 	case GEPrimitiveType_LineStrip:
 	case GEPrimitiveType_Rect:
 	case GEPrimitiveType_Polygon:
+	case GEPrimitiveType_Circle:
 		ge_draw_primitive->_draw_line_strip(this);
 		break;
 	case GEPrimitiveType_SolidRect:
 	case GEPrimitiveType_SolidPolygon:
+	case GEPrimitiveType_SolidCircle:
 		ge_draw_primitive->_draw_triangle_fan(this);
 		break;
 	}
@@ -339,6 +341,66 @@ bool GEPrimitiveDraw::draw_solid_polygon( GE_FPOINT* list, int cnt, unsigned col
 	return true;
 }
 
+bool GEPrimitiveDraw::draw_circle( GE_FPOINT& center, float radius, int segment, unsigned color )
+{
+	if (segment < 3) return false;
+
+	GEPrimitiveDraw* ge_draw_primitive = get_instance();
+
+	GEPrimitiveDrawTask* task = ge_draw_primitive->_create_task();
+	task->offset = ge_draw_primitive->_get_cur_offset();
+	task->count = segment;
+	task->type = GEPrimitiveType_Circle;
+
+	std::vector<GE_VERTEX> verties;
+	verties.resize(segment + 1);
+
+	const float coef = 2.0f * (float)M_PI / segment;
+	for(int i = 0;i < segment + 1; i++)
+	{
+		float rads = i * coef;
+		float x = radius * cosf(rads) + center.x;
+		float y = radius * sinf(rads) + center.y;
+
+		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
+		verties[i].set_rhw(1.f);
+		verties[i].set_color(color);
+		verties[i].set_position(x, y, 0.f);
+		ge_draw_primitive->_push_vertex(verties[i]);
+	}
+	return true;
+}
+
+bool GEPrimitiveDraw::draw_solid_circle( GE_FPOINT& center, float radius, int segment, unsigned color )
+{
+	if (segment < 3) return false;
+
+	GEPrimitiveDraw* ge_draw_primitive = get_instance();
+
+	GEPrimitiveDrawTask* task = ge_draw_primitive->_create_task();
+	task->offset = ge_draw_primitive->_get_cur_offset();
+	task->count = segment - 2;
+	task->type = GEPrimitiveType_SolidCircle;
+
+	std::vector<GE_VERTEX> verties;
+	verties.resize(segment + 1);
+
+	const float coef = 2.0f * (float)M_PI / segment;
+	for(int i = 0;i < segment + 1; i++)
+	{
+		float rads = i * coef;
+		float x = radius * cosf(rads) + center.x;
+		float y = radius * sinf(rads) + center.y;
+
+		verties[i].set_fvf(DEFAULT_FVF_FORMAT);
+		verties[i].set_rhw(1.f);
+		verties[i].set_color(color);
+		verties[i].set_position(x, y, 0.f);
+		ge_draw_primitive->_push_vertex(verties[i]);
+	}
+	return true;
+}
+
 bool GEPrimitiveDraw::_draw_point_list( GEPrimitiveDrawTask* task )
 {
 	if (!_init_render()) return false;
@@ -412,6 +474,7 @@ bool GEPrimitiveDraw::_draw_triangle_fan( GEPrimitiveDrawTask* task )
 }
 
 
+
 bool GEPrimitiveDraw::draw_point( GE_FPOINT& point, GE_COLOR& color )
 {
 	return draw_point( point, color.argb );
@@ -430,6 +493,16 @@ bool GEPrimitiveDraw::draw_rect( GE_FRECT& rect, GE_COLOR& color )
 bool GEPrimitiveDraw::draw_solid_rect( GE_FRECT& rect, GE_COLOR& color )
 {
 	return draw_solid_rect( rect, color.argb );
+}
+
+bool GEPrimitiveDraw::draw_circle( GE_FPOINT& center, float radius, int segment, GE_COLOR& color )
+{
+	return draw_circle(center, radius, segment, color.argb);
+}
+
+bool GEPrimitiveDraw::draw_solid_circle( GE_FPOINT& center, float radius, int segment, GE_COLOR& color )
+{
+	return draw_solid_circle(center, radius, segment, color.argb);
 }
 
 bool GEPrimitiveDraw::draw_unit( GEPrimitiveDrawUnit* unit )
@@ -479,6 +552,9 @@ void GEPrimitiveDrawUnit::set_color( GE_COLOR& color )
 
 void GEPrimitiveDrawUnit::add_point( GE_FPOINT& point )
 {
+	if (draw_point_list_.size() > 0
+		&& draw_point_list_.back().x == point.x
+		&& draw_point_list_.back().y == point.y) return;
 	draw_point_list_.push_back(point);
 }
 

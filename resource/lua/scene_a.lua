@@ -42,14 +42,14 @@ drag_line:set_type(ge.GEPrimitiveDrawUnit.DrawType_Line)
 drag_line:set_color(ge.GE_COLOR( 0xff, 0xff, 0x88, 0x00))
 
 local function scene_init_callback()
-	spine_test = new_spine_test()
+	--spine_test = new_spine_test()
 	--scene_test:add_object(1, spine_test)
 
 	text_test = new_fps_text()
 	scene_test:add_object(3, text_test)
 
-	text_test2 = new_fps_text2()
-	scene_test:add_object(2, text_test2)
+	--text_test2 = new_fps_text2()
+	--scene_test:add_object(2, text_test2)
 end
 
 local function scene_destory_callback()
@@ -81,7 +81,7 @@ local function scene_update_callback(delta)
 	end
 
 	text_test:set_text(fps_text)
-	text_test2:set_text(fps_text)
+	--text_test2:set_text(fps_text)
 
 	local rect = ge.GE_FRECT(10, 10, 100, 100)
 	ge.GEPrimitiveDraw:draw_rect(rect, ge.GE_COLOR( 0xff, 0x00, 0xff, 0xff))
@@ -112,6 +112,11 @@ local function scene_update_callback(delta)
 		local from = ge.GE_FPOINT(drag_rect.left, drag_rect.top)
 		local to = ge.GE_FPOINT(drag_rect.right, drag_rect.bottom)
 		ge.GEPrimitiveDraw:draw_line(from, to, ge.GE_COLOR( 0xff, 0xff, 0x88, 0x00))
+
+		local dis = from:distance(to)
+		local seg = dis * 6.28 / 30
+		ge.GEPrimitiveDraw:draw_circle(from, dis, seg, ge.GE_COLOR( 0xff, 0x00, 0x88, 0x77))
+		ge.GEPrimitiveDraw:draw_solid_circle(from, dis, seg, ge.GE_COLOR( 0x88, 0x00, 0x88, 0x77))
 	end
 end
 

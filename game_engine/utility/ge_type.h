@@ -47,13 +47,15 @@ struct GE_API GE_IRECT : public RECT
 
 	void move(int offset_x, int offset_y);
 	void move_to(int pos_x, int pos_y);
-	void include(int pos_x, int pos_y);
+	void expand(int pos_x, int pos_y);
 };
 
 struct GE_API GE_FPOINT
 {
 	GE_FPOINT():x(0.f), y(0.f) {}
 	GE_FPOINT(float x, float y):x(x), y(y) {}
+
+	float distance(const GE_FPOINT& point) const;
 
 	float x;
 	float y;
@@ -83,7 +85,7 @@ struct GE_API GE_FRECT
 
 	void move(float offset_x, float offset_y);
 	void move_to(float pos_x, float pos_y);
-	void include(float pos_x, float pos_y);
+	void expand(float pos_x, float pos_y);
 };
 
 struct GE_COLOR

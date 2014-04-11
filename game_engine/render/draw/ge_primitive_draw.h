@@ -56,12 +56,15 @@ public:
 	static bool draw_solid_rect(GE_FRECT& rect, unsigned color);
 	static bool draw_polygon(GE_FPOINT* list, int cnt, unsigned color);
 	static bool draw_solid_polygon(GE_FPOINT* list, int cnt, unsigned color);
+	static bool draw_circle(GE_FPOINT& center, float radius, int segment, unsigned color);
+	static bool draw_solid_circle(GE_FPOINT& center, float radius, int segment, unsigned color);
 
 	static bool draw_point(GE_FPOINT& point, GE_COLOR& color);
 	static bool draw_line(GE_FPOINT& from, GE_FPOINT& to, GE_COLOR& color);
 	static bool draw_rect(GE_FRECT& rect, GE_COLOR& color);
 	static bool draw_solid_rect(GE_FRECT& rect, GE_COLOR& color);
-	
+	static bool draw_circle(GE_FPOINT& center, float radius, int segment, GE_COLOR& color);
+	static bool draw_solid_circle(GE_FPOINT& center, float radius, int segment, GE_COLOR& color);
 	static bool draw_unit(GEPrimitiveDrawUnit* draw_obj);
 
 protected:

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 04/10/14 11:21:07.
+** Generated automatically by tolua++-1.0.92 on 04/11/14 10:34:40.
 */
 
 #ifndef __cplusplus
@@ -3817,6 +3817,78 @@ static int tolua_luabind_ge_GEPrimitiveDraw_draw_solid_rect00(lua_State* tolua_S
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: draw_circle of class  ge::GEPrimitiveDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDraw_draw_circle00
+static int tolua_luabind_ge_GEPrimitiveDraw_draw_circle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEPrimitiveDraw",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_FPOINT",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_isusertype(tolua_S,5,"ge::GE_COLOR",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_FPOINT* center = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+  float radius = ((float)  tolua_tonumber(tolua_S,3,0));
+  int segment = ((int)  tolua_tonumber(tolua_S,4,0));
+  ge::GE_COLOR* color = ((ge::GE_COLOR*)  tolua_tousertype(tolua_S,5,0));
+  {
+   bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_circle(*center,radius,segment,*color);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'draw_circle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: draw_solid_circle of class  ge::GEPrimitiveDraw */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDraw_draw_solid_circle00
+static int tolua_luabind_ge_GEPrimitiveDraw_draw_solid_circle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEPrimitiveDraw",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_FPOINT",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_isusertype(tolua_S,5,"ge::GE_COLOR",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GE_FPOINT* center = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+  float radius = ((float)  tolua_tonumber(tolua_S,3,0));
+  int segment = ((int)  tolua_tonumber(tolua_S,4,0));
+  ge::GE_COLOR* color = ((ge::GE_COLOR*)  tolua_tousertype(tolua_S,5,0));
+  {
+   bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_solid_circle(*center,radius,segment,*color);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'draw_solid_circle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: draw_unit of class  ge::GEPrimitiveDraw */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GEPrimitiveDraw_draw_unit00
 static int tolua_luabind_ge_GEPrimitiveDraw_draw_unit00(lua_State* tolua_S)
@@ -5716,9 +5788,9 @@ static int tolua_luabind_ge_GE_IRECT_move_to00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: include of class  ge::GE_IRECT */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_IRECT_include00
-static int tolua_luabind_ge_GE_IRECT_include00(lua_State* tolua_S)
+/* method: expand of class  ge::GE_IRECT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_IRECT_expand00
+static int tolua_luabind_ge_GE_IRECT_expand00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5736,16 +5808,16 @@ static int tolua_luabind_ge_GE_IRECT_include00(lua_State* tolua_S)
   int pos_x = ((int)  tolua_tonumber(tolua_S,2,0));
   int pos_y = ((int)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'include'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'expand'", NULL);
 #endif
   {
-   self->include(pos_x,pos_y);
+   self->expand(pos_x,pos_y);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'include'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'expand'.",&tolua_err);
  return 0;
 #endif
 }
@@ -5887,6 +5959,40 @@ static int tolua_luabind_ge_GE_FPOINT_delete00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: distance of class  ge::GE_FPOINT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FPOINT_distance00
+static int tolua_luabind_ge_GE_FPOINT_distance00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const ge::GE_FPOINT",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const ge::GE_FPOINT",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const ge::GE_FPOINT* self = (const ge::GE_FPOINT*)  tolua_tousertype(tolua_S,1,0);
+  const ge::GE_FPOINT* point = ((const ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'distance'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->distance(*point);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'distance'.",&tolua_err);
  return 0;
 #endif
 }
@@ -6556,9 +6662,9 @@ static int tolua_luabind_ge_GE_FRECT_move_to00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: include of class  ge::GE_FRECT */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FRECT_include00
-static int tolua_luabind_ge_GE_FRECT_include00(lua_State* tolua_S)
+/* method: expand of class  ge::GE_FRECT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_FRECT_expand00
+static int tolua_luabind_ge_GE_FRECT_expand00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -6576,16 +6682,16 @@ static int tolua_luabind_ge_GE_FRECT_include00(lua_State* tolua_S)
   float pos_x = ((float)  tolua_tonumber(tolua_S,2,0));
   float pos_y = ((float)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'include'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'expand'", NULL);
 #endif
   {
-   self->include(pos_x,pos_y);
+   self->expand(pos_x,pos_y);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'include'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'expand'.",&tolua_err);
  return 0;
 #endif
 }
@@ -6629,14 +6735,22 @@ static int tolua_luabind_ge_GE_COLOR_new00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"ge::GE_COLOR",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
+  unsigned char a = ((unsigned char)  tolua_tonumber(tolua_S,2,0));
+  unsigned char r = ((unsigned char)  tolua_tonumber(tolua_S,3,0));
+  unsigned char g = ((unsigned char)  tolua_tonumber(tolua_S,4,0));
+  unsigned char b = ((unsigned char)  tolua_tonumber(tolua_S,5,0));
   {
-   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)());
+   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)(a,r,g,b));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_COLOR");
   }
  }
@@ -6657,14 +6771,22 @@ static int tolua_luabind_ge_GE_COLOR_new00_local(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"ge::GE_COLOR",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
+  unsigned char a = ((unsigned char)  tolua_tonumber(tolua_S,2,0));
+  unsigned char r = ((unsigned char)  tolua_tonumber(tolua_S,3,0));
+  unsigned char g = ((unsigned char)  tolua_tonumber(tolua_S,4,0));
+  unsigned char b = ((unsigned char)  tolua_tonumber(tolua_S,5,0));
   {
-   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)());
+   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)(a,r,g,b));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_COLOR");
     tolua_register_gc(tolua_S,lua_gettop(tolua_S));
   }
@@ -6686,20 +6808,14 @@ static int tolua_luabind_ge_GE_COLOR_new01(lua_State* tolua_S)
  if (
      !tolua_isusertable(tolua_S,1,"ge::GE_COLOR",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  unsigned char a = ((unsigned char)  tolua_tonumber(tolua_S,2,0));
-  unsigned char r = ((unsigned char)  tolua_tonumber(tolua_S,3,0));
-  unsigned char g = ((unsigned char)  tolua_tonumber(tolua_S,4,0));
-  unsigned char b = ((unsigned char)  tolua_tonumber(tolua_S,5,0));
+  unsigned argb = ((unsigned)  tolua_tonumber(tolua_S,2,0));
   {
-   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)(a,r,g,b));
+   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)(argb));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_COLOR");
   }
  }
@@ -6717,20 +6833,14 @@ static int tolua_luabind_ge_GE_COLOR_new01_local(lua_State* tolua_S)
  if (
      !tolua_isusertable(tolua_S,1,"ge::GE_COLOR",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  unsigned char a = ((unsigned char)  tolua_tonumber(tolua_S,2,0));
-  unsigned char r = ((unsigned char)  tolua_tonumber(tolua_S,3,0));
-  unsigned char g = ((unsigned char)  tolua_tonumber(tolua_S,4,0));
-  unsigned char b = ((unsigned char)  tolua_tonumber(tolua_S,5,0));
+  unsigned argb = ((unsigned)  tolua_tonumber(tolua_S,2,0));
   {
-   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)(a,r,g,b));
+   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)(argb));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_COLOR");
     tolua_register_gc(tolua_S,lua_gettop(tolua_S));
   }
@@ -6738,57 +6848,6 @@ static int tolua_luabind_ge_GE_COLOR_new01_local(lua_State* tolua_S)
  return 1;
 tolua_lerror:
  return tolua_luabind_ge_GE_COLOR_new00_local(tolua_S);
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: new of class  ge::GE_COLOR */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_COLOR_new02
-static int tolua_luabind_ge_GE_COLOR_new02(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"ge::GE_COLOR",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
- {
-  unsigned argb = ((unsigned)  tolua_tonumber(tolua_S,2,0));
-  {
-   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)(argb));
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_COLOR");
-  }
- }
- return 1;
-tolua_lerror:
- return tolua_luabind_ge_GE_COLOR_new01(tolua_S);
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: new_local of class  ge::GE_COLOR */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_COLOR_new02_local
-static int tolua_luabind_ge_GE_COLOR_new02_local(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"ge::GE_COLOR",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
- {
-  unsigned argb = ((unsigned)  tolua_tonumber(tolua_S,2,0));
-  {
-   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)(argb));
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_COLOR");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-  }
- }
- return 1;
-tolua_lerror:
- return tolua_luabind_ge_GE_COLOR_new01_local(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -7641,6 +7700,8 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"draw_line",tolua_luabind_ge_GEPrimitiveDraw_draw_line00);
     tolua_function(tolua_S,"draw_rect",tolua_luabind_ge_GEPrimitiveDraw_draw_rect00);
     tolua_function(tolua_S,"draw_solid_rect",tolua_luabind_ge_GEPrimitiveDraw_draw_solid_rect00);
+    tolua_function(tolua_S,"draw_circle",tolua_luabind_ge_GEPrimitiveDraw_draw_circle00);
+    tolua_function(tolua_S,"draw_solid_circle",tolua_luabind_ge_GEPrimitiveDraw_draw_solid_circle00);
     tolua_function(tolua_S,"draw_unit",tolua_luabind_ge_GEPrimitiveDraw_draw_unit00);
    tolua_endmodule(tolua_S);
    #ifdef __cplusplus
@@ -7759,7 +7820,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"height",tolua_luabind_ge_GE_IRECT_height00);
     tolua_function(tolua_S,"move",tolua_luabind_ge_GE_IRECT_move00);
     tolua_function(tolua_S,"move_to",tolua_luabind_ge_GE_IRECT_move_to00);
-    tolua_function(tolua_S,"include",tolua_luabind_ge_GE_IRECT_include00);
+    tolua_function(tolua_S,"expand",tolua_luabind_ge_GE_IRECT_expand00);
    tolua_endmodule(tolua_S);
    #ifdef __cplusplus
    tolua_cclass(tolua_S,"GE_FPOINT","ge::GE_FPOINT","",tolua_collect_ge__GE_FPOINT);
@@ -7774,6 +7835,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_FPOINT_new01_local);
     tolua_function(tolua_S,".call",tolua_luabind_ge_GE_FPOINT_new01_local);
     tolua_function(tolua_S,"delete",tolua_luabind_ge_GE_FPOINT_delete00);
+    tolua_function(tolua_S,"distance",tolua_luabind_ge_GE_FPOINT_distance00);
     tolua_variable(tolua_S,"x",tolua_get_ge__GE_FPOINT_x,tolua_set_ge__GE_FPOINT_x);
     tolua_variable(tolua_S,"y",tolua_get_ge__GE_FPOINT_y,tolua_set_ge__GE_FPOINT_y);
    tolua_endmodule(tolua_S);
@@ -7814,7 +7876,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"height",tolua_luabind_ge_GE_FRECT_height00);
     tolua_function(tolua_S,"move",tolua_luabind_ge_GE_FRECT_move00);
     tolua_function(tolua_S,"move_to",tolua_luabind_ge_GE_FRECT_move_to00);
-    tolua_function(tolua_S,"include",tolua_luabind_ge_GE_FRECT_include00);
+    tolua_function(tolua_S,"expand",tolua_luabind_ge_GE_FRECT_expand00);
    tolua_endmodule(tolua_S);
    #ifdef __cplusplus
    tolua_cclass(tolua_S,"GE_COLOR","ge::GE_COLOR","",tolua_collect_ge__GE_COLOR);
@@ -7829,9 +7891,6 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"new",tolua_luabind_ge_GE_COLOR_new01);
     tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_COLOR_new01_local);
     tolua_function(tolua_S,".call",tolua_luabind_ge_GE_COLOR_new01_local);
-    tolua_function(tolua_S,"new",tolua_luabind_ge_GE_COLOR_new02);
-    tolua_function(tolua_S,"new_local",tolua_luabind_ge_GE_COLOR_new02_local);
-    tolua_function(tolua_S,".call",tolua_luabind_ge_GE_COLOR_new02_local);
    tolua_endmodule(tolua_S);
    #ifdef __cplusplus
    tolua_cclass(tolua_S,"GE_VERTEX_DECL","ge::GE_VERTEX_DECL","",tolua_collect_ge__GE_VERTEX_DECL);

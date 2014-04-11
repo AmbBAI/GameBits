@@ -80,6 +80,8 @@ class GEPrimitiveDraw
 	static bool draw_line(GE_FPOINT& from, GE_FPOINT& to, GE_COLOR& color);
 	static bool draw_rect(GE_FRECT& rect, GE_COLOR& color);
 	static bool draw_solid_rect(GE_FRECT& rect, GE_COLOR& color);
+	static bool draw_circle(GE_FPOINT& center, float radius, int segment, GE_COLOR& color);
+	static bool draw_solid_circle(GE_FPOINT& center, float radius, int segment, GE_COLOR& color);
 	static bool draw_unit(GEPrimitiveDrawUnit* draw_obj);
 };
 

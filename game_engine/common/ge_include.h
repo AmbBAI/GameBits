@@ -15,6 +15,11 @@
 #include <ctime>
 #include <assert.h>
 
+#ifndef _USE_MATH_DEFINES
+#define _USE_MATH_DEFINES
+#endif
+#include <cmath>
+
 // stl include
 #include <string>
 #include <vector>

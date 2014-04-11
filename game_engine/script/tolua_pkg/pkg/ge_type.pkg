@@ -35,7 +35,7 @@ struct GE_IRECT
 
 	void move(int offset_x, int offset_y);
 	void move_to(int pos_x, int pos_y);
-	void include(int pos_x, int pos_y);
+	void expand(int pos_x, int pos_y);
 };
 
 struct GE_FPOINT
@@ -43,6 +43,8 @@ struct GE_FPOINT
 	GE_FPOINT();
 	GE_FPOINT(float x, float y);
 	~GE_FPOINT();
+
+	float distance(const GE_FPOINT& point) const;
 
 	float x;
 	float y;
@@ -74,14 +76,13 @@ struct GE_FRECT
 
 	void move(float offset_x, float offset_y);
 	void move_to(float pos_x, float pos_y);
-	void include(float pos_x, float pos_y);
+	void expand(float pos_x, float pos_y);
 };
 
 struct GE_COLOR
 {
 	unsigned argb;
 
-	GE_COLOR();
 	GE_COLOR(unsigned char a, unsigned char r, unsigned char g, unsigned char b);
 	GE_COLOR(unsigned argb);
 };

@@ -519,13 +519,13 @@ GE_FTBuffChar* GEFontFT::_get_buff_char_with_outline( wchar_t ch )
 	span_rect.move_to(span_list_.front().x, span_list_.front().y);
 	FOR_EACH (FT_SPAN_LIST, span_list_, span_itor)
 	{
-		span_rect.include(span_itor->x, span_itor->y);
-		span_rect.include(span_itor->x + span_itor->len - 1, span_itor->y);
+		span_rect.expand(span_itor->x, span_itor->y);
+		span_rect.expand(span_itor->x + span_itor->len - 1, span_itor->y);
 	}
 	FOR_EACH (FT_SPAN_LIST, outline_span_list_, span_itor)
 	{
-		span_rect.include(span_itor->x, span_itor->y);
-		span_rect.include(span_itor->x + span_itor->len - 1, span_itor->y);
+		span_rect.expand(span_itor->x, span_itor->y);
+		span_rect.expand(span_itor->x + span_itor->len - 1, span_itor->y);
 	}
 
 	int width = span_rect.width() + 1;

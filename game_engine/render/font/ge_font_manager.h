@@ -38,6 +38,7 @@ protected:
 
 private:
 	GE_FONT_SET				font_set_;
+	ULONG_PTR				gdiplus_token_;
 };
 
 } // namespace ge

@@ -51,10 +51,7 @@ bool GEInput::init()
 void GEInput::destory()
 {
 	if (p_keyboard_device_) p_keyboard_device_->Unacquire();
-	p_keyboard_device_ = NULL;
-
 	if (p_mouse_device_) p_mouse_device_->Unacquire();
-	p_keyboard_device_ = NULL;
 
 	D3D_RELEASE(p_keyboard_device_);
 	D3D_RELEASE(p_mouse_device_);

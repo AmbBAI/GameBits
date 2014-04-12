@@ -24,7 +24,7 @@ GEOTextFT::GEOTextFT()
 
 GEOTextFT::~GEOTextFT()
 {
-
+	GE_RELEASE(render_object_);
 }
 
 bool GEOTextFT::set_font( GEFont* font )

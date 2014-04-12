@@ -27,15 +27,16 @@ bool GEFontManager::init()
 	GEFreeType* freetype = GEFreeType::get_instance();
 	if (freetype) freetype->init();
 
-	ULONG_PTR gdiplus_token;
+	ULONG_PTR* ptr_gdiplus_token = &(GEFontManager::get_instance()->gdiplus_token_);
 	Gdiplus::GdiplusStartupInput startup_input;
-	GdiplusStartup(&gdiplus_token, &startup_input, NULL);
+	Gdiplus::GdiplusStartup(ptr_gdiplus_token, &startup_input, NULL);
 	return true;
 }
 
 void GEFontManager::destory()
 {
-
+	ULONG_PTR gdiplus_token = (GEFontManager::get_instance()->gdiplus_token_);
+	Gdiplus::GdiplusShutdown(gdiplus_token);
 }
 
 GEFont* GEFontManager::create_font( GEFontType font_type )

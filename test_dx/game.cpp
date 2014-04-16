@@ -23,7 +23,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		freopen("CONOUT$", "w", stderr);
 
 		g_p_ge_lua_engine->open();
-		g_p_ge_lua_engine->run_script("lua\\main.lua");
+		assert(g_p_ge_lua_engine->run_script("lua\\main.lua"));
 		g_p_ge_lua_engine->close();
 	}
 

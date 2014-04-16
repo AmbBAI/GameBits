@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 04/11/14 10:34:40.
+** Generated automatically by tolua++-1.0.92 on 04/16/14 11:29:42.
 */
 
 #ifndef __cplusplus
@@ -100,9 +100,9 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ge::GEAtlasDraw");
  tolua_usertype(tolua_S,"ge::GEPrimitiveDrawUnit");
  tolua_usertype(tolua_S,"ge::GE_COLOR");
- tolua_usertype(tolua_S,"ge::GE_FSIZE");
+ tolua_usertype(tolua_S,"ge::GERender");
  tolua_usertype(tolua_S,"ge::GEFontFT");
- tolua_usertype(tolua_S,"LUA_FUNCTION");
+ tolua_usertype(tolua_S,"ge::GEFontBM");
  tolua_usertype(tolua_S,"ge::GEVertexDecl");
  tolua_usertype(tolua_S,"ge::GE_IRECT");
  tolua_usertype(tolua_S,"ge::GEGDIFont");
@@ -114,19 +114,20 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ge::GE_QUAD_EX");
  tolua_usertype(tolua_S,"ge::GEInput");
  tolua_usertype(tolua_S,"ge::GEScene");
- tolua_usertype(tolua_S,"ge::GE_FRECT");
  tolua_usertype(tolua_S,"ge::GE_VERTEX");
+ tolua_usertype(tolua_S,"ge::GE_FRECT");
+ tolua_usertype(tolua_S,"ge::GE_FSIZE");
  tolua_usertype(tolua_S,"ge::GEObject");
- tolua_usertype(tolua_S,"ge::GEFontBM");
- tolua_usertype(tolua_S,"ge::GEApp");
  tolua_usertype(tolua_S,"ge::GE_ISIZE");
+ tolua_usertype(tolua_S,"ge::GEApp");
+ tolua_usertype(tolua_S,"ge::GEFontManager");
  tolua_usertype(tolua_S,"ge::GE_QUAD");
  tolua_usertype(tolua_S,"ge::GELuaScene");
- tolua_usertype(tolua_S,"ge::GEFontManager");
  tolua_usertype(tolua_S,"ge::GEOTextBM");
  tolua_usertype(tolua_S,"ge::GED3DXFont");
  tolua_usertype(tolua_S,"ge::GEOText");
  tolua_usertype(tolua_S,"ge::GEREffect");
+ tolua_usertype(tolua_S,"LUA_FUNCTION");
 }
 
 /* method: get_instance of class  ge::GEApp */
@@ -1237,6 +1238,98 @@ static int tolua_luabind_ge_GELuaScene_set_update_func00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'set_update_func'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_instance of class  ge::GERender */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GERender_get_instance00
+static int tolua_luabind_ge_GERender_get_instance00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GERender",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GERender* tolua_ret = (ge::GERender*)  ge::GERender::get_instance();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GERender");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_instance'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_drawcall_cnt of class  ge::GERender */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GERender_get_drawcall_cnt00
+static int tolua_luabind_ge_GERender_get_drawcall_cnt00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GERender",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GERender* self = (ge::GERender*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_drawcall_cnt'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->get_drawcall_cnt();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_drawcall_cnt'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_drawvertex_cnt of class  ge::GERender */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GERender_get_drawvertex_cnt00
+static int tolua_luabind_ge_GERender_get_drawvertex_cnt00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GERender",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GERender* self = (ge::GERender*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_drawvertex_cnt'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->get_drawvertex_cnt();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_drawvertex_cnt'.",&tolua_err);
  return 0;
 #endif
 }
@@ -7567,6 +7660,12 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"set_show_func",tolua_luabind_ge_GELuaScene_set_show_func00);
     tolua_function(tolua_S,"set_hide_func",tolua_luabind_ge_GELuaScene_set_hide_func00);
     tolua_function(tolua_S,"set_update_func",tolua_luabind_ge_GELuaScene_set_update_func00);
+   tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GERender","ge::GERender","",NULL);
+   tolua_beginmodule(tolua_S,"GERender");
+    tolua_function(tolua_S,"get_instance",tolua_luabind_ge_GERender_get_instance00);
+    tolua_function(tolua_S,"get_drawcall_cnt",tolua_luabind_ge_GERender_get_drawcall_cnt00);
+    tolua_function(tolua_S,"get_drawvertex_cnt",tolua_luabind_ge_GERender_get_drawvertex_cnt00);
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GESurface","ge::GESurface","",NULL);
    tolua_beginmodule(tolua_S,"GESurface");

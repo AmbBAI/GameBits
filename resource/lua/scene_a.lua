@@ -58,27 +58,30 @@ end
 local function scene_update_callback(delta)
 	ge_app = ge.GEApp:get_instance()
 	ge_input = ge_app:get_input()
+	ge_render = ge.GERender:get_instance()
 
 	fps = ge_app:get_fps()
 	ret, mx, my = ge_input:get_mouse_pos(0, 0)
+	dc, dv = ge_render:get_drawcall_cnt(), ge_render:get_drawvertex_cnt()
 	fps_text = string.format("fps: %.2f\n", fps)
 	fps_text = fps_text .. string.format("mouse: %d, %d\n", mx, my)
+	fps_text = fps_text .. string.format("draw: %d, %d\n", dc, dv)
 
-	if ge_input:get_key_hold(ge.GEInput.KC_UP) then
-		fps_text = fps_text .. "¡ü"
-	end
+	-- if ge_input:get_key_hold(ge.GEInput.KC_UP) then
+	-- 	fps_text = fps_text .. "¡ü"
+	-- end
 
-	if ge_input:get_key_hold(ge.GEInput.KC_LEFT) then
-		fps_text = fps_text .. "¡û"
-	end
+	-- if ge_input:get_key_hold(ge.GEInput.KC_LEFT) then
+	-- 	fps_text = fps_text .. "¡û"
+	-- end
 
-	if ge_input:get_key_hold(ge.GEInput.KC_RIGHT) then
-		fps_text = fps_text .. "¡ú"
-	end
+	-- if ge_input:get_key_hold(ge.GEInput.KC_RIGHT) then
+	-- 	fps_text = fps_text .. "¡ú"
+	-- end
 
-	if ge_input:get_key_hold(ge.GEInput.KC_DOWN) then
-		fps_text = fps_text .. "¡ý"
-	end
+	-- if ge_input:get_key_hold(ge.GEInput.KC_DOWN) then
+	-- 	fps_text = fps_text .. "¡ý"
+	-- end
 
 	text_test:set_text(fps_text)
 	--text_test2:set_text(fps_text)
@@ -114,7 +117,7 @@ local function scene_update_callback(delta)
 		ge.GEPrimitiveDraw:draw_line(from, to, ge.GE_COLOR( 0xff, 0xff, 0x88, 0x00))
 
 		local dis = from:distance(to)
-		local seg = dis * 6.28 / 30
+		local seg = math.min(200, math.max(dis * 6.28 / 10, 16))
 		ge.GEPrimitiveDraw:draw_circle(from, dis, seg, ge.GE_COLOR( 0xff, 0x00, 0x88, 0x77))
 		ge.GEPrimitiveDraw:draw_solid_circle(from, dis, seg, ge.GE_COLOR( 0x88, 0x00, 0x88, 0x77))
 	end

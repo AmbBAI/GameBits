@@ -27,6 +27,9 @@ void GEPrimitiveDrawTask::render()
 		ge_draw_primitive->_draw_triangle_fan(this);
 		break;
 	}
+
+	drawvertex_cnt_ = count;
+	drawcall_cnt_ = 1;
 	ge_draw_primitive->_release_task(this);
 }
 

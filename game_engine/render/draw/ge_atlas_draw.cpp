@@ -300,6 +300,8 @@ bool GEAtlasDraw::draw_quads( GEREffect* effect/* = NULL*/ )
 	}
 	if (effect) effect->set_texture("TEXTURE0", NULL);
 	else GETexture::use_null_texture();
+	drawcall_cnt_ = (int)render_task_list_.size();
+	drawvertex_cnt_ = (int)vertex_list_.size();
 	return true;
 }
 

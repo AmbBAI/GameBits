@@ -8,6 +8,7 @@ $pfile "pkg/ge_app.pkg"
 $pfile "pkg/ge_game.pkg"
 $pfile "pkg/ge_input.pkg"
 $pfile "pkg/ge_scene.pkg"
+$pfile "pkg/ge_render.pkg"
 
 $pfile "pkg/ge_texture.pkg"
 $pfile "pkg/ge_font.pkg"

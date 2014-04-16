@@ -1,0 +1,7 @@
+class GERender
+{
+	static GERender* get_instance();
+
+	int get_drawcall_cnt();
+	int get_drawvertex_cnt();
+};

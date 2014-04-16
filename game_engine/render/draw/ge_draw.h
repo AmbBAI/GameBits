@@ -22,8 +22,14 @@ public:
 	virtual bool set_effect(GEREffect* effect);
 	virtual GEREffect* get_effect();
 
+	virtual int get_drawcall_cnt() { return drawcall_cnt_; }
+	virtual int get_drawvertex_cnt() { return drawvertex_cnt_; }
+
 protected:
-	GEREffect* effect_;
+	GEREffect*	effect_;
+
+	int			drawcall_cnt_;
+	int			drawvertex_cnt_;
 };
 
 } // namespace ge

@@ -10,6 +10,8 @@ GERender::GERender()
 : position_(0.0f, 0.0f, -256.f)
 , target_(0.0f, 0.0f, 0.0f)
 , up_(0.0f, 1.0f, 0.0f)
+, drawcall_cnt_(0)
+, drawvertex_cnt_(0)
 {
 
 }
@@ -58,12 +60,16 @@ bool GERender::init_state()
 
 void GERender::render(time_t delta)
 {
+	drawcall_cnt_ = 0;
+	drawvertex_cnt_ = 0;
 	while (!render_task_que_.empty())
 	{
 		GEDraw* p_draw = render_task_que_.front();
 		render_task_que_.pop();
 		if(!p_draw) continue;
 		p_draw->render();
+		drawcall_cnt_ += p_draw->get_drawcall_cnt();
+		drawvertex_cnt_ += p_draw->get_drawvertex_cnt();
 	}
 
 	return;

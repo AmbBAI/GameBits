@@ -7,6 +7,8 @@ DLL_MANAGE_CLASS_IMPLEMENT(GEDraw);
 
 GEDraw::GEDraw()
 : effect_(NULL)
+, drawcall_cnt_(0)
+, drawvertex_cnt_(0)
 {
 
 }

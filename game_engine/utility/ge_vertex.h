@@ -40,7 +40,7 @@ protected:
 	void				_release_vertex_decl(DWORD fvf);
 
 private:
-	typedef std::map<DWORD, GE_VERTEX_DECL*> VERTEX_DECL_MAP;
+	typedef std::hash_map<DWORD, GE_VERTEX_DECL*> VERTEX_DECL_MAP;
 	VERTEX_DECL_MAP		vertex_decl_map_;
 };
 

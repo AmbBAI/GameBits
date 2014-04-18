@@ -99,8 +99,9 @@ void GEVertexDecl::_release_vertex_decl( DWORD fvf )
 
 GE_VERTEX_DECL* GEVertexDecl::_get_vertex_decl( DWORD fvf )
 {
-	if (vertex_decl_map_.find(fvf) == vertex_decl_map_.end()) return NULL;
-	return vertex_decl_map_[fvf];
+	VERTEX_DECL_MAP::iterator itor_decl = vertex_decl_map_.find(fvf);
+	if (itor_decl == vertex_decl_map_.end()) return NULL;
+	return itor_decl->second;
 }
 
 GE_VERTEX_DECL* GEVertexDecl::get_vertex_decl( DWORD fvf )

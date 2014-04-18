@@ -11,7 +11,8 @@ end
 local function new_fps_text()
 	new_font = ge.GEFontManager:create_font(ge.FontType_FTFont)
 	new_font = tolua.cast(new_font, "ge::GEFontFT")
-	new_font:init("font\\simsun.ttc", 18);
+	new_font:init("font\\simsun.ttc", 18)
+	new_font:set_outline_weight(1.0)
 	
 	new_text = ge.GEOTextFT:create()
 	local rect = ge.GE_IRECT:new_local(0, 0, 0, 0);
@@ -66,6 +67,14 @@ local function scene_update_callback(delta)
 	fps_text = string.format("fps: %.2f\n", fps)
 	fps_text = fps_text .. string.format("mouse: %d, %d\n", mx, my)
 	fps_text = fps_text .. string.format("draw: %d, %d\n", dc, dv)
+
+	font_obj = text_test:get_font()
+	font_obj = tolua.cast(font_obj, "ge::GEFontFT")
+	if fps < 1000 then
+		font_obj:set_outline_weight(2.0)
+	else
+		font_obj:set_outline_weight(1.0)
+	end
 
 	-- if ge_input:get_key_hold(ge.GEInput.KC_UP) then
 	-- 	fps_text = fps_text .. "¡ü"

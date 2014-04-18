@@ -150,6 +150,7 @@ void GEApp::_process()
 			p_ge_engine_->process(delta_);
 		}
 	}
+	::Sleep(0);
 }
 
 void GEApp::_update_time()

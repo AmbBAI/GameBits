@@ -67,6 +67,7 @@ local function scene_update_callback(delta)
 	fps_text = string.format("fps: %.2f\n", fps)
 	fps_text = fps_text .. string.format("mouse: %d, %d\n", mx, my)
 	fps_text = fps_text .. string.format("draw: %d, %d\n", dc, dv)
+	fps_text = fps_text .. string.format("lua-mem: %d\n", collectgarbage("count"))
 
 	font_obj = text_test:get_font()
 	font_obj = tolua.cast(font_obj, "ge::GEFontFT")

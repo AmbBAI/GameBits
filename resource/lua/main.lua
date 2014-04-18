@@ -1,5 +1,8 @@
 print("hello lua!")
 
+collectgarbage("setpause", 100)
+collectgarbage("setstepmul", 5000)
+
 ge_app = ge.GEApp:get_instance()
 ge_game = ge.GEGame:get_instance()
 

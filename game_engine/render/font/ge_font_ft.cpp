@@ -69,6 +69,7 @@ fail_end:
 bool GEFreeType::span_render_outline( GEFontFT* font_obj, FT_GlyphSlot glyph_slot )
 {
 	if (font_obj == NULL) return false;
+	if (font_obj->get_outline_weight() <= 0.f) return false;
 	if (glyph_slot == NULL) return false;
 	if (glyph_slot->format != FT_GLYPH_FORMAT_OUTLINE) return false;
 
@@ -80,7 +81,7 @@ bool GEFreeType::span_render_outline( GEFontFT* font_obj, FT_GlyphSlot glyph_slo
 	if (stroker)
 	{
 		FT_Stroker_Set(stroker,
-			(int)(1.0f * 64),
+			(int)(font_obj->get_outline_weight() * 64),
 			FT_STROKER_LINECAP_ROUND,
 			FT_STROKER_LINEJOIN_ROUND,
 			0);
@@ -145,6 +146,9 @@ GEFontFT::GEFontFT()
 , current_page_(NULL)
 , pen_x_(0)
 , pen_y_(0)
+, outline_weight_(0.f)
+, valid_stamp_(0)
+, is_buff_dirty_(false)
 {
 	type_ = FontType_FTFont;
 }
@@ -156,6 +160,8 @@ GEFontFT::~GEFontFT()
 
 bool GEFontFT::init( const char* face, int size )
 {
+	destory();
+
 	GEFreeType* freetype = GEFreeType::get_instance();
 	if (!freetype->init_font(this, face)) return false;
 	return set_size(size);
@@ -166,6 +172,8 @@ void GEFontFT::destory()
 	if (ft_face_ == NULL) return;
 	FT_Done_Face(ft_face_);
 	ft_face_ = NULL;
+
+	clear_font_buff();
 }
 
 bool GEFontFT::set_size( int size )
@@ -244,13 +252,16 @@ bool GEFontFT::write_text( const wchar_t* text, int width, int height, bool wrap
 	return true;
 }
 
-bool GEFontFT::begin_write( GE_FTRenderChar* char_buff, int buff_size )
+int GEFontFT::begin_write( GE_FTRenderChar* char_buff, int buff_size )
 {
-	if (render_char_buff_ != NULL) return false;
+	if (is_buff_dirty_) clear_font_buff();
+	if (is_buff_dirty_) return -1;
+
+	if (render_char_buff_ != NULL) return -1;
 	render_char_buff_ = char_buff;
 	buff_size_ = buff_size;
 	buff_offset_ = 0;
-	return true;
+	return valid_stamp_;
 }
 
 int GEFontFT::end_write()
@@ -474,6 +485,8 @@ bool GEFontFT::init_texture_group()
 {
 	if (texture_group_ == NULL)
 		texture_group_ = GETextureGroup::create();
+	else
+		return true;
 
 	if (texture_group_ == NULL) return false;
 	else texture_group_->retain();
@@ -603,6 +616,49 @@ GEFontFT::FT_SPAN_LIST* GEFontFT::_get_span_list()
 GEFontFT::FT_SPAN_LIST* GEFontFT::_get_outline_span_list()
 {
 	return &outline_span_list_;
+}
+
+void GEFontFT::set_outline_weight( float weight )
+{
+	if (fabs(outline_weight_ - weight) >= FLT_EPSILON)
+	{
+		clear_font_buff();
+		outline_weight_ = weight;
+	}
+}
+
+float GEFontFT::get_outline_weight()
+{
+	return outline_weight_;
+}
+
+bool GEFontFT::clear_font_buff()
+{
+	is_buff_dirty_ = true;
+	if (render_char_buff_ != NULL) return false;
+	if (texture_group_) texture_group_->release_all_texture();
+	FOR_EACH (FT_BUFFCHAR_MAP, buff_char_map_, itor)
+	{
+		if (GE_FTBuffChar* buff_char = itor->second)
+		{
+			delete buff_char;
+		}		
+	}
+	buff_char_map_.clear();
+
+	current_page_ = NULL;
+	current_page_id_ = -1;
+	pen_x_ = 0;
+	pen_y_ = 0;
+
+	is_buff_dirty_ = false;
+	++ valid_stamp_;
+	return true;
+}
+
+bool GEFontFT::is_valid( int stamp )
+{
+	return stamp >= valid_stamp_;
 }
 
 }

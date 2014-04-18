@@ -35,6 +35,7 @@ private:
 	typedef std::vector<GE_FTRenderChar> FT_RENDER_CHAR_LIST;
 	FT_RENDER_CHAR_LIST		render_char_buff_;
 	int						render_char_cnt_;
+	int						font_buff_stamp_;
 
 	bool					need_update_text_;
 	bool					need_update_font_;

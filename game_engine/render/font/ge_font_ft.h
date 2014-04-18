@@ -89,13 +89,18 @@ public:
 
 	bool init_texture_group();
 	GETextureGroup* get_texture_group();
+	bool clear_font_buff();
 
 	bool set_size(int size);
+	void set_outline_weight(float weight);
+	float get_outline_weight();
 
 public:
-	bool begin_write(GE_FTRenderChar* char_buff, int buff_size);
+	int begin_write(GE_FTRenderChar* char_buff, int buff_size);
 	int end_write();
 	
+	bool is_valid(int stamp);
+
 	bool write_text(const wchar_t* text, int width, int height, bool wrap);
 
 protected:
@@ -138,6 +143,10 @@ private:
 
 	FT_SPAN_LIST		span_list_;
 	FT_SPAN_LIST		outline_span_list_;
+	float				outline_weight_;
+
+	int					valid_stamp_;
+	bool				is_buff_dirty_;
 };
 
 } // namespace ge

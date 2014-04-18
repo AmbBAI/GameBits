@@ -44,5 +44,7 @@ class GEFontFT : public GEFont
 	GETextureGroup* get_texture_group();
 
 	bool set_size(int size);
+	void set_outline_weight(float weight);
+	float get_outline_weight();
 };
 

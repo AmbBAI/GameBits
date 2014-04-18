@@ -16,8 +16,10 @@ const unsigned GEOTextFT::fvf = (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 GEOTextFT::GEOTextFT()
 : need_update_text_(true)
 , need_update_font_(true)
+, need_update_quad_(true)
 , render_object_(NULL)
 , render_char_buff_()
+, font_buff_stamp_(-1)
 {
 
 }
@@ -59,7 +61,7 @@ bool GEOTextFT::update_text()
 
 	std::wstring wtext = _mbcs_to_unicode(text_.c_str());
 	render_char_buff_.resize(wtext.length());
-	font->begin_write(&(render_char_buff_[0]), render_char_buff_.size());
+	font_buff_stamp_ = font->begin_write(&(render_char_buff_[0]), render_char_buff_.size());
 	font->write_text(wtext.c_str(), 0, 0, false);
 	render_char_cnt_ = font->end_write();
 
@@ -136,6 +138,14 @@ void GEOTextFT::_render_char_to_quad( GE_QUAD& out_quad, const GE_FTRenderChar& 
 
 void GEOTextFT::update( time_t delta )
 {
+	GEFontFT* font = (GEFontFT*)font_obj_;
+	if (font == NULL) return;
+	if (!font->is_valid(font_buff_stamp_))
+	{
+		need_update_text_ = true;
+		need_update_quad_ = true;
+	}
+
 	if (need_update_font_) update_font();
 	if (need_update_text_) update_text();
 	if (need_update_quad_) update_quad();

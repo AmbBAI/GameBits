@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 04/16/14 11:29:42.
+** Generated automatically by tolua++-1.0.92 on 04/18/14 13:39:29.
 */
 
 #ifndef __cplusplus
@@ -2248,6 +2248,71 @@ static int tolua_luabind_ge_GEFontFT_set_size00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'set_size'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_outline_weight of class  ge::GEFontFT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFontFT_set_outline_weight00
+static int tolua_luabind_ge_GEFontFT_set_outline_weight00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEFontFT",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEFontFT* self = (ge::GEFontFT*)  tolua_tousertype(tolua_S,1,0);
+  float weight = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_outline_weight'", NULL);
+#endif
+  {
+   self->set_outline_weight(weight);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_outline_weight'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_outline_weight of class  ge::GEFontFT */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFontFT_get_outline_weight00
+static int tolua_luabind_ge_GEFontFT_get_outline_weight00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEFontFT",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEFontFT* self = (ge::GEFontFT*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_outline_weight'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->get_outline_weight();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_outline_weight'.",&tolua_err);
  return 0;
 #endif
 }
@@ -7730,6 +7795,8 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"init_texture_group",tolua_luabind_ge_GEFontFT_init_texture_group00);
     tolua_function(tolua_S,"get_texture_group",tolua_luabind_ge_GEFontFT_get_texture_group00);
     tolua_function(tolua_S,"set_size",tolua_luabind_ge_GEFontFT_set_size00);
+    tolua_function(tolua_S,"set_outline_weight",tolua_luabind_ge_GEFontFT_set_outline_weight00);
+    tolua_function(tolua_S,"get_outline_weight",tolua_luabind_ge_GEFontFT_get_outline_weight00);
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GEDrawBuff","ge::GEDrawBuff","",NULL);
    tolua_beginmodule(tolua_S,"GEDrawBuff");

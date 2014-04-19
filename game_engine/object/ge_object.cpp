@@ -18,7 +18,7 @@ GEObject::GEObject()
 
 GEObject::~GEObject()
 {
-
+	destory();
 }
 
 bool GEObject::init()
@@ -28,12 +28,23 @@ bool GEObject::init()
 
 void GEObject::destory()
 {
-
+	FOR_EACH (GE_OBJECT_SET, childs_, itor_child)
+	{
+		GEObject* obj = *itor_child;
+		GE_RELEASE(obj);
+	}
+	childs_.clear();
 }
 
 void GEObject::update( time_t delta )
 {
-
+	FOR_EACH (GE_OBJECT_SET, childs_, itor_child)
+	{
+		if (GEObject* obj = *itor_child)
+		{
+			obj->update(delta);
+		}
+	}
 }
 
 D3DXMATRIX& GEObject::get_world_transform()
@@ -88,13 +99,19 @@ void GEObject::set_transform( GETransform& transform )
 void GEObject::add_child( GEObject* obj )
 {
 	if (obj == NULL) return;
-	childs_.push_back(obj);
+	childs_.insert(obj);
+	obj->retain();
 	obj->set_parent(this);
 }
 
 void GEObject::set_parent( GEObject* obj )
 {
 	parent_ = obj;
+}
+
+GEObject* GEObject::get_parent()
+{
+	return parent_;
 }
 
 

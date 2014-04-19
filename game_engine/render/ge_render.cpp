@@ -39,18 +39,23 @@ bool GERender::init_state()
 {
 	set_render_state(D3DRS_FILLMODE, D3DFILL_SOLID);
 	set_render_state(D3DRS_SHADEMODE, D3DSHADE_GOURAUD);
-	set_render_state(D3DRS_LIGHTING, false);
 
 	set_render_state(D3DRS_ALPHABLENDENABLE, true);
 	set_render_state(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	set_render_state(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-	//b_res = b_res && set_render_state(D3DRS_LIGHTING, true);
-	//b_res = b_res && set_render_state(D3DRS_NORMALIZENORMALS, true);
-	//b_res = b_res && set_render_state(D3DRS_SPECULARENABLE, true);
+
+#ifdef GE_3D_VIEW
+	set_render_state(D3DRS_LIGHTING, true);
+	set_render_state(D3DRS_NORMALIZENORMALS, true);
+	set_render_state(D3DRS_SPECULARENABLE, true);
+
+	set_render_state(D3DRS_ZENABLE, true);
+	set_render_state(D3DRS_ZFUNC, D3DCMP_LESSEQUAL); //??
+	set_render_state(D3DRS_ZWRITEENABLE, true);
+#else
+	set_render_state(D3DRS_LIGHTING, false);
 	set_render_state(D3DRS_CULLMODE, D3DCULL_NONE);
-	//set_render_state(D3DRS_ZENABLE, true);
-	//b_res = b_res && set_render_state(D3DRS_ZFUNC, D3DCMP_LESSEQUAL); //??
-	//b_res = b_res && set_render_state(D3DRS_ZWRITEENABLE, true);
+#endif
 
 	set_sampler_state(D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
 	set_sampler_state(D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
@@ -93,13 +98,15 @@ bool GERender::do_projection_trans( float fovy )
 	if (p_d3d_device == NULL) return false;
 	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
 
-	//D3DXMatrixPerspectiveFovLH(
-	//	&proj_matrix_,
-	//	D3DX_PI * fovy,
-	//	(float) wnd_rect.width() / wnd_rect.height(),
-	//	0.f, 1000.f);
-
+#ifdef GE_3D_VIEW
+	D3DXMatrixPerspectiveFovLH(
+		&proj_matrix_,
+		D3DX_PI * fovy,
+		(float) wnd_rect.width() / wnd_rect.height(),
+		0.f, 1000.f);
+#else
 	D3DXMatrixOrthoLH(&proj_matrix_, wnd_rect.width(), wnd_rect.height(), 0.f, 1000.f);
+#endif
 
 	HRESULT h_res = p_d3d_device->SetTransform(D3DTS_PROJECTION, &proj_matrix_);
 	return SUCCEEDED(h_res);

@@ -101,7 +101,7 @@ bool GEOTextFT::update_quad()
 	render_object_->clear_quads();
 	for (int i=0; i<render_char_cnt_; ++i)
 	{
-		if (i > (int)render_char_buff_.size()) return false;
+		if (i >= (int)render_char_buff_.size()) return false;
 		GE_QUAD quad;
 		_render_char_to_quad(quad, render_char_buff_[i]);
 		render_object_->add_quad(quad);
@@ -110,7 +110,7 @@ bool GEOTextFT::update_quad()
 	return true;
 }
 
-void GEOTextFT::_render_char_to_quad( GE_QUAD& out_quad, const GE_FTRenderChar& render_char )
+void GEOTextFT::_render_char_to_quad( GE_QUAD& out_quad, const GE_FTRenderChar& render_char, U32 color/* = 0xffffffff*/ )
 {
 	GETextureGroup* texture_group = render_object_->get_texture_group();
 	if (texture_group == NULL) return;
@@ -118,7 +118,7 @@ void GEOTextFT::_render_char_to_quad( GE_QUAD& out_quad, const GE_FTRenderChar& 
 	if	(texture == NULL) return;
 
 	out_quad.texid = render_char.page;
-	out_quad.color = 0xffffffff;
+	out_quad.color = color;
 	out_quad.rhw = 1.f;
 
 	for (int i=0; i<4; ++i)

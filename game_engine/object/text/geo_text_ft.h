@@ -29,7 +29,7 @@ public:
 	virtual bool update_quad();
 
 protected:
-	virtual void _render_char_to_quad(GE_QUAD& out_quad, const GE_FTRenderChar& render_char);
+	virtual void _render_char_to_quad(GE_QUAD& out_quad, const GE_FTRenderChar& render_char, U32 color = 0xffffffff);
 
 private:
 	typedef std::vector<GE_FTRenderChar> FT_RENDER_CHAR_LIST;

@@ -32,6 +32,7 @@ public:
 
 	virtual void add_child(GEObject* obj);
 	virtual void set_parent(GEObject* obj);
+	virtual GEObject* get_parent();
 
 public:
 	virtual D3DXMATRIX& get_world_transform();
@@ -48,8 +49,8 @@ protected:
 	bool			is_transform_dirty_;
 
 	GEObject*		parent_;
-	typedef std::vector<GEObject*> GE_OBJECT_LIST;
-	GE_OBJECT_LIST	childs_;
+	typedef std::set<GEObject*> GE_OBJECT_SET;
+	GE_OBJECT_SET	childs_;
 };
 
 } // namespace ge

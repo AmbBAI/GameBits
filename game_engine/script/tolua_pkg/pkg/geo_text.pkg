@@ -13,7 +13,6 @@ class GEOTextFT : public GEOText
 	void retain();
 	void release();
 
-public:
 	virtual bool set_text(const char* text);
 	virtual bool set_font(GEFont* font);
 	virtual bool set_rect(GE_IRECT& rect);
@@ -27,4 +26,5 @@ class GEOTextBM : public GEOText
 
 	virtual bool set_font(GEFont* font);
 	virtual bool set_text(const char* text);
+	virtual bool set_rect(GE_IRECT& rect);
 };

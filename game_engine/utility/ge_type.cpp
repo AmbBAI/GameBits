@@ -21,10 +21,10 @@ GE_IRECT::GE_IRECT( int left_, int top_, int right_, int bottom_ )
 
 void GE_IRECT::move( int offset_x, int offset_y )
 {
-	top		+= offset_x;
-	bottom	+= offset_x;
-	left	+= offset_y;
-	right	+= offset_y;
+	top		+= offset_y;
+	bottom	+= offset_y;
+	left	+= offset_x;
+	right	+= offset_x;
 }
 
 void GE_IRECT::move_to( int pos_x, int pos_y )
@@ -62,10 +62,10 @@ GE_FRECT::GE_FRECT( float left_, float top_, float right_, float bottom_ )
 
 void GE_FRECT::move( float offset_x, float offset_y )
 {
-	top		+= offset_x;
-	bottom	+= offset_x;
-	left	+= offset_y;
-	right	+= offset_y;
+	top		+= offset_y;
+	bottom	+= offset_y;
+	left	+= offset_x;
+	right	+= offset_x;
 }
 
 void GE_FRECT::move_to( float pos_x, float pos_y )

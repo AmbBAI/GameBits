@@ -171,8 +171,8 @@ void GEOTextBM::_render_char_to_quad( GE_QUAD& out_quad, const bmfont::SCharRend
 		int xi = (((i >> 1) & 1) ^ (i & 1)) << 1; // 00 10 10 00
 		int yi = (((i >> 1) & 1) << 1) | 1; // 01 01 11 11
 
-		out_quad.xys[i<<1] = render_char.xys[xi] + 0;
-		out_quad.xys[i<<1|1] = render_char.xys[yi] + 0;
+		out_quad.xys[i<<1] = render_char.xys[xi] + render_rect_.left;
+		out_quad.xys[i<<1|1] = render_char.xys[yi] + render_rect_.top;
 
 		out_quad.uvs[i<<1] = render_char.uvs[xi];
 		out_quad.uvs[i<<1|1] = render_char.uvs[yi];
@@ -207,6 +207,13 @@ bool GEOTextBM::_is_char_visible( GE_QUAD& quad )
 	if (quad.xys[1] < wnd_rect.top && quad.xys[3] < wnd_rect.top) return false;
 	if (quad.xys[0] >= wnd_rect.right && quad.xys[2] >= wnd_rect.right) return false;
 	if (quad.xys[1] >= wnd_rect.bottom && quad.xys[3] >= wnd_rect.bottom) return false;
+	return true;
+}
+
+bool GEOTextBM::set_rect( GE_IRECT& rect )
+{
+	render_rect_ = rect;
+	need_update_quad_ = true;
 	return true;
 }
 

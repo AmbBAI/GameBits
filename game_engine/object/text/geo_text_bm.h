@@ -25,6 +25,7 @@ public:
 
 	virtual bool set_font(GEFont* font);
 	virtual bool set_text(const char* text);
+	virtual bool set_rect(GE_IRECT& rect);
 
 	virtual void update(time_t delta);
 	virtual bool update_font();
@@ -41,6 +42,8 @@ private:
 	typedef std::vector<bmfont::SCharRenderObject>	RENDER_CHAR_LIST;
 
 	GEAtlasDraw*				render_object_;
+	GE_IRECT					render_rect_;
+
 	RENDER_CHAR_LIST			render_chars_;
 	int							render_char_cnt_;
 

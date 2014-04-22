@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 04/18/14 13:39:29.
+** Generated automatically by tolua++-1.0.92 on 04/22/14 20:43:20.
 */
 
 #ifndef __cplusplus
@@ -14,7 +14,7 @@
 TOLUA_API int  tolua_luabind_open (lua_State* tolua_S);
 
 #include "ge_lua_bind.h"
-#include "game_engine.h"
+#include "../game_engine.h"
 #include "lua_object/ge_lua_scene.h"
 
 /* function to release collected object via destructor */
@@ -5141,6 +5141,40 @@ static int tolua_luabind_ge_GEOTextBM_set_text00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: set_rect of class  ge::GEOTextBM */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEOTextBM_set_rect00
+static int tolua_luabind_ge_GEOTextBM_set_rect00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEOTextBM",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ge::GE_IRECT",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEOTextBM* self = (ge::GEOTextBM*)  tolua_tousertype(tolua_S,1,0);
+  ge::GE_IRECT* rect = ((ge::GE_IRECT*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_rect'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->set_rect(*rect);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_rect'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: new of class  ge::GE_IPOINT */
 #ifndef TOLUA_DISABLE_tolua_luabind_ge_GE_IPOINT_new00
 static int tolua_luabind_ge_GE_IPOINT_new00(lua_State* tolua_S)
@@ -7932,6 +7966,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"release",tolua_luabind_ge_GEOTextBM_release00);
     tolua_function(tolua_S,"set_font",tolua_luabind_ge_GEOTextBM_set_font00);
     tolua_function(tolua_S,"set_text",tolua_luabind_ge_GEOTextBM_set_text00);
+    tolua_function(tolua_S,"set_rect",tolua_luabind_ge_GEOTextBM_set_rect00);
    tolua_endmodule(tolua_S);
    #ifdef __cplusplus
    tolua_cclass(tolua_S,"GE_IPOINT","ge::GE_IPOINT","",tolua_collect_ge__GE_IPOINT);

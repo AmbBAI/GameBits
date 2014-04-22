@@ -9,7 +9,8 @@ namespace ge
 {
 DLL_MANAGE_CLASS_IMPLEMENT(GEOTextBM);
 
-const unsigned GEOTextBM::fvf = (D3DFVF_XYZB1 | D3DFVF_LASTBETA_UBYTE4 | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+//const unsigned GEOTextBM::fvf = (D3DFVF_XYZB1 | D3DFVF_LASTBETA_UBYTE4 | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+const unsigned GEOTextBM::fvf = (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 
 GEOTextBM::GEOTextBM()
 : render_object_(NULL)
@@ -125,7 +126,8 @@ void GEOTextBM::_render_char_to_quad( GE_QUAD_EX& out_quad, const bmfont::SCharR
 	{
 		vertex_ptr[i]->set_decl(render_object_->get_vertex_decl());
 		vertex_ptr[i]->set_color(0xffffffff);
-		vertex_ptr[i]->set_blend(render_char.chnl);
+		//vertex_ptr[i]->set_blend(render_char.chnl);
+		vertex_ptr[i]->set_rhw(1.f);
 	}
 
 	float min_x = render_char.xys[0];

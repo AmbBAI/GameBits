@@ -8,7 +8,7 @@ local function new_spine_test()
 	return new_spine
 end
 
-local function new_fps_text()
+local function new_text_label()
 	new_font = ge.GEFontManager:create_font(ge.FontType_FTFont)
 	new_font = tolua.cast(new_font, "ge::GEFontFT")
 	new_font:init("font\\simsun.ttc", 18)
@@ -22,21 +22,9 @@ local function new_fps_text()
 	return new_text
 end
 
-local function new_fps_text2()
-	new_font = ge.GEFontManager:create_font(ge.FontType_BMFont)
-	new_font = tolua.cast(new_font, "ge::GEFontBM")
-	new_font:init("bmfont\\arial24.fnt");
-	new_font:init_effect("bmfont\\font.fx");
-	
-	new_text = ge.GEOTextBM:create()
-	new_text:set_font(new_font);
-	new_text:set_text("hello lua!")
-	return new_text
-end
-
 local spine_test = nil
 local text_test = nil
-local text_test2 = nil
+local game_info = nil
 local drag_rect = ge.GE_FRECT(0, 0, 0, 0)
 local drag_line = ge.GEPrimitiveDrawUnit()
 drag_line:set_type(ge.GEPrimitiveDrawUnit.DrawType_Line)
@@ -46,11 +34,11 @@ local function scene_init_callback()
 	--spine_test = new_spine_test()
 	--scene_test:add_object(1, spine_test)
 
-	text_test = new_fps_text()
-	scene_test:add_object(3, text_test)
+	game_info = require("game_info")
+	scene_test:add_object(-1, game_info)
 
-	--text_test2 = new_fps_text2()
-	--scene_test:add_object(2, text_test2)
+	--text_test = new_text_label()
+	--scene_test:add_object(3, text_test)
 end
 
 local function scene_destory_callback()
@@ -61,40 +49,7 @@ local function scene_update_callback(delta)
 	ge_input = ge_app:get_input()
 	ge_render = ge.GERender:get_instance()
 
-	fps = ge_app:get_fps()
-	ret, mx, my = ge_input:get_mouse_pos(0, 0)
-	dc, dv = ge_render:get_drawcall_cnt(), ge_render:get_drawvertex_cnt()
-	fps_text = string.format("fps: %.2f\n", fps)
-	fps_text = fps_text .. string.format("mouse: %d, %d\n", mx, my)
-	fps_text = fps_text .. string.format("draw: %d, %d\n", dc, dv)
-	fps_text = fps_text .. string.format("lua-mem: %d\n", collectgarbage("count"))
-
-	font_obj = text_test:get_font()
-	font_obj = tolua.cast(font_obj, "ge::GEFontFT")
-	if fps < 1000 then
-		font_obj:set_outline_weight(2.0)
-	else
-		font_obj:set_outline_weight(1.0)
-	end
-
-	-- if ge_input:get_key_hold(ge.GEInput.KC_UP) then
-	-- 	fps_text = fps_text .. "¡ü"
-	-- end
-
-	-- if ge_input:get_key_hold(ge.GEInput.KC_LEFT) then
-	-- 	fps_text = fps_text .. "¡û"
-	-- end
-
-	-- if ge_input:get_key_hold(ge.GEInput.KC_RIGHT) then
-	-- 	fps_text = fps_text .. "¡ú"
-	-- end
-
-	-- if ge_input:get_key_hold(ge.GEInput.KC_DOWN) then
-	-- 	fps_text = fps_text .. "¡ý"
-	-- end
-
-	text_test:set_text(fps_text)
-	--text_test2:set_text(fps_text)
+	game_info:update(delta)
 
 	local rect = ge.GE_FRECT(10, 10, 100, 100)
 	ge.GEPrimitiveDraw:draw_rect(rect, ge.GE_COLOR( 0xff, 0x00, 0xff, 0xff))

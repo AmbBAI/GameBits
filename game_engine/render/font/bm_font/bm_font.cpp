@@ -333,14 +333,16 @@ void CFont::InternalWrite(float x, float y, float z, const char *text, int count
 		float ox = scale * float(ch->xOff);
 		float oy = scale * float(ch->yOff);
 
+		float lh = scale * float(fontHeight);
+
 		renderObject->chId = charId;
 		renderObject->page = ch->page;
 		renderObject->chnl = ch->chnl;
 
 		renderObject->xys[0] = x+ox;
-		renderObject->xys[1] = y-h-oy;
+		renderObject->xys[1] = lh - (y-h-oy);
 		renderObject->xys[2] = x+w+ox;
-		renderObject->xys[3] = y-oy;
+		renderObject->xys[3] = lh - (y-oy);
 
 		renderObject->uvs[0] = u;
 		renderObject->uvs[1] = v2;

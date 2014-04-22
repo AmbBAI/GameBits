@@ -29,7 +29,6 @@ void GEScene::destory()
 	FOR_EACH (GE_OBJECT_MAP, object_map_, obj_it)
 	{
 		GEObject* p_obj = (GEObject*)(obj_it->second);
-		if (NULL == p_obj) continue;
 		GE_RELEASE(p_obj);
 	}
 
@@ -39,7 +38,7 @@ void GEScene::destory()
 void GEScene::add_object( int key, GEObject* obj )
 {
 	object_map_[key] = obj;
-	obj->retain();
+	if (obj != NULL) obj->retain();
 }
 
 void GEScene::remove_object( int key )

@@ -1,5 +1,6 @@
 #include "geo_text_bm.h"
 #include "common/ge_engine.h"
+#include "common/ge_app.h"
 #include "render/texture/ge_texture_manager.h"
 #include "render/ge_render.h"
 #include "render/ger_effect.h"
@@ -96,9 +97,9 @@ bool GEOTextBM::update_quad()
 	//FOR_EACH (RENDER_CHAR_LIST, render_chars_, char_itor)
 	{
 		if (i > (int)render_chars_.size()) return false;
-		GE_QUAD_EX quad;
+		GE_QUAD quad;
 		_render_char_to_quad(quad, render_chars_[i]);
-		render_object_->add_quad(quad);
+		if (_is_char_visible(quad)) render_object_->add_quad(quad);
 	}
 	need_update_quad_ = false;
 	return true;
@@ -109,48 +110,74 @@ void GEOTextBM::_clear_render_chars()
 	render_chars_.clear();
 }
 
-void GEOTextBM::_render_char_to_quad( GE_QUAD_EX& out_quad, const bmfont::SCharRenderObject& render_char )
+//void GEOTextBM::_render_char_to_quad( GE_QUAD_EX& out_quad, const bmfont::SCharRenderObject& render_char )
+//{
+//	GETextureGroup* texture_group = render_object_->get_texture_group();
+//	if (texture_group == NULL) return;
+//	GETexture* texture = texture_group->get_texture(render_char.page);
+//	if	(texture == NULL) return;
+//
+//	GE_VERTEX* vertex_ptr[4];
+//	vertex_ptr[0] = &(out_quad.tl);
+//	vertex_ptr[1] = &(out_quad.tr);
+//	vertex_ptr[2] = &(out_quad.br);
+//	vertex_ptr[3] = &(out_quad.bl);
+//
+//	for (int i=0; i<4; ++i)
+//	{
+//		vertex_ptr[i]->set_decl(render_object_->get_vertex_decl());
+//		vertex_ptr[i]->set_color(0xffffffff);
+//		//vertex_ptr[i]->set_blend(render_char.chnl);
+//		vertex_ptr[i]->set_rhw(1.f);
+//	}
+//
+//	float min_x = render_char.xys[0];
+//	float min_y = render_char.xys[1];
+//	float max_x = render_char.xys[2];
+//	float max_y = render_char.xys[3];
+//
+//	out_quad.tl.set_position(min_x, min_y, 0.f);
+//	out_quad.tr.set_position(max_x, min_y, 0.f);
+//	out_quad.br.set_position(max_x, max_y, 0.f);
+//	out_quad.bl.set_position(min_x, max_y, 0.f);
+//
+//	float u1 = render_char.uvs[0];
+//	float v1 = render_char.uvs[1];
+//	float u2 = render_char.uvs[2];
+//	float v2 = render_char.uvs[3];
+//
+//	out_quad.tl.set_texcoords(u1, v1);
+//	out_quad.tr.set_texcoords(u2, v1);
+//	out_quad.br.set_texcoords(u2, v2);
+//	out_quad.bl.set_texcoords(u1, v2);
+//
+//	out_quad.texid = render_char.page;
+//
+//	return;
+//}
+
+void GEOTextBM::_render_char_to_quad( GE_QUAD& out_quad, const bmfont::SCharRenderObject& render_char )
 {
 	GETextureGroup* texture_group = render_object_->get_texture_group();
 	if (texture_group == NULL) return;
 	GETexture* texture = texture_group->get_texture(render_char.page);
 	if	(texture == NULL) return;
 
-	GE_VERTEX* vertex_ptr[4];
-	vertex_ptr[0] = &(out_quad.tl);
-	vertex_ptr[1] = &(out_quad.tr);
-	vertex_ptr[2] = &(out_quad.br);
-	vertex_ptr[3] = &(out_quad.bl);
+	out_quad.texid = render_char.page;
+	out_quad.color = 0xffffffff;
+	out_quad.rhw = 1.f;
 
 	for (int i=0; i<4; ++i)
 	{
-		vertex_ptr[i]->set_decl(render_object_->get_vertex_decl());
-		vertex_ptr[i]->set_color(0xffffffff);
-		//vertex_ptr[i]->set_blend(render_char.chnl);
-		vertex_ptr[i]->set_rhw(1.f);
+		int xi = (((i >> 1) & 1) ^ (i & 1)) << 1; // 00 10 10 00
+		int yi = (((i >> 1) & 1) << 1) | 1; // 01 01 11 11
+
+		out_quad.xys[i<<1] = render_char.xys[xi] + 0;
+		out_quad.xys[i<<1|1] = render_char.xys[yi] + 0;
+
+		out_quad.uvs[i<<1] = render_char.uvs[xi];
+		out_quad.uvs[i<<1|1] = render_char.uvs[yi];
 	}
-
-	float min_x = render_char.xys[0];
-	float min_y = render_char.xys[1];
-	float max_x = render_char.xys[2];
-	float max_y = render_char.xys[3];
-
-	out_quad.tl.set_position(min_x, min_y, 0.f);
-	out_quad.tr.set_position(max_x, min_y, 0.f);
-	out_quad.br.set_position(max_x, max_y, 0.f);
-	out_quad.bl.set_position(min_x, max_y, 0.f);
-
-	float u1 = render_char.uvs[0];
-	float v1 = render_char.uvs[1];
-	float u2 = render_char.uvs[2];
-	float v2 = render_char.uvs[3];
-
-	out_quad.tl.set_texcoords(u1, v1);
-	out_quad.tr.set_texcoords(u2, v1);
-	out_quad.br.set_texcoords(u2, v2);
-	out_quad.bl.set_texcoords(u1, v2);
-
-	out_quad.texid = render_char.page;
 
 	return;
 }
@@ -171,6 +198,17 @@ void GEOTextBM::update( time_t delta )
 	}
 
 	GERender::push_render(render_object_);
+}
+
+bool GEOTextBM::_is_char_visible( GE_QUAD& quad )
+{
+	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
+
+	if (quad.xys[0] < wnd_rect.left && quad.xys[2] < wnd_rect.left) return false;
+	if (quad.xys[1] < wnd_rect.top && quad.xys[3] < wnd_rect.top) return false;
+	if (quad.xys[0] >= wnd_rect.right && quad.xys[2] >= wnd_rect.right) return false;
+	if (quad.xys[1] >= wnd_rect.bottom && quad.xys[3] >= wnd_rect.bottom) return false;
+	return true;
 }
 
 }

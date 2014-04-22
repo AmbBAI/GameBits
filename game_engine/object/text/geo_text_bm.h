@@ -33,7 +33,9 @@ public:
 
 protected:
 	void _clear_render_chars();
-	void _render_char_to_quad(GE_QUAD_EX& out_quad, const bmfont::SCharRenderObject& render_char);
+	//void _render_char_to_quad(GE_QUAD_EX& out_quad, const bmfont::SCharRenderObject& render_char);
+	void _render_char_to_quad(GE_QUAD& out_quad, const bmfont::SCharRenderObject& render_char);
+	bool _is_char_visible(GE_QUAD& quad);
 
 private:
 	typedef std::vector<bmfont::SCharRenderObject>	RENDER_CHAR_LIST;

@@ -1,7 +1,7 @@
 #include "ge_font_bm.h"
-#include "../../object/text/geo_text_bm.h"
-#include "../../render/ger_effect.h"
-#include "../../render/ge_render.h"
+#include "object/text/geo_text_bm.h"
+#include "render/ger_effect.h"
+#include "render/ge_render.h"
 
 namespace ge
 {

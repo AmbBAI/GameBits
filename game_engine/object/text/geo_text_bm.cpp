@@ -1,9 +1,9 @@
 #include "geo_text_bm.h"
-#include "../../common/ge_engine.h"
-#include "../../render/texture/ge_texture_manager.h"
-#include "../../render/ge_render.h"
-#include "../../render/ger_effect.h"
-#include "../../utility/ge_unicode.h"
+#include "common/ge_engine.h"
+#include "render/texture/ge_texture_manager.h"
+#include "render/ge_render.h"
+#include "render/ger_effect.h"
+#include "utility/ge_unicode.h"
 
 namespace ge
 {

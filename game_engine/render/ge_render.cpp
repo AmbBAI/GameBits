@@ -1,6 +1,6 @@
 #include "ge_render.h"
-#include "../common/ge_app.h"
-#include "../common/ge_engine.h"
+#include "common/ge_app.h"
+#include "common/ge_engine.h"
 #include "draw/ge_draw.h"
 
 namespace ge

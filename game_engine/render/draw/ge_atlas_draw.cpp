@@ -1,7 +1,7 @@
 #include "ge_atlas_draw.h"
-#include "../../common/ge_engine.h"
-#include "../../render/texture/ge_texture_manager.h"
-#include "../../render/ger_effect.h"
+#include "common/ge_engine.h"
+#include "render/texture/ge_texture_manager.h"
+#include "render/ger_effect.h"
 #include "ge_drawbuff.h"
 
 namespace ge

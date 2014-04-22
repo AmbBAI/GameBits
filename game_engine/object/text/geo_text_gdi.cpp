@@ -1,8 +1,8 @@
 #include "geo_text_gdi.h"
-#include "../../common/ge_engine.h"
-#include "../../render/texture/ge_texture_manager.h"
-#include "../../render/draw/ge_atlas_draw.h"
-#include "../../utility/ge_unicode.h"
+#include "common/ge_engine.h"
+#include "render/texture/ge_texture_manager.h"
+#include "render/draw/ge_atlas_draw.h"
+#include "utility/ge_unicode.h"
 
 namespace ge
 {

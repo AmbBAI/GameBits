@@ -1,8 +1,8 @@
 #ifndef _GAME_ENGINE_OBJECT_H_
 #define _GAME_ENGINE_OBJECT_H_
 
-#include "../common/ge_include.h"
-#include "../common/ge_engine.h"
+#include "common/ge_include.h"
+#include "common/ge_engine.h"
 #include "ge_object_def.h"
 
 

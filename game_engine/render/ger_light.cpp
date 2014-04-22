@@ -1,6 +1,6 @@
 #include "ger_light.h"
-#include "../common/ge_engine.h"
-#include "../render/ge_render.h"
+#include "common/ge_engine.h"
+#include "render/ge_render.h"
 
 namespace ge
 {

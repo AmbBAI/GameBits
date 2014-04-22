@@ -1,5 +1,5 @@
 #include "ge_lua_scene.h"
-#include "../ge_lua_engine.h"
+#include "script/ge_lua_engine.h"
 
 namespace ge
 {

@@ -1,8 +1,8 @@
 #ifndef _GAME_ENGINE_FREETYPE_FONT_H_
 #define _GAME_ENGINE_FREETYPE_FONT_H_
 
-#include "../../common/ge_include.h"
-#include "../../render/texture/ge_texture_manager.h"
+#include "common/ge_include.h"
+#include "render/texture/ge_texture_manager.h"
 #include "ge_font.h"
 
 #include "ft2build.h"

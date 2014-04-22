@@ -1,9 +1,9 @@
 #ifndef _GAME_ENGINE_RENDER_PRIMITIVE_DRAW_H_
 #define _GAME_ENGINE_RENDER_PRIMITIVE_DRAW_H_
 
-#include "../../common/ge_include.h"
-#include "../../utility/ge_vertex.h"
-#include "../../utility/ge_type.h"
+#include "common/ge_include.h"
+#include "utility/ge_vertex.h"
+#include "utility/ge_type.h"
 #include "ge_draw.h"
 
 namespace ge

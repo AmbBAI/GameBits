@@ -1,6 +1,6 @@
 #include "geo_armature.h"
-#include "../../render/draw/ge_atlas_draw.h"
-#include "../../render/texture/ge_texture_manager.h"
+#include "render/draw/ge_atlas_draw.h"
+#include "render/texture/ge_texture_manager.h"
 
 namespace CC
 {

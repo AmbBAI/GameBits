@@ -1,7 +1,7 @@
 #ifndef _GAME_ENGINE_FONT_MANAGER_H_
 #define _GAME_ENGINE_FONT_MANAGER_H_
 
-#include "../../common/ge_include.h"
+#include "common/ge_include.h"
 
 namespace ge
 {

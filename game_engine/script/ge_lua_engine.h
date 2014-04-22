@@ -1,7 +1,7 @@
 #ifndef _GAME_ENGINE_LUA_ENGINE_H_
 #define _GAME_ENGINE_LUA_ENGINE_H_
 
-#include "../common/ge_include.h"
+#include "common/ge_include.h"
 #include "ge_lua_bind.h"
 
 namespace ge

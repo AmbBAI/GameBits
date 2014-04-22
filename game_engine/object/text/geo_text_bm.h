@@ -1,11 +1,11 @@
 #ifndef _GAME_ENGINE_OBJECT_TEXT_BM_H_
 #define _GAME_ENGINE_OBJECT_TEXT_BM_H_
 
-#include "../ge_object.h"
-#include "../../render/font/bm_font/bm_font.h"
-#include "../../render/font/ge_font_bm.h"
-#include "../../render/draw/ge_atlas_draw.h"
-#include "geo_text.h"
+#include "object/ge_object.h"
+#include "render/font/bm_font/bm_font.h"
+#include "render/font/ge_font_bm.h"
+#include "render/draw/ge_atlas_draw.h"
+#include "object/text/geo_text.h"
 
 namespace ge
 {

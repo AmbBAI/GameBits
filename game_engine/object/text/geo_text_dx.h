@@ -1,10 +1,10 @@
 #ifndef _GAME_ENGINE_OBJECT_TEXT_DX_H_
 #define _GAME_ENGINE_OBJECT_TEXT_DX_H_
 
-#include "../ge_object.h"
-#include "../../utility/ge_type.h"
-#include "../../render/font/ge_font.h"
-#include "geo_text.h"
+#include "object/ge_object.h"
+#include "utility/ge_type.h"
+#include "render/font/ge_font.h"
+#include "object/text/geo_text.h"
 
 namespace ge
 {

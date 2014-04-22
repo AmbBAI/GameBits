@@ -1,12 +1,12 @@
 #include "geo_spine.h"
-#include "../../common/ge_app.h"
-#include "../../common/ge_input.h"
-#include "../../utility/ge_type.h"
-#include "../../utility/ge_vertex.h"
-#include "../../render/texture/ge_texture_manager.h"
-#include "../../render/ge_render.h"
-#include "../../render/draw/ge_draw.h"
-#include "../../render/draw/ge_atlas_draw.h"
+#include "common/ge_app.h"
+#include "common/ge_input.h"
+#include "utility/ge_type.h"
+#include "utility/ge_vertex.h"
+#include "render/texture/ge_texture_manager.h"
+#include "render/ge_render.h"
+#include "render/draw/ge_draw.h"
+#include "render/draw/ge_atlas_draw.h"
 
 void _spAtlasPage_createTexture (spAtlasPage* self, const char* path) {
 	if (self == NULL) return;

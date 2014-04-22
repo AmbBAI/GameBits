@@ -28,7 +28,7 @@
 #ifndef _BMFONT_H_
 #define _BMFONT_H_
 
-#include "../../../common/ge_include.h"
+#include "common/ge_include.h"
 
 namespace bmfont
 {

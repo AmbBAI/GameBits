@@ -1,8 +1,8 @@
 #ifndef _GAME_ENGINE_RENDER_EFFECT_H_
 #define _GAME_ENGINE_RENDER_EFFECT_H_
 
-#include "../common/ge_include.h"
-#include "../object/ge_object.h"
+#include "common/ge_include.h"
+#include "object/ge_object.h"
 
 namespace ge
 {

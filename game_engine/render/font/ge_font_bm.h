@@ -1,8 +1,8 @@
 #ifndef _GAME_ENGINE_OBJECT_BITMAP_FONT_H_
 #define _GAME_ENGINE_OBJECT_BITMAP_FONT_H_
 
-#include "../../common/ge_include.h"
-#include "../../object/text/geo_text_bm.h"
+#include "common/ge_include.h"
+#include "object/text/geo_text_bm.h"
 #include "bm_font/bm_font.h"
 #include "ge_font.h"
 

@@ -1,9 +1,9 @@
 #include "ger_effect.h"
 #include "ge_render.h"
-#include "../common/ge_engine.h"
-#include "../common/ge_app.h"
-#include "../object/ge_object.h"
-#include "../render/texture/ge_texture.h"
+#include "common/ge_engine.h"
+#include "common/ge_app.h"
+#include "object/ge_object.h"
+#include "render/texture/ge_texture.h"
 
 namespace ge
 {

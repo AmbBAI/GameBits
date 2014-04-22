@@ -1,9 +1,9 @@
 #ifndef _GAME_ENGINE_OBJECT_ANIMATION_SPINE_H_
 #define _GAME_ENGINE_OBJECT_ANIMATION_SPINE_H_
 
-#include "../../common/ge_include.h"
-#include "../ge_object.h"
-#include "../ge_object_def.h"
+#include "common/ge_include.h"
+#include "object/ge_object.h"
+#include "object/ge_object_def.h"
 
 #include "spine/spine.h"
 #include "spine/extension.h"

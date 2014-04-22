@@ -1,5 +1,5 @@
 #include "geo_text.h"
-#include "../../common/ge_engine.h"
+#include "common/ge_engine.h"
 
 namespace ge
 {

@@ -1,9 +1,9 @@
 #include "geo_text_ft.h"
-#include "../../common/ge_engine.h"
-#include "../../render/ge_render.h"
-#include "../../render/draw/ge_atlas_draw.h"
-#include "../../render/texture/ge_texture.h"
-#include "../../utility/ge_unicode.h"
+#include "common/ge_engine.h"
+#include "render/ge_render.h"
+#include "render/draw/ge_atlas_draw.h"
+#include "render/texture/ge_texture.h"
+#include "utility/ge_unicode.h"
 
 namespace ge
 {

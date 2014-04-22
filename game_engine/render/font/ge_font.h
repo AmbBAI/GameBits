@@ -1,9 +1,9 @@
 #ifndef _GAME_ENGINE_OBJECT_FONT_H_
 #define _GAME_ENGINE_OBJECT_FONT_H_
 
-#include "../../common/ge_include.h"
-#include "../../utility/ge_type.h"
-#include "../../common/ge_engine.h"
+#include "common/ge_include.h"
+#include "utility/ge_type.h"
+#include "common/ge_engine.h"
 #include "ge_font_manager.h"
 
 namespace ge

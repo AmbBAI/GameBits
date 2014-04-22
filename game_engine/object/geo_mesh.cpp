@@ -1,9 +1,9 @@
 #include "geo_mesh.h"
-#include "../common/ge_engine.h"
-#include "../render/ge_render.h"
-#include "../render/ger_effect.h"
-#include "../render/ger_material.h"
-#include "../utility/ge_vertex.h"
+#include "common/ge_engine.h"
+#include "render/ge_render.h"
+#include "render/ger_effect.h"
+#include "render/ger_material.h"
+#include "utility/ge_vertex.h"
 
 namespace ge
 {

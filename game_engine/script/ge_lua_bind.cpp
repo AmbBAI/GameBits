@@ -14,7 +14,7 @@
 TOLUA_API int  tolua_luabind_open (lua_State* tolua_S);
 
 #include "ge_lua_bind.h"
-#include "../game_engine.h"
+#include "game_engine.h"
 #include "lua_object/ge_lua_scene.h"
 
 /* function to release collected object via destructor */

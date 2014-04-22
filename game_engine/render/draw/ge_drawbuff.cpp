@@ -1,5 +1,5 @@
 #include "ge_drawbuff.h"
-#include "../../common/ge_engine.h"
+#include "common/ge_engine.h"
 
 namespace ge
 {

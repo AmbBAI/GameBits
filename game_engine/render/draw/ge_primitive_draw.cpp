@@ -1,6 +1,6 @@
 #include "ge_primitive_draw.h"
-#include "../ge_render.h"
-#include "ge_drawbuff.h"
+#include "render/ge_render.h"
+#include "render/draw/ge_drawbuff.h"
 
 namespace ge
 {

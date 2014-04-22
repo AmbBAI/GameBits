@@ -1,9 +1,9 @@
 #ifndef _GAME_ENGINE_RENDER_H_
 #define _GAME_ENGINE_RENDER_H_
 
-#include "../common/ge_include.h"
-#include "../utility/ge_type.h"
-#include "../render/font/ge_font.h"
+#include "common/ge_include.h"
+#include "utility/ge_type.h"
+#include "render/font/ge_font.h"
 
 namespace ge
 {

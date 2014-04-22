@@ -89,6 +89,7 @@ public:
 
 	bool init_texture_group();
 	GETextureGroup* get_texture_group();
+	void destory_texture_group();
 	bool clear_font_buff();
 
 	bool set_size(int size);

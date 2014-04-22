@@ -164,7 +164,9 @@ bool GEFontFT::init( const char* face, int size )
 
 	GEFreeType* freetype = GEFreeType::get_instance();
 	if (!freetype->init_font(this, face)) return false;
-	return set_size(size);
+	if (!set_size(size)) return false;
+
+	return init_texture_group();
 }
 
 void GEFontFT::destory()
@@ -173,7 +175,7 @@ void GEFontFT::destory()
 	FT_Done_Face(ft_face_);
 	ft_face_ = NULL;
 
-	clear_font_buff();
+	destory_texture_group();
 }
 
 bool GEFontFT::set_size( int size )
@@ -659,6 +661,12 @@ bool GEFontFT::clear_font_buff()
 bool GEFontFT::is_valid( int stamp )
 {
 	return stamp >= valid_stamp_;
+}
+
+void GEFontFT::destory_texture_group()
+{
+	clear_font_buff();
+	GE_RELEASE(texture_group_);
 }
 
 }

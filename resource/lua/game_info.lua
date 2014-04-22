@@ -3,7 +3,7 @@ local function new_text()
 	new_font = ge.GEFontManager:create_font(ge.FontType_BMFont)
 	new_font = tolua.cast(new_font, "ge::GEFontBM")
 	new_font:init("bmfont\\game_info.fnt");
-	--new_font:init_effect("bmfont\\font.fx");
+	new_font:init_effect("bmfont\\font.fx");
 	
 	new_text = ge.GEOTextBM:create()
 	new_text:set_font(new_font);

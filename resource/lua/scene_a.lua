@@ -8,7 +8,7 @@ local function new_spine_test()
 	return new_spine
 end
 
-local function new_text_label()
+local function new_text_label_ft()
 	new_font = ge.GEFontManager:create_font(ge.FontType_FTFont)
 	new_font = tolua.cast(new_font, "ge::GEFontFT")
 	new_font:init("font\\SIMLI.TTF", 18)
@@ -18,7 +18,18 @@ local function new_text_label()
 	local rect = ge.GE_IRECT:new_local(0, 0, 0, 0);
 	new_text:set_rect(rect);
 	new_text:set_font(new_font);
-	new_text:set_text(require("qsmy"))
+	return new_text
+end
+
+local function new_text_label_bm()
+
+	new_font = ge.GEFontManager:create_font(ge.FontType_BMFont)
+	new_font = tolua.cast(new_font, "ge::GEFontBM")
+	new_font:init("bmfont\\qsmy.fnt");
+	new_font:init_effect("bmfont\\font.fx");
+	
+	new_text = ge.GEOTextBM:create()
+	new_text:set_font(new_font);
 	return new_text
 end
 
@@ -35,9 +46,10 @@ local function scene_init_callback()
 	--scene_test:add_object(1, spine_test)
 
 	game_info = require("game_info")
-	scene_test:add_object(-1, game_info)
+	scene_test:add_object(99999999, game_info)
 
-	text_test = new_text_label()
+	text_test = new_text_label_bm()
+	text_test:set_text(require("qsmy"))
 	scene_test:add_object(3, text_test)
 end
 

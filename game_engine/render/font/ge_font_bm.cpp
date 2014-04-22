@@ -36,22 +36,12 @@ bool GEFontBM::init_effect( const char* fx_path )
 	if (effect_)
 	{
 		effect_->create_from_file(fx_path);
-
-		GERender* render = GERender::get_instance();
-		effect_->set_matrix("VIEW", render->get_view_matrix());
-		effect_->set_matrix("PROJECTION", render->get_proj_matrix());
 	}
 	return effect_ != NULL;
 }
 
 bool GEFontBM::update_effect()
 {
-	if (effect_)
-	{
-		GERender* render = GERender::get_instance();
-		effect_->set_matrix("VIEW", render->get_view_matrix());
-		effect_->set_matrix("PROJECTION", render->get_proj_matrix());
-	}
 	return true;
 }
 

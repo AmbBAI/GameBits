@@ -67,7 +67,6 @@ bool GEOTextBM::update_font()
 		assert(png_id == i);
 	}
 	effect_ = bm_font->get_effect();
-	if (effect_) effect_->set_matrix("WORLD", get_world_transform());
 	need_update_font_ = false;
 	return true;
 }

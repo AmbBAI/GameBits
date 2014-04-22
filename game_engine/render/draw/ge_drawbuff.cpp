@@ -106,6 +106,7 @@ bool GEDrawBuff::init_quad_buff( int quad_cnt )
 	std::vector<unsigned short> indices;
 	if (!init_vertex_buff(quad_cnt * 4)) goto init_faild;
 	if (!init_index_buff(quad_cnt * 6)) goto init_faild;
+	if (quad_cnt <= 0) return true;
 
 	indices.resize(quad_cnt * 6);
 	for (int i=0; i<quad_cnt; ++i)

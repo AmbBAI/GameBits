@@ -1,4 +1,5 @@
 #include "geo_text_ft.h"
+#include "common/ge_app.h"
 #include "common/ge_engine.h"
 #include "render/ge_render.h"
 #include "render/draw/ge_atlas_draw.h"
@@ -104,7 +105,7 @@ bool GEOTextFT::update_quad()
 		if (i >= (int)render_char_buff_.size()) return false;
 		GE_QUAD quad;
 		_render_char_to_quad(quad, render_char_buff_[i]);
-		render_object_->add_quad(quad);
+		if (_is_char_visible(quad)) render_object_->add_quad(quad);
 	}
 	need_update_quad_ = false;
 	return true;
@@ -151,6 +152,17 @@ void GEOTextFT::update( time_t delta )
 	if (need_update_quad_) update_quad();
 
 	GERender::push_render(render_object_);
+}
+
+bool GEOTextFT::_is_char_visible( GE_QUAD& quad )
+{
+	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
+
+	if (quad.xys[0] < wnd_rect.left && quad.xys[2] < wnd_rect.left) return false;
+	if (quad.xys[1] < wnd_rect.top && quad.xys[3] < wnd_rect.top) return false;
+	if (quad.xys[0] >= wnd_rect.right && quad.xys[2] >= wnd_rect.right) return false;
+	if (quad.xys[1] >= wnd_rect.bottom && quad.xys[3] >= wnd_rect.bottom) return false;
+	return true;
 }
 
 }

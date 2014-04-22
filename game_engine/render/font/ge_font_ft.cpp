@@ -58,7 +58,7 @@ bool GEFreeType::span_render( GEFontFT* font_obj, FT_GlyphSlot glyph_slot )
 
 	params_.user = font_obj->_get_span_list();
 	ret = FT_Outline_Render(freetype_, &(glyph_slot->outline), &params_);
-	if (ret == 0) goto fail_end;
+	if (ret != 0) goto fail_end;
 
 	return true;
 
@@ -99,7 +99,7 @@ bool GEFreeType::span_render_outline( GEFontFT* font_obj, FT_GlyphSlot glyph_slo
 	params_.user = font_obj->_get_outline_span_list();
 
 	ret = FT_Outline_Render(freetype_, &(outline_glyph->outline), &params_);
-	if (ret == 0) goto fail_end;
+	if (ret != 0) goto fail_end;
 
 	if (out_glyph) FT_Done_Glyph(out_glyph);
 	out_glyph = NULL;
@@ -140,8 +140,8 @@ GEFontFT::GEFontFT()
 , render_char_buff_(NULL)
 , buff_size_(0)
 , buff_offset_(0)
-, page_width_(256)
-, page_height_(256)
+, page_width_(1024)
+, page_height_(1024)
 , texture_group_(NULL)
 , current_page_(NULL)
 , pen_x_(0)

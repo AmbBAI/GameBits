@@ -112,6 +112,7 @@ bool GEAtlasDraw::init_render()
 bool GEAtlasDraw::update_render()
 {
 	if (draw_buff_ == NULL) return false;
+	if (vertex_list_.size() <= 0) return true;
 	return draw_buff_->set_verties(&vertex_list_[0], vertex_list_.size());
 }
 

@@ -11,14 +11,14 @@ end
 local function new_text_label()
 	new_font = ge.GEFontManager:create_font(ge.FontType_FTFont)
 	new_font = tolua.cast(new_font, "ge::GEFontFT")
-	new_font:init("font\\simsun.ttc", 18)
+	new_font:init("font\\SIMLI.TTF", 18)
 	new_font:set_outline_weight(1.0)
 	
 	new_text = ge.GEOTextFT:create()
 	local rect = ge.GE_IRECT:new_local(0, 0, 0, 0);
 	new_text:set_rect(rect);
 	new_text:set_font(new_font);
-	new_text:set_text("hello lua!")
+	new_text:set_text(require("qsmy"))
 	return new_text
 end
 
@@ -37,8 +37,8 @@ local function scene_init_callback()
 	game_info = require("game_info")
 	scene_test:add_object(-1, game_info)
 
-	--text_test = new_text_label()
-	--scene_test:add_object(3, text_test)
+	text_test = new_text_label()
+	scene_test:add_object(3, text_test)
 end
 
 local function scene_destory_callback()

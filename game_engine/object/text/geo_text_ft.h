@@ -29,6 +29,7 @@ public:
 	virtual bool update_quad();
 
 protected:
+	virtual bool _is_char_visible(GE_QUAD& quad);
 	virtual void _render_char_to_quad(GE_QUAD& out_quad, const GE_FTRenderChar& render_char, U32 color = 0xffffffff);
 
 private:

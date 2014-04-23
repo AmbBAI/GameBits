@@ -204,11 +204,29 @@ bool GEOTextBM::_is_char_visible( GE_QUAD& quad )
 {
 	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
 
-	if (quad.xys[1] >= wnd_rect.bottom && quad.xys[3] >= wnd_rect.bottom) return false;
-	if (quad.xys[0] >= wnd_rect.right && quad.xys[2] >= wnd_rect.right) return false;
-	if (quad.xys[1] < wnd_rect.top && quad.xys[3] < wnd_rect.top) return false;
-	if (quad.xys[0] < wnd_rect.left && quad.xys[2] < wnd_rect.left) return false;
-	return true;
+	bool x_in = false;
+	bool y_in = false;
+
+	for (int i=0; i<8; i+=2)
+	{
+		if (quad.xys[i] > wnd_rect.left && quad.xys[i] < wnd_rect.right)
+		{
+			x_in = true;
+			break;
+		}
+	}
+	if (!x_in) return false;
+
+	for (int i=1; i<8; i+=2)
+	{
+		if (quad.xys[i] > wnd_rect.top && quad.xys[i] < wnd_rect.bottom)
+		{
+			y_in = true;
+			break;
+		}
+	}
+
+	return y_in;
 }
 
 bool GEOTextBM::set_rect( GE_IRECT& rect )

@@ -174,6 +174,17 @@
     <ClCompile Include="utility\ge_unicode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="audio\fmod\inc\fmod.h" />
+    <ClInclude Include="audio\fmod\inc\fmod.hpp" />
+    <ClInclude Include="audio\fmod\inc\fmod_codec.h" />
+    <ClInclude Include="audio\fmod\inc\fmod_dsp.h" />
+    <ClInclude Include="audio\fmod\inc\fmod_errors.h" />
+    <ClInclude Include="audio\fmod\inc\fmod_memoryinfo.h" />
+    <ClInclude Include="audio\fmod\inc\fmod_output.h" />
+    <ClInclude Include="audio\fmod_event\inc\fmod_event.h" />
+    <ClInclude Include="audio\fmod_event\inc\fmod_event.hpp" />
+    <ClInclude Include="audio\fmod_event\inc\fmod_event_net.h" />
+    <ClInclude Include="audio\fmod_event\inc\fmod_event_net.hpp" />
     <ClInclude Include="object\animation\geo_armature.h" />
     <ClInclude Include="object\animation\geo_spine.h" />
     <ClInclude Include="object\ge_object.h" />

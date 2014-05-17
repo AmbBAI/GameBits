@@ -43,6 +43,15 @@
     <Filter Include="script\lua_object">
       <UniqueIdentifier>{eea2c3fa-0bae-4e2c-8daf-792a5a5c08aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="audio">
+      <UniqueIdentifier>{92e00e6e-25ff-42ac-8045-060e97a263db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="audio\fmod">
+      <UniqueIdentifier>{c37237b2-1db1-4679-b329-ddd53170d876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="audio\fmod_event">
+      <UniqueIdentifier>{03a95ce0-51f7-44b4-ad9f-b2b00c217a5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="object\ge_object.cpp">
@@ -470,6 +479,39 @@
     </ClInclude>
     <ClInclude Include="script\lua_object\ge_lua_scene.h">
       <Filter>script\lua_object</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\fmod\inc\fmod_memoryinfo.h">
+      <Filter>audio\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\fmod\inc\fmod_output.h">
+      <Filter>audio\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\fmod\inc\fmod.h">
+      <Filter>audio\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\fmod\inc\fmod.hpp">
+      <Filter>audio\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\fmod\inc\fmod_codec.h">
+      <Filter>audio\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\fmod\inc\fmod_dsp.h">
+      <Filter>audio\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\fmod\inc\fmod_errors.h">
+      <Filter>audio\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\fmod_event\inc\fmod_event_net.h">
+      <Filter>audio\fmod_event</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\fmod_event\inc\fmod_event_net.hpp">
+      <Filter>audio\fmod_event</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\fmod_event\inc\fmod_event.h">
+      <Filter>audio\fmod_event</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\fmod_event\inc\fmod_event.hpp">
+      <Filter>audio\fmod_event</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

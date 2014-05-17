@@ -279,6 +279,12 @@
     <ClCompile Include="script\lua_object\ge_lua_scene.cpp">
       <Filter>script\lua_object</Filter>
     </ClCompile>
+    <ClCompile Include="audio\ge_audio.cpp">
+      <Filter>audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\ge_fmod.cpp">
+      <Filter>audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\ge_object.h">
@@ -512,6 +518,12 @@
     </ClInclude>
     <ClInclude Include="audio\fmod_event\inc\fmod_event.hpp">
       <Filter>audio\fmod_event</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\ge_audio.h">
+      <Filter>audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\ge_fmod.h">
+      <Filter>audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

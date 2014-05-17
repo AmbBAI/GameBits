@@ -92,6 +92,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="audio\ge_audio.cpp" />
+    <ClCompile Include="audio\ge_fmod.cpp" />
     <ClCompile Include="object\animation\geo_armature.cpp" />
     <ClCompile Include="object\animation\geo_spine.cpp" />
     <ClCompile Include="object\ge_object.cpp" />
@@ -185,6 +187,8 @@
     <ClInclude Include="audio\fmod_event\inc\fmod_event.hpp" />
     <ClInclude Include="audio\fmod_event\inc\fmod_event_net.h" />
     <ClInclude Include="audio\fmod_event\inc\fmod_event_net.hpp" />
+    <ClInclude Include="audio\ge_audio.h" />
+    <ClInclude Include="audio\ge_fmod.h" />
     <ClInclude Include="object\animation\geo_armature.h" />
     <ClInclude Include="object\animation\geo_spine.h" />
     <ClInclude Include="object\ge_object.h" />

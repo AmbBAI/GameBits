@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 04/22/14 20:43:20.
+** Generated automatically by tolua++-1.0.92 on 05/17/14 12:30:25.
 */
 
 #ifndef __cplusplus
@@ -113,17 +113,18 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ge::GETexture");
  tolua_usertype(tolua_S,"ge::GE_QUAD_EX");
  tolua_usertype(tolua_S,"ge::GEInput");
+ tolua_usertype(tolua_S,"ge::GEFMODSound");
  tolua_usertype(tolua_S,"ge::GEScene");
  tolua_usertype(tolua_S,"ge::GE_VERTEX");
  tolua_usertype(tolua_S,"ge::GE_FRECT");
  tolua_usertype(tolua_S,"ge::GE_FSIZE");
- tolua_usertype(tolua_S,"ge::GEObject");
  tolua_usertype(tolua_S,"ge::GE_ISIZE");
+ tolua_usertype(tolua_S,"ge::GEObject");
  tolua_usertype(tolua_S,"ge::GEApp");
- tolua_usertype(tolua_S,"ge::GEFontManager");
+ tolua_usertype(tolua_S,"ge::GEOTextBM");
  tolua_usertype(tolua_S,"ge::GE_QUAD");
  tolua_usertype(tolua_S,"ge::GELuaScene");
- tolua_usertype(tolua_S,"ge::GEOTextBM");
+ tolua_usertype(tolua_S,"ge::GEFontManager");
  tolua_usertype(tolua_S,"ge::GED3DXFont");
  tolua_usertype(tolua_S,"ge::GEOText");
  tolua_usertype(tolua_S,"ge::GEREffect");
@@ -1330,6 +1331,265 @@ static int tolua_luabind_ge_GERender_get_drawvertex_cnt00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'get_drawvertex_cnt'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  ge::GEFMODSound */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFMODSound_create00
+static int tolua_luabind_ge_GEFMODSound_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEFMODSound",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GEFMODSound* tolua_ret = (ge::GEFMODSound*)  ge::GEFMODSound::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GEFMODSound");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: retain of class  ge::GEFMODSound */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFMODSound_retain00
+static int tolua_luabind_ge_GEFMODSound_retain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEFMODSound",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEFMODSound* self = (ge::GEFMODSound*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
+#endif
+  {
+   self->retain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: release of class  ge::GEFMODSound */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFMODSound_release00
+static int tolua_luabind_ge_GEFMODSound_release00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEFMODSound",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEFMODSound* self = (ge::GEFMODSound*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
+#endif
+  {
+   self->release();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: init of class  ge::GEFMODSound */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFMODSound_init00
+static int tolua_luabind_ge_GEFMODSound_init00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEFMODSound",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEFMODSound* self = (ge::GEFMODSound*)  tolua_tousertype(tolua_S,1,0);
+  const char* sound_file = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'init'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->init(sound_file);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'init'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: destory of class  ge::GEFMODSound */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFMODSound_destory00
+static int tolua_luabind_ge_GEFMODSound_destory00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEFMODSound",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEFMODSound* self = (ge::GEFMODSound*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'destory'", NULL);
+#endif
+  {
+   self->destory();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'destory'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: play of class  ge::GEFMODSound */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFMODSound_play00
+static int tolua_luabind_ge_GEFMODSound_play00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEFMODSound",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEFMODSound* self = (ge::GEFMODSound*)  tolua_tousertype(tolua_S,1,0);
+  int loop = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'play'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->play(loop);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'play'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: pause of class  ge::GEFMODSound */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFMODSound_pause00
+static int tolua_luabind_ge_GEFMODSound_pause00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEFMODSound",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEFMODSound* self = (ge::GEFMODSound*)  tolua_tousertype(tolua_S,1,0);
+  bool is_pause = ((bool)  tolua_toboolean(tolua_S,2,0));
+  int sid = ((int)  tolua_tonumber(tolua_S,3,-1));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'pause'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->pause(is_pause,sid);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'pause'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: stop of class  ge::GEFMODSound */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFMODSound_stop00
+static int tolua_luabind_ge_GEFMODSound_stop00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEFMODSound",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEFMODSound* self = (ge::GEFMODSound*)  tolua_tousertype(tolua_S,1,0);
+  int sid = ((int)  tolua_tonumber(tolua_S,2,-1));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'stop'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->stop(sid);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'stop'.",&tolua_err);
  return 0;
 #endif
 }
@@ -7765,6 +8025,17 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"get_instance",tolua_luabind_ge_GERender_get_instance00);
     tolua_function(tolua_S,"get_drawcall_cnt",tolua_luabind_ge_GERender_get_drawcall_cnt00);
     tolua_function(tolua_S,"get_drawvertex_cnt",tolua_luabind_ge_GERender_get_drawvertex_cnt00);
+   tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GEFMODSound","ge::GEFMODSound","",NULL);
+   tolua_beginmodule(tolua_S,"GEFMODSound");
+    tolua_function(tolua_S,"create",tolua_luabind_ge_GEFMODSound_create00);
+    tolua_function(tolua_S,"retain",tolua_luabind_ge_GEFMODSound_retain00);
+    tolua_function(tolua_S,"release",tolua_luabind_ge_GEFMODSound_release00);
+    tolua_function(tolua_S,"init",tolua_luabind_ge_GEFMODSound_init00);
+    tolua_function(tolua_S,"destory",tolua_luabind_ge_GEFMODSound_destory00);
+    tolua_function(tolua_S,"play",tolua_luabind_ge_GEFMODSound_play00);
+    tolua_function(tolua_S,"pause",tolua_luabind_ge_GEFMODSound_pause00);
+    tolua_function(tolua_S,"stop",tolua_luabind_ge_GEFMODSound_stop00);
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GESurface","ge::GESurface","",NULL);
    tolua_beginmodule(tolua_S,"GESurface");

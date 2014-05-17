@@ -1,6 +1,7 @@
 #include "ge_app.h"
 #include "ge_engine.h"
 #include "ge_game.h"
+#include "audio/ge_audio.h"
 
 namespace ge
 {
@@ -130,6 +131,7 @@ bool GEApp::create_app( HINSTANCE h_app_inst, const char* title, int width, int 
 	UpdateWindow(h_app_wnd_);
 	ShowWindow(h_app_wnd_, SW_NORMAL);
 	input_.init();
+	GEAudio::init();
 
 	is_app_created_ = true;
 	return true;
@@ -139,6 +141,7 @@ void GEApp::_process()
 {
 	_update_time();
 	input_.update();
+	GEAudio::update();
 
 	if (p_ge_game_ != NULL)
 	{

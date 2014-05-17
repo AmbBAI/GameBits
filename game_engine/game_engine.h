@@ -6,6 +6,7 @@
 #include "common/ge_engine.h"
 #include "common/ge_game.h"
 #include "common/ge_scene.h"
+#include "audio/ge_audio.h"
 
 #include "render/ge_render.h"
 #include "render/ger_effect.h"

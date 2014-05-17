@@ -1,0 +1,13 @@
+class GEFMODSound
+{
+	static GEFMODSound* create();
+	void retain();
+	void release();
+
+	bool init(const char* sound_file);
+	void destory();
+
+	int play(int loop = 0);
+	bool pause(bool is_pause, int sid = -1);
+	bool stop(int sid = -1);
+};

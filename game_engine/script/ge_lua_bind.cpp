@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 05/17/14 17:19:48.
+** Generated automatically by tolua++-1.0.92 on 05/17/14 18:07:51.
 */
 
 #ifndef __cplusplus
@@ -1420,6 +1420,38 @@ static int tolua_luabind_ge_GEFMOD_get_memory_use00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'get_memory_use'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_current_wave of class  ge::GEFMOD */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFMOD_get_current_wave00
+static int tolua_luabind_ge_GEFMOD_get_current_wave00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEFMOD",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEFMOD* self = (ge::GEFMOD*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_current_wave'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->get_current_wave();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_current_wave'.",&tolua_err);
  return 0;
 #endif
 }
@@ -8120,6 +8152,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"get_instance",tolua_luabind_ge_GEFMOD_get_instance00);
     tolua_function(tolua_S,"get_channels_playing",tolua_luabind_ge_GEFMOD_get_channels_playing00);
     tolua_function(tolua_S,"get_memory_use",tolua_luabind_ge_GEFMOD_get_memory_use00);
+    tolua_function(tolua_S,"get_current_wave",tolua_luabind_ge_GEFMOD_get_current_wave00);
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GEFMODSound","ge::GEFMODSound","",NULL);
    tolua_beginmodule(tolua_S,"GEFMODSound");

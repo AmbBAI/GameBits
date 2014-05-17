@@ -26,6 +26,7 @@ local function scene_update_callback(delta)
 	ge_fmod = ge.GEFMOD:get_instance()
 	c_cnt = ge_fmod:get_channels_playing()
 	mem_use = ge_fmod:get_memory_use()
+	wave = ge_fmod:get_current_wave()
 
 	info = string.format([[
 		channels: %d / %d
@@ -34,6 +35,10 @@ local function scene_update_callback(delta)
 	game_info:clear_info()
 	game_info:add_info(info)
 	game_info:update(delta)
+
+	dis = wave * 100
+	local seg = math.min(200, math.max(dis * 6.28 / 6, 16))
+	ge.GEPrimitiveDraw:draw_circle(ge.GE_FPOINT(200, 200), dis, seg, ge.GE_COLOR( 0xff, 0x00, 0x88, 0x77))
 
 	if ge_input:get_key_down(ge.GEInput.KC_L) then
 		sound:init("media/wave.mp3")

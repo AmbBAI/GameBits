@@ -95,6 +95,13 @@ int GEFMOD::get_memory_use()
 	return (int)mem_use;
 }
 
+float GEFMOD::get_current_wave()
+{
+	float wave = 0.f;
+	sys_->getWaveData(&wave, 1, 0);
+	return wave;
+}
+
 const int GEFMOD::FMOD_MAX_CHANNELS = 32;
 
 DLL_MANAGE_CLASS_IMPLEMENT(GEFMODSound)

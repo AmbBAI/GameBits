@@ -48,6 +48,7 @@ public:
 
 	int get_channels_playing();
 	int get_memory_use();
+	float get_current_wave();
 
 protected:
 	static FMOD::System* get_sys();

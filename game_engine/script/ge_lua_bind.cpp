@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 05/17/14 12:56:57.
+** Generated automatically by tolua++-1.0.92 on 05/17/14 13:22:32.
 */
 
 #ifndef __cplusplus
@@ -1495,7 +1495,7 @@ static int tolua_luabind_ge_GEFMODSound_play00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"ge::GEFMODSound",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,1,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -1503,7 +1503,7 @@ static int tolua_luabind_ge_GEFMODSound_play00(lua_State* tolua_S)
 #endif
  {
   ge::GEFMODSound* self = (ge::GEFMODSound*)  tolua_tousertype(tolua_S,1,0);
-  int loop = ((int)  tolua_tonumber(tolua_S,2,0));
+  bool loop = ((bool)  tolua_toboolean(tolua_S,2,false));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'play'", NULL);
 #endif

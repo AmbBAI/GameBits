@@ -21,7 +21,7 @@ public:
 	bool init(const char* sound_file);
 	void destory();
 
-	int play(int loop = 0);
+	int play(bool loop = false);
 	bool pause(bool is_pause, int sid = -1);
 	bool stop(int sid = -1);
 

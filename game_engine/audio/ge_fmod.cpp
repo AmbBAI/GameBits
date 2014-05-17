@@ -121,7 +121,7 @@ void GEFMODSound::destory()
 	}
 }
 
-int GEFMODSound::play( int loop /*= 0*/ )
+int GEFMODSound::play( bool loop /*= false*/ )
 {
 	if (sound_ == NULL) return -1;
 
@@ -135,6 +135,8 @@ int GEFMODSound::play( int loop /*= 0*/ )
 	{
 		return -1;
 	}
+	channel->setMode(loop ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF);
+
 	int sid = -1;
 	channel->getIndex(&sid);
 	return sid;

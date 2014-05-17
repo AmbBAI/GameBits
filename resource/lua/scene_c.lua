@@ -1,16 +1,23 @@
 
 local sound
 
+local sid
+local is_pause
+
 local function scene_init_callback()
 
 	game_info = require("game_info")
 	scene_test:add_object(99999999, game_info)
 
 	sound = ge.GEFMODSound:create()
-	sound:init("media/c.ogg")
+	sound:init("media/wave.mp3")
+	sid = sound:play(1)
+	is_pause = false
 end
 
 local function scene_destory_callback()
+	sound:release()
+	sound = nil
 end
 
 local function scene_update_callback(delta)
@@ -22,7 +29,8 @@ local function scene_update_callback(delta)
 
 
 	if ge_input:get_mouse_down(0) then
-		sound:play()
+		sound:pause(not is_pause, sid)
+		is_pause = not is_pause
 	end
 end
 

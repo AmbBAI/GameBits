@@ -14,6 +14,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	bool init_ok = true;
 	init_ok = init_ok && g_p_ge_app->create_app(hInstance, "Hello World!", 800, 600);
+	init_ok = init_ok && g_p_ge_app->init();
 	init_ok = init_ok && g_p_ge_engine->init_engine();
 
 	if (init_ok)
@@ -29,5 +30,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	}
 
 	g_p_ge_engine->close_engine();
+	g_p_ge_app->destory();
 	return 0;
 }

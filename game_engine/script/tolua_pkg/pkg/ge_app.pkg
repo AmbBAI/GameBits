@@ -4,8 +4,6 @@ class GEApp
 
 	void run();
 
-	GEInput*	get_input();
-
 	float get_fps();
 
 	bool show_console(bool is_show);

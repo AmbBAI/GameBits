@@ -14,7 +14,7 @@ end
 gi_text = new_text()
 function gi_text:update()
 	ge_app = ge.GEApp:get_instance()
-	ge_input = ge_app:get_input()
+	ge_input = ge.GEInput:get_instance()
 	ge_render = ge.GERender:get_instance()
 
 	fps = ge_app:get_fps()

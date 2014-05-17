@@ -42,7 +42,7 @@ end
 
 local function scene_update_callback(delta)
 	ge_app = ge.GEApp:get_instance()
-	ge_input = ge_app:get_input()
+	ge_input = ge.GEInput:get_instance()
 	ge_render = ge.GERender:get_instance()
 
 	game_info:update(delta)

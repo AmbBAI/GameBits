@@ -15,10 +15,16 @@ GEInput::GEInput()
 
 GEInput::~GEInput()
 {
-	destory();
+	destory_input();
 }
 
-bool GEInput::init()
+GEInput* GEInput::get_instance()
+{
+	static GEInput _global_ge_input_;
+	return &_global_ge_input_;
+}
+
+bool GEInput::init_input()
 {
 	GEApp* p_app = GEApp::get_instance();
 	if (p_app == NULL) return false;
@@ -48,7 +54,7 @@ bool GEInput::init()
 	return SUCCEEDED(h_res);
 }
 
-void GEInput::destory()
+void GEInput::destory_input()
 {
 	if (p_keyboard_device_) p_keyboard_device_->Unacquire();
 	if (p_mouse_device_) p_mouse_device_->Unacquire();
@@ -58,7 +64,7 @@ void GEInput::destory()
 	D3D_RELEASE(p_input_);
 }
 
-void GEInput::update()
+void GEInput::update_input()
 {
 	HRESULT h_res = S_OK;
 	unsigned _cs = (current_state_ ^= 1);
@@ -167,6 +173,21 @@ bool GEInput::get_mouse_up( char button )
 	bool old_on = 0 != (mouse_state_[1^_cs].rgbButtons[(unsigned char)button] & 0x80);
 
 	return (!cur_on) && (old_on);
+}
+
+bool GEInput::init()
+{
+	return get_instance()->init_input();
+}
+
+void GEInput::destory()
+{
+	get_instance()->destory_input();
+}
+
+void GEInput::update()
+{
+	get_instance()->update_input();
 }
 
 }

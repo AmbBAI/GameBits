@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 05/17/14 12:30:25.
+** Generated automatically by tolua++-1.0.92 on 05/17/14 12:56:57.
 */
 
 #ifndef __cplusplus
@@ -185,38 +185,6 @@ static int tolua_luabind_ge_GEApp_run00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'run'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: get_input of class  ge::GEApp */
-#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEApp_get_input00
-static int tolua_luabind_ge_GEApp_get_input00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ge::GEApp",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ge::GEApp* self = (ge::GEApp*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_input'", NULL);
-#endif
-  {
-   ge::GEInput* tolua_ret = (ge::GEInput*)  self->get_input();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GEInput");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'get_input'.",&tolua_err);
  return 0;
 #endif
 }
@@ -543,6 +511,34 @@ static int tolua_luabind_ge_GEGame_remove_all_scenes00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'remove_all_scenes'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_instance of class  ge::GEInput */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEInput_get_instance00
+static int tolua_luabind_ge_GEInput_get_instance00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEInput",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GEInput* tolua_ret = (ge::GEInput*)  ge::GEInput::get_instance();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GEInput");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_instance'.",&tolua_err);
  return 0;
 #endif
 }
@@ -7831,7 +7827,6 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
    tolua_beginmodule(tolua_S,"GEApp");
     tolua_function(tolua_S,"get_instance",tolua_luabind_ge_GEApp_get_instance00);
     tolua_function(tolua_S,"run",tolua_luabind_ge_GEApp_run00);
-    tolua_function(tolua_S,"get_input",tolua_luabind_ge_GEApp_get_input00);
     tolua_function(tolua_S,"get_fps",tolua_luabind_ge_GEApp_get_fps00);
     tolua_function(tolua_S,"show_console",tolua_luabind_ge_GEApp_show_console00);
     tolua_function(tolua_S,"get_console_show",tolua_luabind_ge_GEApp_get_console_show00);
@@ -7992,6 +7987,7 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_constant(tolua_S,"KC_MYCOMPUTER",ge::GEInput::KC_MYCOMPUTER);
     tolua_constant(tolua_S,"KC_MAIL",ge::GEInput::KC_MAIL);
     tolua_constant(tolua_S,"KC_MEDIASELECT",ge::GEInput::KC_MEDIASELECT);
+    tolua_function(tolua_S,"get_instance",tolua_luabind_ge_GEInput_get_instance00);
     tolua_function(tolua_S,"get_mouse_move",tolua_luabind_ge_GEInput_get_mouse_move00);
     tolua_function(tolua_S,"get_mouse_pos",tolua_luabind_ge_GEInput_get_mouse_pos00);
     tolua_function(tolua_S,"get_key_down",tolua_luabind_ge_GEInput_get_key_down00);

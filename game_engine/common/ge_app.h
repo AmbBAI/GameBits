@@ -26,11 +26,12 @@ public:
 	bool create_app(HINSTANCE h_instance, const char* wnd_title, int wnd_width, int wnd_height);
 	void run() { MainLoop(); }
 
+	bool init();
+	void destory();
+
 	bool		is_app_created()	{ return is_app_created_; }
 	GE_IRECT&	get_game_rect()		{ return game_rect_; }	
 	float		get_fps()			{ return fps_; }
-
-	GEInput*	get_input()			{ return &input_; };
 
 	bool		show_console(bool is_show);
 	bool		get_console_show()	{ return is_console_show_; }
@@ -68,7 +69,6 @@ private:
 	GEGame*		p_ge_game_;
 	GEEngine*	p_ge_engine_;
 
-	GEInput		input_;
 	int			mouse_x_;
 	int			mouse_y_;
 };

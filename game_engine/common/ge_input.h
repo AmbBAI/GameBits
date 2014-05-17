@@ -168,10 +168,17 @@ protected:
 	virtual ~GEInput();
 
 public:
-	bool init();
-	void destory();
+	static GEInput* get_instance();
 
-	void update();
+	static bool init();
+	static void destory();
+	static void update();
+
+public:
+	bool init_input();
+	void destory_input();
+
+	void update_input();
 
 public:
 	bool get_mouse_move(int& delta_x, int& delta_y, int& delta_z);

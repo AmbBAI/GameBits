@@ -130,8 +130,6 @@ bool GEApp::create_app( HINSTANCE h_app_inst, const char* title, int width, int 
 	GetClientRect(h_app_wnd_, &game_rect_);
 	UpdateWindow(h_app_wnd_);
 	ShowWindow(h_app_wnd_, SW_NORMAL);
-	input_.init();
-	GEAudio::init();
 
 	is_app_created_ = true;
 	return true;
@@ -140,7 +138,7 @@ bool GEApp::create_app( HINSTANCE h_app_inst, const char* title, int width, int 
 void GEApp::_process()
 {
 	_update_time();
-	input_.update();
+	GEInput::update();
 	GEAudio::update();
 
 	if (p_ge_game_ != NULL)
@@ -215,5 +213,20 @@ bool GEApp::on_resize()
 
 	return true;
 }
+
+bool GEApp::init()
+{
+	GEInput::init();
+	GEAudio::init();
+	return true;
+}
+
+void GEApp::destory()
+{
+	GEInput::destory();
+	GEAudio::destory();
+}
+
+
 
 }

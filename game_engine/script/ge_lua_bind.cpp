@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 05/17/14 13:22:32.
+** Generated automatically by tolua++-1.0.92 on 05/17/14 17:19:48.
 */
 
 #ifndef __cplusplus
@@ -107,6 +107,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ge::GE_IRECT");
  tolua_usertype(tolua_S,"ge::GEGDIFont");
  tolua_usertype(tolua_S,"ge::GEOSpine");
+ tolua_usertype(tolua_S,"ge::GEFMOD");
  tolua_usertype(tolua_S,"ge::GEGame");
  tolua_usertype(tolua_S,"ge::GEFont");
  tolua_usertype(tolua_S,"ge::GESurface");
@@ -120,13 +121,13 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ge::GE_FSIZE");
  tolua_usertype(tolua_S,"ge::GE_ISIZE");
  tolua_usertype(tolua_S,"ge::GEObject");
- tolua_usertype(tolua_S,"ge::GEApp");
  tolua_usertype(tolua_S,"ge::GEOTextBM");
+ tolua_usertype(tolua_S,"ge::GEApp");
  tolua_usertype(tolua_S,"ge::GE_QUAD");
  tolua_usertype(tolua_S,"ge::GELuaScene");
  tolua_usertype(tolua_S,"ge::GEFontManager");
- tolua_usertype(tolua_S,"ge::GED3DXFont");
  tolua_usertype(tolua_S,"ge::GEOText");
+ tolua_usertype(tolua_S,"ge::GED3DXFont");
  tolua_usertype(tolua_S,"ge::GEREffect");
  tolua_usertype(tolua_S,"LUA_FUNCTION");
 }
@@ -1327,6 +1328,98 @@ static int tolua_luabind_ge_GERender_get_drawvertex_cnt00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'get_drawvertex_cnt'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_instance of class  ge::GEFMOD */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFMOD_get_instance00
+static int tolua_luabind_ge_GEFMOD_get_instance00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ge::GEFMOD",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ge::GEFMOD* tolua_ret = (ge::GEFMOD*)  ge::GEFMOD::get_instance();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GEFMOD");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_instance'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_channels_playing of class  ge::GEFMOD */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFMOD_get_channels_playing00
+static int tolua_luabind_ge_GEFMOD_get_channels_playing00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEFMOD",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEFMOD* self = (ge::GEFMOD*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_channels_playing'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->get_channels_playing();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_channels_playing'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_memory_use of class  ge::GEFMOD */
+#ifndef TOLUA_DISABLE_tolua_luabind_ge_GEFMOD_get_memory_use00
+static int tolua_luabind_ge_GEFMOD_get_memory_use00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ge::GEFMOD",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ge::GEFMOD* self = (ge::GEFMOD*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_memory_use'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->get_memory_use();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_memory_use'.",&tolua_err);
  return 0;
 #endif
 }
@@ -8021,6 +8114,12 @@ TOLUA_API int tolua_luabind_open (lua_State* tolua_S)
     tolua_function(tolua_S,"get_instance",tolua_luabind_ge_GERender_get_instance00);
     tolua_function(tolua_S,"get_drawcall_cnt",tolua_luabind_ge_GERender_get_drawcall_cnt00);
     tolua_function(tolua_S,"get_drawvertex_cnt",tolua_luabind_ge_GERender_get_drawvertex_cnt00);
+   tolua_endmodule(tolua_S);
+   tolua_cclass(tolua_S,"GEFMOD","ge::GEFMOD","",NULL);
+   tolua_beginmodule(tolua_S,"GEFMOD");
+    tolua_function(tolua_S,"get_instance",tolua_luabind_ge_GEFMOD_get_instance00);
+    tolua_function(tolua_S,"get_channels_playing",tolua_luabind_ge_GEFMOD_get_channels_playing00);
+    tolua_function(tolua_S,"get_memory_use",tolua_luabind_ge_GEFMOD_get_memory_use00);
    tolua_endmodule(tolua_S);
    tolua_cclass(tolua_S,"GEFMODSound","ge::GEFMODSound","",NULL);
    tolua_beginmodule(tolua_S,"GEFMODSound");

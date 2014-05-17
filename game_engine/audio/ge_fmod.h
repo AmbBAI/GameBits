@@ -46,6 +46,9 @@ public:
 
 	void update();
 
+	int get_channels_playing();
+	int get_memory_use();
+
 protected:
 	static FMOD::System* get_sys();
 	static FMOD::Channel* get_channel(FMOD::Sound* sound, int sid);

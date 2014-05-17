@@ -1,3 +1,11 @@
+class GEFMOD
+{
+	static GEFMOD* get_instance();
+	
+	int get_channels_playing();
+	int get_memory_use();
+}
+
 class GEFMODSound
 {
 	static GEFMODSound* create();

@@ -81,6 +81,20 @@ FMOD::Channel* GEFMOD::get_channel( FMOD::Sound* sound, int sid )
 	return NULL;
 }
 
+int GEFMOD::get_channels_playing()
+{
+	int channels_cnt = 0;
+	sys_->getChannelsPlaying(&channels_cnt);
+	return channels_cnt;
+}
+
+int GEFMOD::get_memory_use()
+{
+	unsigned int mem_use = 0;
+	sys_->getMemoryInfo(FMOD_MEMBITS_ALL, NULL, &mem_use, NULL);
+	return (int)mem_use;
+}
+
 const int GEFMOD::FMOD_MAX_CHANNELS = 32;
 
 DLL_MANAGE_CLASS_IMPLEMENT(GEFMODSound)
@@ -103,7 +117,7 @@ bool GEFMODSound::init( const char* sound_file )
 	if (sys == NULL) return false;
 
 	int res = FMOD_OK;
-	res = sys->createSound(sound_file, FMOD_DEFAULT, false, &sound_);
+	res = sys->createSound(sound_file, FMOD_NONBLOCKING, false, &sound_);
 	if (res != FMOD_OK)
 	{
 		destory();

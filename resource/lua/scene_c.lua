@@ -10,8 +10,6 @@ local function scene_init_callback()
 	scene_test:add_object(99999999, game_info)
 
 	sound = ge.GEFMODSound:create()
-	sound:init("media/wave.mp3")
-	sid = sound:play(1)
 	is_pause = false
 end
 
@@ -25,12 +23,26 @@ local function scene_update_callback(delta)
 	ge_input = ge.GEInput:get_instance()
 	ge_render = ge.GERender:get_instance()
 
+	ge_fmod = ge.GEFMOD:get_instance()
+	c_cnt = ge_fmod:get_channels_playing()
+	mem_use = ge_fmod:get_memory_use()
+
+	info = string.format([[
+		channels: %d / %d
+		fmod-mem: %d
+		]], c_cnt, 32, mem_use)
+	game_info:clear_info()
+	game_info:add_info(info)
 	game_info:update(delta)
 
+	if ge_input:get_key_down(ge.GEInput.KC_L) then
+		sound:init("media/wave.mp3")
+	elseif ge_input:get_key_down(ge.GEInput.KC_K) then
+		sound:destory()
+	end
 
 	if ge_input:get_mouse_down(0) then
-		sound:pause(not is_pause, sid)
-		is_pause = not is_pause
+		sid = sound:play(false)
 	end
 end
 

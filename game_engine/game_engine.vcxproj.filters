@@ -46,12 +46,6 @@
     <Filter Include="audio">
       <UniqueIdentifier>{92e00e6e-25ff-42ac-8045-060e97a263db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="audio\fmod">
-      <UniqueIdentifier>{c37237b2-1db1-4679-b329-ddd53170d876}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="audio\fmod_event">
-      <UniqueIdentifier>{03a95ce0-51f7-44b4-ad9f-b2b00c217a5f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="support">
       <UniqueIdentifier>{947d9100-a2c3-4c22-8636-3e0df8dc1280}</UniqueIdentifier>
     </Filter>
@@ -495,39 +489,6 @@
     <ClInclude Include="script\lua_object\ge_lua_scene.h">
       <Filter>script\lua_object</Filter>
     </ClInclude>
-    <ClInclude Include="audio\fmod\inc\fmod_memoryinfo.h">
-      <Filter>audio\fmod</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\fmod\inc\fmod_output.h">
-      <Filter>audio\fmod</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\fmod\inc\fmod.h">
-      <Filter>audio\fmod</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\fmod\inc\fmod.hpp">
-      <Filter>audio\fmod</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\fmod\inc\fmod_codec.h">
-      <Filter>audio\fmod</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\fmod\inc\fmod_dsp.h">
-      <Filter>audio\fmod</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\fmod\inc\fmod_errors.h">
-      <Filter>audio\fmod</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\fmod_event\inc\fmod_event_net.h">
-      <Filter>audio\fmod_event</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\fmod_event\inc\fmod_event_net.hpp">
-      <Filter>audio\fmod_event</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\fmod_event\inc\fmod_event.h">
-      <Filter>audio\fmod_event</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\fmod_event\inc\fmod_event.hpp">
-      <Filter>audio\fmod_event</Filter>
-    </ClInclude>
     <ClInclude Include="audio\ge_audio.h">
       <Filter>audio</Filter>
     </ClInclude>
@@ -554,6 +515,39 @@
     </ClInclude>
     <ClInclude Include="support\freetype\include\config\ftheader.h">
       <Filter>support\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="support\fmod\fmod\inc\fmod.h">
+      <Filter>support\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="support\fmod\fmod\inc\fmod.hpp">
+      <Filter>support\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="support\fmod\fmod\inc\fmod_codec.h">
+      <Filter>support\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="support\fmod\fmod\inc\fmod_dsp.h">
+      <Filter>support\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="support\fmod\fmod\inc\fmod_errors.h">
+      <Filter>support\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="support\fmod\fmod\inc\fmod_memoryinfo.h">
+      <Filter>support\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="support\fmod\fmod\inc\fmod_output.h">
+      <Filter>support\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="support\fmod\fmod_event\inc\fmod_event.h">
+      <Filter>support\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="support\fmod\fmod_event\inc\fmod_event.hpp">
+      <Filter>support\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="support\fmod\fmod_event\inc\fmod_event_net.h">
+      <Filter>support\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="support\fmod\fmod_event\inc\fmod_event_net.hpp">
+      <Filter>support\fmod</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

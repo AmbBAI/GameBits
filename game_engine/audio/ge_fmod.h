@@ -4,7 +4,7 @@
 #include "common/ge_include.h"
 #include "common/ge_engine.h"
 
-#include "audio/fmod/inc/fmod.hpp"
+#include "support/fmod/fmod/inc/fmod.hpp"
 
 namespace ge
 {

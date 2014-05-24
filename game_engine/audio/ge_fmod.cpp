@@ -1,9 +1,9 @@
 #include "ge_fmod.h"
 
 #ifdef _DEBUG
-#pragma comment(lib, "audio/fmod/lib/fmodexL.lib" )
+#pragma comment(lib, "support/fmod/fmod/lib/fmodexL.lib" )
 #else
-#pragma comment(lib, "audio/fmod/lib/fmodex.lib" )
+#pragma comment(lib, "support/fmod/fmod/lib/fmodex.lib" )
 #endif
 
 namespace ge

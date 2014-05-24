@@ -176,17 +176,6 @@
     <ClCompile Include="utility\ge_unicode.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="audio\fmod\inc\fmod.h" />
-    <ClInclude Include="audio\fmod\inc\fmod.hpp" />
-    <ClInclude Include="audio\fmod\inc\fmod_codec.h" />
-    <ClInclude Include="audio\fmod\inc\fmod_dsp.h" />
-    <ClInclude Include="audio\fmod\inc\fmod_errors.h" />
-    <ClInclude Include="audio\fmod\inc\fmod_memoryinfo.h" />
-    <ClInclude Include="audio\fmod\inc\fmod_output.h" />
-    <ClInclude Include="audio\fmod_event\inc\fmod_event.h" />
-    <ClInclude Include="audio\fmod_event\inc\fmod_event.hpp" />
-    <ClInclude Include="audio\fmod_event\inc\fmod_event_net.h" />
-    <ClInclude Include="audio\fmod_event\inc\fmod_event_net.hpp" />
     <ClInclude Include="audio\ge_audio.h" />
     <ClInclude Include="audio\ge_fmod.h" />
     <ClInclude Include="object\animation\geo_armature.h" />
@@ -252,6 +241,17 @@
     <ClInclude Include="script\tolua\tolua++.h" />
     <ClInclude Include="script\tolua\tolua_event.h" />
     <ClInclude Include="script\tolua\tolua_fix.h" />
+    <ClInclude Include="support\fmod\fmod\inc\fmod.h" />
+    <ClInclude Include="support\fmod\fmod\inc\fmod.hpp" />
+    <ClInclude Include="support\fmod\fmod\inc\fmod_codec.h" />
+    <ClInclude Include="support\fmod\fmod\inc\fmod_dsp.h" />
+    <ClInclude Include="support\fmod\fmod\inc\fmod_errors.h" />
+    <ClInclude Include="support\fmod\fmod\inc\fmod_memoryinfo.h" />
+    <ClInclude Include="support\fmod\fmod\inc\fmod_output.h" />
+    <ClInclude Include="support\fmod\fmod_event\inc\fmod_event.h" />
+    <ClInclude Include="support\fmod\fmod_event\inc\fmod_event.hpp" />
+    <ClInclude Include="support\fmod\fmod_event\inc\fmod_event_net.h" />
+    <ClInclude Include="support\fmod\fmod_event\inc\fmod_event_net.hpp" />
     <ClInclude Include="support\freetype\include\config\ftconfig.h" />
     <ClInclude Include="support\freetype\include\config\ftheader.h" />
     <ClInclude Include="support\freetype\include\config\ftmodule.h" />

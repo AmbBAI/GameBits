@@ -1,6 +1,6 @@
 /*
 ** Lua binding: luabind
-** Generated automatically by tolua++-1.0.92 on 05/17/14 18:07:51.
+** Generated automatically by tolua++-1.0.92 on 05/24/14 12:58:14.
 */
 
 #ifndef __cplusplus
@@ -14,8 +14,10 @@
 TOLUA_API int  tolua_luabind_open (lua_State* tolua_S);
 
 #include "ge_lua_bind.h"
-#include "../game_engine.h"
+#include "game_engine.h"
 #include "lua_object/ge_lua_scene.h"
+#include "render/font/ge_font_ft.h"
+#include "render/font/ge_font_bm.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus

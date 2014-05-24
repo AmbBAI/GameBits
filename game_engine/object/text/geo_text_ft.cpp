@@ -2,7 +2,7 @@
 #include "common/ge_app.h"
 #include "common/ge_engine.h"
 #include "render/ge_render.h"
-#include "render/draw/ge_atlas_draw.h"
+#include "render/font/ge_font_ft.h"
 #include "render/texture/ge_texture.h"
 #include "utility/ge_unicode.h"
 

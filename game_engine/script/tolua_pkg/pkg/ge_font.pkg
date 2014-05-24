@@ -1,3 +1,6 @@
+$#include "render/font/ge_font_ft.h"
+$#include "render/font/ge_font_bm.h"
+
 enum GEFontType
 {
 	FontType_Default = 0,

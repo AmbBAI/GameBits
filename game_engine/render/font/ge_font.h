@@ -9,6 +9,14 @@
 namespace ge
 {
 
+struct GE_FTRenderChar
+{
+	int			index;
+	float		xys[4];
+	short		page;
+	float		uvs[4];
+};
+
 class GE_API GEFont
 {
 public:

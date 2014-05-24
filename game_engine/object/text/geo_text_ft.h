@@ -2,7 +2,6 @@
 #define _GAME_ENGINE_OBJECT_TEXT_FT_H_
 
 #include "geo_text.h"
-#include "render/font/ge_font_ft.h"
 #include "render/draw/ge_atlas_draw.h"
 
 namespace ge

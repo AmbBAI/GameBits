@@ -3,7 +3,7 @@
 
 #include "common/ge_include.h"
 #include "render/texture/ge_texture_manager.h"
-#include "ge_font.h"
+#include "render/font/ge_font.h"
 
 #include "ft2build.h"
 #include FT_FREETYPE_H
@@ -63,15 +63,6 @@ struct GE_FTBuffChar
 	int			_bearing_y;
 	int			_advance;
 };
-
-struct GE_FTRenderChar
-{
-	int			index;
-	float		xys[4];
-	short		page;
-	float		uvs[4];
-};
-
 
 class GE_API GEFontFT : public GEFont
 {

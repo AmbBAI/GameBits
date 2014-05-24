@@ -65,7 +65,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)\include;..\lib_armature;..\lib_json;..\lib_spine\include;..\lib_freetype\include;..\game_engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)\include;..\lib_armature;..\lib_json;..\lib_spine\include;..\game_engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>d3dx9.lib;d3d9.lib;dinput8.lib;dxguid.lib;GdiPlus.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -81,7 +81,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)\include;..\lib_armature;..\lib_json;..\lib_spine\include;..\lib_freetype\include;..\game_engine;..\lib_lua;..\lib_lua\lua;..\lib_lua\tolua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)\include;..\lib_armature;..\lib_json;..\lib_spine\include;..\game_engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>

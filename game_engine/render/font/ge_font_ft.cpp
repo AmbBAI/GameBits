@@ -1,5 +1,11 @@
 #include "ge_font_ft.h"
 
+#ifdef _DEBUG
+#pragma comment(lib, "support/freetype/lib/freetype_d.lib" )
+#else
+#pragma comment(lib, "support/freetype/lib/freetype.lib" )
+#endif
+
 namespace ge
 {
 

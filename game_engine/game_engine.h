@@ -13,7 +13,6 @@
 #include "render/ger_material.h"
 #include "render/ger_light.h"
 #include "render/font/ge_font.h"
-#include "render/font/ge_font_bm.h"
 #include "render/draw/ge_drawbuff.h"
 #include "render/draw/ge_draw.h"
 #include "render/draw/ge_atlas_draw.h"

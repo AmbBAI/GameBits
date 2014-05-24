@@ -52,6 +52,15 @@
     <Filter Include="audio\fmod_event">
       <UniqueIdentifier>{03a95ce0-51f7-44b4-ad9f-b2b00c217a5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="support">
+      <UniqueIdentifier>{947d9100-a2c3-4c22-8636-3e0df8dc1280}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="support\fmod">
+      <UniqueIdentifier>{7882452c-4c77-442e-abc2-898be65b7ec5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="support\freetype">
+      <UniqueIdentifier>{ee9a0c42-cd0f-40d6-86ea-2d98b96c0027}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="object\ge_object.cpp">
@@ -524,6 +533,27 @@
     </ClInclude>
     <ClInclude Include="audio\ge_fmod.h">
       <Filter>audio</Filter>
+    </ClInclude>
+    <ClInclude Include="support\freetype\include\freetype.h">
+      <Filter>support\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="support\freetype\include\ft2build.h">
+      <Filter>support\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="support\freetype\include\config\ftmodule.h">
+      <Filter>support\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="support\freetype\include\config\ftoption.h">
+      <Filter>support\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="support\freetype\include\config\ftstdlib.h">
+      <Filter>support\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="support\freetype\include\config\ftconfig.h">
+      <Filter>support\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="support\freetype\include\config\ftheader.h">
+      <Filter>support\freetype</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

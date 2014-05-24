@@ -5,8 +5,10 @@
 #include "object/ge_object.h"
 #include "object/ge_object_def.h"
 
-#include "CCInclude.h"
-
+namespace CC
+{
+	class CCArmature;
+}
 
 namespace ge
 {

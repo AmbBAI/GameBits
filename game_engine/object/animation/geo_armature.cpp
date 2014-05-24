@@ -2,6 +2,9 @@
 #include "render/draw/ge_atlas_draw.h"
 #include "render/texture/ge_texture_manager.h"
 
+#include "CCInclude.h"
+
+
 namespace CC
 {
 

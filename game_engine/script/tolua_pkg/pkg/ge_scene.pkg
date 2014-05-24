@@ -1,4 +1,4 @@
-$#include "lua_object/ge_lua_scene.h"
+$#include "script/ge_lua_scene.h"
 
 class GEScene
 {

@@ -285,6 +285,9 @@
     <ClCompile Include="script\ge_lua_scene.cpp">
       <Filter>script</Filter>
     </ClCompile>
+    <ClCompile Include="utility\ge_file.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\ge_object.h">
@@ -545,6 +548,9 @@
     </ClInclude>
     <ClInclude Include="script\ge_lua_scene.h">
       <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\ge_file.h">
+      <Filter>utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

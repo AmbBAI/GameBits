@@ -7,10 +7,7 @@ namespace ge
 {
 
 GERender::GERender()
-: position_(0.0f, 0.0f, -256.f)
-, target_(0.0f, 0.0f, 0.0f)
-, up_(0.0f, 1.0f, 0.0f)
-, drawcall_cnt_(0)
+: drawcall_cnt_(0)
 , drawvertex_cnt_(0)
 {
 
@@ -29,8 +26,6 @@ GERender* GERender::get_instance()
 
 bool GERender::init()
 {
-	do_view_trans(position_, target_, up_);
-	do_projection_trans(0.5f);
 	init_state();
 	return true;
 }
@@ -78,38 +73,6 @@ void GERender::render(time_t delta)
 	}
 
 	return;
-}
-
-
-bool GERender::do_view_trans( D3DXVECTOR3& position, D3DXVECTOR3& target, D3DXVECTOR3& up )
-{
-	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_device();
-	if (p_d3d_device == NULL) return false;
-
-	D3DXMatrixLookAtLH(&view_matrix_, &position, &target, &up);
-
-	HRESULT h_res = p_d3d_device->SetTransform(D3DTS_VIEW, &view_matrix_);
-	return SUCCEEDED(h_res);
-}
-
-bool GERender::do_projection_trans( float fovy )
-{
-	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_device();
-	if (p_d3d_device == NULL) return false;
-	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
-
-#ifdef GE_3D_VIEW
-	D3DXMatrixPerspectiveFovLH(
-		&proj_matrix_,
-		D3DX_PI * fovy,
-		(float) wnd_rect.width() / wnd_rect.height(),
-		0.f, 1000.f);
-#else
-	D3DXMatrixOrthoLH(&proj_matrix_, wnd_rect.width(), wnd_rect.height(), 0.f, 1000.f);
-#endif
-
-	HRESULT h_res = p_d3d_device->SetTransform(D3DTS_PROJECTION, &proj_matrix_);
-	return SUCCEEDED(h_res);
 }
 
 void GERender::destory()

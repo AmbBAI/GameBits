@@ -269,7 +269,6 @@ void GEEngine::_on_reset_device()
 
 	if (p_ge_render_)
 	{
-		p_ge_render_->do_projection_trans(0.5f);
 		p_ge_render_->init_state();
 	}
 }

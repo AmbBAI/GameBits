@@ -288,6 +288,9 @@
     <ClCompile Include="utility\ge_file.cpp">
       <Filter>utility</Filter>
     </ClCompile>
+    <ClCompile Include="render\ge_camera.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\ge_object.h">
@@ -551,6 +554,9 @@
     </ClInclude>
     <ClInclude Include="utility\ge_file.h">
       <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="render\ge_camera.h">
+      <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

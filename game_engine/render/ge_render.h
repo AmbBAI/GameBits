@@ -29,12 +29,6 @@ public:
 
 	void _push_render(GEDraw* p_draw);
 
-	virtual bool do_view_trans(D3DXVECTOR3& position, D3DXVECTOR3& target, D3DXVECTOR3& up);
-	virtual bool do_projection_trans(float fovy);
-	
-	D3DXMATRIX&	get_view_matrix() {return view_matrix_;}
-	D3DXMATRIX& get_proj_matrix() {return proj_matrix_;}
-
 	virtual bool set_render_state(D3DRENDERSTATETYPE type, DWORD value);
 	virtual DWORD get_render_state(D3DRENDERSTATETYPE type);
 
@@ -46,13 +40,6 @@ public:
 
 protected:
 	RENDER_TASK_QUE		render_task_que_;
-
-	D3DXMATRIX			view_matrix_;
-	D3DXMATRIX			proj_matrix_;
-
-	D3DXVECTOR3			position_;
-	D3DXVECTOR3			target_;
-	D3DXVECTOR3			up_;
 
 	int					drawcall_cnt_;
 	int					drawvertex_cnt_;

@@ -2,6 +2,7 @@
 #include "common/ge_app.h"
 #include "common/ge_engine.h"
 #include "draw/ge_draw.h"
+#include "render/ge_camera.h"
 
 namespace ge
 {
@@ -27,6 +28,14 @@ GERender* GERender::get_instance()
 bool GERender::init()
 {
 	init_state();
+
+	if (main_camera_ == NULL)
+		main_camera_ = GECamera::create();
+	if (main_camera_ == NULL) return false;
+
+	current_camera_ = main_camera_;
+	main_camera_->init();
+
 	return true;
 }
 
@@ -60,6 +69,9 @@ bool GERender::init_state()
 
 void GERender::render(time_t delta)
 {
+	if (current_camera_)
+		current_camera_->update();
+
 	drawcall_cnt_ = 0;
 	drawvertex_cnt_ = 0;
 	while (!render_task_que_.empty())
@@ -77,6 +89,11 @@ void GERender::render(time_t delta)
 
 void GERender::destory()
 {
+	if (main_camera_)
+	{
+		main_camera_->release();
+		main_camera_ = NULL;
+	}
 }
 
 bool GERender::set_render_state( D3DRENDERSTATETYPE type, DWORD value )
@@ -117,15 +134,15 @@ DWORD GERender::get_sampler_state( D3DSAMPLERSTATETYPE type )
 	return value;
 }
 
-void GERender::_push_render( GEDraw* p_draw )
-{
-	render_task_que_.push(p_draw);
-}
-
 void GERender::push_render( const GEDraw* p_draw )
 {
 	GERender* ge_render = get_instance();
-	ge_render->_push_render((GEDraw*)p_draw);
+	ge_render->render_task_que_.push((GEDraw*)p_draw);
+}
+
+GECamera* GERender::get_current_camera()
+{
+	return current_camera_;
 }
 
 }

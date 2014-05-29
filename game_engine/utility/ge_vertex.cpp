@@ -287,6 +287,13 @@ bool GE_VERTEX::_append_data( void* mem_buff, int& mem_offset, void* p_data, int
 	return true;
 }
 
+void GE_VERTEX::get_position( float& x, float& y, float& z )
+{
+	x = position_.x;
+	y = position_.y;
+	z = position_.z;
+}
+
 }
 
 

@@ -1,6 +1,7 @@
 #include "ge_primitive_draw.h"
 #include "render/ge_render.h"
 #include "render/draw/ge_drawbuff.h"
+#include "render/ge_camera.h"
 
 namespace ge
 {
@@ -35,7 +36,7 @@ void GEPrimitiveDrawTask::render()
 
 
 
-const unsigned GEPrimitiveDraw::DEFAULT_FVF_FORMAT = (D3DFVF_XYZRHW | D3DFVF_DIFFUSE);
+const unsigned GEPrimitiveDraw::DEFAULT_FVF_FORMAT = (D3DFVF_XYZ | D3DFVF_DIFFUSE);
 const unsigned GEPrimitiveDraw::DEFAULT_VERTEX_BLOCK_SIZE = 512;
 
 GEPrimitiveDraw::GEPrimitiveDraw()
@@ -95,6 +96,13 @@ void GEPrimitiveDraw::_release_task( GEPrimitiveDrawTask* task )
 
 bool GEPrimitiveDraw::_push_vertex( GE_VERTEX& vertex )
 {
+	float x, y, z;
+	vertex.get_position(x, y, z);
+	GE_FPOINT point(x, y);
+	GECamera* camera = GERender::get_instance()->get_current_camera();
+	if (camera) camera->convert_to_world_xy(point);
+	vertex.set_position(point.x, point.y, z);
+
 	vertex_list_.push_back(vertex);
 	return true;
 }

@@ -59,6 +59,7 @@ public:
 	GE_VERTEX_DECL*	get_decl();
 
 	void			set_position(float x, float y, float z);
+	void			get_position(float& x, float& y, float& z);
 	void			set_normal(float x, float y, float z);
 	void			set_texcoords(float u, float v);
 	void			set_blend(U32 blend);

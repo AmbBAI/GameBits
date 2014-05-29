@@ -4,6 +4,7 @@
 #include "render/texture/ge_texture_manager.h"
 #include "render/ge_render.h"
 #include "render/ger_effect.h"
+#include "render/ge_camera.h"
 #include "utility/ge_unicode.h"
 
 namespace ge
@@ -11,7 +12,7 @@ namespace ge
 DLL_MANAGE_CLASS_IMPLEMENT(GEOTextBM);
 
 //const unsigned GEOTextBM::fvf = (D3DFVF_XYZB1 | D3DFVF_LASTBETA_UBYTE4 | D3DFVF_DIFFUSE | D3DFVF_TEX1);
-const unsigned GEOTextBM::fvf = (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+const unsigned GEOTextBM::fvf = (D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 
 GEOTextBM::GEOTextBM()
 : render_object_(NULL)
@@ -165,15 +166,21 @@ void GEOTextBM::_render_char_to_quad( GE_QUAD& out_quad, const bmfont::SCharRend
 
 	out_quad.texid = render_char.page;
 	out_quad.color = 0xffffffff;
-	out_quad.rhw = 1.f;
+	//out_quad.rhw = 1.f;
 
 	for (int i=0; i<4; ++i)
 	{
 		int xi = (((i >> 1) & 1) ^ (i & 1)) << 1; // 00 10 10 00
 		int yi = (((i >> 1) & 1) << 1) | 1; // 01 01 11 11
 
-		out_quad.xys[i<<1] = render_char.xys[xi] + render_rect_.left;
-		out_quad.xys[i<<1|1] = render_char.xys[yi] + render_rect_.top;
+		GE_FPOINT point(
+			render_char.xys[xi] + render_rect_.left,
+			render_char.xys[yi] + render_rect_.top);
+		GECamera* camera = GERender::get_instance()->get_current_camera();
+		if(camera) camera->convert_to_world_xy(point);
+
+		out_quad.xys[i<<1] = point.x;
+		out_quad.xys[i<<1|1] = point.y;
 
 		out_quad.uvs[i<<1] = render_char.uvs[xi];
 		out_quad.uvs[i<<1|1] = render_char.uvs[yi];
@@ -202,6 +209,7 @@ void GEOTextBM::update( time_t delta )
 
 bool GEOTextBM::_is_char_visible( GE_QUAD& quad )
 {
+	return true;
 	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
 
 	bool x_in = false;

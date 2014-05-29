@@ -29,6 +29,7 @@ bool GECamera::init()
 {
 	do_view_trans();
 	do_projection_trans();
+	proj_view_matrix_ = proj_matrix_ * view_matrix_;
 	is_camera_moved_ = false;
 	return true;
 }
@@ -84,8 +85,8 @@ void GECamera::convert_to_screen_xy( GE_FPOINT& point )
 
 	float factor = 1.0 / coord.w;
 	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
-	point.x = wnd_rect.width() * out_coord.x * factor;
-	point.y = wnd_rect.height() * out_coord.y * factor;
+	point.x = wnd_rect.width() * (out_coord.x * 0.5f + 0.5f) * factor;
+	point.y = wnd_rect.height() * (-out_coord.y * 0.5f + 0.5f) * factor;
 }
 
 void GECamera::convert_to_world_xy( GE_FPOINT& point )
@@ -93,10 +94,10 @@ void GECamera::convert_to_world_xy( GE_FPOINT& point )
 	D3DXMATRIX proj_view_inv;
 	D3DXMatrixInverse(&proj_view_inv, NULL, &proj_view_matrix_);
 
-	float z_clip = proj_view_matrix_.m[4][3] / proj_view_matrix_.m[4][4];
+	float z_clip = proj_view_matrix_.m[3][2] / proj_view_matrix_.m[3][3];
 	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
 
-	D3DXVECTOR4 coord(point.x / wnd_rect.width(), point.y / wnd_rect.height(), z_clip, 1);
+	D3DXVECTOR4 coord(2.0f * point.x / wnd_rect.width() - 1.f, 1.f - 2.0f * point.y / wnd_rect.height(), z_clip, 1);
 	D3DXVECTOR4 out_coord;
 	D3DXVec4Transform(&out_coord, &coord, &proj_view_inv);
 

@@ -8,7 +8,7 @@ namespace ge
 
 class GE_API Time
 {
-	friend GEApp;
+	friend Application;
 
 protected:
 	static void init();

@@ -20,7 +20,7 @@ GEGame* GEGame::get_instance()
 	return &_global_ge_game;
 }
 
-void GEGame::process( time_t delta )
+void GEGame::process()
 {
 	if(!is_valid_scene(cur_scene_id_))
 	{
@@ -28,7 +28,7 @@ void GEGame::process( time_t delta )
 		return;
 	}
 
-	scene_vec_[cur_scene_id_]->update(delta);
+	scene_vec_[cur_scene_id_]->update();
 }
 
 int GEGame::add_scene( GEScene* ge_scene )

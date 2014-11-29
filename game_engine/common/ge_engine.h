@@ -30,7 +30,7 @@ public:
 	bool init_engine();
 	void close_engine();
 
-	void process(time_t delta);
+	void process();
 
 	void register_device_object(GED3DDeviceObject*);
 	void unregister_device_object(GED3DDeviceObject*);

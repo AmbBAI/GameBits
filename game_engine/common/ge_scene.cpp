@@ -61,7 +61,7 @@ bool GEScene::hide()
 	return true;
 }
 
-void GEScene::update( time_t delta )
+void GEScene::update()
 {
 	FOR_EACH (GE_OBJECT_MAP, object_map_, obj_it)
 	{

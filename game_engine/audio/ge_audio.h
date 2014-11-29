@@ -9,7 +9,7 @@
 namespace ge
 {
 
-class GE_API GEAudio
+class GE_API Audio
 {
 public:
 	static bool init();

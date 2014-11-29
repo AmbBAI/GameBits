@@ -157,7 +157,7 @@ void GEOTextFT::update( time_t delta )
 
 bool GEOTextFT::_is_char_visible( GE_QUAD& quad )
 {
-	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
+	GE_IRECT& wnd_rect = Application::get_instance()->get_game_rect();
 	bool x_in = false;
 	bool y_in = false;
 

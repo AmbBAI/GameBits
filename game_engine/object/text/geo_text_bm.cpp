@@ -210,7 +210,7 @@ void GEOTextBM::update( time_t delta )
 bool GEOTextBM::_is_char_visible( GE_QUAD& quad )
 {
 	return true;
-	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
+	GE_IRECT& wnd_rect = Application::get_instance()->get_game_rect();
 
 	bool x_in = false;
 	bool y_in = false;

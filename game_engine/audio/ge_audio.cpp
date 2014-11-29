@@ -3,20 +3,20 @@
 namespace ge
 {
 
-bool GEAudio::init()
+bool Audio::init()
 {
 	GEFMOD* ge_fmod = GEFMOD::get_instance();
 	ge_fmod->init();
 	return true;
 }
 
-void GEAudio::destory()
+void Audio::destory()
 {
 	GEFMOD* ge_fmod = GEFMOD::get_instance();
 	ge_fmod->destory();
 }
 
-void GEAudio::update()
+void Audio::update()
 {
 	GEFMOD* ge_fmod = GEFMOD::get_instance();
 	ge_fmod->update();

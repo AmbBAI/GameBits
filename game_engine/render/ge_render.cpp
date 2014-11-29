@@ -67,7 +67,7 @@ bool GERender::init_state()
 	return true;
 }
 
-void GERender::render(time_t delta)
+void GERender::render()
 {
 	if (current_camera_)
 		current_camera_->update();

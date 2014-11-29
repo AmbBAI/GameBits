@@ -11,17 +11,17 @@ namespace ge
 
 class GEGame;
 class GEEngine;
-class GE_API GEApp
+class GE_API Application
 {
 	friend GEEngine;
-	friend GEInput;
+	friend Input;
 
 protected:
-	GEApp();
-	virtual ~GEApp();
+	Application();
+	virtual ~Application();
 
 public:
-	static GEApp* get_instance();
+	static Application* get_instance();
 
 	bool create_app(HINSTANCE h_instance, const char* wnd_title, int wnd_width, int wnd_height);
 	void run() { MainLoop(); }
@@ -39,7 +39,7 @@ public:
 	bool		on_resize();
 
 protected:
-	void		_update_time();
+	void		_update_fps();
 	void		_process();
 
 	HINSTANCE	get_app_inst()		{ return h_app_inst_; }	
@@ -62,9 +62,6 @@ private:
 	float		fps_;
 	float		fps_elapsed_;
 	int			frame_cnt_;
-	time_t		cur_time_;
-	time_t		last_time_;
-	time_t		delta_;
 
 	GEGame*		p_ge_game_;
 	GEEngine*	p_ge_engine_;

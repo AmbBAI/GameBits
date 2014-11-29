@@ -30,7 +30,7 @@ LPDIRECT3DDEVICE9 GEEngine::get_device()
 
 bool GEEngine::init_engine()
 {
-	GEApp* p_ge_app_ = GEApp::get_instance();
+	Application* p_ge_app_ = Application::get_instance();
 	if (p_ge_app_ == NULL) return false;
 	if (!p_ge_app_->is_app_created()) return false;
 
@@ -167,7 +167,7 @@ bool GEEngine::_dx_reset()
 	return false;
 }
 
-void GEEngine::process( time_t delta )
+void GEEngine::process()
 {
 	if (p_d3d_device_ == NULL) return;
 
@@ -176,7 +176,7 @@ void GEEngine::process( time_t delta )
 	if(!_dx_clear()) return;
 
 	if (p_ge_render_ != NULL)
-		p_ge_render_->render(delta);
+		p_ge_render_->render();
 
 	if(!_dx_end_scene()) return;
 	if(!_dx_present()) return;

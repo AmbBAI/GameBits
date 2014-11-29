@@ -54,7 +54,7 @@ bool GECamera::do_projection_trans()
 {
 	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_device();
 	if (p_d3d_device == NULL) return false;
-	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
+	GE_IRECT& wnd_rect = Application::get_instance()->get_game_rect();
 
 	switch (mode_)
 	{
@@ -84,7 +84,7 @@ void GECamera::convert_to_screen_xy( GE_FPOINT& point )
 	D3DXVec4Transform(&out_coord, &coord, &proj_view_matrix_);
 
 	float factor = 1.0 / coord.w;
-	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
+	GE_IRECT& wnd_rect = Application::get_instance()->get_game_rect();
 	point.x = wnd_rect.width() * (out_coord.x * 0.5f + 0.5f) * factor;
 	point.y = wnd_rect.height() * (-out_coord.y * 0.5f + 0.5f) * factor;
 }
@@ -95,7 +95,7 @@ void GECamera::convert_to_world_xy( GE_FPOINT& point )
 	D3DXMatrixInverse(&proj_view_inv, NULL, &proj_view_matrix_);
 
 	float z_clip = proj_view_matrix_.m[3][2] / proj_view_matrix_.m[3][3];
-	GE_IRECT& wnd_rect = GEApp::get_instance()->get_game_rect();
+	GE_IRECT& wnd_rect = Application::get_instance()->get_game_rect();
 
 	D3DXVECTOR4 coord(2.0f * point.x / wnd_rect.width() - 1.f, 1.f - 2.0f * point.y / wnd_rect.height(), z_clip, 1);
 	D3DXVECTOR4 out_coord;

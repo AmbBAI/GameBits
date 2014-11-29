@@ -8,11 +8,11 @@ namespace ge
 
 #define DEFINE_INPUT_DISL ( DISCL_NONEXCLUSIVE | DISCL_FOREGROUND )
 
-class GEApp;
+class Application;
 
-class GE_API GEInput
+class GE_API Input
 {
-	friend GEApp;
+	friend Application;
 
 public:
 	enum GEKeyCode
@@ -164,11 +164,11 @@ public:
 	};
 
 protected:
-	GEInput();
-	virtual ~GEInput();
+	Input();
+	virtual ~Input();
 
 public:
-	static GEInput* get_instance();
+	static Input* get_instance();
 
 	static bool init();
 	static void destory();

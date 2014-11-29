@@ -4,7 +4,7 @@
 
 namespace ge
 {
-GEInput::GEInput()
+Input::Input()
 : p_input_(NULL)
 , p_keyboard_device_(NULL)
 , p_mouse_device_(NULL)
@@ -13,20 +13,20 @@ GEInput::GEInput()
 
 }
 
-GEInput::~GEInput()
+Input::~Input()
 {
 	destory_input();
 }
 
-GEInput* GEInput::get_instance()
+Input* Input::get_instance()
 {
-	static GEInput _global_ge_input_;
+	static Input _global_ge_input_;
 	return &_global_ge_input_;
 }
 
-bool GEInput::init_input()
+bool Input::init_input()
 {
-	GEApp* p_app = GEApp::get_instance();
+	Application* p_app = Application::get_instance();
 	if (p_app == NULL) return false;
 	HINSTANCE h_app_inst = p_app->get_app_inst();
 	if (h_app_inst == NULL) return false;
@@ -54,7 +54,7 @@ bool GEInput::init_input()
 	return SUCCEEDED(h_res);
 }
 
-void GEInput::destory_input()
+void Input::destory_input()
 {
 	if (p_keyboard_device_) p_keyboard_device_->Unacquire();
 	if (p_mouse_device_) p_mouse_device_->Unacquire();
@@ -64,7 +64,7 @@ void GEInput::destory_input()
 	D3D_RELEASE(p_input_);
 }
 
-void GEInput::update_input()
+void Input::update_input()
 {
 	HRESULT h_res = S_OK;
 	unsigned _cs = (current_state_ ^= 1);
@@ -100,7 +100,7 @@ void GEInput::update_input()
 	}
 }
 
-bool ge::GEInput::get_mouse_move( int& delta_x, int& delta_y, int& delta_z )
+bool ge::Input::get_mouse_move( int& delta_x, int& delta_y, int& delta_z )
 {
 	delta_x = mouse_state_[current_state_].lX;
 	delta_y = mouse_state_[current_state_].lY;
@@ -108,12 +108,12 @@ bool ge::GEInput::get_mouse_move( int& delta_x, int& delta_y, int& delta_z )
 	return true;
 }
 
-bool GEInput::get_mouse_pos( int& pos_x, int& pos_y )
+bool Input::get_mouse_pos( int& pos_x, int& pos_y )
 {
 	POINT mouse_pos;
 	GetCursorPos(&mouse_pos);
 	
-	HWND h_wnd = GEApp::get_instance()->get_app_wnd();
+	HWND h_wnd = Application::get_instance()->get_app_wnd();
 	if (h_wnd != NULL) ScreenToClient(h_wnd, &mouse_pos);
 
 	pos_x = mouse_pos.x;
@@ -121,7 +121,7 @@ bool GEInput::get_mouse_pos( int& pos_x, int& pos_y )
 	return true;
 }
 
-bool GEInput::get_key_down(GEKeyCode key)
+bool Input::get_key_down(GEKeyCode key)
 {
 	unsigned _cs = current_state_;
 	bool cur_on = 0 != (keyboard_state_[_cs][key] & 0x80);
@@ -130,7 +130,7 @@ bool GEInput::get_key_down(GEKeyCode key)
 	return (cur_on) && (!old_on);
 }
 
-bool GEInput::get_mouse_down( char button )
+bool Input::get_mouse_down( char button )
 {
 	unsigned _cs = current_state_;
 	bool cur_on = 0 != (mouse_state_[_cs].rgbButtons[(unsigned char)button] & 0x80);
@@ -139,7 +139,7 @@ bool GEInput::get_mouse_down( char button )
 	return (cur_on) && (!old_on);
 }
 
-bool GEInput::get_key_hold( GEKeyCode key )
+bool Input::get_key_hold( GEKeyCode key )
 {
 	unsigned _cs = current_state_;
 	bool cur_on = 0 != (keyboard_state_[_cs][key] & 0x80);
@@ -148,7 +148,7 @@ bool GEInput::get_key_hold( GEKeyCode key )
 	return (cur_on) && (old_on);
 }
 
-bool GEInput::get_mouse_hold( char button )
+bool Input::get_mouse_hold( char button )
 {
 	unsigned _cs = current_state_;
 	bool cur_on = 0 != (mouse_state_[_cs].rgbButtons[(unsigned char)button] & 0x80);
@@ -157,7 +157,7 @@ bool GEInput::get_mouse_hold( char button )
 	return (cur_on) && (old_on);
 }
 
-bool GEInput::get_key_up( GEKeyCode key )
+bool Input::get_key_up( GEKeyCode key )
 {
 	unsigned _cs = current_state_;
 	bool cur_on = 0 != (keyboard_state_[_cs][key] & 0x80);
@@ -166,7 +166,7 @@ bool GEInput::get_key_up( GEKeyCode key )
 	return (!cur_on) && (old_on);
 }
 
-bool GEInput::get_mouse_up( char button )
+bool Input::get_mouse_up( char button )
 {
 	unsigned _cs = current_state_;
 	bool cur_on = 0 != (mouse_state_[_cs].rgbButtons[(unsigned char)button] & 0x80);
@@ -175,17 +175,17 @@ bool GEInput::get_mouse_up( char button )
 	return (!cur_on) && (old_on);
 }
 
-bool GEInput::init()
+bool Input::init()
 {
 	return get_instance()->init_input();
 }
 
-void GEInput::destory()
+void Input::destory()
 {
 	get_instance()->destory_input();
 }
 
-void GEInput::update()
+void Input::update()
 {
 	get_instance()->update_input();
 }

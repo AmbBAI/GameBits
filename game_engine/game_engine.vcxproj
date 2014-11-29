@@ -97,6 +97,7 @@
     <ClCompile Include="audio\ge_audio.cpp" />
     <ClCompile Include="audio\ge_fmod.cpp" />
     <ClCompile Include="component\ge_component.cpp" />
+    <ClCompile Include="component\ge_renderer.cpp" />
     <ClCompile Include="component\ge_transform.cpp" />
     <ClCompile Include="object\animation\geo_armature.cpp" />
     <ClCompile Include="object\animation\geo_spine.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="script\tolua\tolua_to.c" />
     <ClCompile Include="type\ge_quaterion.cpp" />
     <ClCompile Include="utility\ge_file.cpp" />
+    <ClCompile Include="utility\ge_time.cpp" />
     <ClCompile Include="utility\ge_type.cpp" />
     <ClCompile Include="utility\ge_vertex.cpp" />
     <ClCompile Include="utility\ge_unicode.cpp" />
@@ -186,6 +188,7 @@
     <ClInclude Include="audio\ge_audio.h" />
     <ClInclude Include="audio\ge_fmod.h" />
     <ClInclude Include="component\ge_component.h" />
+    <ClInclude Include="component\ge_renderer.h" />
     <ClInclude Include="component\ge_transform.h" />
     <ClInclude Include="object\animation\geo_armature.h" />
     <ClInclude Include="object\animation\geo_spine.h" />
@@ -273,6 +276,7 @@
     <ClInclude Include="type\ge_quaterion.h" />
     <ClInclude Include="type\ge_vector3.h" />
     <ClInclude Include="utility\ge_file.h" />
+    <ClInclude Include="utility\ge_time.h" />
     <ClInclude Include="utility\ge_type.h" />
     <ClInclude Include="utility\ge_vertex.h" />
     <ClInclude Include="game_engine.h" />

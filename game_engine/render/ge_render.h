@@ -25,7 +25,7 @@ public:
 public:
 	bool init();
 	bool init_state();
-	void render(time_t delta);
+	void render();
 	void destory();
 
 	bool set_render_state(D3DRENDERSTATETYPE type, DWORD value);

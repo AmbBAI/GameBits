@@ -19,7 +19,7 @@ public:
 	static GEGame* get_instance();
 
 public:
-	void		process(time_t delta);
+	void		process();
 
 	int			add_scene(GEScene* ge_scene);
 	bool		is_valid_scene(int scene_id);

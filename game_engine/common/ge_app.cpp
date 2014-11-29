@@ -7,26 +7,26 @@
 namespace ge
 {
 
-GEApp::GEApp()
+Application::Application()
 	:is_app_created_(false)
 {
 	p_ge_game_ = GEGame::get_instance();
 	p_ge_engine_ = GEEngine::get_instance();
 }
 
-GEApp::~GEApp()
+Application::~Application()
 {
 }
 
-GEApp* GEApp::get_instance()
+Application* Application::get_instance()
 {
-	static GEApp _global_ge_app;
+	static Application _global_ge_app;
 	return &_global_ge_app;
 }
 
-LRESULT CALLBACK GEApp::WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
+LRESULT CALLBACK Application::WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 {
-	ge::GEApp* _g_p_ge_app = ge::GEApp::get_instance();
+	ge::Application* _g_p_ge_app = ge::Application::get_instance();
 	if(_g_p_ge_app)
 	{
 		BOOL use_def_win_proc = TRUE;
@@ -38,7 +38,7 @@ LRESULT CALLBACK GEApp::WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 	return DefWindowProc( hWnd, uMsg, wParam, lParam );
 }
 
-LRESULT GEApp::MsgProc( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bUseDefWindowsProc )
+LRESULT Application::MsgProc( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bUseDefWindowsProc )
 {
 	switch (uMsg)
 	{
@@ -60,7 +60,7 @@ LRESULT GEApp::MsgProc( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bUseDefWi
 	return 0;
 }
 
-LRESULT GEApp::MainLoop()
+LRESULT Application::MainLoop()
 {
 	MSG  msg;
 	PeekMessage( &msg, NULL, 0U, 0U, PM_NOREMOVE );
@@ -89,14 +89,14 @@ LRESULT GEApp::MainLoop()
 	return 0;
 }
 
-bool GEApp::create_app( HINSTANCE h_app_inst, const char* title, int width, int height )
+bool Application::create_app( HINSTANCE h_app_inst, const char* title, int width, int height )
 {
 	h_app_inst_ = h_app_inst;
 
 	WNDCLASS wnd_class;
 	ZeroMemory(&wnd_class, sizeof(wnd_class));
 	wnd_class.lpszClassName	= "DxApp Window";
-	wnd_class.lpfnWndProc	= (WNDPROC) GEApp::WndProc;
+	wnd_class.lpfnWndProc	= (WNDPROC) Application::WndProc;
 	wnd_class.style			= CS_DBLCLKS | CS_VREDRAW | CS_HREDRAW;
 	wnd_class.hInstance		= h_app_inst;
 	wnd_class.hCursor		= LoadCursor( NULL, IDC_ARROW );
@@ -138,31 +138,31 @@ bool GEApp::create_app( HINSTANCE h_app_inst, const char* title, int width, int 
 	return true;
 }
 
-void GEApp::_process()
+void Application::_process()
 {
-	_update_time();
-	GEInput::update();
-	GEAudio::update();
+	Time::update();
+	_update_fps();
+	Input::update();
+	Audio::update();
 
 	if (p_ge_game_ != NULL)
 	{
-		p_ge_game_->process(delta_);
+		p_ge_game_->process();
 
 		p_ge_engine_ = GEEngine::get_instance();
 		if (p_ge_engine_ != NULL)
 		{
-			p_ge_engine_->process(delta_);
+			p_ge_engine_->process();
 		}
 	}
 	::Sleep(0);
 }
 
-void GEApp::_update_time()
+void Application::_update_fps()
 {
-	Time::update();
-
 	++ frame_cnt_;
-	fps_elapsed_ += Time::get_real_delta_time() / 1000.f;
+	float delta = Time::get_real_delta_time();
+	fps_elapsed_ += delta;
 
 	if (fps_elapsed_ >= 1.0f)
 	{
@@ -172,7 +172,7 @@ void GEApp::_update_time()
 	}
 }
 
-bool GEApp::show_console( bool is_show )
+bool Application::show_console( bool is_show )
 {
 	if (is_console_show_ == is_show) return false;
 
@@ -198,7 +198,7 @@ bool GEApp::show_console( bool is_show )
 	return false;
 }
 
-bool GEApp::on_resize()
+bool Application::on_resize()
 {
 	GetClientRect(h_app_wnd_, &game_rect_);
 
@@ -215,17 +215,17 @@ bool GEApp::on_resize()
 	return true;
 }
 
-bool GEApp::init()
+bool Application::init()
 {
-	GEInput::init();
-	GEAudio::init();
+	Input::init();
+	Audio::init();
 	return true;
 }
 
-void GEApp::destory()
+void Application::destory()
 {
-	GEInput::destory();
-	GEAudio::destory();
+	Input::destory();
+	Audio::destory();
 }
 
 

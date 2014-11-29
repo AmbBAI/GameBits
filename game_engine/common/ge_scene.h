@@ -21,7 +21,7 @@ public:
 	virtual bool show();
 	virtual bool hide();
 
-	virtual void update(time_t delta);
+	virtual void update();
 
 	void add_object(int key, Object* obj);
 	void remove_object(int key);

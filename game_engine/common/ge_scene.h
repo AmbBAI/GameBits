@@ -7,13 +7,13 @@ namespace ge
 {
 
 class Object;
-class GE_API GEScene
+class GE_API Scene
 {
-	DLL_MANAGE_CLASS(GEScene)
+	DLL_MANAGE_CLASS(Scene)
 
 protected:
-	GEScene();
-	virtual ~GEScene();
+	Scene();
+	virtual ~Scene();
 
 public:
 	virtual bool init();
@@ -23,11 +23,11 @@ public:
 
 	virtual void update();
 
-	void add_object(int key, Object* obj);
-	void remove_object(int key);
+	void add_object(Object* obj);
+	void remove_object(std::string name);
 
 protected:
-	typedef std::map<int, Object*> GE_OBJECT_MAP;
+	typedef std::map<std::string, Object*> GE_OBJECT_MAP;
 	GE_OBJECT_MAP object_map_;
 };
 

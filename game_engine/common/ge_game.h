@@ -6,7 +6,7 @@
 namespace ge
 {
 
-class GEScene;
+class Scene;
 
 class GE_API GEGame
 {
@@ -21,15 +21,15 @@ public:
 public:
 	void		process();
 
-	int			add_scene(GEScene* ge_scene);
+	int			add_scene(Scene* ge_scene);
 	bool		is_valid_scene(int scene_id);
-	GEScene*	get_scene(int scene_id);
+	Scene*	get_scene(int scene_id);
 	bool		switch_scene(int scene_id);
 	void		remove_scene(int scene_id);
 	void		remove_all_scenes();
 
 private:
-	typedef std::vector<GEScene*> GE_SCENE_VEC;
+	typedef std::vector<Scene*> GE_SCENE_VEC;
 	GE_SCENE_VEC	scene_vec_;
 	int				cur_scene_id_;
 };

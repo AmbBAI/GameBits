@@ -3,11 +3,11 @@
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	static ge::GEApp* g_p_ge_app = NULL;
+	static ge::Application* g_p_ge_app = NULL;
 	static ge::GEEngine* g_p_ge_engine = NULL;
 	//static ge::GEGame* g_p_ge_game = NULL;
 	static ge::GELuaEngine* g_p_ge_lua_engine = NULL;
-	g_p_ge_app = ge::GEApp::get_instance();
+	g_p_ge_app = ge::Application::get_instance();
 	g_p_ge_engine = ge::GEEngine::get_instance();
 	//g_p_ge_game = ge::GEGame::get_instance();
 	g_p_ge_lua_engine = ge::GELuaEngine::get_instance();

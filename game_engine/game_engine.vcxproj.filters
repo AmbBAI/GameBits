@@ -144,9 +144,6 @@
     <ClCompile Include="object\animation\geo_spine.cpp">
       <Filter>object\animation</Filter>
     </ClCompile>
-    <ClCompile Include="object\animation\geo_armature.cpp">
-      <Filter>object\animation</Filter>
-    </ClCompile>
     <ClCompile Include="script\lua\lapi.c">
       <Filter>script\lua</Filter>
     </ClCompile>
@@ -393,9 +390,6 @@
       <Filter>utility</Filter>
     </ClInclude>
     <ClInclude Include="object\animation\geo_spine.h">
-      <Filter>object\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="object\animation\geo_armature.h">
       <Filter>object\animation</Filter>
     </ClInclude>
     <ClInclude Include="script\lua\lapi.h">

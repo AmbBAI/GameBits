@@ -99,7 +99,6 @@
     <ClCompile Include="component\ge_component.cpp" />
     <ClCompile Include="component\ge_renderer.cpp" />
     <ClCompile Include="component\ge_transform.cpp" />
-    <ClCompile Include="object\animation\geo_armature.cpp" />
     <ClCompile Include="object\animation\geo_spine.cpp" />
     <ClCompile Include="object\ge_object.cpp" />
     <ClCompile Include="object\geo_mesh.cpp">
@@ -190,7 +189,6 @@
     <ClInclude Include="component\ge_component.h" />
     <ClInclude Include="component\ge_renderer.h" />
     <ClInclude Include="component\ge_transform.h" />
-    <ClInclude Include="object\animation\geo_armature.h" />
     <ClInclude Include="object\animation\geo_spine.h" />
     <ClInclude Include="object\ge_object.h" />
     <ClInclude Include="object\ge_object_def.h" />
@@ -283,10 +281,6 @@
     <ClInclude Include="utility\ge_unicode.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\lib_armature\lib_armature.vcxproj">
-      <Project>{2f179149-a840-4d49-9693-2ec668b2876d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\lib_json\lib_json.vcxproj">
       <Project>{4d9ca00b-8447-46c2-b6bf-baf7d13ea5db}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

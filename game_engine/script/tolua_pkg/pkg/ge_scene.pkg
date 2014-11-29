@@ -1,13 +1,13 @@
 $#include "script/ge_lua_scene.h"
 
-class GEScene
+class Scene
 {
-	static GEScene* create();
+	static Scene* create();
 	void retain();
 	void release();
 
-	void add_object(int key, GEObject* obj);
-	void remove_object(int key);
+	void add_object(Object* obj);
+	void remove_object(char* key);
 }
 
 class GELuaScene : public GEScene

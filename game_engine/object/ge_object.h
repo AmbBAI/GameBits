@@ -25,11 +25,14 @@ public:
 
 	void update();
 
+	const std::string& get_name();
+
 	void add_component(Component* component);
 
 public:
 
 protected:
+	std::string name;
 	bool actived;
 
 	std::set<Component*> components_;

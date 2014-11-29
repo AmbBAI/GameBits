@@ -8,7 +8,7 @@ namespace ge
 {
 
 typedef int LUA_FUNCTION;
-class GE_API GELuaScene : public GEScene
+class GE_API GELuaScene : public Scene
 {
 
 	DLL_MANAGE_CLASS(GELuaScene)
@@ -23,7 +23,7 @@ public:
 	virtual bool show();
 	virtual bool hide();
 
-	virtual void update(time_t delta);
+	virtual void update();
 
 	void set_init_func(LUA_FUNCTION init_func)			{init_func_ = init_func;}
 	void set_destory_func(LUA_FUNCTION destory_func)	{destory_func_ = destory_func;}

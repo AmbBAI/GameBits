@@ -1,5 +1,5 @@
 
-class GEInput
+class Input
 {
 	enum GEKeyCode
 	{
@@ -149,7 +149,7 @@ class GEInput
 		KC_MEDIASELECT     =0xED     /* Media Select */
 	};
 
-	static GEInput* get_instance();
+	static Input* get_instance();
 
 	bool get_mouse_move(int& delta_x, int& delta_y, int& delta_z);
 	bool get_mouse_pos(int& pos_x, int& pos_y);

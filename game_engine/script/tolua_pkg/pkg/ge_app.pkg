@@ -1,6 +1,6 @@
-class GEApp
+class Application
 {
-	static GEApp* get_instance();
+	static Application* get_instance();
 
 	void run();
 

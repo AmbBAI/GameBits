@@ -6,25 +6,25 @@
 namespace ge
 {
 
-DLL_MANAGE_CLASS_IMPLEMENT(GEScene)
+DLL_MANAGE_CLASS_IMPLEMENT(Scene)
 
-GEScene::GEScene()
+Scene::Scene()
 : object_map_()
 {
 
 }
 
-GEScene::~GEScene()
+Scene::~Scene()
 {
 	destory();
 }
 
-bool GEScene::init()
+bool Scene::init()
 {
 	return true;
 }
 
-void GEScene::destory()
+void Scene::destory()
 {
 	FOR_EACH (GE_OBJECT_MAP, object_map_, obj_it)
 	{
@@ -35,15 +35,16 @@ void GEScene::destory()
 	object_map_.clear();
 }
 
-void GEScene::add_object( int key, Object* obj )
+void Scene::add_object(Object* obj)
 {
-	object_map_[key] = obj;
+	if (obj == nullptr) return;
+	object_map_[obj->get_name()] = obj;
 	if (obj != NULL) obj->retain();
 }
 
-void GEScene::remove_object( int key )
+void Scene::remove_object(std::string name)
 {
-	GE_OBJECT_MAP::iterator itor_key = object_map_.find(key);
+	GE_OBJECT_MAP::iterator itor_key = object_map_.find(name);
 	if (itor_key != object_map_.end())
 	{
 		GE_RELEASE((Object*)itor_key->second);
@@ -51,17 +52,17 @@ void GEScene::remove_object( int key )
 	}
 }
 
-bool GEScene::show()
+bool Scene::show()
 {
 	return true;
 }
 
-bool GEScene::hide()
+bool Scene::hide()
 {
 	return true;
 }
 
-void GEScene::update()
+void Scene::update()
 {
 	FOR_EACH (GE_OBJECT_MAP, object_map_, obj_it)
 	{

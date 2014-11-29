@@ -31,7 +31,7 @@ void GEGame::process()
 	scene_vec_[cur_scene_id_]->update();
 }
 
-int GEGame::add_scene( GEScene* ge_scene )
+int GEGame::add_scene( Scene* ge_scene )
 {
 	if(NULL == ge_scene) return -1;
 
@@ -97,7 +97,7 @@ void GEGame::remove_all_scenes()
 	}
 }
 
-GEScene* GEGame::get_scene( int scene_id )
+Scene* GEGame::get_scene( int scene_id )
 {
 	if (is_valid_scene(scene_id))
 	{

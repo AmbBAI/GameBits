@@ -1,13 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_dx", "test_dx\test_dx.vcxproj", "{16F7778C-15CB-4AB2-83BD-FCCA9BC3F486}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game_engine", "game_engine\game_engine.vcxproj", "{2B054DCC-2B8E-4791-8F11-F59AB423134F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib_spine", "lib_spine\lib_spine.vcxproj", "{5358983B-0A51-409B-B4E9-59BE747139C8}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib_armature", "lib_armature\lib_armature.vcxproj", "{2F179149-A840-4D49-9693-2EC668B2876D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib_json", "lib_json\lib_json.vcxproj", "{4D9CA00B-8447-46C2-B6BF-BAF7D13EA5DB}"
 EndProject
@@ -57,18 +57,6 @@ Global
 		{5358983B-0A51-409B-B4E9-59BE747139C8}.Release Singlethreaded|Win32.Build.0 = Release|Win32
 		{5358983B-0A51-409B-B4E9-59BE747139C8}.Release|Win32.ActiveCfg = Release|Win32
 		{5358983B-0A51-409B-B4E9-59BE747139C8}.Release|Win32.Build.0 = Release|Win32
-		{2F179149-A840-4D49-9693-2EC668B2876D}.Debug Multithreaded|Win32.ActiveCfg = Debug|Win32
-		{2F179149-A840-4D49-9693-2EC668B2876D}.Debug Multithreaded|Win32.Build.0 = Debug|Win32
-		{2F179149-A840-4D49-9693-2EC668B2876D}.Debug Singlethreaded|Win32.ActiveCfg = Debug|Win32
-		{2F179149-A840-4D49-9693-2EC668B2876D}.Debug Singlethreaded|Win32.Build.0 = Debug|Win32
-		{2F179149-A840-4D49-9693-2EC668B2876D}.Debug|Win32.ActiveCfg = Debug|Win32
-		{2F179149-A840-4D49-9693-2EC668B2876D}.Debug|Win32.Build.0 = Debug|Win32
-		{2F179149-A840-4D49-9693-2EC668B2876D}.Release Multithreaded|Win32.ActiveCfg = Release|Win32
-		{2F179149-A840-4D49-9693-2EC668B2876D}.Release Multithreaded|Win32.Build.0 = Release|Win32
-		{2F179149-A840-4D49-9693-2EC668B2876D}.Release Singlethreaded|Win32.ActiveCfg = Release|Win32
-		{2F179149-A840-4D49-9693-2EC668B2876D}.Release Singlethreaded|Win32.Build.0 = Release|Win32
-		{2F179149-A840-4D49-9693-2EC668B2876D}.Release|Win32.ActiveCfg = Release|Win32
-		{2F179149-A840-4D49-9693-2EC668B2876D}.Release|Win32.Build.0 = Release|Win32
 		{4D9CA00B-8447-46C2-B6BF-BAF7D13EA5DB}.Debug Multithreaded|Win32.ActiveCfg = Debug|Win32
 		{4D9CA00B-8447-46C2-B6BF-BAF7D13EA5DB}.Debug Multithreaded|Win32.Build.0 = Debug|Win32
 		{4D9CA00B-8447-46C2-B6BF-BAF7D13EA5DB}.Debug Singlethreaded|Win32.ActiveCfg = Debug|Win32

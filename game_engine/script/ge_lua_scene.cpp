@@ -7,7 +7,7 @@ namespace ge
 DLL_MANAGE_CLASS_IMPLEMENT(GELuaScene)
 
 GELuaScene::GELuaScene()
-: GEScene()
+: Scene()
 , init_func_(NULL)
 , destory_func_(NULL)
 , show_func_(NULL)
@@ -24,7 +24,7 @@ GELuaScene::~GELuaScene()
 
 bool GELuaScene::init()
 {
-	if (!GEScene::init()) return false;
+	if (!Scene::init()) return false;
 	if (init_func_)
 	{
 		GELuaEngine* p_lua_engine = GELuaEngine::get_instance();
@@ -40,12 +40,12 @@ void GELuaScene::destory()
 		GELuaEngine* p_lua_engine = GELuaEngine::get_instance();
 		p_lua_engine->run_function(destory_func_, 0);
 	}
-	GEScene::destory();
+	Scene::destory();
 }
 
 bool GELuaScene::show()
 {
-	if (!GEScene::show()) return false;
+	if (!Scene::show()) return false;
 	if (show_func_)
 	{
 		GELuaEngine* p_lua_engine = GELuaEngine::get_instance();
@@ -61,20 +61,18 @@ bool GELuaScene::hide()
 		GELuaEngine* p_lua_engine = GELuaEngine::get_instance();
 		if (!p_lua_engine->run_function(hide_func_, 0)) return false;
 	}
-	return GEScene::hide();
+	return Scene::hide();
 }
 
-void GELuaScene::update( time_t delta )
+void GELuaScene::update()
 {
 	if (update_func_)
 	{
 		GELuaEngine* p_lua_engine = GELuaEngine::get_instance();
-		float fdelta = delta / 1000.f;
-		p_lua_engine->push_float(fdelta);
-		p_lua_engine->run_function(update_func_, 1);
+		p_lua_engine->run_function(update_func_, 0);
 	}
 
-	GEScene::update(delta);
+	Scene::update();
 }
 
 }

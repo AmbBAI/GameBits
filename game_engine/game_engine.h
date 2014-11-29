@@ -24,7 +24,6 @@
 #include "object/ge_object.h"
 #include "object/geo_mesh.h"
 #include "object/animation/geo_spine.h"
-#include "object/animation/geo_armature.h"
 
 #include "object/text/geo_text_dx.h"
 #include "object/text/geo_text_gdi.h"

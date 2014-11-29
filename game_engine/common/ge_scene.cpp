@@ -67,7 +67,7 @@ void GEScene::update( time_t delta )
 	{
 		Object* p_obj = (Object*)(obj_it->second);
 		if (NULL == p_obj) continue;
-		p_obj->update(delta);
+		p_obj->update();
 	}
 }
 

@@ -10,6 +10,7 @@ namespace ge
 {
 
 class Component;
+class Transform;
 class GE_API Object
 {
 	DLL_MANAGE_CLASS(Object);
@@ -32,6 +33,7 @@ protected:
 	bool actived;
 
 	std::set<Component*> components_;
+	Transform* transform_;
 };
 
 } // namespace ge

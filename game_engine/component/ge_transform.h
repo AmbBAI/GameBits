@@ -3,8 +3,8 @@
 
 #include "common/ge_include.h"
 #include "common/ge_engine.h"
-#include "type/ge_vector3.h"
 #include "component/ge_component.h"
+#include "type/ge_vector3.h"
 
 namespace ge
 {
@@ -26,9 +26,6 @@ public:
 	const Vector3& get_rotation();
 
 	void update_transform();
-
-	//void set_rotation(const Vector3& val);
-
 	void set_dirty();
 
 protected:

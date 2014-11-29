@@ -39,6 +39,7 @@ const Vector3& Transform::get_rotation()
 	if (dirty_)
 	{
 		update_transform();
+		dirty_ = false;
 	}
 	return rotation_;
 }
@@ -59,7 +60,6 @@ void Transform::update_transform()
 
 	//TODO
 
-	dirty_ = false;
 }
 
 

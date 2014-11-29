@@ -19,6 +19,7 @@ bool Object::initialize()
 {
 	components_.clear();
 	Transform* transform = Transform::create();
+	transform_ = transform;
 	add_component((Component*)transform);
 	return true;
 }
@@ -52,6 +53,7 @@ void Object::add_component(Component* component)
 {
 	if (component == nullptr) return;
 	components_.insert(component);
+	component->set_object(this);
 }
 
 //

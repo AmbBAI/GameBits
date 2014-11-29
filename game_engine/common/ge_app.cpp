@@ -2,6 +2,7 @@
 #include "ge_engine.h"
 #include "ge_game.h"
 #include "audio/ge_audio.h"
+#include "utility/ge_time.h"
 
 namespace ge
 {
@@ -131,6 +132,8 @@ bool GEApp::create_app( HINSTANCE h_app_inst, const char* title, int width, int 
 	UpdateWindow(h_app_wnd_);
 	ShowWindow(h_app_wnd_, SW_NORMAL);
 
+	Time::init();
+
 	is_app_created_ = true;
 	return true;
 }
@@ -156,12 +159,10 @@ void GEApp::_process()
 
 void GEApp::_update_time()
 {
-	last_time_ = cur_time_;
-	cur_time_ = clock();
-	delta_ = cur_time_ - last_time_;
+	Time::update();
 
 	++ frame_cnt_;
-	fps_elapsed_ += delta_ / 1000.f;
+	fps_elapsed_ += Time::get_real_delta_time() / 1000.f;
 
 	if (fps_elapsed_ >= 1.0f)
 	{

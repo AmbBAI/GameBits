@@ -25,6 +25,9 @@ public:
 	virtual void on_enable();
 	virtual void on_disable();
 
+	void set_object(Object* object);
+	Object* get_object();
+
 protected:
 	Object* object_;
 	bool enabled_;

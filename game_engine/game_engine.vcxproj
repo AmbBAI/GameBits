@@ -176,6 +176,7 @@
     <ClCompile Include="script\tolua\tolua_map.c" />
     <ClCompile Include="script\tolua\tolua_push.c" />
     <ClCompile Include="script\tolua\tolua_to.c" />
+    <ClCompile Include="type\ge_quaterion.cpp" />
     <ClCompile Include="utility\ge_file.cpp" />
     <ClCompile Include="utility\ge_type.cpp" />
     <ClCompile Include="utility\ge_vertex.cpp" />
@@ -268,6 +269,8 @@
     <ClInclude Include="support\freetype\include\config\ftstdlib.h" />
     <ClInclude Include="support\freetype\include\freetype.h" />
     <ClInclude Include="support\freetype\include\ft2build.h" />
+    <ClInclude Include="type\ge_matrix4x4.h" />
+    <ClInclude Include="type\ge_quaterion.h" />
     <ClInclude Include="type\ge_vector3.h" />
     <ClInclude Include="utility\ge_file.h" />
     <ClInclude Include="utility\ge_type.h" />

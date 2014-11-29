@@ -96,7 +96,8 @@ void GEOSpine::update( time_t delta )
 
 	LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_instance()->get_device();
 	if (p_d3d_device == NULL) return;
-	p_d3d_device->SetTransform(D3DTS_WORLD, &get_world_transform());
+	// TODO
+	//p_d3d_device->SetTransform(D3DTS_WORLD, &get_world_transform());
 
 	_do_render();
 }

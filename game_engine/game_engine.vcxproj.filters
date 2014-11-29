@@ -293,6 +293,7 @@
     </ClCompile>
     <ClCompile Include="component\ge_component.cpp" />
     <ClCompile Include="component\ge_transform.cpp" />
+    <ClCompile Include="type\ge_quaterion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\ge_object.h">
@@ -563,5 +564,7 @@
     <ClInclude Include="type\ge_vector3.h" />
     <ClInclude Include="component\ge_component.h" />
     <ClInclude Include="component\ge_transform.h" />
+    <ClInclude Include="type\ge_matrix4x4.h" />
+    <ClInclude Include="type\ge_quaterion.h" />
   </ItemGroup>
 </Project>

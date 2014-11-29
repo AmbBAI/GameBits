@@ -20,7 +20,7 @@ struct GE_API GE_TEXT_STYLE
 	D3DCOLOR	shadow_color;
 };
 
-class GE_API GEOText : public GEObject
+class GE_API GEOText : public Object
 {
 	DLL_MANAGE_CLASS(GEOText);
 

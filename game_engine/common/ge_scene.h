@@ -6,7 +6,7 @@
 namespace ge
 {
 
-class GEObject;
+class Object;
 class GE_API GEScene
 {
 	DLL_MANAGE_CLASS(GEScene)
@@ -23,11 +23,11 @@ public:
 
 	virtual void update(time_t delta);
 
-	void add_object(int key, GEObject* obj);
+	void add_object(int key, Object* obj);
 	void remove_object(int key);
 
 protected:
-	typedef std::map<int, GEObject*> GE_OBJECT_MAP;
+	typedef std::map<int, Object*> GE_OBJECT_MAP;
 	GE_OBJECT_MAP object_map_;
 };
 

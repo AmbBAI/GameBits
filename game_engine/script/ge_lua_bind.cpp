@@ -938,7 +938,7 @@ static int tolua_luabind_ge_GEScene_add_object00(lua_State* tolua_S)
  {
   ge::GEScene* self = (ge::GEScene*)  tolua_tousertype(tolua_S,1,0);
   int key = ((int)  tolua_tonumber(tolua_S,2,0));
-  ge::GEObject* obj = ((ge::GEObject*)  tolua_tousertype(tolua_S,3,0));
+  ge::Object* obj = ((ge::Object*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'add_object'", NULL);
 #endif
@@ -4690,7 +4690,7 @@ static int tolua_luabind_ge_GEObject_init00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GEObject* self = (ge::GEObject*)  tolua_tousertype(tolua_S,1,0);
+  ge::Object* self = (ge::Object*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'init'", NULL);
 #endif
@@ -4722,7 +4722,7 @@ static int tolua_luabind_ge_GEObject_destory00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GEObject* self = (ge::GEObject*)  tolua_tousertype(tolua_S,1,0);
+  ge::Object* self = (ge::Object*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'destory'", NULL);
 #endif

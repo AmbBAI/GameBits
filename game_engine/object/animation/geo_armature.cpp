@@ -137,7 +137,7 @@ bool GEOArmature::init( const char* data_file )
 	if(CC::CCAnimation* ptr_animation = cc_armature_->getAnimation())
 	{
 		ptr_animation->play(0);
-		return GEObject::init();
+		return Object::init();
 	} else return false;
 }
 

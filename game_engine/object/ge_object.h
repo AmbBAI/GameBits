@@ -9,48 +9,29 @@
 namespace ge
 {
 
-struct GETransform
+class Component;
+class GE_API Object
 {
-	float px, py, pz;	// Î»ÖÃ
-	float rx, ry, rz;	// Ðý×ª
-	float sx, sy, sz;	// Ëõ·Å
-};
-
-class GE_API GEObject
-{
-	DLL_MANAGE_CLASS(GEObject);
+	DLL_MANAGE_CLASS(Object);
 
 protected:
-	GEObject();
-	virtual ~GEObject();
+	Object();
+	virtual ~Object();
 
 public:
-	virtual bool init();
-	virtual void destory();
+	bool initialize();
+	void finalize();
 
-	virtual void update(time_t delta);
+	void update();
 
-	virtual void add_child(GEObject* obj);
-	virtual void set_parent(GEObject* obj);
-	virtual GEObject* get_parent();
+	void add_component(Component* component);
 
 public:
-	virtual D3DXMATRIX& get_world_transform();
-	virtual void set_transform_dirty(bool is_dirty);
-
-	virtual GETransform& get_transform();
-	virtual void set_transform(GETransform& transform);
 
 protected:
-	GEObjectType	type_;
+	bool actived;
 
-	GETransform		transform_;
-	D3DXMATRIX		d3d_world_transform_;
-	bool			is_transform_dirty_;
-
-	GEObject*		parent_;
-	typedef std::set<GEObject*> GE_OBJECT_SET;
-	GE_OBJECT_SET	childs_;
+	std::set<Component*> components_;
 };
 
 } // namespace ge

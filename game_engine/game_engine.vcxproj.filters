@@ -291,6 +291,8 @@
     <ClCompile Include="render\ge_camera.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="component\ge_component.cpp" />
+    <ClCompile Include="component\ge_transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\ge_object.h">
@@ -558,5 +560,8 @@
     <ClInclude Include="render\ge_camera.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="type\ge_vector3.h" />
+    <ClInclude Include="component\ge_component.h" />
+    <ClInclude Include="component\ge_transform.h" />
   </ItemGroup>
 </Project>

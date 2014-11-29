@@ -23,7 +23,7 @@ struct GE_VERTEX_DECL;
 class GEAtlasDraw;
 class GETexture;
 
-class GE_API GEOSpine : public GEObject
+class GE_API GEOSpine : public Object
 {
 	DLL_MANAGE_CLASS(GEOSpine);
 

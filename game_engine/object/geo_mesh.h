@@ -11,7 +11,7 @@ struct GE_VERTEX_DECL;
 class GE_VERTEX;
 class GE_MATERIAL;
 class GEREffect;
-class GE_API GEOMesh : public GEObject
+class GE_API GEOMesh : public Object
 {
 public:
 	GEOMesh();

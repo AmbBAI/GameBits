@@ -1,118 +1,116 @@
 #include "ge_object.h"
+#include "component/ge_transform.h"
 
 namespace ge
 {
 
-DLL_MANAGE_CLASS_IMPLEMENT(GEObject);
+DLL_MANAGE_CLASS_IMPLEMENT(Object);
 
-GEObject::GEObject()
-: parent_(NULL)
-, is_transform_dirty_(true)
+Object::Object()
 {
-	memset(&transform_, 0, sizeof(transform_));
-	transform_.sx = 1.f;
-	transform_.sy = 1.f;
-	transform_.sz = 1.f;
-
 }
 
-GEObject::~GEObject()
+Object::~Object()
 {
-	destory();
+	finalize();
 }
 
-bool GEObject::init()
+bool Object::initialize()
 {
+	components_.clear();
+	Transform* transform = Transform::create();
+	add_component((Component*)transform);
 	return true;
 }
 
-void GEObject::destory()
+void Object::finalize()
 {
-	FOR_EACH (GE_OBJECT_SET, childs_, itor_child)
+	FOR_EACH(std::set<Component*>, components_, itor_component)
 	{
-		GEObject* obj = *itor_child;
-		GE_RELEASE(obj);
+		if (Component* component = *itor_component)
+		{
+			component->dispose();
+			GE_RELEASE(component);
+		}
 	}
-	childs_.clear();
+	components_.clear();
 }
 
-void GEObject::update( time_t delta )
+void Object::update()
 {
-	FOR_EACH (GE_OBJECT_SET, childs_, itor_child)
+	FOR_EACH(std::set<Component*>, components_, itor_component)
 	{
-		if (GEObject* obj = *itor_child)
+		if (Component* component = *itor_component)
 		{
-			obj->update(delta);
+			component->update();
 		}
 	}
 }
 
-D3DXMATRIX& GEObject::get_world_transform()
+
+void Object::add_component(Component* component)
 {
-	if (is_transform_dirty_)
-	{
-		D3DXMATRIX		trans_matrix;
-		D3DXMATRIX		rotatex_matrix;
-		D3DXMATRIX		rotatey_matrix;
-		D3DXMATRIX		rotatez_matrix;
-		D3DXMATRIX		scale_matrix;
-
-		// 位置
-		D3DXMatrixTranslation(&trans_matrix, transform_.px, transform_.py, transform_.pz);
-
-		// 旋转
-		D3DXMatrixRotationX(&rotatex_matrix, transform_.rx);
-		D3DXMatrixRotationY(&rotatey_matrix, transform_.ry);
-		D3DXMatrixRotationZ(&rotatez_matrix, transform_.rz);
-
-		// 缩放
-		D3DXMatrixScaling(&scale_matrix, transform_.sx, transform_.sy, transform_.sz);
-
-		// TODO 顺序问题
-		d3d_world_transform_ = scale_matrix;
-		d3d_world_transform_ = d3d_world_transform_ * rotatex_matrix;
-		d3d_world_transform_ = d3d_world_transform_ * rotatey_matrix;
-		d3d_world_transform_ = d3d_world_transform_ * rotatez_matrix;
-		d3d_world_transform_ = d3d_world_transform_ * trans_matrix;
-
-		is_transform_dirty_ = false;
-	}
-	return d3d_world_transform_;
+	if (component == nullptr) return;
+	components_.insert(component);
 }
 
-void GEObject::set_transform_dirty( bool is_dirty )
-{
-	is_transform_dirty_ = is_dirty;
-}
+//
+//D3DXMATRIX& Object::get_world_transform()
+//{
+//	if (is_transform_dirty_)
+//	{
+//		D3DXMATRIX		trans_matrix;
+//		D3DXMATRIX		rotatex_matrix;
+//		D3DXMATRIX		rotatey_matrix;
+//		D3DXMATRIX		rotatez_matrix;
+//		D3DXMATRIX		scale_matrix;
+//
+//		// 位置
+//		D3DXMatrixTranslation(&trans_matrix, transform_.px, transform_.py, transform_.pz);
+//
+//		// 旋转
+//		D3DXMatrixRotationX(&rotatex_matrix, transform_.rx);
+//		D3DXMatrixRotationY(&rotatey_matrix, transform_.ry);
+//		D3DXMatrixRotationZ(&rotatez_matrix, transform_.rz);
+//
+//		// 缩放
+//		D3DXMatrixScaling(&scale_matrix, transform_.sx, transform_.sy, transform_.sz);
+//
+//		// TODO 顺序问题
+//		d3d_world_transform_ = scale_matrix;
+//		d3d_world_transform_ = d3d_world_transform_ * rotatex_matrix;
+//		d3d_world_transform_ = d3d_world_transform_ * rotatey_matrix;
+//		d3d_world_transform_ = d3d_world_transform_ * rotatez_matrix;
+//		d3d_world_transform_ = d3d_world_transform_ * trans_matrix;
+//
+//		is_transform_dirty_ = false;
+//	}
+//	return d3d_world_transform_;
+//}
 
-GETransform& GEObject::get_transform()
-{
-	return transform_;
-}
-
-void GEObject::set_transform( GETransform& transform )
-{
-	transform_ = transform;
-	is_transform_dirty_ = true;
-}
-
-void GEObject::add_child( GEObject* obj )
-{
-	if (obj == NULL) return;
-	childs_.insert(obj);
-	obj->retain();
-	obj->set_parent(this);
-}
-
-void GEObject::set_parent( GEObject* obj )
-{
-	parent_ = obj;
-}
-
-GEObject* GEObject::get_parent()
-{
-	return parent_;
-}
+//void Object::set_transform( GETransform& transform )
+//{
+//	transform_ = transform;
+//	is_transform_dirty_ = true;
+//}
+//
+//void Object::add_child( Object* obj )
+//{
+//	if (obj == NULL) return;
+//	childs_.insert(obj);
+//	obj->retain();
+//	obj->set_parent(this);
+//}
+//
+//void Object::set_parent( Object* obj )
+//{
+//	parent_ = obj;
+//}
+//
+//Object* Object::get_parent()
+//{
+//	return parent_;
+//}
 
 
 }

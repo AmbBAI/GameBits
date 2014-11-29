@@ -47,7 +47,6 @@
     <None Include="src\json_valueiterator.inl">
       <Filter>src</Filter>
     </None>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json_reader.cpp">

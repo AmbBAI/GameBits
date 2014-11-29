@@ -28,14 +28,14 @@ void GEScene::destory()
 {
 	FOR_EACH (GE_OBJECT_MAP, object_map_, obj_it)
 	{
-		GEObject* p_obj = (GEObject*)(obj_it->second);
+		Object* p_obj = (Object*)(obj_it->second);
 		GE_RELEASE(p_obj);
 	}
 
 	object_map_.clear();
 }
 
-void GEScene::add_object( int key, GEObject* obj )
+void GEScene::add_object( int key, Object* obj )
 {
 	object_map_[key] = obj;
 	if (obj != NULL) obj->retain();
@@ -46,7 +46,7 @@ void GEScene::remove_object( int key )
 	GE_OBJECT_MAP::iterator itor_key = object_map_.find(key);
 	if (itor_key != object_map_.end())
 	{
-		GE_RELEASE((GEObject*)itor_key->second);
+		GE_RELEASE((Object*)itor_key->second);
 		object_map_.erase(itor_key);
 	}
 }
@@ -65,7 +65,7 @@ void GEScene::update( time_t delta )
 {
 	FOR_EACH (GE_OBJECT_MAP, object_map_, obj_it)
 	{
-		GEObject* p_obj = (GEObject*)(obj_it->second);
+		Object* p_obj = (Object*)(obj_it->second);
 		if (NULL == p_obj) continue;
 		p_obj->update(delta);
 	}

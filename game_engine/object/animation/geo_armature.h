@@ -13,7 +13,7 @@ namespace CC
 namespace ge
 {
 
-class GE_API GEOArmature : public GEObject
+class GE_API GEOArmature : public Object
 {
 	DLL_MANAGE_CLASS(GEOArmature);
 

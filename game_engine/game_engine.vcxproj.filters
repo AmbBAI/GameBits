@@ -293,6 +293,9 @@
     <ClCompile Include="type\ge_quaterion.cpp" />
     <ClCompile Include="component\ge_renderer.cpp" />
     <ClCompile Include="utility\ge_time.cpp" />
+    <ClCompile Include="component\ge_material.cpp" />
+    <ClCompile Include="component\ge_mesh.cpp" />
+    <ClCompile Include="render\texture\ge_texture2d.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\ge_object.h">
@@ -564,5 +567,10 @@
     <ClInclude Include="type\ge_quaterion.h" />
     <ClInclude Include="component\ge_renderer.h" />
     <ClInclude Include="utility\ge_time.h" />
+    <ClInclude Include="component\ge_material.h" />
+    <ClInclude Include="type\ge_shader.h" />
+    <ClInclude Include="component\ge_mesh.h" />
+    <ClInclude Include="render\texture\ge_texture2d.h" />
+    <ClInclude Include="type\ge_vector2.h" />
   </ItemGroup>
 </Project>

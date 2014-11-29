@@ -49,23 +49,23 @@ public:
 	static const unsigned DEFAULT_VERTEX_BLOCK_SIZE;
 	static GEPrimitiveDraw* get_instance();
 
-	static bool draw_point(GE_FPOINT& point, unsigned color);
-	static bool draw_point(GE_FPOINT* list, int cnt, unsigned color);
-	static bool draw_line(GE_FPOINT& from, GE_FPOINT& to, unsigned color);
-	static bool draw_line_strip(GE_FPOINT* list, int cnt, unsigned color);
-	static bool draw_rect(GE_FRECT& rect, unsigned color);
-	static bool draw_solid_rect(GE_FRECT& rect, unsigned color);
-	static bool draw_polygon(GE_FPOINT* list, int cnt, unsigned color);
-	static bool draw_solid_polygon(GE_FPOINT* list, int cnt, unsigned color);
-	static bool draw_circle(GE_FPOINT& center, float radius, int segment, unsigned color);
-	static bool draw_solid_circle(GE_FPOINT& center, float radius, int segment, unsigned color);
+	static bool draw_point(Vector2& point, unsigned color);
+	static bool draw_point(Vector2* list, int cnt, unsigned color);
+	static bool draw_line(Vector2& from, Vector2& to, unsigned color);
+	static bool draw_line_strip(Vector2* list, int cnt, unsigned color);
+	static bool draw_rect(Rect& rect, unsigned color);
+	static bool draw_solid_rect(Rect& rect, unsigned color);
+	static bool draw_polygon(Vector2* list, int cnt, unsigned color);
+	static bool draw_solid_polygon(Vector2* list, int cnt, unsigned color);
+	static bool draw_circle(Vector2& center, float radius, int segment, unsigned color);
+	static bool draw_solid_circle(Vector2& center, float radius, int segment, unsigned color);
 
-	static bool draw_point(GE_FPOINT& point, GE_COLOR& color);
-	static bool draw_line(GE_FPOINT& from, GE_FPOINT& to, GE_COLOR& color);
-	static bool draw_rect(GE_FRECT& rect, GE_COLOR& color);
-	static bool draw_solid_rect(GE_FRECT& rect, GE_COLOR& color);
-	static bool draw_circle(GE_FPOINT& center, float radius, int segment, GE_COLOR& color);
-	static bool draw_solid_circle(GE_FPOINT& center, float radius, int segment, GE_COLOR& color);
+	static bool draw_point(Vector2& point, Color& color);
+	static bool draw_line(Vector2& from, Vector2& to, Color& color);
+	static bool draw_rect(Rect& rect, Color& color);
+	static bool draw_solid_rect(Rect& rect, Color& color);
+	static bool draw_circle(Vector2& center, float radius, int segment, Color& color);
+	static bool draw_solid_circle(Vector2& center, float radius, int segment, Color& color);
 	static bool draw_unit(GEPrimitiveDrawUnit* draw_obj);
 
 protected:
@@ -110,14 +110,14 @@ public:
 	};
 
 	void set_type(DrawType type);
-	void set_color(GE_COLOR& color);
-	void add_point(GE_FPOINT& point);
+	void set_color(Color& color);
+	void add_point(Vector2& point);
 	void clear_points();
 
 protected:
 	DrawType				draw_type_;
 	U32						draw_color_;
-	std::vector<GE_FPOINT>	draw_point_list_;
+	std::vector<Vector2>	draw_point_list_;
 };
 
 } // namespace ge

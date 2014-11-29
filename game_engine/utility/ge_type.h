@@ -50,52 +50,15 @@ struct GE_API GE_IRECT : public RECT
 	void expand(int pos_x, int pos_y);
 };
 
-struct GE_API GE_FPOINT
+struct GE_API Size
 {
-	GE_FPOINT():x(0.f), y(0.f) {}
-	GE_FPOINT(float x, float y):x(x), y(y) {}
-
-	float distance(const GE_FPOINT& point) const;
-
-	float x;
-	float y;
-};
-
-struct GE_API GE_FSIZE
-{
-	GE_FSIZE():width(0.f), height(0.f) {}
-	GE_FSIZE(float width, float height):width(width), height(height) {}
+	Size():width(0.f), height(0.f) {}
+	Size(float width, float height):width(width), height(height) {}
 
 	float width;
 	float height;
 };
 
-struct GE_API GE_FRECT
-{
-	float left;
-	float top;
-	float right;
-	float bottom;
-
-	GE_FRECT();
-	GE_FRECT(float left_, float top_, float right_, float bottom_);
-
-	float width() {return right - left;}
-	float height() {return bottom - top;}
-
-	void move(float offset_x, float offset_y);
-	void move_to(float pos_x, float pos_y);
-	void expand(float pos_x, float pos_y);
-};
-
-struct GE_COLOR
-{
-	U32 argb;
-
-	GE_COLOR() : argb(0xffffffff) {}
-	GE_COLOR(U8 a, U8 r, U8 g, U8 b) : argb((((((a<<8) | r) << 8) | g) <<8) | b) {}
-	GE_COLOR(U32 argb) : argb (argb) {}
-};
 
 }
 

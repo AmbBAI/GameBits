@@ -63,7 +63,7 @@ public:
 	void			set_normal(float x, float y, float z);
 	void			set_texcoords(float u, float v);
 	void			set_blend(U32 blend);
-	void			set_color(GE_COLOR& color);
+	void			set_color(Color& color);
 	void			set_color(U32 color);
 	void			set_rhw(float rhw);
 

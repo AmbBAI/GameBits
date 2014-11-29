@@ -173,7 +173,7 @@ void GEOTextBM::_render_char_to_quad( GE_QUAD& out_quad, const bmfont::SCharRend
 		int xi = (((i >> 1) & 1) ^ (i & 1)) << 1; // 00 10 10 00
 		int yi = (((i >> 1) & 1) << 1) | 1; // 01 01 11 11
 
-		GE_FPOINT point(
+		Vector2 point(
 			render_char.xys[xi] + render_rect_.left,
 			render_char.xys[yi] + render_rect_.top);
 		GECamera* camera = GERender::get_instance()->get_current_camera();

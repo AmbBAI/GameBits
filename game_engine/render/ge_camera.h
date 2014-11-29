@@ -38,8 +38,8 @@ public:
 	bool do_view_trans();
 	bool do_projection_trans();
 
-	void convert_to_screen_xy(GE_FPOINT& point);
-	void convert_to_world_xy(GE_FPOINT& point);
+	void convert_to_screen_xy(Vector2& point);
+	void convert_to_world_xy(Vector2& point);
 
 protected:
 	D3DXMATRIX			view_matrix_;

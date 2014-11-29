@@ -97,6 +97,8 @@
     <ClCompile Include="audio\ge_audio.cpp" />
     <ClCompile Include="audio\ge_fmod.cpp" />
     <ClCompile Include="component\ge_component.cpp" />
+    <ClCompile Include="component\ge_material.cpp" />
+    <ClCompile Include="component\ge_mesh.cpp" />
     <ClCompile Include="component\ge_renderer.cpp" />
     <ClCompile Include="component\ge_transform.cpp" />
     <ClCompile Include="object\animation\geo_spine.cpp" />
@@ -134,6 +136,7 @@
     <ClCompile Include="common\ge_scene.cpp" />
     <ClCompile Include="render\texture\ge_surface.cpp" />
     <ClCompile Include="render\texture\ge_texture.cpp" />
+    <ClCompile Include="render\texture\ge_texture2d.cpp" />
     <ClCompile Include="render\texture\ge_texture_group.cpp" />
     <ClCompile Include="render\texture\ge_texture_manager.cpp" />
     <ClCompile Include="script\ge_lua_bind.cpp" />
@@ -187,6 +190,8 @@
     <ClInclude Include="audio\ge_audio.h" />
     <ClInclude Include="audio\ge_fmod.h" />
     <ClInclude Include="component\ge_component.h" />
+    <ClInclude Include="component\ge_material.h" />
+    <ClInclude Include="component\ge_mesh.h" />
     <ClInclude Include="component\ge_renderer.h" />
     <ClInclude Include="component\ge_transform.h" />
     <ClInclude Include="object\animation\geo_spine.h" />
@@ -221,6 +226,7 @@
     <ClInclude Include="common\ge_scene.h" />
     <ClInclude Include="render\texture\ge_surface.h" />
     <ClInclude Include="render\texture\ge_texture.h" />
+    <ClInclude Include="render\texture\ge_texture2d.h" />
     <ClInclude Include="render\texture\ge_texture_group.h" />
     <ClInclude Include="render\texture\ge_texture_manager.h" />
     <ClInclude Include="script\ge_lua_bind.h" />
@@ -272,6 +278,8 @@
     <ClInclude Include="support\freetype\include\ft2build.h" />
     <ClInclude Include="type\ge_matrix4x4.h" />
     <ClInclude Include="type\ge_quaterion.h" />
+    <ClInclude Include="type\ge_shader.h" />
+    <ClInclude Include="type\ge_vector2.h" />
     <ClInclude Include="type\ge_vector3.h" />
     <ClInclude Include="utility\ge_file.h" />
     <ClInclude Include="utility\ge_time.h" />

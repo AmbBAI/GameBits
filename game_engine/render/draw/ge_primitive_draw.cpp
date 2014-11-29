@@ -98,7 +98,7 @@ bool GEPrimitiveDraw::_push_vertex( GE_VERTEX& vertex )
 {
 	float x, y, z;
 	vertex.get_position(x, y, z);
-	GE_FPOINT point(x, y);
+	Vector2 point(x, y);
 	GECamera* camera = GERender::get_instance()->get_current_camera();
 	if (camera) camera->convert_to_world_xy(point);
 	vertex.set_position(point.x, point.y, z);
@@ -136,7 +136,7 @@ void GEPrimitiveDraw::_release_render()
 	draw_buff_ = NULL;
 }
 
-bool GEPrimitiveDraw::draw_point( GE_FPOINT& point, unsigned color )
+bool GEPrimitiveDraw::draw_point( Vector2& point, unsigned color )
 {
 	GEPrimitiveDraw* ge_draw_primitive = get_instance();
 
@@ -155,7 +155,7 @@ bool GEPrimitiveDraw::draw_point( GE_FPOINT& point, unsigned color )
 	return true;
 }
 
-bool GEPrimitiveDraw::draw_point( GE_FPOINT* list, int cnt, unsigned color )
+bool GEPrimitiveDraw::draw_point( Vector2* list, int cnt, unsigned color )
 {
 	if (list == NULL) return false;
 	if (cnt <= 0) return false;
@@ -181,7 +181,7 @@ bool GEPrimitiveDraw::draw_point( GE_FPOINT* list, int cnt, unsigned color )
 	return true;
 }
 
-bool GEPrimitiveDraw::draw_line( GE_FPOINT& from, GE_FPOINT& to, unsigned color )
+bool GEPrimitiveDraw::draw_line( Vector2& from, Vector2& to, unsigned color )
 {
 	GEPrimitiveDraw* ge_draw_primitive = get_instance();
 
@@ -206,7 +206,7 @@ bool GEPrimitiveDraw::draw_line( GE_FPOINT& from, GE_FPOINT& to, unsigned color 
 	return true;
 }
 
-bool GEPrimitiveDraw::draw_line_strip( GE_FPOINT* list, int cnt, unsigned color )
+bool GEPrimitiveDraw::draw_line_strip( Vector2* list, int cnt, unsigned color )
 {
 	if (list == NULL) return false;
 	if (cnt <= 1) return false;
@@ -232,7 +232,7 @@ bool GEPrimitiveDraw::draw_line_strip( GE_FPOINT* list, int cnt, unsigned color 
 	return true;
 }
 
-bool GEPrimitiveDraw::draw_rect( GE_FRECT& rect, unsigned color )
+bool GEPrimitiveDraw::draw_rect( Rect& rect, unsigned color )
 {
 	GEPrimitiveDraw* ge_draw_primitive = get_instance();
 
@@ -265,7 +265,7 @@ bool GEPrimitiveDraw::draw_rect( GE_FRECT& rect, unsigned color )
 	return true;
 }
 
-bool GEPrimitiveDraw::draw_solid_rect( GE_FRECT& rect, unsigned color )
+bool GEPrimitiveDraw::draw_solid_rect( Rect& rect, unsigned color )
 {
 	GEPrimitiveDraw* ge_draw_primitive = get_instance();
 
@@ -297,7 +297,7 @@ bool GEPrimitiveDraw::draw_solid_rect( GE_FRECT& rect, unsigned color )
 	return true;
 }
 
-bool GEPrimitiveDraw::draw_polygon( GE_FPOINT* list, int cnt, unsigned color )
+bool GEPrimitiveDraw::draw_polygon( Vector2* list, int cnt, unsigned color )
 {
 	if (list == NULL) return false;
 	if (cnt <= 2) return false;
@@ -324,7 +324,7 @@ bool GEPrimitiveDraw::draw_polygon( GE_FPOINT* list, int cnt, unsigned color )
 	return true;
 }
 
-bool GEPrimitiveDraw::draw_solid_polygon( GE_FPOINT* list, int cnt, unsigned color )
+bool GEPrimitiveDraw::draw_solid_polygon( Vector2* list, int cnt, unsigned color )
 {
 	if (list == NULL) return false;
 	if (cnt <= 2) return false;
@@ -351,7 +351,7 @@ bool GEPrimitiveDraw::draw_solid_polygon( GE_FPOINT* list, int cnt, unsigned col
 	return true;
 }
 
-bool GEPrimitiveDraw::draw_circle( GE_FPOINT& center, float radius, int segment, unsigned color )
+bool GEPrimitiveDraw::draw_circle( Vector2& center, float radius, int segment, unsigned color )
 {
 	if (segment < 3) return false;
 
@@ -380,7 +380,7 @@ bool GEPrimitiveDraw::draw_circle( GE_FPOINT& center, float radius, int segment,
 	return true;
 }
 
-bool GEPrimitiveDraw::draw_solid_circle( GE_FPOINT& center, float radius, int segment, unsigned color )
+bool GEPrimitiveDraw::draw_solid_circle( Vector2& center, float radius, int segment, unsigned color )
 {
 	if (segment < 3) return false;
 
@@ -483,32 +483,32 @@ bool GEPrimitiveDraw::_draw_triangle_fan( GEPrimitiveDrawTask* task )
 
 
 
-bool GEPrimitiveDraw::draw_point( GE_FPOINT& point, GE_COLOR& color )
+bool GEPrimitiveDraw::draw_point( Vector2& point, Color& color )
 {
 	return draw_point( point, color.argb );
 }
 
-bool GEPrimitiveDraw::draw_line( GE_FPOINT& from, GE_FPOINT& to, GE_COLOR& color )
+bool GEPrimitiveDraw::draw_line( Vector2& from, Vector2& to, Color& color )
 {
 	return draw_line( from, to, color.argb );
 }
 
-bool GEPrimitiveDraw::draw_rect( GE_FRECT& rect, GE_COLOR& color )
+bool GEPrimitiveDraw::draw_rect( Rect& rect, Color& color )
 {
 	return draw_rect( rect, color.argb );
 }
 
-bool GEPrimitiveDraw::draw_solid_rect( GE_FRECT& rect, GE_COLOR& color )
+bool GEPrimitiveDraw::draw_solid_rect( Rect& rect, Color& color )
 {
 	return draw_solid_rect( rect, color.argb );
 }
 
-bool GEPrimitiveDraw::draw_circle( GE_FPOINT& center, float radius, int segment, GE_COLOR& color )
+bool GEPrimitiveDraw::draw_circle( Vector2& center, float radius, int segment, Color& color )
 {
 	return draw_circle(center, radius, segment, color.argb);
 }
 
-bool GEPrimitiveDraw::draw_solid_circle( GE_FPOINT& center, float radius, int segment, GE_COLOR& color )
+bool GEPrimitiveDraw::draw_solid_circle( Vector2& center, float radius, int segment, Color& color )
 {
 	return draw_solid_circle(center, radius, segment, color.argb);
 }
@@ -517,7 +517,7 @@ bool GEPrimitiveDraw::draw_unit( GEPrimitiveDrawUnit* unit )
 {
 	if (unit == NULL) return false;
 
-	GE_FPOINT* list = &(unit->draw_point_list_[0]);
+	Vector2* list = &(unit->draw_point_list_[0]);
 	int cnt = (int)unit->draw_point_list_.size();
 
 	switch (unit->draw_type_)
@@ -553,12 +553,12 @@ void GEPrimitiveDrawUnit::set_type( DrawType type )
 	draw_type_ = type;
 }
 
-void GEPrimitiveDrawUnit::set_color( GE_COLOR& color )
+void GEPrimitiveDrawUnit::set_color( Color& color )
 {
 	draw_color_ = color.argb;
 }
 
-void GEPrimitiveDrawUnit::add_point( GE_FPOINT& point )
+void GEPrimitiveDrawUnit::add_point( Vector2& point )
 {
 	if (draw_point_list_.size() > 0
 		&& draw_point_list_.back().x == point.x

@@ -206,7 +206,7 @@ void GE_VERTEX::set_color( U32 color )
 	color_ = color;
 }
 
-void GE_VERTEX::set_color( GE_COLOR& color )
+void GE_VERTEX::set_color( Color& color )
 {
 	color_ = color.argb;
 }

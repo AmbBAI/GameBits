@@ -2,7 +2,6 @@
 #define _GAME_ENGINE_VECTOR3_H_
 
 #include "common/ge_include.h"
-#include "common/ge_engine.h"
 
 namespace ge
 {

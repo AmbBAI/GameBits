@@ -31,7 +31,7 @@ static int tolua_collect_ge__GE_IPOINT (lua_State* tolua_S)
 
 static int tolua_collect_ge__GE_FRECT (lua_State* tolua_S)
 {
- ge::GE_FRECT* self = (ge::GE_FRECT*) tolua_tousertype(tolua_S,1,0);
+ ge::Rect* self = (ge::Rect*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -45,7 +45,7 @@ static int tolua_collect_ge__GEPrimitiveDrawUnit (lua_State* tolua_S)
 
 static int tolua_collect_ge__GE_COLOR (lua_State* tolua_S)
 {
- ge::GE_COLOR* self = (ge::GE_COLOR*) tolua_tousertype(tolua_S,1,0);
+ ge::Color* self = (ge::Color*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -59,14 +59,14 @@ static int tolua_collect_ge__GE_VERTEX_DECL (lua_State* tolua_S)
 
 static int tolua_collect_ge__GE_FPOINT (lua_State* tolua_S)
 {
- ge::GE_FPOINT* self = (ge::GE_FPOINT*) tolua_tousertype(tolua_S,1,0);
+ ge::Vector2* self = (ge::Vector2*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
 
 static int tolua_collect_ge__GE_FSIZE (lua_State* tolua_S)
 {
- ge::GE_FSIZE* self = (ge::GE_FSIZE*) tolua_tousertype(tolua_S,1,0);
+ ge::Size* self = (ge::Size*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -4244,8 +4244,8 @@ static int tolua_luabind_ge_GEPrimitiveDraw_draw_point00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GE_FPOINT* point = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
-  ge::GE_COLOR* color = ((ge::GE_COLOR*)  tolua_tousertype(tolua_S,3,0));
+  ge::Vector2* point = ((ge::Vector2*)  tolua_tousertype(tolua_S,2,0));
+  ge::Color* color = ((ge::Color*)  tolua_tousertype(tolua_S,3,0));
   {
    bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_point(*point,*color);
    tolua_pushboolean(tolua_S,(bool)tolua_ret);
@@ -4277,9 +4277,9 @@ static int tolua_luabind_ge_GEPrimitiveDraw_draw_line00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GE_FPOINT* from = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
-  ge::GE_FPOINT* to = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,3,0));
-  ge::GE_COLOR* color = ((ge::GE_COLOR*)  tolua_tousertype(tolua_S,4,0));
+  ge::Vector2* from = ((ge::Vector2*)  tolua_tousertype(tolua_S,2,0));
+  ge::Vector2* to = ((ge::Vector2*)  tolua_tousertype(tolua_S,3,0));
+  ge::Color* color = ((ge::Color*)  tolua_tousertype(tolua_S,4,0));
   {
    bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_line(*from,*to,*color);
    tolua_pushboolean(tolua_S,(bool)tolua_ret);
@@ -4310,8 +4310,8 @@ static int tolua_luabind_ge_GEPrimitiveDraw_draw_rect00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GE_FRECT* rect = ((ge::GE_FRECT*)  tolua_tousertype(tolua_S,2,0));
-  ge::GE_COLOR* color = ((ge::GE_COLOR*)  tolua_tousertype(tolua_S,3,0));
+  ge::Rect* rect = ((ge::Rect*)  tolua_tousertype(tolua_S,2,0));
+  ge::Color* color = ((ge::Color*)  tolua_tousertype(tolua_S,3,0));
   {
    bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_rect(*rect,*color);
    tolua_pushboolean(tolua_S,(bool)tolua_ret);
@@ -4342,8 +4342,8 @@ static int tolua_luabind_ge_GEPrimitiveDraw_draw_solid_rect00(lua_State* tolua_S
  else
 #endif
  {
-  ge::GE_FRECT* rect = ((ge::GE_FRECT*)  tolua_tousertype(tolua_S,2,0));
-  ge::GE_COLOR* color = ((ge::GE_COLOR*)  tolua_tousertype(tolua_S,3,0));
+  ge::Rect* rect = ((ge::Rect*)  tolua_tousertype(tolua_S,2,0));
+  ge::Color* color = ((ge::Color*)  tolua_tousertype(tolua_S,3,0));
   {
    bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_solid_rect(*rect,*color);
    tolua_pushboolean(tolua_S,(bool)tolua_ret);
@@ -4376,10 +4376,10 @@ static int tolua_luabind_ge_GEPrimitiveDraw_draw_circle00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GE_FPOINT* center = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+  ge::Vector2* center = ((ge::Vector2*)  tolua_tousertype(tolua_S,2,0));
   float radius = ((float)  tolua_tonumber(tolua_S,3,0));
   int segment = ((int)  tolua_tonumber(tolua_S,4,0));
-  ge::GE_COLOR* color = ((ge::GE_COLOR*)  tolua_tousertype(tolua_S,5,0));
+  ge::Color* color = ((ge::Color*)  tolua_tousertype(tolua_S,5,0));
   {
    bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_circle(*center,radius,segment,*color);
    tolua_pushboolean(tolua_S,(bool)tolua_ret);
@@ -4412,10 +4412,10 @@ static int tolua_luabind_ge_GEPrimitiveDraw_draw_solid_circle00(lua_State* tolua
  else
 #endif
  {
-  ge::GE_FPOINT* center = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+  ge::Vector2* center = ((ge::Vector2*)  tolua_tousertype(tolua_S,2,0));
   float radius = ((float)  tolua_tonumber(tolua_S,3,0));
   int segment = ((int)  tolua_tonumber(tolua_S,4,0));
-  ge::GE_COLOR* color = ((ge::GE_COLOR*)  tolua_tousertype(tolua_S,5,0));
+  ge::Color* color = ((ge::Color*)  tolua_tousertype(tolua_S,5,0));
   {
    bool tolua_ret = (bool)  ge::GEPrimitiveDraw::draw_solid_circle(*center,radius,segment,*color);
    tolua_pushboolean(tolua_S,(bool)tolua_ret);
@@ -4595,7 +4595,7 @@ static int tolua_luabind_ge_GEPrimitiveDrawUnit_set_color00(lua_State* tolua_S)
 #endif
  {
   ge::GEPrimitiveDrawUnit* self = (ge::GEPrimitiveDrawUnit*)  tolua_tousertype(tolua_S,1,0);
-  ge::GE_COLOR* color = ((ge::GE_COLOR*)  tolua_tousertype(tolua_S,2,0));
+  ge::Color* color = ((ge::Color*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_color'", NULL);
 #endif
@@ -4628,7 +4628,7 @@ static int tolua_luabind_ge_GEPrimitiveDrawUnit_add_point00(lua_State* tolua_S)
 #endif
  {
   ge::GEPrimitiveDrawUnit* self = (ge::GEPrimitiveDrawUnit*)  tolua_tousertype(tolua_S,1,0);
-  ge::GE_FPOINT* point = ((ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+  ge::Vector2* point = ((ge::Vector2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'add_point'", NULL);
 #endif
@@ -6350,7 +6350,7 @@ static int tolua_luabind_ge_GE_FPOINT_new00(lua_State* tolua_S)
 #endif
  {
   {
-   ge::GE_FPOINT* tolua_ret = (ge::GE_FPOINT*)  Mtolua_new((ge::GE_FPOINT)());
+   ge::Vector2* tolua_ret = (ge::Vector2*)  Mtolua_new((ge::Vector2)());
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FPOINT");
   }
  }
@@ -6378,7 +6378,7 @@ static int tolua_luabind_ge_GE_FPOINT_new00_local(lua_State* tolua_S)
 #endif
  {
   {
-   ge::GE_FPOINT* tolua_ret = (ge::GE_FPOINT*)  Mtolua_new((ge::GE_FPOINT)());
+   ge::Vector2* tolua_ret = (ge::Vector2*)  Mtolua_new((ge::Vector2)());
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FPOINT");
     tolua_register_gc(tolua_S,lua_gettop(tolua_S));
   }
@@ -6409,7 +6409,7 @@ static int tolua_luabind_ge_GE_FPOINT_new01(lua_State* tolua_S)
   float x = ((float)  tolua_tonumber(tolua_S,2,0));
   float y = ((float)  tolua_tonumber(tolua_S,3,0));
   {
-   ge::GE_FPOINT* tolua_ret = (ge::GE_FPOINT*)  Mtolua_new((ge::GE_FPOINT)(x,y));
+   ge::Vector2* tolua_ret = (ge::Vector2*)  Mtolua_new((ge::Vector2)(x,y));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FPOINT");
   }
  }
@@ -6436,7 +6436,7 @@ static int tolua_luabind_ge_GE_FPOINT_new01_local(lua_State* tolua_S)
   float x = ((float)  tolua_tonumber(tolua_S,2,0));
   float y = ((float)  tolua_tonumber(tolua_S,3,0));
   {
-   ge::GE_FPOINT* tolua_ret = (ge::GE_FPOINT*)  Mtolua_new((ge::GE_FPOINT)(x,y));
+   ge::Vector2* tolua_ret = (ge::Vector2*)  Mtolua_new((ge::Vector2)(x,y));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FPOINT");
     tolua_register_gc(tolua_S,lua_gettop(tolua_S));
   }
@@ -6461,7 +6461,7 @@ static int tolua_luabind_ge_GE_FPOINT_delete00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GE_FPOINT* self = (ge::GE_FPOINT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Vector2* self = (ge::Vector2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
 #endif
@@ -6491,8 +6491,8 @@ static int tolua_luabind_ge_GE_FPOINT_distance00(lua_State* tolua_S)
  else
 #endif
  {
-  const ge::GE_FPOINT* self = (const ge::GE_FPOINT*)  tolua_tousertype(tolua_S,1,0);
-  const ge::GE_FPOINT* point = ((const ge::GE_FPOINT*)  tolua_tousertype(tolua_S,2,0));
+  const ge::Vector2* self = (const ge::Vector2*)  tolua_tousertype(tolua_S,1,0);
+  const ge::Vector2* point = ((const ge::Vector2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'distance'", NULL);
 #endif
@@ -6514,7 +6514,7 @@ static int tolua_luabind_ge_GE_FPOINT_distance00(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_get_ge__GE_FPOINT_x
 static int tolua_get_ge__GE_FPOINT_x(lua_State* tolua_S)
 {
-  ge::GE_FPOINT* self = (ge::GE_FPOINT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Vector2* self = (ge::Vector2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'x'",NULL);
 #endif
@@ -6527,7 +6527,7 @@ static int tolua_get_ge__GE_FPOINT_x(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_set_ge__GE_FPOINT_x
 static int tolua_set_ge__GE_FPOINT_x(lua_State* tolua_S)
 {
-  ge::GE_FPOINT* self = (ge::GE_FPOINT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Vector2* self = (ge::Vector2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   tolua_Error tolua_err;
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'x'",NULL);
@@ -6544,7 +6544,7 @@ static int tolua_set_ge__GE_FPOINT_x(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_get_ge__GE_FPOINT_y
 static int tolua_get_ge__GE_FPOINT_y(lua_State* tolua_S)
 {
-  ge::GE_FPOINT* self = (ge::GE_FPOINT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Vector2* self = (ge::Vector2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'y'",NULL);
 #endif
@@ -6557,7 +6557,7 @@ static int tolua_get_ge__GE_FPOINT_y(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_set_ge__GE_FPOINT_y
 static int tolua_set_ge__GE_FPOINT_y(lua_State* tolua_S)
 {
-  ge::GE_FPOINT* self = (ge::GE_FPOINT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Vector2* self = (ge::Vector2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   tolua_Error tolua_err;
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'y'",NULL);
@@ -6585,7 +6585,7 @@ static int tolua_luabind_ge_GE_FSIZE_new00(lua_State* tolua_S)
 #endif
  {
   {
-   ge::GE_FSIZE* tolua_ret = (ge::GE_FSIZE*)  Mtolua_new((ge::GE_FSIZE)());
+   ge::Size* tolua_ret = (ge::Size*)  Mtolua_new((ge::Size)());
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FSIZE");
   }
  }
@@ -6613,7 +6613,7 @@ static int tolua_luabind_ge_GE_FSIZE_new00_local(lua_State* tolua_S)
 #endif
  {
   {
-   ge::GE_FSIZE* tolua_ret = (ge::GE_FSIZE*)  Mtolua_new((ge::GE_FSIZE)());
+   ge::Size* tolua_ret = (ge::Size*)  Mtolua_new((ge::Size)());
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FSIZE");
     tolua_register_gc(tolua_S,lua_gettop(tolua_S));
   }
@@ -6644,7 +6644,7 @@ static int tolua_luabind_ge_GE_FSIZE_new01(lua_State* tolua_S)
   float width = ((float)  tolua_tonumber(tolua_S,2,0));
   float height = ((float)  tolua_tonumber(tolua_S,3,0));
   {
-   ge::GE_FSIZE* tolua_ret = (ge::GE_FSIZE*)  Mtolua_new((ge::GE_FSIZE)(width,height));
+   ge::Size* tolua_ret = (ge::Size*)  Mtolua_new((ge::Size)(width,height));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FSIZE");
   }
  }
@@ -6671,7 +6671,7 @@ static int tolua_luabind_ge_GE_FSIZE_new01_local(lua_State* tolua_S)
   float width = ((float)  tolua_tonumber(tolua_S,2,0));
   float height = ((float)  tolua_tonumber(tolua_S,3,0));
   {
-   ge::GE_FSIZE* tolua_ret = (ge::GE_FSIZE*)  Mtolua_new((ge::GE_FSIZE)(width,height));
+   ge::Size* tolua_ret = (ge::Size*)  Mtolua_new((ge::Size)(width,height));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FSIZE");
     tolua_register_gc(tolua_S,lua_gettop(tolua_S));
   }
@@ -6696,7 +6696,7 @@ static int tolua_luabind_ge_GE_FSIZE_delete00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GE_FSIZE* self = (ge::GE_FSIZE*)  tolua_tousertype(tolua_S,1,0);
+  ge::Size* self = (ge::Size*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
 #endif
@@ -6715,7 +6715,7 @@ static int tolua_luabind_ge_GE_FSIZE_delete00(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_get_ge__GE_FSIZE_width
 static int tolua_get_ge__GE_FSIZE_width(lua_State* tolua_S)
 {
-  ge::GE_FSIZE* self = (ge::GE_FSIZE*)  tolua_tousertype(tolua_S,1,0);
+  ge::Size* self = (ge::Size*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'width'",NULL);
 #endif
@@ -6728,7 +6728,7 @@ static int tolua_get_ge__GE_FSIZE_width(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_set_ge__GE_FSIZE_width
 static int tolua_set_ge__GE_FSIZE_width(lua_State* tolua_S)
 {
-  ge::GE_FSIZE* self = (ge::GE_FSIZE*)  tolua_tousertype(tolua_S,1,0);
+  ge::Size* self = (ge::Size*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   tolua_Error tolua_err;
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'width'",NULL);
@@ -6745,7 +6745,7 @@ static int tolua_set_ge__GE_FSIZE_width(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_get_ge__GE_FSIZE_height
 static int tolua_get_ge__GE_FSIZE_height(lua_State* tolua_S)
 {
-  ge::GE_FSIZE* self = (ge::GE_FSIZE*)  tolua_tousertype(tolua_S,1,0);
+  ge::Size* self = (ge::Size*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'height'",NULL);
 #endif
@@ -6758,7 +6758,7 @@ static int tolua_get_ge__GE_FSIZE_height(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_set_ge__GE_FSIZE_height
 static int tolua_set_ge__GE_FSIZE_height(lua_State* tolua_S)
 {
-  ge::GE_FSIZE* self = (ge::GE_FSIZE*)  tolua_tousertype(tolua_S,1,0);
+  ge::Size* self = (ge::Size*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   tolua_Error tolua_err;
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'height'",NULL);
@@ -6775,7 +6775,7 @@ static int tolua_set_ge__GE_FSIZE_height(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_get_ge__GE_FRECT_left
 static int tolua_get_ge__GE_FRECT_left(lua_State* tolua_S)
 {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'left'",NULL);
 #endif
@@ -6788,7 +6788,7 @@ static int tolua_get_ge__GE_FRECT_left(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_set_ge__GE_FRECT_left
 static int tolua_set_ge__GE_FRECT_left(lua_State* tolua_S)
 {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   tolua_Error tolua_err;
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'left'",NULL);
@@ -6805,7 +6805,7 @@ static int tolua_set_ge__GE_FRECT_left(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_get_ge__GE_FRECT_top
 static int tolua_get_ge__GE_FRECT_top(lua_State* tolua_S)
 {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'top'",NULL);
 #endif
@@ -6818,7 +6818,7 @@ static int tolua_get_ge__GE_FRECT_top(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_set_ge__GE_FRECT_top
 static int tolua_set_ge__GE_FRECT_top(lua_State* tolua_S)
 {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   tolua_Error tolua_err;
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'top'",NULL);
@@ -6835,7 +6835,7 @@ static int tolua_set_ge__GE_FRECT_top(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_get_ge__GE_FRECT_right
 static int tolua_get_ge__GE_FRECT_right(lua_State* tolua_S)
 {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'right'",NULL);
 #endif
@@ -6848,7 +6848,7 @@ static int tolua_get_ge__GE_FRECT_right(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_set_ge__GE_FRECT_right
 static int tolua_set_ge__GE_FRECT_right(lua_State* tolua_S)
 {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   tolua_Error tolua_err;
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'right'",NULL);
@@ -6865,7 +6865,7 @@ static int tolua_set_ge__GE_FRECT_right(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_get_ge__GE_FRECT_bottom
 static int tolua_get_ge__GE_FRECT_bottom(lua_State* tolua_S)
 {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'bottom'",NULL);
 #endif
@@ -6878,7 +6878,7 @@ static int tolua_get_ge__GE_FRECT_bottom(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_set_ge__GE_FRECT_bottom
 static int tolua_set_ge__GE_FRECT_bottom(lua_State* tolua_S)
 {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   tolua_Error tolua_err;
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'bottom'",NULL);
@@ -6906,7 +6906,7 @@ static int tolua_luabind_ge_GE_FRECT_new00(lua_State* tolua_S)
 #endif
  {
   {
-   ge::GE_FRECT* tolua_ret = (ge::GE_FRECT*)  Mtolua_new((ge::GE_FRECT)());
+   ge::Rect* tolua_ret = (ge::Rect*)  Mtolua_new((ge::Rect)());
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FRECT");
   }
  }
@@ -6934,7 +6934,7 @@ static int tolua_luabind_ge_GE_FRECT_new00_local(lua_State* tolua_S)
 #endif
  {
   {
-   ge::GE_FRECT* tolua_ret = (ge::GE_FRECT*)  Mtolua_new((ge::GE_FRECT)());
+   ge::Rect* tolua_ret = (ge::Rect*)  Mtolua_new((ge::Rect)());
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FRECT");
     tolua_register_gc(tolua_S,lua_gettop(tolua_S));
   }
@@ -6969,7 +6969,7 @@ static int tolua_luabind_ge_GE_FRECT_new01(lua_State* tolua_S)
   float right_ = ((float)  tolua_tonumber(tolua_S,4,0));
   float bottom_ = ((float)  tolua_tonumber(tolua_S,5,0));
   {
-   ge::GE_FRECT* tolua_ret = (ge::GE_FRECT*)  Mtolua_new((ge::GE_FRECT)(left_,top_,right_,bottom_));
+   ge::Rect* tolua_ret = (ge::Rect*)  Mtolua_new((ge::Rect)(left_,top_,right_,bottom_));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FRECT");
   }
  }
@@ -7000,7 +7000,7 @@ static int tolua_luabind_ge_GE_FRECT_new01_local(lua_State* tolua_S)
   float right_ = ((float)  tolua_tonumber(tolua_S,4,0));
   float bottom_ = ((float)  tolua_tonumber(tolua_S,5,0));
   {
-   ge::GE_FRECT* tolua_ret = (ge::GE_FRECT*)  Mtolua_new((ge::GE_FRECT)(left_,top_,right_,bottom_));
+   ge::Rect* tolua_ret = (ge::Rect*)  Mtolua_new((ge::Rect)(left_,top_,right_,bottom_));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_FRECT");
     tolua_register_gc(tolua_S,lua_gettop(tolua_S));
   }
@@ -7025,7 +7025,7 @@ static int tolua_luabind_ge_GE_FRECT_delete00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
 #endif
@@ -7054,7 +7054,7 @@ static int tolua_luabind_ge_GE_FRECT_width00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'width'", NULL);
 #endif
@@ -7086,7 +7086,7 @@ static int tolua_luabind_ge_GE_FRECT_height00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'height'", NULL);
 #endif
@@ -7120,7 +7120,7 @@ static int tolua_luabind_ge_GE_FRECT_move00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
   float offset_x = ((float)  tolua_tonumber(tolua_S,2,0));
   float offset_y = ((float)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -7155,7 +7155,7 @@ static int tolua_luabind_ge_GE_FRECT_move_to00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
   float pos_x = ((float)  tolua_tonumber(tolua_S,2,0));
   float pos_y = ((float)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -7190,7 +7190,7 @@ static int tolua_luabind_ge_GE_FRECT_expand00(lua_State* tolua_S)
  else
 #endif
  {
-  ge::GE_FRECT* self = (ge::GE_FRECT*)  tolua_tousertype(tolua_S,1,0);
+  ge::Rect* self = (ge::Rect*)  tolua_tousertype(tolua_S,1,0);
   float pos_x = ((float)  tolua_tonumber(tolua_S,2,0));
   float pos_y = ((float)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -7213,7 +7213,7 @@ static int tolua_luabind_ge_GE_FRECT_expand00(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_get_ge__GE_COLOR_argb
 static int tolua_get_ge__GE_COLOR_argb(lua_State* tolua_S)
 {
-  ge::GE_COLOR* self = (ge::GE_COLOR*)  tolua_tousertype(tolua_S,1,0);
+  ge::Color* self = (ge::Color*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'argb'",NULL);
 #endif
@@ -7226,7 +7226,7 @@ static int tolua_get_ge__GE_COLOR_argb(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_set_ge__GE_COLOR_argb
 static int tolua_set_ge__GE_COLOR_argb(lua_State* tolua_S)
 {
-  ge::GE_COLOR* self = (ge::GE_COLOR*)  tolua_tousertype(tolua_S,1,0);
+  ge::Color* self = (ge::Color*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   tolua_Error tolua_err;
   if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'argb'",NULL);
@@ -7262,7 +7262,7 @@ static int tolua_luabind_ge_GE_COLOR_new00(lua_State* tolua_S)
   unsigned char g = ((unsigned char)  tolua_tonumber(tolua_S,4,0));
   unsigned char b = ((unsigned char)  tolua_tonumber(tolua_S,5,0));
   {
-   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)(a,r,g,b));
+   ge::Color* tolua_ret = (ge::Color*)  Mtolua_new((ge::Color)(a,r,g,b));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_COLOR");
   }
  }
@@ -7298,7 +7298,7 @@ static int tolua_luabind_ge_GE_COLOR_new00_local(lua_State* tolua_S)
   unsigned char g = ((unsigned char)  tolua_tonumber(tolua_S,4,0));
   unsigned char b = ((unsigned char)  tolua_tonumber(tolua_S,5,0));
   {
-   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)(a,r,g,b));
+   ge::Color* tolua_ret = (ge::Color*)  Mtolua_new((ge::Color)(a,r,g,b));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_COLOR");
     tolua_register_gc(tolua_S,lua_gettop(tolua_S));
   }
@@ -7327,7 +7327,7 @@ static int tolua_luabind_ge_GE_COLOR_new01(lua_State* tolua_S)
  {
   unsigned argb = ((unsigned)  tolua_tonumber(tolua_S,2,0));
   {
-   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)(argb));
+   ge::Color* tolua_ret = (ge::Color*)  Mtolua_new((ge::Color)(argb));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_COLOR");
   }
  }
@@ -7352,7 +7352,7 @@ static int tolua_luabind_ge_GE_COLOR_new01_local(lua_State* tolua_S)
  {
   unsigned argb = ((unsigned)  tolua_tonumber(tolua_S,2,0));
   {
-   ge::GE_COLOR* tolua_ret = (ge::GE_COLOR*)  Mtolua_new((ge::GE_COLOR)(argb));
+   ge::Color* tolua_ret = (ge::Color*)  Mtolua_new((ge::Color)(argb));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"ge::GE_COLOR");
     tolua_register_gc(tolua_S,lua_gettop(tolua_S));
   }
@@ -7828,7 +7828,7 @@ static int tolua_luabind_ge_GE_VERTEX_set_color00(lua_State* tolua_S)
 #endif
  {
   ge::GE_VERTEX* self = (ge::GE_VERTEX*)  tolua_tousertype(tolua_S,1,0);
-  ge::GE_COLOR* color = ((ge::GE_COLOR*)  tolua_tousertype(tolua_S,2,0));
+  ge::Color* color = ((ge::Color*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_color'", NULL);
 #endif

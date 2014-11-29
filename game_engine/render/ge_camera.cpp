@@ -77,7 +77,7 @@ bool GECamera::do_projection_trans()
 	return SUCCEEDED(h_res);
 }
 
-void GECamera::convert_to_screen_xy( GE_FPOINT& point )
+void GECamera::convert_to_screen_xy( Vector2& point )
 {
 	D3DXVECTOR4 out_coord;
 	D3DXVECTOR4 coord(point.x, point.y, 0.f, 1.f);
@@ -89,7 +89,7 @@ void GECamera::convert_to_screen_xy( GE_FPOINT& point )
 	point.y = wnd_rect.height() * (-out_coord.y * 0.5f + 0.5f) * factor;
 }
 
-void GECamera::convert_to_world_xy( GE_FPOINT& point )
+void GECamera::convert_to_world_xy( Vector2& point )
 {
 	D3DXMATRIX proj_view_inv;
 	D3DXMatrixInverse(&proj_view_inv, NULL, &proj_view_matrix_);

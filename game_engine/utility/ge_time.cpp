@@ -58,6 +58,14 @@ float Time::get_real_delta_time()
 	return real_delta_time_;
 }
 
+float Time::cur_time_ = 0.f;
+float Time::last_time_ = 0.f;
+float Time::real_delta_time_ = 0.f;
+float Time::real_time_ = 0.f;
+float Time::time_scale_ = 1.f;
+float Time::delta_time_ = 0.f;
+float Time::time_ = 0.f;
+
 }
 
 

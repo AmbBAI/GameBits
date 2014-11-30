@@ -3,14 +3,15 @@
 
 #include "common/ge_include.h"
 #include "common/ge_engine.h"
+#include "object/ge_object.h"
+#include "component/ge_component_factory.h"
 
 namespace ge
 {
 
-class Object;
 class GE_API Component
 {
-	DLL_MANAGE_CLASS(Component);
+	REGISTER_COMPONENT(Component);
 
 protected:
 	Component();
@@ -25,14 +26,15 @@ public:
 	virtual void on_enable();
 	virtual void on_disable();
 
-	void set_object(Object* object);
 	Object* get_object();
+
+protected:
+	void set_object(Object* object);
 
 protected:
 	Object* object_;
 	bool enabled_;
 };
-
 }
 
 #endif //_GAME_ENGINE_COMPONENT_H_

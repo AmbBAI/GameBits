@@ -18,9 +18,10 @@ Object::~Object()
 bool Object::initialize()
 {
 	components_.clear();
-	Transform* transform = Transform::create();
-	transform_ = transform;
-	add_component((Component*)transform);
+	
+	Transform* transform = (Transform*)add_component("Transform");
+	if (transform != nullptr) transform_ = transform;
+
 	return true;
 }
 
@@ -31,7 +32,8 @@ void Object::finalize()
 		if (Component* component = *itor_component)
 		{
 			component->dispose();
-			GE_RELEASE(component);
+			ComponentFactory::ReleaseComponent(component);
+			component = nullptr;
 		}
 	}
 	components_.clear();
@@ -49,12 +51,21 @@ void Object::update()
 }
 
 
-void Object::add_component(Component* component)
+Component* Object::add_component(const char* name)
 {
-	if (component == nullptr) return;
+	Component* component = ComponentFactory::CreateComponent(name);
+	if (component == nullptr) return nullptr;
 	components_.insert(component);
-	component->set_object(this);
+	return component;
+	//component->set_object(this);
 }
+
+const std::string& Object::get_name()
+{
+	return name;
+}
+
+
 
 //
 //D3DXMATRIX& Object::get_world_transform()

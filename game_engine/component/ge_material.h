@@ -10,7 +10,7 @@ namespace ge
 class Shader;
 class GE_API Material : Component
 {
-	DLL_MANAGE_CLASS(Material);
+	REGISTER_COMPONENT(Material);
 
 
 protected:

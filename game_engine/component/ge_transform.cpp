@@ -3,6 +3,8 @@
 namespace ge
 {
 
+REGISTER_COMPONENT_IMPLEMENT(Transform)
+
 void Transform::set_local_position(const Vector3& val)
 {
 	local_position_ = val;

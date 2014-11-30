@@ -11,7 +11,7 @@ namespace ge
 
 class GE_API Transform : Component
 {
-	DLL_MANAGE_CLASS(Transform);
+	REGISTER_COMPONENT(Transform);
 
 public:
 	//void set_position(const Vector3& val);

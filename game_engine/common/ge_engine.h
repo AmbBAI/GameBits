@@ -40,8 +40,8 @@ public:
 	bool get_windowed();
 
 protected:
-	bool _init_render();
-	bool _init_font();
+	//bool _init_render();
+	//bool _init_font();
 
 	bool _dx_begin_scene();
 	bool _dx_end_scene();
@@ -58,7 +58,7 @@ private:
 	LPDIRECT3DDEVICE9		p_d3d_device_;
 	D3DPRESENT_PARAMETERS	d3d_present_param_;
 
-	GERender*				p_ge_render_;
+	//GERender*				p_ge_render_;
 
 	typedef std::set<GED3DDeviceObject*> DEVICE_OBJECT_SET;
 	DEVICE_OBJECT_SET		device_object_set_;

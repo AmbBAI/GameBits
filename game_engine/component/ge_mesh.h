@@ -13,7 +13,7 @@ namespace ge
 
 class GE_API Mesh : Component
 {
-	DLL_MANAGE_CLASS(Mesh);
+	REGISTER_COMPONENT(Mesh);
 
 protected:
 	std::vector<Vector3> verties;

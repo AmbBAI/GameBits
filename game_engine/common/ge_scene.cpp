@@ -1,7 +1,7 @@
 #include "ge_scene.h"
 #include "common/ge_engine.h"
 #include "object/ge_object.h"
-#include "render/ge_render.h"
+//#include "render/ge_render.h"
 
 namespace ge
 {

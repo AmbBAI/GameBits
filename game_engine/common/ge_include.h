@@ -81,4 +81,27 @@ void type::release()\
 	}\
 }
 
+
+#define REGISTER_COMPONENT(type) \
+	friend ComponentFactory;\
+protected:\
+	static type* create(); \
+	void release(); \
+	static const ComponentType* type_;\
+private:
+
+#define REGISTER_COMPONENT_IMPLEMENT(type) \
+	const ComponentType* type::type_ = \
+	ComponentFactory::RegisterComponent(#type, (Component* (*)())(type::create));\
+type* type::create()\
+{\
+	type* new_obj = new type();\
+	return new_obj;\
+}\
+void type::release()\
+{\
+	delete this;\
+}
+
+
 #endif // _GAME_ENGINE_INCLUDE_H_

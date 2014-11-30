@@ -1,13 +1,13 @@
 #include "ge_engine.h"
 #include "ge_app.h"
-#include "render/ge_render.h"
+//#include "render/ge_render.h"
 
 namespace ge
 {
 
 GEEngine::GEEngine()
 : p_d3d_device_(NULL)
-, p_ge_render_(NULL)
+//, p_ge_render_(NULL)
 , is_windowed_(true)
 {
 }
@@ -84,8 +84,8 @@ bool GEEngine::init_engine()
 
 	D3D_RELEASE(p_d3d);
 
-	if (!_init_render()) return false;
-	if (!_init_font()) return false;
+	//if (!_init_render()) return false;
+	//if (!_init_font()) return false;
 	return true;
 }
 
@@ -175,27 +175,27 @@ void GEEngine::process()
 	if(!_dx_begin_scene()) return;
 	if(!_dx_clear()) return;
 
-	if (p_ge_render_ != NULL)
-		p_ge_render_->render();
+//	if (p_ge_render_ != NULL)
+//		p_ge_render_->render();
 
 	if(!_dx_end_scene()) return;
 	if(!_dx_present()) return;
 }
 
-bool GEEngine::_init_render()
-{
-	if (p_d3d_device_ == NULL) return false;
+//bool GEEngine::_init_render()
+//{
+//	if (p_d3d_device_ == NULL) return false;
+//
+//	p_ge_render_ = GERender::get_instance();
+//	if(p_ge_render_ == NULL) return false;
+//
+//	return p_ge_render_->init();
+//}
 
-	p_ge_render_ = GERender::get_instance();
-	if(p_ge_render_ == NULL) return false;
-
-	return p_ge_render_->init();
-}
-
-bool GEEngine::_init_font()
-{
-	return GEFontManager::init();
-}
+//bool GEEngine::_init_font()
+//{
+//	return GEFontManager::init();
+//}
 
 bool GEEngine::set_resolution( int width, int height )
 {
@@ -267,10 +267,10 @@ void GEEngine::_on_reset_device()
 		(*obj_itor)->on_reset_device();
 	}
 
-	if (p_ge_render_)
-	{
-		p_ge_render_->init_state();
-	}
+	//if (p_ge_render_)
+	//{
+	//	p_ge_render_->init_state();
+	//}
 }
 
 }

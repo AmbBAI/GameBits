@@ -10,7 +10,7 @@ namespace ge
 
 class GE_API Renderer : Component
 {
-	DLL_MANAGE_CLASS(Renderer);
+	REGISTER_COMPONENT(Renderer);
 };
 
 }

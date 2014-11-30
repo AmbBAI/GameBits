@@ -2,4 +2,5 @@
 
 namespace ge
 {
+	REGISTER_COMPONENT_IMPLEMENT(Renderer);
 }

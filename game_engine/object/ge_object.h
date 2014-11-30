@@ -27,7 +27,9 @@ public:
 
 	const std::string& get_name();
 
-	void add_component(Component* component);
+	Component* add_component(const char* name);
+
+	void remove_component(Component* component);
 
 public:
 

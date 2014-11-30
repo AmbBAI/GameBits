@@ -3,8 +3,7 @@
 
 #include "common/ge_include.h"
 #include "common/ge_engine.h"
-#include "ge_object_def.h"
-
+#include "utility/ge_type.h"
 
 namespace ge
 {
@@ -26,6 +25,7 @@ public:
 	void update();
 
 	const std::string& get_name();
+	Transform* get_transform();
 
 	Component* add_component(const char* name);
 	void remove_component(Component* component);

@@ -1,11 +1,13 @@
 #include "ge_camera.h"
 #include "common/ge_engine.h"
 #include "common/ge_app.h"
+#include "object/ge_object.h"
+#include "component/ge_transform.h"
 
 namespace ge
 {
 
-	REGISTER_COMPONENT_IMPLEMENT(Camera);
+REGISTER_COMPONENT_IMPLEMENT(Camera);
 
 Camera::Camera()
 : projection_(Perspection)
@@ -13,7 +15,8 @@ Camera::Camera()
 , clipping_far_(1000.f)
 , rect_(0.f, 0.f, 1.f, 1.f)
 {
-
+	if (main_camera_ == nullptr) main_camera_ = this;
+	all_cameras_.insert(this);
 }
 
 Camera::~Camera()
@@ -23,8 +26,8 @@ Camera::~Camera()
 
 bool Camera::init()
 {
-	do_view_trans();
-	do_projection_trans();
+	//do_view_trans();
+	//do_projection_trans();
 	return true;
 }
 
@@ -33,43 +36,89 @@ void Camera::destory()
 
 }
 
-bool Camera::do_view_trans()
+//bool Camera::do_view_trans()
+//{
+//	return false;
+//	//LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_device();
+//	//if (p_d3d_device == NULL) return false;
+//
+//	//D3DXMatrixLookAtLH(&view_matrix_, &position_, &target_, &up_);
+//
+//	//HRESULT h_res = p_d3d_device->SetTransform(D3DTS_VIEW, &view_matrix_);
+//	//return SUCCEEDED(h_res);
+//}
+//
+//bool Camera::do_projection_trans()
+//{
+//	return false;
+//	//LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_device();
+//	//if (p_d3d_device == NULL) return false;
+//	//GE_IRECT& wnd_rect = Application::get_instance()->get_game_rect();
+//
+//	//switch (projection_)
+//	//{
+//	//case ProjectionMode_3D:
+//	//	D3DXMatrixPerspectiveFovLH(
+//	//		&proj_matrix_,
+//	//		D3DX_PI * fovy_,
+//	//		(float) wnd_rect.width() / wnd_rect.height(),
+//	//		min_z_, max_z_);
+//	//	break;
+//	//case ProjectionMode_2D:
+//	//	D3DXMatrixOrthoLH(&proj_matrix_,
+//	//		(float)wnd_rect.width(),
+//	//		(float)wnd_rect.height(),
+//	//		min_z_, max_z_);
+//	//	break;
+//	//}
+//
+//	//HRESULT h_res = p_d3d_device->SetTransform(D3DTS_PROJECTION, &proj_matrix_);
+//	//return SUCCEEDED(h_res);
+//}
+
+void Camera::render()
 {
-	//LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_device();
-	//if (p_d3d_device == NULL) return false;
+	if (object_ == nullptr) return;
+	Transform* transform = object_->get_transform();
+	if (transform == nullptr) return;
 
-	//D3DXMatrixLookAtLH(&view_matrix_, &position_, &target_, &up_);
+	if (transform->get_is_changed())
+	{
+		// Update
+		dirty_ = true;
+	}
 
-	//HRESULT h_res = p_d3d_device->SetTransform(D3DTS_VIEW, &view_matrix_);
-	//return SUCCEEDED(h_res);
+	if (dirty_)
+	{
+		// Update
+	}
+
+	// render
 }
 
-bool Camera::do_projection_trans()
+void Camera::set_projection(ProjectionMode mode)
 {
-	//LPDIRECT3DDEVICE9 p_d3d_device = GEEngine::get_device();
-	//if (p_d3d_device == NULL) return false;
-	//GE_IRECT& wnd_rect = Application::get_instance()->get_game_rect();
-
-	//switch (projection_)
-	//{
-	//case ProjectionMode_3D:
-	//	D3DXMatrixPerspectiveFovLH(
-	//		&proj_matrix_,
-	//		D3DX_PI * fovy_,
-	//		(float) wnd_rect.width() / wnd_rect.height(),
-	//		min_z_, max_z_);
-	//	break;
-	//case ProjectionMode_2D:
-	//	D3DXMatrixOrthoLH(&proj_matrix_,
-	//		(float)wnd_rect.width(),
-	//		(float)wnd_rect.height(),
-	//		min_z_, max_z_);
-	//	break;
-	//}
-
-	//HRESULT h_res = p_d3d_device->SetTransform(D3DTS_PROJECTION, &proj_matrix_);
-	//return SUCCEEDED(h_res);
+	projection_ = mode;
+	dirty_ = true;
 }
+
+ge::ProjectionMode Camera::get_projection()
+{
+	return projection_;
+}
+
+void Camera::update_view_matrix()
+{
+
+}
+
+void Camera::update_projection_matrix()
+{
+
+}
+
+Camera* Camera::main_camera_ = nullptr;
+std::set<Camera*> Camera::all_cameras_;
 
 //void Camera::convert_to_screen_xy( Vector2& point )
 //{

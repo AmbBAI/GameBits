@@ -55,6 +55,21 @@ void Component::set_object(Object* object)
 	object_ = object;
 }
 
+void Component::on_frame_begin()
+{
+
+}
+
+void Component::on_frame_end()
+{
+
+}
+
+void Component::late_update()
+{
+
+}
+
 }
 
 

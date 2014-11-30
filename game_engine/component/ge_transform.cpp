@@ -83,6 +83,11 @@ void Transform::on_frame_end()
 	is_changed_ = false;
 }
 
+bool Transform::get_is_changed()
+{
+	return is_changed_;
+}
+
 
 
 }

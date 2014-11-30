@@ -79,6 +79,11 @@ const std::string& Object::get_name()
 	return name;
 }
 
+Transform* Object::get_transform()
+{
+	return transform_;
+}
+
 //
 //D3DXMATRIX& Object::get_world_transform()
 //{

@@ -5,15 +5,25 @@
 #include "utility/ge_type.h"
 #include "component/ge_component.h"
 #include "type/ge_rect.h"
+#include "type/ge_matrix4x4.h"
 
 namespace ge
 {
+
+enum ProjectionMode
+{
+	Orthographic,
+	Perspection,
+};
 
 class GE_API Camera : Component
 {
 	REGISTER_COMPONENT(Camera);
 
 protected:
+	static std::set<Camera*> all_cameras_;
+	static Camera* main_camera_;
+
 	Camera();
 	virtual ~Camera();
 
@@ -22,25 +32,20 @@ public:
 	bool init();
 	void destory();
 
-	void update();
+	void render();
 
-	//void set_projection_mode(ProjectionMode mode);
+	void set_projection(ProjectionMode mode);
+	ProjectionMode get_projection();
 	//void set_projection_fovy(float fovy);
 	//void set_projcetion_range(float min_z, float max_z);
 
-	//bool do_view_trans();
-	//bool do_projection_trans();
+	void update_view_matrix();
+	void update_projection_matrix();
 
 	//void convert_to_screen_xy(Vector2& point);
 	//void convert_to_world_xy(Vector2& point);
 
 protected:
-
-	enum ProjectionMode
-	{
-		Orthographic,
-		Perspection,
-	};
 	ProjectionMode		projection_;
 	LayerMask			layer_mask_;
 
@@ -48,6 +53,11 @@ protected:
 	float				clipping_far_;
 
 	Rect				rect_;
+
+	bool				dirty_;
+
+	Matrix4x4			projection_matrix_;
+	Matrix4x4			view_matrix_;
 };
 
 } // namespace ge

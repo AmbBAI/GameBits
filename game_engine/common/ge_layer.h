@@ -11,7 +11,7 @@ class GE_API Layer
 public:
 	struct LayerData
 	{
-		int index;
+		LayerID index;
 		std::string name;
 	};
 	LayerData layers_[32];

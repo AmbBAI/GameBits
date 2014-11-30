@@ -25,6 +25,8 @@ public:
 	const Vector3& get_local_rotation();
 	const Vector3& get_rotation();
 
+	bool get_is_changed();
+
 protected:
 	void update_transform();
 	void set_dirty();

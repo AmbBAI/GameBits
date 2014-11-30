@@ -17,9 +17,9 @@ typedef std::map<std::string, ComponentType*> ComponentTypeMap;
 class GE_API ComponentFactory
 {
 public:
-	static ComponentType* RegisterComponent(std::string name, Component* (*create_func)());
-	static Component* CreateComponent(std::string name);
-	static void ReleaseComponent(Component* component);
+	static ComponentType* registe_component(std::string name, Component* (*create_func)());
+	static Component* create_component(std::string name);
+	static void release_component(Component* component);
 
 protected:
 	//static ComponentFactory* get_instance();

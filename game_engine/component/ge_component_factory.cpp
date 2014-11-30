@@ -4,7 +4,7 @@
 namespace ge
 {
 
-ComponentType* ComponentFactory::RegisterComponent(std::string name, Component* (*create_func)())
+ComponentType* ComponentFactory::registe_component(std::string name, Component* (*create_func)())
 {
 	if (create_func == nullptr) return nullptr;
 	ComponentType* component_type = new ComponentType();
@@ -13,7 +13,7 @@ ComponentType* ComponentFactory::RegisterComponent(std::string name, Component* 
 	return component_type;
 }
 
-Component* ComponentFactory::CreateComponent(std::string name)
+Component* ComponentFactory::create_component(std::string name)
 {
 	ComponentTypeMap* type_map = component_type_map();
 	ComponentTypeMap::iterator itor = type_map->find(name);
@@ -22,7 +22,7 @@ Component* ComponentFactory::CreateComponent(std::string name)
 	return itor->second->create_func();
 }
 
-void ComponentFactory::ReleaseComponent(Component* component)
+void ComponentFactory::release_component(Component* component)
 {
 	if (component == nullptr) return;
 	component->release();

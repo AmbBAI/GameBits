@@ -8,6 +8,13 @@
 #include "common/ge_scene.h"
 #include "audio/ge_audio.h"
 
+#include "object/ge_object.h"
+#include "component/ge_component.h"
+#include "component/ge_transform.h"
+#include "component/ge_material.h"
+#include "component/ge_mesh.h"
+#include "component/ge_renderer.h"
+
 // #include "render/ge_render.h"
 // #include "render/ger_effect.h"
 // #include "render/ger_material.h"

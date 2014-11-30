@@ -92,7 +92,7 @@ private:
 
 #define REGISTER_COMPONENT_IMPLEMENT(type) \
 	const ComponentType* type::type_ = \
-	ComponentFactory::RegisterComponent(#type, (Component* (*)())(type::create));\
+	ComponentFactory::registe_component(#type, (Component* (*)())(type::create));\
 type* type::create()\
 {\
 	type* new_obj = new type();\

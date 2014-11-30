@@ -21,6 +21,7 @@ public:
 	virtual void awake();
 	virtual void start();
 	virtual void update();
+	virtual void late_update();
 	virtual void dispose();
 
 	virtual void on_enable();
@@ -29,6 +30,8 @@ public:
 	Object* get_object();
 
 protected:
+	virtual void on_frame_begin();
+	virtual void on_frame_end();
 	void set_object(Object* object);
 
 protected:

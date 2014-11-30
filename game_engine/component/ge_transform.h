@@ -25,8 +25,10 @@ public:
 	const Vector3& get_local_rotation();
 	const Vector3& get_rotation();
 
+protected:
 	void update_transform();
 	void set_dirty();
+	virtual void on_frame_end();
 
 protected:
 	Vector3 position_;
@@ -36,8 +38,8 @@ protected:
 	Vector3 local_rotation_;
 	Vector3 local_scale_;
 	bool dirty_;
+	bool is_changed_;
 
-protected:
 	Transform* parent_;
 	std::set<Transform*> children_;
 };

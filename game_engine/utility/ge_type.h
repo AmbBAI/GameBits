@@ -19,6 +19,10 @@ typedef unsigned __int64	U64;
 typedef float				F32;
 typedef double				F64;
 
+
+typedef U32					LayerMask;
+typedef U8					LayerID;
+
 struct GE_API GE_IPOINT
 {
 	GE_IPOINT():x(0), y(0) {}

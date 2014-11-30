@@ -19,22 +19,22 @@ protected:
 	Object();
 	virtual ~Object();
 
-public:
 	bool initialize();
 	void finalize();
 
+public:
 	void update();
 
 	const std::string& get_name();
 
 	Component* add_component(const char* name);
-
 	void remove_component(Component* component);
 
 public:
 
 protected:
 	std::string name;
+	LayerID layer;
 	bool actived;
 
 	std::set<Component*> components_;

@@ -7,7 +7,12 @@ namespace ge
 DLL_MANAGE_CLASS_IMPLEMENT(Object);
 
 Object::Object()
+: name("GameObject")
+, actived(true)
+, transform_(nullptr)
+, components_()
 {
+	initialize();
 }
 
 Object::~Object()
@@ -32,7 +37,7 @@ void Object::finalize()
 		if (Component* component = *itor_component)
 		{
 			component->dispose();
-			ComponentFactory::ReleaseComponent(component);
+			ComponentFactory::release_component(component);
 			component = nullptr;
 		}
 	}
@@ -53,19 +58,26 @@ void Object::update()
 
 Component* Object::add_component(const char* name)
 {
-	Component* component = ComponentFactory::CreateComponent(name);
+	Component* component = ComponentFactory::create_component(name);
 	if (component == nullptr) return nullptr;
 	components_.insert(component);
 	return component;
 	//component->set_object(this);
 }
 
+void Object::remove_component(Component* component)
+{
+	std::set<Component*>::iterator itor_component = components_.find(component);
+	if (itor_component == components_.end()) return;
+
+	components_.erase(itor_component);
+	ComponentFactory::release_component(component);
+}
+
 const std::string& Object::get_name()
 {
 	return name;
 }
-
-
 
 //
 //D3DXMATRIX& Object::get_world_transform()
@@ -100,30 +112,5 @@ const std::string& Object::get_name()
 //	}
 //	return d3d_world_transform_;
 //}
-
-//void Object::set_transform( GETransform& transform )
-//{
-//	transform_ = transform;
-//	is_transform_dirty_ = true;
-//}
-//
-//void Object::add_child( Object* obj )
-//{
-//	if (obj == NULL) return;
-//	childs_.insert(obj);
-//	obj->retain();
-//	obj->set_parent(this);
-//}
-//
-//void Object::set_parent( Object* obj )
-//{
-//	parent_ = obj;
-//}
-//
-//Object* Object::get_parent()
-//{
-//	return parent_;
-//}
-
 
 }

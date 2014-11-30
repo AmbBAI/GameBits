@@ -1,6 +1,5 @@
 #include "game_engine.h"
 #include "script/ge_lua_engine.h"
-#include "object/ge_object.h"
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -25,9 +24,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		freopen("CONOUT$", "w", stderr);
 
 		ge::Object* obj = ge::Object::create();
-		obj->initialize();
-		obj->add_component("Mesh");
-
+		ge::Mesh* mesh = (ge::Mesh*)obj->add_component("Mesh");
 
 		g_p_ge_app->run();
 		/*g_p_ge_lua_engine->open();

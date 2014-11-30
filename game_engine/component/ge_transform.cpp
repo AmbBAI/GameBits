@@ -68,6 +68,7 @@ void Transform::update_transform()
 void Transform::set_dirty()
 {
 	dirty_ = true;
+	is_changed_ = true;
 	FOR_EACH(std::set<Transform*>, children_, itor_child)
 	{
 		if (Transform* transform = *itor_child)
@@ -75,6 +76,11 @@ void Transform::set_dirty()
 			transform->set_dirty();
 		}
 	}
+}
+
+void Transform::on_frame_end()
+{
+	is_changed_ = false;
 }
 
 

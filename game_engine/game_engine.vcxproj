@@ -111,7 +111,8 @@
     <ClCompile Include="common\ge_scene.cpp" />
     <ClCompile Include="component\ge_camera.cpp" />
     <ClCompile Include="type\ge_color.cpp" />
-    <ClCompile Include="type\ge_quaterion.cpp" />
+    <ClCompile Include="type\ge_matrix4x4.cpp" />
+    <ClCompile Include="type\ge_quaternion.cpp" />
     <ClCompile Include="type\ge_rect.cpp" />
     <ClCompile Include="type\ge_vector2.cpp" />
     <ClCompile Include="type\ge_vector3.cpp" />
@@ -158,7 +159,7 @@
     <ClInclude Include="support\freetype\include\ft2build.h" />
     <ClInclude Include="type\ge_color.h" />
     <ClInclude Include="type\ge_matrix4x4.h" />
-    <ClInclude Include="type\ge_quaterion.h" />
+    <ClInclude Include="type\ge_quaternion.h" />
     <ClInclude Include="type\ge_rect.h" />
     <ClInclude Include="type\ge_shader.h" />
     <ClInclude Include="type\ge_vector2.h" />

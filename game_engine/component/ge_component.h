@@ -3,7 +3,7 @@
 
 #include "common/ge_include.h"
 #include "common/ge_engine.h"
-#include "object/ge_object.h"
+#include "object/ge_game_object.h"
 #include "component/ge_component_factory.h"
 
 namespace ge
@@ -27,15 +27,15 @@ public:
 	virtual void on_enable();
 	virtual void on_disable();
 
-	Object* get_object();
+	GameObject* get_object();
 
 protected:
 	virtual void on_frame_begin();
 	virtual void on_frame_end();
-	void set_object(Object* object);
+	void set_object(GameObject* object);
 
 protected:
-	Object* object_;
+	GameObject* object_;
 	bool enabled_;
 };
 }

@@ -1,4 +1,3 @@
-#include <cmath>
 #include "ge_rect.h"
 
 namespace ge

@@ -10,13 +10,13 @@ namespace ge
 
 class Component;
 class Transform;
-class GE_API Object
+class GE_API GameObject
 {
-	DLL_MANAGE_CLASS(Object);
+	DLL_MANAGE_CLASS(GameObject);
 
 protected:
-	Object();
-	virtual ~Object();
+	GameObject();
+	virtual ~GameObject();
 
 	bool initialize();
 	void finalize();

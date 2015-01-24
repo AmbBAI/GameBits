@@ -45,12 +45,12 @@ void Component::on_disable()
 
 }
 
-Object* Component::get_object()
+GameObject* Component::get_object()
 {
 	return object_;
 }
 
-void Component::set_object(Object* object)
+void Component::set_object(GameObject* object)
 {
 	object_ = object;
 }

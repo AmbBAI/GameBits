@@ -1,4 +1,5 @@
 #include "ge_matrix4x4.h"
+#include "common/ge_mathf.h"
 
 namespace ge
 {
@@ -113,13 +114,13 @@ void Matrix4x4::assign_rotation_x(float radians)
 	m[3] = 0.0f;
 
 	m[4] = 0.0f;
-	m[5] = cosf(radians);
-	m[6] = sinf(radians);
+	m[5] = Mathf::cos(radians);
+	m[6] = Mathf::sin(radians);
 	m[7] = 0.0f;
 
 	m[8] = 0.0f;
-	m[9] = -sinf(radians);
-	m[10] = cosf(radians);
+	m[9] = -Mathf::sin(radians);
+	m[10] = Mathf::cos(radians);
 	m[11] = 0.0f;
 
 	m[12] = 0.0f;
@@ -137,9 +138,9 @@ void Matrix4x4::assign_rotation_y(float radians)
 		|  0       0   0       1 |
 	*/
 
-	m[0] = cosf(radians);
+	m[0] = Mathf::cos(radians);
 	m[1] = 0.0f;
-	m[2] = -sinf(radians);
+	m[2] = -Mathf::sin(radians);
 	m[3] = 0.0f;
 
 	m[4] = 0.0f;
@@ -147,9 +148,9 @@ void Matrix4x4::assign_rotation_y(float radians)
 	m[6] = 0.0f;
 	m[7] = 0.0f;
 
-	m[8] = sinf(radians);
+	m[8] = Mathf::sin(radians);
 	m[9] = 0.0f;
-	m[10] = cosf(radians);
+	m[10] = Mathf::cos(radians);
 	m[11] = 0.0f;
 
 	m[12] = 0.0f;
@@ -167,13 +168,13 @@ void Matrix4x4::assign_rotation_z(float radians)
 		|  0        0        0   1 |
 	*/
 
-	m[0] = cosf(radians);
-	m[1] = sinf(radians);
+	m[0] = Mathf::cos(radians);
+	m[1] = Mathf::sin(radians);
 	m[2] = 0.0f;
 	m[3] = 0.0f;
 
-	m[4] = -sinf(radians);
-	m[5] = cosf(radians);
+	m[4] = -Mathf::sin(radians);
+	m[5] = Mathf::cos(radians);
 	m[6] = 0.0f;
 	m[7] = 0.0f;
 
@@ -231,9 +232,9 @@ const Matrix4x4& Matrix4x4::ortho(float left, float right, float bottom, float t
 
 const Matrix4x4& Matrix4x4::perspective(float fov, float aspect, float z_near, float z_far)
 {
-	float r = (fov / 2) * M_PI / 180.f;
+	float r = (fov / 2) * Mathf::deg2rad;
 	float z_delta = z_far - z_near;
-	float s = sin(r);
+	float s = Mathf::sin(r);
 	float cotangent = 0;
 
 	Matrix4x4 mat;
@@ -242,7 +243,7 @@ const Matrix4x4& Matrix4x4::perspective(float fov, float aspect, float z_near, f
 	}
 
 	//cos(r) / sin(r) = cot(r)
-	cotangent = cos(r) / s;
+	cotangent = Mathf::cos(r) / s;
 
 	mat.identity();
 	mat.m[0] = cotangent / aspect;

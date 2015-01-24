@@ -17,7 +17,7 @@ public:
 	static const float infinity;
 	static const float negative_infinity;
 	static const float deg2rad;
-	static const float rad2dep;
+	static const float rad2deg;
 
 	static float abs(float f);
 	static float sign(float f);

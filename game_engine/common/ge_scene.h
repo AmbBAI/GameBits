@@ -6,7 +6,7 @@
 namespace ge
 {
 
-class Object;
+class GameObject;
 class GE_API Scene
 {
 	DLL_MANAGE_CLASS(Scene)
@@ -23,11 +23,11 @@ public:
 
 	virtual void update();
 
-	void add_object(Object* obj);
+	void add_object(GameObject* obj);
 	void remove_object(std::string name);
 
 protected:
-	typedef std::map<std::string, Object*> GE_OBJECT_MAP;
+	typedef std::map<std::string, GameObject*> GE_OBJECT_MAP;
 	GE_OBJECT_MAP object_map_;
 };
 

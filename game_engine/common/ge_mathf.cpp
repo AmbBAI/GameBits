@@ -1,15 +1,20 @@
 #include "ge_mathf.h"
 
-#include <math>
+#ifndef _USE_MATH_DEFINES
+#define _USE_MATH_DEFINES
+#endif
+#include <cmath>
 #include <algorithm>
 
 namespace ge
 {
 
 const float Mathf::epsilon = 1e-6;
-const float Mathf::PI = ::M_PI;
+const float Mathf::PI = M_PI;
 const float Mathf::infinity = INFINITY;
 const float Mathf::negative_infinity = -INFINITY;
+const float Mathf::deg2rad = M_PI / 180.0f;
+const float Mathf::rad2deg = 180.0f / M_PI;
 
 float Mathf::abs(float f)
 {

@@ -1,12 +1,12 @@
-#include "ge_object.h"
+#include "ge_game_object.h"
 #include "component/ge_transform.h"
 
 namespace ge
 {
 
-DLL_MANAGE_CLASS_IMPLEMENT(Object);
+DLL_MANAGE_CLASS_IMPLEMENT(GameObject);
 
-Object::Object()
+GameObject::GameObject()
 : name("GameObject")
 , actived(true)
 , transform_(nullptr)
@@ -15,12 +15,12 @@ Object::Object()
 	initialize();
 }
 
-Object::~Object()
+GameObject::~GameObject()
 {
 	finalize();
 }
 
-bool Object::initialize()
+bool GameObject::initialize()
 {
 	components_.clear();
 	
@@ -30,7 +30,7 @@ bool Object::initialize()
 	return true;
 }
 
-void Object::finalize()
+void GameObject::finalize()
 {
 	FOR_EACH(std::set<Component*>, components_, itor_component)
 	{
@@ -44,7 +44,7 @@ void Object::finalize()
 	components_.clear();
 }
 
-void Object::update()
+void GameObject::update()
 {
 	FOR_EACH(std::set<Component*>, components_, itor_component)
 	{
@@ -56,7 +56,7 @@ void Object::update()
 }
 
 
-Component* Object::add_component(const char* name)
+Component* GameObject::add_component(const char* name)
 {
 	Component* component = ComponentFactory::create_component(name);
 	if (component == nullptr) return nullptr;
@@ -65,7 +65,7 @@ Component* Object::add_component(const char* name)
 	//component->set_object(this);
 }
 
-void Object::remove_component(Component* component)
+void GameObject::remove_component(Component* component)
 {
 	std::set<Component*>::iterator itor_component = components_.find(component);
 	if (itor_component == components_.end()) return;
@@ -74,12 +74,12 @@ void Object::remove_component(Component* component)
 	ComponentFactory::release_component(component);
 }
 
-const std::string& Object::get_name()
+const std::string& GameObject::get_name()
 {
 	return name;
 }
 
-Transform* Object::get_transform()
+Transform* GameObject::get_transform()
 {
 	return transform_;
 }

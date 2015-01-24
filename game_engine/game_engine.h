@@ -8,7 +8,7 @@
 #include "common/ge_scene.h"
 #include "audio/ge_audio.h"
 
-#include "object/ge_object.h"
+#include "object/ge_game_object.h"
 #include "component/ge_component.h"
 #include "component/ge_transform.h"
 #include "component/ge_material.h"

@@ -15,11 +15,6 @@
 #include <ctime>
 #include <assert.h>
 
-#ifndef _USE_MATH_DEFINES
-#define _USE_MATH_DEFINES
-#endif
-#include <cmath>
-
 // stl include
 #include <string>
 #include <vector>
@@ -31,11 +26,6 @@
 // win api include
 #include <Windows.h>
 #include <Gdiplus.h>
-
-// d3d include
-#include <d3d9.h>
-#include <d3dx9.h>
-#include <DxErr.h>
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
 

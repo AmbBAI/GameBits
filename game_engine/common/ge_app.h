@@ -28,12 +28,9 @@ public:
 	void destory();
 
 	bool		is_app_created()	{ return is_app_created_; }
-	GE_IRECT&	get_game_rect()		{ return game_rect_; }	
+	//GE_IRECT&	get_game_rect()		{ return game_rect_; }	
 	float		get_fps()			{ return fps_; }
 
-	bool		show_console(bool is_show);
-	bool		get_console_show()	{ return is_console_show_; }
-	
 	bool		on_resize();
 
 protected:
@@ -52,10 +49,8 @@ private:
 	HWND		h_app_wnd_;
 	HINSTANCE	h_app_inst_;
 
-	GE_IRECT	game_rect_;
+	//GE_IRECT	game_rect_;
 	bool		is_app_created_;
-
-	bool		is_console_show_;
 
 	float		fps_;
 	float		fps_elapsed_;

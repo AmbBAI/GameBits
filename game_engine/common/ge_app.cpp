@@ -109,25 +109,36 @@ bool Application::create_app( HINSTANCE h_app_inst, const char* title, int width
 	ret = RegisterClass( &wnd_class );
 	if(!ret) return false;
 
-	GE_IRECT wnd_rect = GE_IRECT(0, 0, width, height);
+	RECT wnd_rect;
+	wnd_rect.top = 0;
+	wnd_rect.left = 0;
+	wnd_rect.bottom = height;
+	wnd_rect.right = width;
+
 	ret = AdjustWindowRect(&wnd_rect, DEF_WND_STYLE, FALSE);
 	if(!ret) return false;
 
-	wnd_rect.move_to(0, 0);
-	GE_IRECT work_area_rect;
+	RECT work_area_rect;
 	if(!SystemParametersInfo(SPI_GETWORKAREA, 0, &work_area_rect, 0))
 		return false;
 
-	int pos_x = (work_area_rect.width() - wnd_rect.width()) / 2;
-	int pos_y = (work_area_rect.height() - wnd_rect.height()) / 2;
-	wnd_rect.move_to(pos_x, pos_y);
+	int wnd_width = wnd_rect.right - wnd_rect.left;
+	int wnd_height = wnd_rect.bottom - wnd_rect.top;
+	int work_area_width = work_area_rect.right - work_area_rect.left;
+	int work_area_height = work_area_rect.bottom - work_area_rect.top;
+
+	int pos_x = (work_area_width - wnd_width) / 2;
+	int pos_y = (work_area_height - wnd_height) / 2;
 
 	h_app_wnd_ = CreateWindow("DxApp Window", title, DEF_WND_STYLE,
-		wnd_rect.left, wnd_rect.top, wnd_rect.width(), wnd_rect.height(),
+		pos_x,
+		pos_y,
+		wnd_width,
+		wnd_height,
 		0L, 0L, h_app_inst, 0L);
 	if (h_app_wnd_ == NULL) return false;
 
-	GetClientRect(h_app_wnd_, &game_rect_);
+	//GetClientRect(h_app_wnd_, &game_rect_);
 	UpdateWindow(h_app_wnd_);
 	ShowWindow(h_app_wnd_, SW_NORMAL);
 
@@ -171,38 +182,12 @@ void Application::_update_fps()
 	}
 }
 
-bool Application::show_console( bool is_show )
-{
-	if (is_console_show_ == is_show) return false;
-
-	if (is_show)
-	{
-		::FreeConsole();
-		if (::AllocConsole())
-		{
-			freopen("CONOUT$", "w", stdout);
-			freopen("CONOUT$", "w", stderr);
-			is_console_show_ = is_show;
-			return true;
-		}
-	}
-	else
-	{
-		if(::FreeConsole())
-		{
-			is_console_show_ = is_show;
-			return true;
-		}
-	}
-	return false;
-}
-
 bool Application::on_resize()
 {
-	GetClientRect(h_app_wnd_, &game_rect_);
+	//GetClientRect(h_app_wnd_, &game_rect_);
 
-	int width = game_rect_.right - game_rect_.left;
-	int height = game_rect_.bottom - game_rect_.top;
+	//int width = game_rect_.right - game_rect_.left;
+	//int height = game_rect_.bottom - game_rect_.top;
 
 	//if (p_ge_engine_)
 	//{

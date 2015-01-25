@@ -4,6 +4,24 @@
 namespace ge
 {
 
+Quaternion::Quaternion()
+	: x(0.f)
+	, y(0.f)
+	, z(0.f)
+	, w(0.f)
+{
+
+}
+
+Quaternion::Quaternion(float _x, float _y, float _z, float _w)
+	: x(_x)
+	, y(_y)
+	, z(_z)
+	, w(_w)
+{
+
+}
+
 void Quaternion::set_euler_angle(float _x, float _y, float _z)
 {
 	float radx = (_x * Mathf::deg2rad);

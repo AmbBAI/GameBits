@@ -15,8 +15,8 @@ class Material;
 class GE_API Graphics
 {
 protected:
-	Graphics();
-	virtual ~Graphics();
+	Graphics() {}
+	virtual ~Graphics() {}
 
 public:
 	static void draw_mesh(

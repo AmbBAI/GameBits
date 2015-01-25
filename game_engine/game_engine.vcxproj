@@ -119,6 +119,7 @@
     <ClCompile Include="type\ge_rect.cpp" />
     <ClCompile Include="type\ge_vector2.cpp" />
     <ClCompile Include="type\ge_vector3.cpp" />
+    <ClCompile Include="utility\ge_debug.cpp" />
     <ClCompile Include="utility\ge_file.cpp" />
     <ClCompile Include="utility\ge_time.cpp" />
     <ClCompile Include="utility\ge_type.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="type\ge_shader.h" />
     <ClInclude Include="type\ge_vector2.h" />
     <ClInclude Include="type\ge_vector3.h" />
+    <ClInclude Include="utility\ge_debug.h" />
     <ClInclude Include="utility\ge_file.h" />
     <ClInclude Include="utility\ge_time.h" />
     <ClInclude Include="utility\ge_type.h" />

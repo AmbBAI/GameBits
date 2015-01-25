@@ -14,6 +14,8 @@
 #include "component/ge_mesh.h"
 #include "component/ge_renderer.h"
 
+#include "utility/ge_debug.h"
+
 // #include "render/ge_render.h"
 // #include "render/ger_effect.h"
 // #include "render/ger_material.h"

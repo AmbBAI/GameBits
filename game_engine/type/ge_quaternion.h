@@ -13,7 +13,7 @@ struct GE_API Quaternion
 	float w = 0.f;
 
 	Quaternion();
-	Quaternion(float _x, float _y, float _z, float w);
+	Quaternion(float _x, float _y, float _z, float _w);
 
 	void set_euler_angle(float _x, float _y, float _z);
 	void set_euler_angle(const Vector3& euler_angle);

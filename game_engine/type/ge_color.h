@@ -28,6 +28,7 @@ struct GE_API Color32
 	Color32() : argb(0xffffffff) {}
 	Color32(U8 a, U8 r, U8 g, U8 b) : argb((((((a << 8) | r) << 8) | g) << 8) | b) {}
 	Color32(U32 argb) : argb(argb) {}
+	Color32(const Color& color);
 
 	static const Color32 white;
 	static const Color32 black;

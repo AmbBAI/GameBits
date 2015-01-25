@@ -13,4 +13,10 @@ Color::Color(float _r, float _g, float _b, float _a)
 {
 }
 
+
+Color32::Color32(const Color& color)
+	:Color32(color.r, color.g, color.b, color.a)
+{
+}
+
 }

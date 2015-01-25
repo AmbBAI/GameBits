@@ -31,7 +31,6 @@
 
 #define DEF_WND_STYLE ((WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX) | WS_CLIPCHILDREN | WS_VISIBLE)
 
-#define D3D_RELEASE(p) { if(p) { (p)->Release(); (p)=NULL; } } 
 #define GE_RELEASE(p) { if(p) { (p)->release(); (p)=NULL; } }
 
 #define RGBA(r, g, b, a)   ((D3DCOLOR) (((a) << 24) | ((r) << 16) | ((g) << 8) | (b)))

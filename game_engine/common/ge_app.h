@@ -10,10 +10,8 @@ namespace ge
 {
 
 class GEGame;
-class GEEngine;
 class GE_API Application
 {
-	friend GEEngine;
 	friend Input;
 
 protected:
@@ -64,7 +62,6 @@ private:
 	int			frame_cnt_;
 
 	GEGame*		p_ge_game_;
-	GEEngine*	p_ge_engine_;
 
 	int			mouse_x_;
 	int			mouse_y_;

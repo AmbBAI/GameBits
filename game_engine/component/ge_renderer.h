@@ -2,7 +2,6 @@
 #define _GAME_ENGINE_RENDERER_H_
 
 #include "common/ge_include.h"
-#include "common/ge_engine.h"
 #include "component/ge_component.h"
 
 namespace ge

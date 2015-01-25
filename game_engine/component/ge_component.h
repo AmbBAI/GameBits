@@ -2,7 +2,6 @@
 #define _GAME_ENGINE_COMPONENT_H_
 
 #include "common/ge_include.h"
-#include "common/ge_engine.h"
 #include "object/ge_game_object.h"
 #include "component/ge_component_factory.h"
 

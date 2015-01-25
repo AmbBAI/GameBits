@@ -33,10 +33,11 @@ public:
 protected:
 	bool _d3d_begin_scene();
 	bool _d3d_end_scene();
-	bool _d3d_clear(bool clear_depth, bool clear_color, Color background_color, float depth = 1.0f);
+	bool _d3d_clear(bool clear_depth, bool clear_color, const Color& background_color, float depth = 1.0f);
 	bool _d3d_present();
 	bool _d3d_reset();
 	bool _d3d_check();
+	bool _on_reset_present_param();
 	bool _on_lost_device();
 	bool _on_reset_device();
 

@@ -13,7 +13,14 @@
 #include <cstring>
 #include <cstdlib>
 #include <ctime>
+#include <cfloat>
 #include <assert.h>
+
+#ifndef _USE_MATH_DEFINES
+#define _USE_MATH_DEFINES
+#endif
+#include <cmath>
+#include <algorithm>
 
 // stl include
 #include <string>
@@ -28,6 +35,8 @@
 #include <Gdiplus.h>
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
+#undef min
+#undef max
 
 #define DEF_WND_STYLE ((WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX) | WS_CLIPCHILDREN | WS_VISIBLE)
 

@@ -2,7 +2,6 @@
 #define _GAME_ENGINE_TRANFSORM_H_
 
 #include "common/ge_include.h"
-#include "common/ge_engine.h"
 #include "component/ge_component.h"
 #include "type/ge_vector3.h"
 

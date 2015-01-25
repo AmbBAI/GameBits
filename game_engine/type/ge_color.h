@@ -14,7 +14,7 @@ struct GE_API Color
 	float b = 1.f;
 	float a = 1.f;
 
-	Color(float _r, float _g, float _b, float _a);
+	Color(float _a, float _r, float _g, float _b);
 
 	static const Color white;
 	static const Color black;

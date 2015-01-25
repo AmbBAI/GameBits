@@ -2,7 +2,6 @@
 #define _GAME_ENGINE_MATRIX4X4_H_
 
 #include "common/ge_include.h"
-#include "common/ge_engine.h"
 #include "type/ge_vector3.h"
 #include "type/ge_quaternion.h"
 

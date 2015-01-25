@@ -2,7 +2,6 @@
 #define _GAME_ENGINE_AUDIO_H_
 
 #include "common/ge_include.h"
-#include "common/ge_engine.h"
 #include "audio/ge_fmod.h"
 
 

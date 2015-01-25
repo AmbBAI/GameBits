@@ -42,11 +42,11 @@ public:
 	//static float smooth_damp(float current, float target, float current_velocity, float smooth_time, float max_speed, float delta_time);
 
 	static float min(float a, float b);
-	static float min(const float* values, int count) const;
-	static float min(const vector<float>& values);
+	static float min(const float* values, int count);
+	static float min(const std::vector<float>& values);
 	static float max(float a, float b);
-	static float max(const float* values, int count) const;
-	static float max(const vector<float>& values);
+	static float max(const float* values, int count);
+	static float max(const std::vector<float>& values);
 
 	static float sqrt(float value);
 	static float pow(float f, float p);

@@ -1,5 +1,4 @@
 #include "ge_camera.h"
-#include "common/ge_engine.h"
 #include "common/ge_app.h"
 #include "object/ge_game_object.h"
 #include "component/ge_transform.h"

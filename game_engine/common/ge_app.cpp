@@ -1,5 +1,4 @@
 #include "ge_app.h"
-#include "ge_engine.h"
 #include "ge_game.h"
 #include "audio/ge_audio.h"
 #include "utility/ge_time.h"
@@ -11,7 +10,7 @@ Application::Application()
 	:is_app_created_(false)
 {
 	p_ge_game_ = GEGame::get_instance();
-	p_ge_engine_ = GEEngine::get_instance();
+	//p_ge_engine_ = GEEngine::get_instance();
 }
 
 Application::~Application()
@@ -149,11 +148,11 @@ void Application::_process()
 	{
 		p_ge_game_->process();
 
-		p_ge_engine_ = GEEngine::get_instance();
-		if (p_ge_engine_ != NULL)
-		{
-			p_ge_engine_->process();
-		}
+		//p_ge_engine_ = GEEngine::get_instance();
+		//if (p_ge_engine_ != NULL)
+		//{
+		//	p_ge_engine_->process();
+		//}
 	}
 	::Sleep(0);
 }
@@ -205,10 +204,10 @@ bool Application::on_resize()
 	int width = game_rect_.right - game_rect_.left;
 	int height = game_rect_.bottom - game_rect_.top;
 
-	if (p_ge_engine_)
-	{
-		p_ge_engine_->set_resolution(width, height);
-	}
+	//if (p_ge_engine_)
+	//{
+	//	p_ge_engine_->set_resolution(width, height);
+	//}
 
 	InvalidateRect(h_app_wnd_, 0, false);
 

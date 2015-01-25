@@ -65,17 +65,17 @@ void Matrix4x4::assign_rotation_euler_angle(const Vector3& euler_angle)
 
 void Matrix4x4::assign_rotation_quaternion(const Quaternion& quaternion)
 {
-	double xx = quaternion.x * quaternion.x;
-	double xy = quaternion.x * quaternion.y;
-	double xz = quaternion.x * quaternion.z;
-	double xw = quaternion.x * quaternion.w;
+	float xx = quaternion.x * quaternion.x;
+	float xy = quaternion.x * quaternion.y;
+	float xz = quaternion.x * quaternion.z;
+	float xw = quaternion.x * quaternion.w;
 
-	double yy = quaternion.y * quaternion.y;
-	double yz = quaternion.y * quaternion.z;
-	double yw = quaternion.y * quaternion.w;
+	float yy = quaternion.y * quaternion.y;
+	float yz = quaternion.y * quaternion.z;
+	float yw = quaternion.y * quaternion.w;
 
-	double zz = quaternion.z * quaternion.z;
-	double zw = quaternion.z * quaternion.w;
+	float zz = quaternion.z * quaternion.z;
+	float zw = quaternion.z * quaternion.w;
 
 	m[0] = 1 - 2 * (yy + zz);
 	m[1] = 2 * (xy + zw);
@@ -281,7 +281,7 @@ void Matrix4x4::set_trs(const Vector3& pos, const Quaternion& q, const Vector3& 
 const Matrix4x4& Matrix4x4::inverse()
 {
 	Matrix4x4 mat;
-	double det;
+	float det;
 	int i;
 
 	mat.m[0] = m[5] * m[10] * m[15] -
@@ -402,7 +402,7 @@ const Matrix4x4& Matrix4x4::inverse()
 		return mat;
 	}
 
-	det = 1.0 / det;
+	det = 1.0f / det;
 
 	for (i = 0; i < 16; i++) {
 		mat.m[i] *= det;

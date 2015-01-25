@@ -1,5 +1,4 @@
 #include "ge_input.h"
-#include "ge_engine.h"
 #include "ge_app.h"
 
 namespace ge
@@ -59,9 +58,12 @@ void Input::destory_input()
 	if (p_keyboard_device_) p_keyboard_device_->Unacquire();
 	if (p_mouse_device_) p_mouse_device_->Unacquire();
 
-	D3D_RELEASE(p_keyboard_device_);
-	D3D_RELEASE(p_mouse_device_);
-	D3D_RELEASE(p_input_);
+	if (p_keyboard_device_) p_keyboard_device_->Release();
+	p_keyboard_device_ = nullptr;
+	if (p_mouse_device_) p_mouse_device_->Release();
+	p_mouse_device_ = nullptr;
+	if (p_input_) p_input_->Release();
+	p_input_ = nullptr;
 }
 
 void Input::update_input()

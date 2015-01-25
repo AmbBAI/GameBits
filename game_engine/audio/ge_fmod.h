@@ -2,7 +2,6 @@
 #define _GAME_ENGINE_FMOD_H_
 
 #include "common/ge_include.h"
-#include "common/ge_engine.h"
 
 #include "support/fmod/fmod/inc/fmod.hpp"
 

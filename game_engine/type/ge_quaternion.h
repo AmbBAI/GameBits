@@ -1,7 +1,6 @@
 #ifndef _GAME_ENGINE_QUATERNION_H_
 #define _GAME_ENGINE_QUATERNION_H_
 #include "common/ge_include.h"
-#include "common/ge_engine.h"
 #include "type/ge_vector3.h"
 
 namespace ge

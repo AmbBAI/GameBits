@@ -107,7 +107,7 @@ bool GL_DX9::_d3d_end_scene()
 	return SUCCEEDED(h_res);
 }
 
-bool GL_DX9::_d3d_clear(bool clear_depth, bool clear_color, Color background_color, float depth = 1.0f)
+bool GL_DX9::_d3d_clear(bool clear_depth, bool clear_color, const Color& background_color, float depth /*= 1.0f*/)
 {
 	if (!is_initialized) return false;
 	if (d3d_device_ == NULL) return false;
@@ -151,7 +151,7 @@ bool GL_DX9::change_resolution(int width, int height)
 		d3d_present_param_.BackBufferWidth = (unsigned)width;
 		d3d_present_param_.BackBufferHeight = (unsigned)height;
 
-		//if (!_dx_reset()) return false;
+		if (!_d3d_reset()) return false;
 	}
 	return true;
 }
@@ -175,7 +175,7 @@ bool GL_DX9::change_windowed(bool is_windowed)
 bool GL_DX9::_d3d_reset()
 {
 	_on_lost_device();
-	if (_on_d3d_reset())
+	if (_on_reset_present_param())
 	{
 		_on_reset_device();
 		return true;
@@ -203,6 +203,16 @@ bool GL_DX9::_d3d_check()
 		return false;
 	}
 	return true;
+}
+
+bool GL_DX9::_on_reset_present_param()
+{
+	if (!is_initialized) return false;
+	if (d3d_device_ == NULL) return false;
+
+	if (d3d_device_ == NULL) return false;
+	HRESULT h_res = d3d_device_->Reset(&d3d_present_param_);
+	return SUCCEEDED(h_res);
 }
 
 bool GL_DX9::_on_lost_device()

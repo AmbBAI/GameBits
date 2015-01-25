@@ -109,7 +109,6 @@
     <ClCompile Include="graphics\ge_graphics.cpp" />
     <ClCompile Include="object\ge_game_object.cpp" />
     <ClCompile Include="common\ge_app.cpp" />
-    <ClCompile Include="common\ge_engine.cpp" />
     <ClCompile Include="common\ge_game.cpp" />
     <ClCompile Include="common\ge_input.cpp" />
     <ClCompile Include="common\ge_scene.cpp" />
@@ -138,10 +137,10 @@
     <ClInclude Include="component\ge_transform.h" />
     <ClInclude Include="graphics\ge_gl.h" />
     <ClInclude Include="graphics\ge_gl_dx9.h" />
+    <ClInclude Include="graphics\ge_gl_interface.h" />
     <ClInclude Include="graphics\ge_graphics.h" />
     <ClInclude Include="object\ge_game_object.h" />
     <ClInclude Include="common\ge_app.h" />
-    <ClInclude Include="common\ge_engine.h" />
     <ClInclude Include="common\ge_game.h" />
     <ClInclude Include="common\ge_include.h" />
     <ClInclude Include="common\ge_input.h" />

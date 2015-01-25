@@ -1,20 +1,14 @@
 #include "ge_mathf.h"
 
-#ifndef _USE_MATH_DEFINES
-#define _USE_MATH_DEFINES
-#endif
-#include <cmath>
-#include <algorithm>
-
 namespace ge
 {
 
-const float Mathf::epsilon = 1e-6;
-const float Mathf::PI = M_PI;
-const float Mathf::infinity = INFINITY;
-const float Mathf::negative_infinity = -INFINITY;
-const float Mathf::deg2rad = M_PI / 180.0f;
-const float Mathf::rad2deg = 180.0f / M_PI;
+const float Mathf::epsilon = FLT_EPSILON;
+const float Mathf::PI = (float)M_PI;
+const float Mathf::infinity = FLT_MAX;
+const float Mathf::negative_infinity = -FLT_MAX;
+const float Mathf::deg2rad = (float)M_PI / 180.0f;
+const float Mathf::rad2deg = 180.0f / (float)M_PI;
 
 float Mathf::abs(float f)
 {
@@ -22,7 +16,7 @@ float Mathf::abs(float f)
 }
 float Mathf::sign(float f)
 {
-	return ::signbit(f) : -1f : 1f;
+	return ::signbit(f) ? -1.f : 1.f;
 }
 bool Mathf::approximately(float a, float b)
 {
@@ -43,7 +37,7 @@ float Mathf::ceil(float f)
 }
 int Mathf::ceil_to_int(float f)
 {
-	return (int)(Mathf::ceil(f) + Mathf.e);
+	return (int)(Mathf::ceil(f) + Mathf::epsilon);
 }
 float Mathf::round(float f)
 {
@@ -60,17 +54,17 @@ float Mathf::clamp(float value, float min, float max)
 }
 float Mathf::clamp01(float value)
 {
-	return Mathf::clamp(value, 0f, 1f);
+	return Mathf::clamp(value, 0.f, 1.f);
 }
 
 float Mathf::min(float a, float b)
 {
 	return ::fmin(a, b);
 }
-float Mathf::min(const float* values, int count) const
+float Mathf::min(const float* values, int count) 
 {
-	if (values == nullptr) return 0f;
-	if (count <= 0) return 0f;
+	if (values == nullptr) return 0.f;
+	if (count <= 0) return 0.f;
 	if (count == 1) return values[0];
 
 	float min_value = values[0];
@@ -80,18 +74,18 @@ float Mathf::min(const float* values, int count) const
 	}
 	return min_value;
 }
-float Mathf::min(const vector<float>& values)
+float Mathf::min(const std::vector<float>& values)
 {
-	return ::min_element(values.begin(), values.end());
+	return *std::min_element(values.begin(), values.end());
 }
 float Mathf::max(float a, float b)
 {
 	return ::fmax(a, b);
 }
-float Mathf::max(const float* values, int count) const
+float Mathf::max(const float* values, int count)
 {
-	if (values == nullptr) return 0f;
-	if (count <= 0) return 0f;
+	if (values == nullptr) return 0.f;
+	if (count <= 0) return 0.f;
 	if (count == 1) return values[0];
 
 	float max_value = values[0];
@@ -101,9 +95,9 @@ float Mathf::max(const float* values, int count) const
 	}
 	return max_value;
 }
-float Mathf::max(const vector<float>& values)
+float Mathf::max(const std::vector<float>& values)
 {
-	return ::max_element(values.begin(), values.end());
+	return *std::max_element(values.begin(), values.end());
 }
 
 float Mathf::sin(float f)
@@ -138,7 +132,7 @@ float Mathf::atan2(float y, float x)
 float Mathf::lerp(float from, float to, float t)
 {
 	t = Mathf::clamp01(t);
-	return to * t + from * (1f - t);
+	return to * t + from * (1.f - t);
 }
 
 float Mathf::inverse_lerp(float from, float to, float t)
@@ -150,7 +144,7 @@ float Mathf::repeat(float t, float length)
 {
 	t = Mathf::abs(t);
 	length = Mathf::abs(length);
-	if (Mathf::approximately(length, 0f)) return 0f;
+	if (Mathf::approximately(length, 0.f)) return 0.f;
 	return ::fmod(t, length);
 }
 
@@ -158,7 +152,7 @@ float Mathf::ping_pong(float t, float length)
 {
 	t = Mathf::abs(t);
 	length = Mathf::abs(length);
-	if (Mathf::approximately(length, 0f)) return 0f;
+	if (Mathf::approximately(length, 0.f)) return 0.f;
 	
 	int div_value = Mathf::ceil_to_int(t / length);
 	float mod_value = ::fmod(t, length);
@@ -218,13 +212,14 @@ int Mathf::next_power_of_two(int value)
 	if (value <= 0) return 1;
 	if (Mathf::is_power_of_two(value)) return value << 1;
 
-	--n;
-	n |= n >> 1;
-	n |= n >> 2;
-	n |= n >> 4;
-	n |= n >> 8;
-	n |= n >> 16;
-	++n;
+	--value;
+	value |= value >> 1;
+	value |= value >> 2;
+	value |= value >> 4;
+	value |= value >> 8;
+	value |= value >> 16;
+	++value;
+	return value;
 }
 
 int Mathf::closest_power_of_two(int value)

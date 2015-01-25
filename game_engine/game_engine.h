@@ -3,7 +3,6 @@
 
 #include "common/ge_include.h"
 #include "common/ge_app.h"
-#include "common/ge_engine.h"
 #include "common/ge_game.h"
 #include "common/ge_scene.h"
 #include "audio/ge_audio.h"
